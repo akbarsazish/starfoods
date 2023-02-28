@@ -6,21 +6,21 @@ use App\Models\GoodGroups;
 use Illuminate\Support\Facades\Validator;
 use Response;
 class Group extends Controller {
-    public function index(Request $request)
-    {
+    public function index(Request $request){
         $mainGroups=DB::select("select id,title,show_hide from NewStarfood.dbo.Star_Group_Def where selfGroupId=0 order by mainGroupPriority asc");
         return  view ('admin.listGroup',['mainGroups'=>$mainGroups]);
         // return  view ('admin.listGroup');
     }
-    public function mainGroups(Request $request)
-    {
+
+    public function mainGroups(Request $request){
         $allGroups=DB::select("SELECT id,title,mainGroupPriority FROM NewStarfood.dbo.Star_Group_Def WHERE selfGroupId=0  order by mainGroupPriority asc");
         return view('groupPart.groups',['groups'=>$allGroups]);
     }
-    public function editGroup(Request $request)
-    {
+    
+    public function editGroup(Request $request){
         return view ('admin.editGroup');
     }
+
     public function addGroup(Request $request){
         $groupName=$request->post('mainGroupName');
         $priority=$request->post("priority");

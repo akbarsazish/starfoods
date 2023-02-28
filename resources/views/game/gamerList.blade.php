@@ -15,28 +15,7 @@
                                 </div>
                             </div>
                         </div><br>
-                            <table class="table table-bordered message">
-                                <thead class="tableHeader">
-                                <tr>
-                                    <th>ردیف</th>
-                                    <th> نام مشتری </th>
-                                    <th>شماره تماس</th>
-                                    <th>جایزه (تومان)</th>
-                                    <th>حذف</th>
-                                </tr>
-                                </thead>
-                                <tbody class="tableBody">
-                            @foreach ($players as $player)
-                                <tr>
-                                    <td>{{number_format($loop->index+1)}}</td>
-                                    <td>{{$player->Name}}</td>
-                                    <td>{{$player->Name}}</td>
-                                    <td>{{number_format($player->prize)}}</td>
-                                    <td> <i class="fa fa-trash" style="color:red; cursor:pointer"></i> </td>
-                                 </tr>
-                              @endforeach
-                                </tbody>
-                            </table>
+                            
                         </div>
                     </div>
                 </div>

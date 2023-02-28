@@ -1,104 +1,42 @@
 @extends('admin.layout')
 @section('content')
-    <style>
-       
-        button:hover{ 
-            background: linear-gradient(#d3fde4, #198754);
-            color: #f1e253 !important;
-            font-size: 18px; 
-            font-weight: bold;
-            border-color: #bb993a !important;
-            border-width: 2px;
+ <style>
+    .grid-picture {
+        display: grid;
+        grid-template-columns: auto auto auto auto auto;
+        padding: 5px;
         }
-            #photoPickerID:hover{
-            background: linear-gradient(#d3fde4, #198754);
-            color: #f1e253 !important;
-            font-size: 17px; 
-            font-weight: bold;
-            border-color: #bb993a !important;;
-            height: 34px;
-            width: 140px;
+    .pic-item {
+        padding: 8px;
+        font-size: 14px;
+        text-align: center;
+        border:1px solid green; 
+        border-radius:5px;
+        margin:5px;
         }
-        
-        #addDataGroupList i:hover,
-        #removeDataGroupList i:hover,
-        #addDataKalaList i:hover,
-        #removeDataKalaList i:hover,
-        #addDataToShegeftAngiz i:hover,
-        #removeDataFromShegeftAngiz i:hover,
-        #addDataToBrandItem1 i:hover,
-        #removeDataFromBrandItem1 i:hover,
-        #addDataOnePic1 i:hover,
-        #removeDataOnePic1 i:hover,
-        #addDataTwoPic1 i:hover,
-        #removeDataTwoPic1 i:hover,
-        #addDataTwoPic2 i:hover,
-        #removeDataTwoPic2 i:hover,
-        #addData3Pic1 i:hover,
-        #removeData3Pic1 i:hover,
-        #addData3Pic2 i:hover,
-        #removeData3Pic2 i:hover,
-        #addData3Pic3 i:hover,
-        #removeData3Pic3 i:hover
-        { 
-            color: #f1e253 !important;
-            font-size: 40px; 
-            font-weight: bold;
-            border-color: #bb993a !important;
-            border-width: 2px;
-        }
-        button.btn-info,
-        #photoPickerID{
-            padding: 0;
-            width: 122px;
-            height: 34px;
-            background-color: #198754;
-            border-color: #000;
-        }
-        #photoPickerID{
-            width:140px;
-        }
-        #top, #down{
-            display: inline;
-            padding:0;
-            border:none;
-            background:none
-        }
-        i::before{
-            padding:0;
-        }
-        label{
-            font-family:IRANSans;
-            font-size: 0.9rem;
-            line-height: 1;
-            color: rgb(19, 7, 129);
-            font-weight: 300;
-        }
-        .checkbox-label{
-            font-weight: bold;
-        }
-        #pslider .product-item {
-        min-height: 20vh !important;
-        width: 15% !important;
-        height: 20vh !important;
-        text-align: center !important;
-        display: flex !important;
-        border-radius:initial !important;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
-    </style>
-
-
-    <section class="container" style="margin-top:90px; width:1222px">
-                    <h5 style="width:50%; border-bottom:2px solid gray">افزودن بخش جدید</h5>
-                    <div class="row">
-                        <div class='card'>
-                          <div class='modal-body'>
+ </style>
+<div class="container-fluid containerDiv">
+    <div class="row">
+            <div class="col-lg-2 col-md-2 col-sm-3 sideBar">
+                <fieldset class="border rounded mt-5 sidefieldSet">
+                    <legend  class="float-none w-auto legendLabel mb-0"> تنظیمات </legend>
+                    <!-- <div class="form-check">
+                        <input class="form-check-input p-2 float-start" type="radio" name="settings" id="elseSettingsRadio">
+                        <label class="form-check-label me-4" for="assesPast">  سطح دسترسی  </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input p-2 float-start" type="radio" name="settings" id="settingAndTargetRadio">
+                        <label class="form-check-label me-4" for="assesPast"> تارگت ها و امتیازات </label>
+                    </div> -->
+                    
+                </fieldset>
+                </div>
+            <div class="col-sm-10 col-md-10 col-sm-12 contentDiv">
+                <div class="row contentHeader" style="height:10px;"> </div>
+                <div class="row mainContent">
                             <form action="{{ url('/addPart') }}" method="POST" class='form' enctype="multipart/form-data" method="GET" autocomplete="off">
                                     @csrf
-                                    <div class="row">
+                                    <div class="row mt-2">
                                     <div class="col-sm-3">
                                         <div class='form-group'>
                                             <input class="form-control form-control-sm" id='partTitle' type='text' required class='form-control' name='partTitle' placeholder='اسم سطر'/>
@@ -120,40 +58,35 @@
                                     </div>
                                     <div class="col-sm-3">
                                          <div class='form-group' style="float:left">
-                                            <button class="btn btn-info btn-md text-warning" type="submit" id="addParts" value="addGroupToPart" name="addGroupToPart">ذخیره <i class="fa-light fa-save fa-lg"></i></button>
+                                            <button class="btn btn-success btn-sm text-warning" type="submit" id="addParts" value="addGroupToPart" name="addGroupToPart">ذخیره <i class="fa-light fa-save fa-lg"></i></button>
                                         </div>
                                      </div>
-                                </div> <br>
+                                </div>
 
                                 <div class='c-checkout p-0 mx-auto' style='border-radius:10px 10px 2px 2px;'>
                                     <div class="form-group p-0" id='newGroup'>
-                                        <div class='col-sm-3 m-3 mb-0 p-0 d-flex'>
+                                        <div class='col-sm-4 m-1'>
                                             <input type='search' class='form-control form-control-sm' id="search_mainGroup2" name='search_mainPart' placeholder='جستجو'/>
                                         </div>
                                         <div class="row ">
                                             <div class="col-sm-5">
-                                                <div class='modal-body'>
-                                                    <div class='c-checkout' style="padding:0; margin:0">
-                                                        <table class="tableSection table table-bordered table table-hover table-sm table-light" id='myTable' style='td:hover{ cursor:move;}'>
-                                                            <thead class="table bg-danger">
-                                                                <tr>
-                                                                    <th>ردیف</th>
-                                                                    <th>اسم کالا</th>
-                                                                    <th><input type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody  id="groupPart" style="max-height: 400px;">
-                                                            </tbody>
-                                                        </table>  
-                                                    </div>                                  
-                                                </div>
+                                                <table class="table table-bordered  table-sm" id='myTable'>
+                                                    <thead class="bg-success tableHeader">
+                                                        <tr>
+                                                            <th>ردیف</th>
+                                                            <th>اسم کالا</th>
+                                                            <th><input type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody  id="groupPart" style="height: 360px !important;" class="tableBody"> </tbody>
+                                                </table>                                  
                                             </div>
-                                            <div class="col-sm-2 d-flex align-items-center">
+                                            <div class="col-sm-2 text-center">
                                                 <div class='modal-body'>
                                                     <div>
                                                         <a id="addDataGroupList">
                                                             <i class="fa-regular fa-circle-chevron-left fa-3x text-success"></i>
-                                                        </a>
+                                                        </a> <br>
                                                         <a id="removeDataGroupList">
                                                             <i class="fa-regular fa-circle-chevron-right fa-3x text-success"></i>
                                                         </a>
@@ -161,119 +94,39 @@
                                                 </div>
                                             </div>
                                             <div class="col-sm-5">
-                                                <div class='modal-body'>
-                                                    <div class='c-checkout' style="padding:0; margin:0">   
-                                                        <table class="tableSection table table-bordered table table-hover table-sm table-light" id='myTable' style='td:hover{ cursor:move;}'>
-                                                            <thead class="table bg-danger">
-                                                                <tr>
-                                                                    <th>ردیف</th>
-                                                                    <th>گروه اصلی </th>
-                                                                    <th><input type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody  id="addedGroupPartAdd" >
-                                                            </tbody>
-                                                        </table>   
-                                                    </div>                                 
-                                                </div>
-                                            </div>                                    
-                                        </div>
+                                                <table class="table table-bordered table-sm t" id='myTable'>
+                                                    <thead class="bg-success tableHeader">
+                                                        <tr>
+                                                            <th>ردیف</th>
+                                                            <th>گروه اصلی </th>
+                                                            <th><input type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody  id="addedGroupPartAdd" class="tableBody" style="height: 360px !important;"></tbody>
+                                                </table>                                 
+                                            </div>                            
+                                         </div>
                                     </div>
                                 </div>
                             </form>
-                        </div>
-                    </div>
-                </div>
+                     </div>
+                <div class="row contentFooter"> </div>
             </div>
-        </div>
-    </section>
+    </div>
+</div>
+
     <!-- end  Adding -->
     <script type='text/javascript'>
         function showDiv(select) {
             var groupsPart = `
                     <div class='well  p-0'>
-                        <div class='col-sm-3 m-3 mb-0 p-0 d-flex'>
+                        <div class='col-sm-4 m-1'>
                             <input type='search' class='form-control form-control-sm' id="search_mainGroup3" name='search_mainPart' placeholder='جستجو'/>
                         </div>
                     </div>                   
                     <div class="row p-0">
                         <div class="col-sm-5">
-                            <div class='modal-body'>
-                                <div class='c-checkout' style="padding:0; margin:0">
-                                    <table class="tableSection table table-bordered table table-hover table-sm table-light" style='td:hover{ cursor:move;}'>
-                                        <thead>
-                                            <tr>
-                                                <th>ردیف</th>
-                                                <th>گروه اصلی </th>
-                                                <th><input type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
-                                            </tr>
-                                        </thead>
-                                        <tbody  id="groupPart" style=" height:400">
-                                        </tbody>
-                                    </table>  
-                                </div>                                  
-                            </div>
-                        </div>
-
-                        <div class="col-sm-2 d-flex align-items-center">
-                            <div class='modal-body'>
-                                <div >
-                                    <a id="addDataGroupList">
-                                        <i class="fa-regular fa-circle-chevron-left fa-3x text-success"></i>
-                                    </a>
-                                    <a id="removeDataGroupList">
-                                        <i class="fa-regular fa-circle-chevron-right fa-3x text-success"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-sm-5">
-                            <div class='modal-body'>
-                                <div class='c-checkout' style="padding:0; margin:0">   
-                                    <table class="tableSection table table-bordered table table-hover table-sm table-light" style='td:hover{ cursor:move;}'>
-                                        <thead>
-                                            <tr>
-                                                <th>ردیف</th>
-                                                <th>گروه اصلی </th>
-                                                <th><input type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
-                                            </tr>
-                                        </thead>
-                                        <tbody  id="addedGroupPartAdd">
-                                            
-                                        </tbody>
-                                    </table>   
-                                </div>                                 
-                            </div>
-                        </div> 
-                    `;
-            var kalaList = `
-
-            <div class="row modal-body pb-0">
-                <div class='row col-sm-8 border rounded-3 m-2 mx-1 py-1 mb-3'>
-                    <div class="col-sm-4 form-group d-flex text-nowrap align-items-center">
-                        <input class="form-control d-flex form-check-input align-items-end" type="checkbox" name="showAll" id="activeAllSelection" >
-                        <label class="form-check-label align-items-end" style="font-weight:bold" for="activeAllSelection">فعالسازی انتخاب همه</label>
-                    </div>
-                    <div class="col-sm-4 form-group d-flex text-nowrap align-items-center">
-                        <input class="form-control d-flex form-check-input align-items-end" type="checkbox" name="showOverLine" id="showOverLine" >
-                        <label class="form-check-label align-items-end font-weight-bold" style="font-weight:bold" for="showOverLine">نمایش قیمت قبلی کالا</label>
-                    </div>
-                    <div class="col-sm-4 form-group d-flex text-nowrap align-items-center">
-                        <label class="col-sm-8 form-label pt-2" style="font-weight: bold" for="showKalaNum"> نمایش تعداد کالا </label>
-                        <input class="col-sm-4 form-control form-control-sm" type="number" name="showTedad" id="showKalaNum">
-                    </div>
-                </div>
-            </div>
-
-            <div class="row p-0 mt-0 modal-boady">
-                <div class='col-sm-12 d-flex'>
-                    <input type="search" class='col-sm-3 form-control form-control-sm mx-3' id="searchKala" name="search_mainPart" placeholder="جستجو"/>
-                </div>
-                <div class="col-sm-5" >
-                    <div class='modal-body'>
-                        <div class='c-checkout' style='padding-right:0;'>
-                            <table class="tableSection table table-bordered table table-hover table-sm table-light" id="kalaTableRight" style='td:hover{ cursor:move;}'>
+                            <table class="table table-bordered table  table-sm ">
                                 <thead>
                                     <tr>
                                         <th>ردیف</th>
@@ -281,56 +134,100 @@
                                         <th><input type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
                                     </tr>
                                 </thead>
-                                <tbody style="height: 400px;" id="kalaList">
-                                    
-                                </tbody>
+                                <tbody  id="groupPart" style="height: 360px !important;"></tbody>
                             </table>
                         </div>
-                    </div>
-                </div>
 
-                <div class="col-sm-2 d-flex align-items-center">
-                    <div class='modal-body'>
-                        <div >
-                            <a id="addDataKalaList">
-                                <i class="fa-regular fa-circle-chevron-left fa-3x text-success"></i>
-                            </a>
-                            <a  id="removeDataKalaList">
-                                <i class="fa-regular fa-circle-chevron-right fa-3x text-success"></i>
+                        <div class="col-sm-2 text-center">
+                            <a id="addDataGroupList">
+                                <i class="fa-regular fa-circle-chevron-left fa-2x text-success"></i>
+                            </a> <br>
+                            <a id="removeDataGroupList">
+                                <i class="fa-regular fa-circle-chevron-right fa-2x text-success"></i>
                             </a>
                         </div>
-                    </div>
-                </div>
 
-                <div class="col-sm-5">
-                    <div class='modal-body'>
-                        <div class='c-checkout' style='padding-right:0;'>
-                            <table id="tblLocations" class="tableSection table table-bordered table table-hover table-sm table-light" style='td:hover{ cursor:move;}'>
+                        <div class="col-sm-5">  
+                            <table class="table table-bordered table  table-sm "'>
                                 <thead>
                                     <tr>
-                                        <th> ردیف </th>
-                                        <th> گروه اصلی </th>
+                                        <th>ردیف</th>
+                                        <th>گروه اصلی </th>
                                         <th><input type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
                                     </tr>
                                 </thead>
-                                <tbody style="height: 400px;" id="addedKalaPartAdd">
-                                    
-                                </tbody>
-                            </table>
-                        </div>
+                                <tbody  id="addedGroupPartAdd" style="height: 360px !important;"></tbody>
+                            </table> 
+                     </div> 
+                    `;
+            var kalaList = `
+
+            <div class="row modal-body pb-0">
+                <div class='row col-sm-12 border rounded-2 m-1 mx-1 py-1 mb-2'>
+                    <div class="col-sm-4 form-group d-flex text-nowrap align-items-center">
+                        <input class="form-control d-flex form-check-input align-items-end mx-2" type="checkbox" name="showAll" id="activeAllSelection" >
+                        <label class="form-check-label align-items-end" style="font-weight:bold" for="activeAllSelection">فعالسازی انتخاب همه</label>
+                    </div>
+                    <div class="col-sm-4 form-group d-flex text-nowrap align-items-center">
+                        <input class="form-control d-flex form-check-input align-items-end mx-2" type="checkbox" name="showOverLine" id="showOverLine" >
+                        <label class="form-check-label align-items-end font-weight-bold" style="font-weight:bold" for="showOverLine">نمایش قیمت قبلی کالا</label>
+                    </div>
+                    <div class="col-sm-4 form-group d-flex text-nowrap align-items-center">
+                        <label class="col-sm-8 form-label pt-2" style="font-weight: bold" for="showKalaNum"> نمایش تعداد کالا </label>
+                        <input class="col-sm-4 form-control form-control-sm" type="number" name="showTedad" id="showKalaNum">
                     </div>
                 </div>
+            </div>
+
+            <div class="row p-0 mt-0 modal-boady">
+                <div class='col-sm-12 d-flex'>
+                    <input type="search" class='col-sm-3 form-control form-control-sm mx-3' id="searchKala" name="search_mainPart" placeholder="جستجو"/>
+                </div>
+                <div class="col-sm-5" >
+                    <table class="table table-bordered table  table-sm " id="kalaTableRight"'>
+                        <thead class="tableHeader">
+                            <tr>
+                                <th>ردیف</th>
+                                <th>گروه اصلی </th>
+                                <th><input type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
+                            </tr>
+                        </thead>
+                        <tbody style="height: 300px !important;" class="tableBody" id="kalaList"> </tbody>
+                    </table>
+                </div>
+
+                <div class="col-sm-2 text-center mt-5">
+                        <a id="addDataKalaList">
+                            <i class="fa-regular fa-circle-chevron-left fa-3x text-success"></i>
+                        </a> <br>
+                        <a  id="removeDataKalaList">
+                            <i class="fa-regular fa-circle-chevron-right fa-3x text-success"></i>
+                        </a>
+                </div>
+
+                <div class="col-sm-5">
+                    <table id="tblLocations" class="table table-bordered table  table-sm "'>
+                        <thead class="tableHeader">
+                            <tr>
+                                <th> ردیف </th>
+                                <th> گروه اصلی </th>
+                                <th><input type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
+                            </tr>
+                        </thead>
+                        <tbody class="tableBody" style="height: 300px !important;" id="addedKalaPartAdd"> </tbody>
+                    </table>
+                 </div>
             </div>
             `;
             var pishKharid = `
             <div class="row modal-body pb-0">
-                <div class='row col-sm-8 border rounded-3 m-2 mx-1 py-1 mb-3'>
+                <div class='row col-sm-12 border rounded-2 m-1 py-1'>
                     <div class="col-sm-4 form-group d-flex text-nowrap align-items-center">
-                        <input class="form-control d-flex form-check-input align-items-end" type="checkbox" name="showAll" id="activeAllSelection" >
+                        <input class="form-control d-flex form-check-input align-items-end mx-2" type="checkbox" name="showAll" id="activeAllSelection" >
                         <label class="form-check-label align-items-end" style="font-weight:bold" for="activeAllSelection">فعالسازی انتخاب همه</label>
                     </div>
                     <div class="col-sm-4 form-group d-flex text-nowrap align-items-center">
-                        <input class="form-control d-flex form-check-input align-items-end" type="checkbox" name="showOverLine" id="showOverLine" >
+                        <input class="form-control d-flex form-check-input align-items-end mx-2" type="checkbox" name="showOverLine" id="showOverLine" >
                         <label class="form-check-label align-items-end font-weight-bold" style="font-weight:bold" for="showOverLine">نمایش قیمت قبلی کالا</label>
                     </div>
                     <div class="col-sm-4 form-group d-flex text-nowrap align-items-center">
@@ -341,88 +238,75 @@
             </div>
             <div class="row p-0 mt-0 modal-boady">
                 <div class='col-sm-12 d-flex'>
-                    <input type="search" class='col-sm-3 form-control form-control-sm mx-3' id="searchKala" name="search_mainPart" placeholder="جستجو"/>
+                    <input type="search" class='col-sm-3 form-control form-control-sm mx-2' id="searchKala" name="search_mainPart" placeholder="جستجو"/>
                 </div>
                 <div class="col-sm-5" >
-                    <div class='modal-body'>
-                        <div class='c-checkout' style='padding-right:0;'>
-                            <table class="tableSection table table-bordered table table-hover table-sm table-light" id="kalaTableRight" style='td:hover{ cursor:move;}'>
-                                <thead>
-                                    <tr>
-                                        <th>ردیف</th>
-                                        <th>گروه اصلی</th>
-                                        <th><input type="checkbox" name=""  class="selectAllFromTop form-check-input"></th>
-                                    </tr>
-                                </thead>
-                                <tbody style="height: 400px;" id="kalaList">
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
+                        <table class="table table-bordered table-sm" id="kalaTableRight"'>
+                            <thead class="tableHeader">
+                                <tr>
+                                    <th>ردیف</th>
+                                    <th>گروه اصلی</th>
+                                    <th><input type="checkbox" name=""  class="selectAllFromTop form-check-input"></th>
+                                </tr>
+                            </thead>
+                            <tbody class="tableBody" style="height: 300px !important;" id="kalaList">
+                            </tbody>
+                        </table>
                 </div>
-                <div class="col-sm-2 d-flex align-items-center">
-                    <div class='modal-body'>
-                        <div>
-                            <a id="addDataKalaList">
-                                <i class="fa-regular fa-circle-chevron-left fa-3x text-success"></i>
-                            </a>
-                            <a  id="removeDataKalaList">
-                                <i class="fa-regular fa-circle-chevron-right fa-3x text-success"></i>
-                            </a>
-                        </div>
-                    </div>
+                <div class="col-sm-2 text-center">
+                        <a id="addDataKalaList">
+                            <i class="fa-regular fa-circle-chevron-left fa-3x text-success"></i>
+                        </a> <br>
+                        <a  id="removeDataKalaList">
+                            <i class="fa-regular fa-circle-chevron-right fa-3x text-success"></i>
+                        </a>
                 </div>
                 <div class="col-sm-5">
-                    <div class='modal-body'>
-                        <div class='c-checkout' style='padding-right:0;'>
-                            <table id="tblLocations" class="tableSection table table-bordered table table-hover table-sm table-light" style='td:hover{ cursor:move;}'>
-                                <thead>
-                                    <tr>
-                                        <th> ردیف </th>
-                                        <th> گروه اصلی </th>
-                                        <th><input type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
-                                    </tr>
-                                </thead>
-                                <tbody style="height: 400px;" id="addedKalaPartAdd">
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
+                        <table id="tblLocations" class="table table-bordered table  table-sm "'>
+                            <thead class="tableHeader">
+                                <tr>
+                                    <th> ردیف </th>
+                                    <th> گروه اصلی </th>
+                                    <th><input type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
+                                </tr>
+                            </thead>
+                            <tbody class="tableBody" style="height: 300px !important;" id="addedKalaPartAdd">
+                            </tbody>
+                        </table>
+                 </div>
             </div>`;
 
             var shegeftAngiz = `
-                <div class="row p-0 pt-2 mx-auto">
+                <div class="row border rounded-2 m-1 py-1">
                     <div id='' class='row p-0'>
-                        <div class="col-sm-2 d-flex align-items-stretch" style="">
+                        <div class="col-sm-2 d-flex align-items-stretch">
                             <div class="form-group d-flex text-nowrap align-items-center">
                                 <input class="form-control d-flex form-check-input align-items-end" type="checkbox" name="showAll" id="activeAllSelection">
-                                <label class="form-check-label align-items-end" style="font-weight: bold" for="activeAllSelection">فعالسازی انتخاب همه</label>
+                                <label class="form-check-label align-items-end mx-2" style="font-weight: bold" for="activeAllSelection">فعالسازی انتخاب همه</label>
                             </div>
                         </div>
-                        <div class="col-sm-2 d-flex align-items-stretch" style="">
+                        <div class="col-sm-2 d-flex align-items-stretch">
                             <div class="form-group d-flex text-nowrap align-items-center">
                                 <input class="form-control d-flex form-check-input align-items-end" type="checkbox" name="showOverLine" id="showFirstPrice">
-                                <label class="form-check-label align-items-end" style="font-weight: bold" for="showFirstPrice">نمایش قیمت قبلی کالا</label>
+                                <label class="form-check-label align-items-end mx-2" style="font-weight: bold" for="showFirstPrice">نمایش قیمت قبلی کالا</label>
                             </div>
                         </div>
-                        <div class="d-flex align-items-stretch" style="width:20%">
+                        <div class="col-sm-2">
                             <div class="form-group d-flex text-nowrap align-items-center">
-                                <label class="col-sm-8 form-label pt-2" style="font-weight: bold" for="showKalaNum">نمایش تعداد کالا</label>
+                                <label class="col-sm-8 form-check-label pt-2" style="font-weight: bold" for="showKalaNum">نمایش تعداد کالا</label>
                                 <input type="number" name="showTedad" class="col-sm-4 form-control form-control-sm" id="showKalaNum" value="">
                             </div>
                         </div>
-                        <div id="cp9" class="input-group d-flex text-nowrap p-0" style="width:15%">
-                            <label class="form-label form-label col-sm-8 d-flex align-items-center justify-content-center" for="colorPicker" style="font-weight: bold">انتخاب رنگ</label>
-                            <input type="color" color="red" onchange="document.getElementById('colorDiv').style.backgroundColor=this.value;"
-                                class="form-control form-control-sm col-sm-4 rounded border-danger d-flex align-items-center justify-content-center m-0" id="colorPicker" name="shegeftColor"  value="#ff0000">
+                        <div id="cp9" class="col-sm-2 ">
+                            <label class="form-check-label" for="colorPicker" style="font-weight: bold; display:inline-block !important;">انتخاب رنگ </label>
+                            <input type="color" style="display:inline-block !important; width:55px !important;" onchange="document.getElementById('colorDiv').style.backgroundColor=this.value;" class="form-control form-control-sm rounded border-danger" id="colorPicker" name="shegeftColor" value="#ff0000">
                         </div>
-                        <div id="cp9" class="col-sm-2 input-group d-flex text-nowrap">
-                            <label class="form-label rounded d-flex align-items-center justify-content-center p-0 text-warning" for="photoPicker" id="photoPickerID" style="font-weight: bold"> انتخاب عکس<i class="fa-light fa-image fa-lg"></i></label>
+                        <div id="cp9" class="col-sm-2">
+                            <label class="form-label btn btn-success btn-sm" for="photoPicker" id="photoPickerID" style="font-weight: bold;"> انتخاب عکس <i class="fa-light fa-image fa-lg"></i></label>
                             <input type="file" onchange='document.getElementById("shegeftPicture").src = window.URL.createObjectURL(this.files[0]); '
                                 class="form-control d-none" id="photoPicker" name="shegeftPicture" value="">
                         </div>
-                        <div id="colorDiv" class="col-sm-11 c-checkout  rounded mx-auto mt-2" style="height:15vh;">
+                        <div id="colorDiv" class="col-sm-2">
                             <div class="form-group">
                                 <img class="p-0 m-0" style="width: 80px; height:100%; background-color:white !important;" id="shegeftPicture" src="{{url('/resources/assets/images/shegeftAngesPicture/.jpg')}}" alt="عکس انتخاب کنید">
                             </div>
@@ -444,15 +328,15 @@
                 <div class="col-sm-5">
                     <div class='modal-body'>
                         <div class='c-checkout' style='padding-right:0;'>
-                            <table class="tableSection table table-bordered table table-hover table-sm table-light" style='td:hover{ cursor:move;}'>
-                                <thead>
+                            <table class="table table-bordered table  table-sm "'>
+                                <thead class="tableHeader">
                                     <tr>
                                         <th>ردیف</th>
                                         <th>اسم </th>
                                         <th><input type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
                                     </tr>
                                 </thead>
-                                <tbody style="height: 400px;" id="kalaList">
+                                <tbody class="tableBody" style="height: 300px !important;" id="kalaList">
                                     
                                 </tbody>
                             </table>
@@ -475,15 +359,15 @@
                 <div class="col-sm-5">
                     <div class='modal-body'>
                         <div class='c-checkout' style='padding-right:0;'>
-                            <table class="tableSection table table-bordered table table-hover table-sm table-light" style='td:hover{ cursor:move;}'>
-                                <thead>
+                            <table class="table table-bordered table  table-sm "'>
+                                <thead class="tableHeader">
                                     <tr>
                                         <th>ردیف</th>
                                         <th>گروه اصلی </th>
                                         <th><input type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
                                     </tr>
                                 </thead>
-                                <tbody style="height: 400px;" id="addedShegeftAdd">
+                                <tbody class="tableBody" style="height: 300px !important;" id="addedShegeftAdd">
                                 </tbody>
                             </table>
                         </div>
@@ -494,147 +378,115 @@
             var brands = `
             <div class="row p-0" >
                 <div class="col-sm-12" id="addTakhsisKala">
-                    <div class="takhsisContainerDisplay row p-0" id="takhsisContainer1" >
-                        <div class="row col-sm-12" >
-                            <div class='modal-body'>
-                                <div class='row'>
-                                    <div class="col-sm-2 d-flex align-items-stretch align-items-center" style="">
-                                        <div class="form-group d-flex text-nowrap align-items-center justify-content-center">
-                                            <input class="form-control d-flex form-check-input align-items-end" type="checkbox" name="showAll" id="activeAllSelection">
-                                            <label class="form-check-label align-items-end pt-1" style="font-weight: bold" for="activeAllSelection">فعالسازی انتخاب همه</label>
-                                        </div>
-                                    </div>
-                                    <div class="d-flex align-items-stretch align-items-cent" style="width:20%">
-                                        <div class="form-group d-flex text-nowrap align-items-center justify-content-center">
-                                            <label class="col-sm-8 form-label pt-2" style="font-weight: bold" for="showKalaNum">نمایش تعداد کالا</label>
-                                            <input type="number" name="showTedad" class="col-sm-4 form-control form-control-sm" style="height:5px !important;" id="showKalaNum" value="">
-                                        </div>
-                                    </div>
+                        <div class="takhsisContainerDisplay row rounded border m-1" id="takhsisContainer1" >
+                            <div class="col-sm-2 d-flex align-items-stretch align-items-center">
+                                <div class="form-group d-flex text-nowrap align-items-center justify-content-center">
+                                    <input class="form-control d-flex form-check-input align-items-end mx-2" type="checkbox" name="showAll" id="activeAllSelection">
+                                    <label class="form-check-label align-items-end pt-1" style="font-weight: bold" for="activeAllSelection">فعالسازی انتخاب همه</label>
                                 </div>
                             </div>
-                        </div>  
-                        <div class='row mx-2 mt-3'>
-                            <div class='col-sm-5'>
+                            <div class="d-flex align-items-stretch align-items-cent" style="width:20%">
+                                <div class="form-group d-flex text-nowrap align-items-center justify-content-center">
+                                    <label class="form-check-label pt-2" style="font-weight: bold" for="showKalaNum">نمایش تعداد کالا</label>
+                                    <input type="number" name="showTedad" class="col-sm-4 form-control form-control-sm m-1" id="showKalaNum" value="">
+                                </div>
+                            </div>
+                         </div>
+
+                        <div class="row mt-1 text-center">
+                          <div class="col-sm-5">
                                 <input class="col-sm-10 form-control form-control-sm" type="text" name="search_mainPart" id="basic-url" aria-describedby="basic-addon3" placeholder="جستجو">
-                            </div>
-                            <div class='col-sm-2'>
-                            </div>
-                            <div class='col-sm-5'>
-                                <select class="col-sm-10 form-select form-select-sm" name="cars" id="cars">
-                                    <option value="volvo">جستجوی گروهی</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-sm-5">
-                            <div class='modal-body'>
-                                <div class='c-checkout' style='padding-right:0;'>
-                                    <table class="tableSection table table-bordered table table-hover table-sm table-light" style='td:hover{ cursor:move;}'>
-                                        <thead>
+                                    <table class="table table-bordered table  table-sm "'>
+                                        <thead class="tableHeader">
                                             <tr>
                                                 <th>ردیف</th>
-                                                <th>اسم((1)) </th>
+                                                <th>اسم  </th>
                                                 <th><input type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
                                             </tr>
                                         </thead>
-                                        <tbody style="height: 400px;" id="kalaListBrand1">
-                                        </tbody>
+                                        <tbody class="tableBody" style="height: 300px !important;"  id="kalaListBrand1"> </tbody>
                                     </table>
-                                </div>
+                           </div>
+                            <div class="col-sm-2 text-center mt-5">
+                                    <button type="button" id="addDataToBrandItem1" value="1" onclick="addKalaToBrandItem(this)"
+                                        style=" border:none; background:none">
+                                        <i class="fa-regular fa-circle-chevron-left fa-3x text-success"></i>
+                                    </button> <br>
+                                    <button type="button" id="removeDataFromBrandItem1" value="1"  onclick="removeKalaFromBrandItem(this)" 
+                                    style=" border:none; background:none">
+                                        <i class="fa-regular fa-circle-chevron-right fa-3x text-success"></i>
+                                    </button>
                             </div>
-                        </div>
-                            <div class="col-sm-2 d-flex align-items-center">
-                                <div class='modal-body'>
-                                    <div style="">
-                                        <button type="button" id="addDataToBrandItem1" value="1" onclick="addKalaToBrandItem(this)"
-                                         style="display: block; padding:0; border:none; background:none">
-                                            <i class="fa-regular fa-circle-chevron-left fa-3x text-success"></i>
-                                        </button>
-                                        <button type="button" id="removeDataFromBrandItem1" value="1"  onclick="removeKalaFromBrandItem(this)" 
-                                        style="display: block; padding:0; border:none; background:none">
-                                            <i class="fa-regular fa-circle-chevron-right fa-3x text-success"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        <div class="col-sm-5">
-                            <div class='modal-body'>
-                                <div class='c-checkout' style='padding-right:0;'>
-                                    <table class="tableSection table table-bordered table table-hover table-sm table-light" style='td:hover{ cursor:move;}'>
-                                        <thead>
+                          <div class="col-sm-5">
+                                    <select class="col-sm-10 form-select form-select-sm" name="cars" id="cars">
+                                        <option value="volvo">جستجوی گروهی</option>
+                                    </select>
+                                    <table class="table table-bordered table  table-sm "'>
+                                        <thead class="tableHeader">
                                             <tr>
                                                 <th>ردیف</th>
                                                 <th>گروه اصلی </th>
                                                 <th><input type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
                                             </tr>
                                         </thead>
-                                        <tbody style="height: 400px;" id="addedKalaOfBrand1">
+                                        <tbody class="tableBody" style="height: 300px !important;" id="addedKalaOfBrand1">
                                         </tbody>
                                     </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                          </div>
+                     </div>
                 </div>
             </div> `;
+
             var onePic = `<div class="container">
                             <div class='row d-flex justify-content-center m-auto p-1'>
-                                <div class='col-lg-2 col-md-3 col-sm-4 p-1 mx-2 align-items-center c-checkout' style='height:25vh !important;'>
-                                    <img id="imageSrc1" class="p-0" style="width:100%; height:18vh"  onerror='' src="">
+                                <div class='col-lg-2 p-1 mx-2 align-items-center c-checkout' style='height:15vh !important;'>
+                                    <img id="imageSrc1" class="p-0" style="width:100%; height:14vh"  onerror='' src="">
                                     <div class="d-flex justify-content-center m-1 p-0">
-                                        <button class="btn btn-info btn-sm mx-1 text-warning" onclick="document.getElementById('onePicId').click();" type="button" style="display: inline;margin-right: 2%;"><i class="fa-light fa-image fa-lg"></i></button>
-                                        <button class='btn btn-info btn-sm mx-1 text-warning' type="button" id="firstPicOfOnePic"><i class="fa-light fa-cart-plus fa-lg"></i></button>
+                                        <button class="btn btn-success btn-sm mx-1 text-warning" onclick="document.getElementById('onePicId').click();" type="button" style="display: inline;margin-right: 2%;"><i class="fa-light fa-image fa-lg"></i></button>
+                                        <button class='btn btn-success btn-sm mx-1 text-warning' type="button" id="firstPicOfOnePic"><i class="fa-light fa-cart-plus fa-lg"></i></button>
                                     </div>
                                     <input type="file"  onchange='document.getElementById("imageSrc1").src = window.URL.createObjectURL(this.files[0])'  name="onePic" id="onePicId" style="display: none"/>
                                 </div>
                             </div>
-                            <div class='c-checkout' id="editingBodyGroup" style='padding-right:0;'>
-                                <div class="row" id="firstListOfOnePic" style="display:none;">
-                                    <div class="container">
-                                        <div class="row">
-                                            <div class='modal-body'>
-                                                <div class='c-checkout' style='padding-right:0;'>
-                                                    <div class="container" style="padding:15px;">
-                                                        <div class="row">
-                                                            <div class="col-sm-4">
-                                                                <div class="form-group">
-                                                                    <label class="form-label">جستجو</label>
-                                                                    <input type="search" name="" class="form-control form-control-sm" id="searchKala1Pic1">
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-sm-4">
-                                                                <div class="form-group">
-                                                                    <label class="form-label"> جستجوی گروه اصلی</label>
-                                                                    <select class="form-select form-select-sm" id="searchMainGroup1Pic1">
-                                                                        <option value="" selected disabled hidden>همه کالا ها</option>
-                                                                    </select>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-sm-4">
-                                                                <div class="form-group">
-                                                                    <label class="form-label"> جستجوی گروه فرعی</label>
-                                                                    <select class="form-select form-select-sm" id="searchSubGroup1Pic1">
-                                                                        <option value="" selected disabled hidden>همه کالا ها</option>
-                                                                    </select>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
+                            <div class='c-checkout m-0' id="editingBodyGroup" style='padding-right:0;'>
+                                   <div class="row" id="firstListOfOnePic" style="display:none;">
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <label class="form-label">جستجو</label>
+                                                    <input type="search" name="" class="form-control form-control-sm" id="searchKala1Pic1">
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <label class="form-label"> جستجوی گروه اصلی</label>
+                                                    <select class="form-select form-select-sm" id="searchMainGroup1Pic1">
+                                                        <option value="" selected disabled hidden>همه کالا ها</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <label class="form-label"> جستجوی گروه فرعی</label>
+                                                    <select class="form-select form-select-sm" id="searchSubGroup1Pic1">
+                                                        <option value="" selected disabled hidden>همه کالا ها</option>
+                                                    </select>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-sm-5">
+                                    <div class="row ">
+                                     <div class="col-sm-5">
                                         <div class='modal-body'>
                                             <div class='c-checkout' style='padding-right:0;'>
-                                                <table class="tableSection table table-bordered table table-hover table-sm table-light" style='td:hover{ cursor:move;}'>
-                                                    <thead>
+                                                <table class="table table-bordered table  table-sm "'>
+                                                    <thead tableHeader>
                                                         <tr>
                                                             <th>ردیف</th>
                                                             <th>اسم </th>
                                                             <th><input type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
                                                         </tr>
                                                     </thead>
-                                                    <tbody style="height: 400px;" id="onePicKalaPart1">
+                                                    <tbody class="tableBody" style="height: 288px !important;" id="onePicKalaPart1">
                                                     </tbody>
                                                 </table>
                                             </div>
@@ -657,15 +509,15 @@
                                     <div class="col-sm-5">
                                         <div class='modal-body'>
                                             <div class='c-checkout' style='padding-right:0;'>
-                                                <table class="tableSection table table-bordered table table-hover table-sm table-light" style='td:hover{ cursor:move;}'>
-                                                    <thead>
+                                                <table class="table table-bordered table  table-sm "'>
+                                                    <thead class="tableHeader">
                                                         <tr>
                                                             <th>ردیف</th>
                                                             <th>گروه اصلی </th>
                                                             <th><input type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
                                                         </tr>
                                                     </thead>
-                                                    <tbody style="height: 400px;" id="onePicAddedKalaPart1">
+                                                    <tbody class="tableBody" style="height: 288px !important;" id="onePicAddedKalaPart1">
                                                     </tbody>
                                                 </table>
                                             </div>
@@ -675,21 +527,22 @@
                             </div>
                         </div>`;
 
+
    var twoPic = `<div class="container">
                     <div class='row d-flex justify-content-center m-auto p-1'>
-                        <div class='col-lg-2 col-md-3 col-sm-4 p-1 mx-2 align-items-center c-checkout' style='height:25vh !important;'>
-                            <img id="imageSrc1" class="p-0" style="width:100%; height:18vh"  onerror='' src="">
+                        <div class='col-lg-2 col-md-3 col-sm-4 p-1 mx-2 align-items-center c-checkout' style='height:15vh !important;'>
+                            <img id="imageSrc1" class="p-0" style="width:100%; height:13vh"  onerror='' src="">
                             <div class="d-flex justify-content-center m-1 p-0">
-                                <button class="btn btn-info btn-sm mx-1 text-warning" onclick="document.getElementById('firstPicId').click();" type="button" style="display: inline;margin-right: 2%;"><i class="fa-light fa-image fa-lg"></i></button>
-                                <button class='btn btn-info btn-sm mx-1 text-warning' type="button" id="firstPicOfTwoPic"><i class="fa-light fa-cart-plus fa-lg"></i></button>
+                                <button class="btn btn-success btn-sm mx-1 text-warning" onclick="document.getElementById('firstPicId').click();" type="button" style="display: inline;margin-right: 2%;"><i class="fa-light fa-image fa-lg"></i></button>
+                                <button class='btn btn-success btn-sm mx-1 text-warning' type="button" id="firstPicOfTwoPic"><i class="fa-light fa-cart-plus fa-lg"></i></button>
                             </div>
                             <input type="file"  onchange='document.getElementById("imageSrc1").src = window.URL.createObjectURL(this.files[0])'  name="firstPic" id="firstPicId" style="display: none"/>
                         </div>
-                        <div class='col-lg-2 col-md-3 col-sm-4 p-1 mx-2 align-items-center c-checkout' style='height:25vh !important;'>
-                            <img id="imageSrc2" class="p-0" style="width:100%; height:18vh"  onerror='' src="">
+                        <div class='col-lg-2 col-md-3 col-sm-4 p-1 mx-2 align-items-center c-checkout' style='height:15vh !important;'>
+                            <img id="imageSrc2" class="p-0" style="width:100%; height:13vh"  onerror='' src="">
                             <div class="d-flex justify-content-center m-1 p-0">
-                                <button class="btn btn-info btn-sm mx-1 text-warning" onclick="document.getElementById('secondPicId').click();" type="button" style="display: inline;margin-right: 2%;"><i class="fa-light fa-image fa-lg"></i></button>
-                                <button class='btn btn-info btn-sm mx-1 text-warning' type="button" id="secondPicOfTwoPic"><i class="fa-light fa-cart-plus fa-lg"></i></button>
+                                <button class="btn btn-success btn-sm mx-1 text-warning" onclick="document.getElementById('secondPicId').click();" type="button" style="display: inline;margin-right: 2%;"><i class="fa-light fa-image fa-lg"></i></button>
+                                <button class='btn btn-success btn-sm mx-1 text-warning' type="button" id="secondPicOfTwoPic"><i class="fa-light fa-cart-plus fa-lg"></i></button>
                             </div>
                             <input type="file"  onchange='document.getElementById("imageSrc2").src = window.URL.createObjectURL(this.files[0])'  name="secondPic" id="secondPicId" style="display: none"/>
                         </div>
@@ -697,82 +550,65 @@
                     <div class='c-checkout rounded-top p-0' id="firstListOfTwoPic" style="display:none;"> 
                         <div class="container p-0">
                             <div class="row m-0 p-0">
-                                <div class='modal-body'>
-                                    <div class='c-checkout rounded p-0'>
-                                        <div class="container" style="padding:15px;">
-                                            <div class="row">
-                                                <div class="col-sm-4">
-                                                    <div class="form-group">
-                                                        <label class="form-label">جستجو</label>
-                                                        <input class="form-control form-control-sm" type="search" name="" id="searchKala2Pic1">
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-4">
-                                                    <div class="form-group">
-                                                        <label class="form-label"> جستجوی گروه اصلی</label>
-                                                        <select class="form-select form-select-sm" id="searchMainGroup2Pic1">
-                                                            <option value="" selected disabled hidden>همه کالا ها</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-4">
-                                                    <div class="form-group">
-                                                        <label class="form-label"> جستجوی گروه فرعی</label>
-                                                        <select class="form-select form-select-sm" id="searchSubGroup2Pic1">
-                                                            <option value="" selected disabled hidden>همه کالا ها</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <label class="form-label">جستجو</label>
+                                                <input class="form-control form-control-sm" type="search" name="" id="searchKala2Pic1">
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-5">
-                                    <div class='modal-body'>
-                                        <div class='c-checkout' style='padding-right:0;'>
-                                            <table class="tableSection table table-bordered table table-hover table-sm table-light" style='td:hover{ cursor:move;}'>
-                                                <thead>
-                                                    <tr>
-                                                        <th>ردیف</th>
-                                                        <th>اسم </th>
-                                                        <th><input type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody style="height: 400px;" id="twoPicKalaPart1">
-                                                </tbody>
-                                            </table>
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <label class="form-label"> جستجوی گروه اصلی</label>
+                                                <select class="form-select form-select-sm" id="searchMainGroup2Pic1">
+                                                    <option value="" selected disabled hidden>همه کالا ها</option>
+                                                </select>
+                                            </div>
                                         </div>
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <label class="form-label"> جستجوی گروه فرعی</label>
+                                                <select class="form-select form-select-sm" id="searchSubGroup2Pic1">
+                                                    <option value="" selected disabled hidden>همه کالا ها</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                    <div class="col-sm-5">
+                                        <table class="table table-bordered table  table-sm "'>
+                                            <thead class="tableHeader">
+                                                <tr>
+                                                    <th>ردیف</th>
+                                                    <th>اسم </th>
+                                                    <th><input type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody class="tableBody" style="height:300px !important;" id="twoPicKalaPart1"> </tbody>
+                                        </table>
                                     </div>
-                                </div>
 
                                 <div class="col-sm-2 d-flex align-items-center justify-content-center">
                                     <div class='modal-body'>
                                         <div style="">
                                             <a id="addDataTwoPic1">
-                                                <i class="fa-regular fa-circle-chevron-left fa-3x text-success"></i>
+                                                <i class="fa-regular fa-circle-chevron-left fa-2x text-success"></i>
                                             </a>
                                             <a id="removeDataTwoPic1">
-                                                <i class="fa-regular fa-circle-chevron-right fa-3x text-success"></i>
+                                                <i class="fa-regular fa-circle-chevron-right fa-2x text-success"></i>
                                             </a>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-sm-5">
-                                    <div class='modal-body'>
-                                        <div class='c-checkout' style='padding-right:0;'>
-                                            <table class="tableSection table table-bordered table table-hover table-sm table-light" style='td:hover{ cursor:move;}'>
-                                                <thead>
-                                                    <tr>
-                                                        <th>ردیف</th>
-                                                        <th>گروه اصلی </th>
-                                                        <th><input type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody style="height: 400px;" id="towPicAddedKalaPart1">
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
+                                    <table class="table table-bordered table  table-sm "'>
+                                        <thead class="tableHeader">
+                                            <tr>
+                                                <th>ردیف</th>
+                                                <th>گروه اصلی </th>
+                                                <th><input type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="tableBody" style="height:300px !important;" id="towPicAddedKalaPart1"></tbody>
+                                    </table>
                                 </div>
                             </div>
                         </div>
@@ -813,45 +649,41 @@
                                 <div class="col-sm-5">
                                     <div class='modal-body'>
                                         <div class='c-checkout' style='padding-right:0;'>
-                                            <table class="tableSection table table-bordered table table-hover table-sm table-light" style='td:hover{ cursor:move;}'>
-                                                <thead>
+                                            <table class="table table-bordered table  table-sm "'>
+                                                <thead class="tableHeader">
                                                     <tr>
                                                         <th>ردیف</th>
                                                         <th>اسم </th>
                                                         <th><input type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
                                                     </tr>
                                                 </thead>
-                                                <tbody style="height: 400px;" id="twoPicKalaPart2">
+                                                <tbody class="tableBody" style="height: 300px !important;" id="twoPicKalaPart2">
                                                 </tbody>
                                             </table>
                                         </div>
                                     </div>
                                 </div>
 
-                                <div class="col-sm-2 d-flex align-items-center justify-content-center">
-                                    <div class='modal-body'>
-                                        <div style="">
-                                            <a id="addDataTwoPic2">
-                                                <i class="fa-regular fa-circle-chevron-left fa-3x text-success"></i>
-                                            </a>
-                                            <a id="removeDataTwoPic2">
-                                                <i class="fa-regular fa-circle-chevron-right fa-3x text-success"></i>
-                                            </a>
-                                        </div>
-                                    </div>
+                                <div class="col-sm-2 text-center">
+                                    <a id="addDataTwoPic2">
+                                        <i class="fa-regular fa-circle-chevron-left fa-3x text-success"></i>
+                                    </a>
+                                    <a id="removeDataTwoPic2">
+                                        <i class="fa-regular fa-circle-chevron-right fa-3x text-success"></i>
+                                    </a>
                                 </div>
                                 <div class="col-sm-5">
                                     <div class='modal-body'>
                                         <div class='c-checkout' style='padding-right:0;'>
-                                            <table class="tableSection table table-bordered table table-hover table-sm table-light" style='td:hover{ cursor:move;}'>
-                                                <thead>
+                                            <table class="table table-bordered table  table-sm "'>
+                                                <thead class="tableHeader">
                                                     <tr>
                                                         <th>ردیف</th>
                                                         <th>گروه اصلی </th>
                                                         <th><input type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
                                                     </tr>
                                                 </thead>
-                                                <tbody style="height: 400px;" id="towPicAddedKalaPart2">
+                                                <tbody class="tableBody" style="height: 300px !important;" id="towPicAddedKalaPart2">
                                                 </tbody>
                                             </table>
                                         </div>
@@ -861,31 +693,32 @@
                         </div>
                     </div>
                 </div>`;
+                
     var threePic = `<div class="container">
                         <div class='row d-flex justify-content-center m-auto p-1'>
-                            <div class='col-lg-2 col-md-3 col-sm-4 p-1 mx-2 align-items-center c-checkout' style='height:25vh !important;'>
-                                <img id="imageSrc1" class="p-0" style="width:100%; height:18vh"  onerror='' src="">
+                            <div class='col-lg-2 col-md-3 col-sm-4 p-1 mx-2 align-items-center c-checkout' style='height:15vh !important;'>
+                                <img id="imageSrc1" class="p-0" style="width:100%; height:13vh"  onerror='' src="">
                                 <div class="d-flex justify-content-center m-1 p-0">
-                                    <button class="btn btn-info btn-sm mx-1 text-warning" onclick="document.getElementById('firstPicId').click();" type="button" style="display: inline;margin-right: 2%;"><i class="fa-light fa-image fa-lg"></i></button>
-                                    <button class='btn btn-info btn-sm mx-1 text-warning' type="button" id="threePicAddKala1"><i class="fa-light fa-cart-plus fa-lg"></i></button>
+                                    <button class="btn btn-success btn-sm mx-1 text-warning" onclick="document.getElementById('firstPicId').click();" type="button" style="display: inline;margin-right: 2%;"><i class="fa-light fa-image fa-lg"></i></button>
+                                    <button class='btn btn-success btn-sm mx-1 text-warning' type="button" id="threePicAddKala1"><i class="fa-light fa-cart-plus fa-lg"></i></button>
                                 </div>
                                 <input type="file"  onchange='document.getElementById("imageSrc1").src = window.URL.createObjectURL(this.files[0])'  name="firstPic" id="firstPicId" style="display: none"/>
                             </div>
 
-                            <div class='col-lg-2 col-md-3 col-sm-4 p-1 mx-2 align-items-center c-checkout' style='height:25vh !important;'>
-                                <img id="imageSrc2" class="p-0" style="width:100%; height:18vh"  onerror='' src="">
+                            <div class='col-lg-2 col-md-3 col-sm-4 p-1 mx-2 align-items-center c-checkout' style='height:15vh !important;'>
+                                <img id="imageSrc2" class="p-0" style="width:100%; height:13vh"  onerror='' src="">
                                 <div class="d-flex justify-content-center m-1 p-0">
-                                    <button class="btn btn-info btn-sm mx-1 text-warning" onclick="document.getElementById('secondPicId').click();" type="button" style="display: inline;margin-right: 2%;"><i class="fa-light fa-image fa-lg"></i></button>
-                                    <button class='btn btn-info btn-sm mx-1 text-warning' type="button" id="threePicAddKala2"><i class="fa-light fa-cart-plus fa-lg"></i></button>
+                                    <button class="btn btn-success btn-sm mx-1 text-warning" onclick="document.getElementById('secondPicId').click();" type="button" style="display: inline;margin-right: 2%;"><i class="fa-light fa-image fa-lg"></i></button>
+                                    <button class='btn btn-success btn-sm mx-1 text-warning' type="button" id="threePicAddKala2"><i class="fa-light fa-cart-plus fa-lg"></i></button>
                                 </div>
                                 <input type="file"  onchange='document.getElementById("imageSrc2").src = window.URL.createObjectURL(this.files[0])'  name="secondPic" id="secondPicId" style="display: none"/>
                             </div>
 
-                            <div class='col-lg-2 col-md-3 col-sm-4 p-1 mx-2 align-items-center c-checkout' style='height:25vh !important;'>
-                                <img id="imageSrc3" class="p-0" style="width:100%; height:18vh"  onerror='' src="">
+                            <div class='col-lg-2 col-md-3 col-sm-4 p-1 mx-2 align-items-center c-checkout' style='height:15vh !important;'>
+                                <img id="imageSrc3" class="p-0" style="width:100%; height:13vh"  onerror='' src="">
                                 <div class="d-flex justify-content-center m-1 p-0">
-                                    <button class="btn btn-info btn-sm mx-1 text-warning" onclick="document.getElementById('thirdPicId').click();" type="button" style="display: inline;margin-right: 2%;"><i class="fa-light fa-image fa-lg"></i></button>
-                                    <button class='btn btn-info btn-sm mx-1 text-warning' type="button" id="threePicAddKala3"><i class="fa-light fa-cart-plus fa-lg"></i></button>
+                                    <button class="btn btn-success btn-sm mx-1 text-warning" onclick="document.getElementById('thirdPicId').click();" type="button" style="display: inline;margin-right: 2%;"><i class="fa-light fa-image fa-lg"></i></button>
+                                    <button class='btn btn-success btn-sm mx-1 text-warning' type="button" id="threePicAddKala3"><i class="fa-light fa-cart-plus fa-lg"></i></button>
                                 </div>
                                 <input type="file"  onchange='document.getElementById("imageSrc3").src = window.URL.createObjectURL(this.files[0])'  name="thirdPic" id="thirdPicId" style="display: none"/>
                             </div>
@@ -924,54 +757,38 @@
                                         </div>
                                     </div>
                                     <div class="col-sm-5">
-                                        <div class='modal-body'>
-                                            <div class='c-checkout' style='padding-right:0;'>
-                                                <table class="tableSection table table-bordered table table-hover table-sm table-light" style='td:hover{ cursor:move;}'>
-                                                    <thead>
-                                                        <tr>
-                                                            <th>ردیف</th>
-                                                            <th>اسم </th>
-                                                            <th><input type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody style="height: 400px;" id="threePicKalaPart1">
-                                                        
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </div>
+                                        <table class="table table-bordered table  table-sm "'>
+                                            <thead class="tableHeader">
+                                                <tr>
+                                                    <th>ردیف</th>
+                                                    <th>اسم </th>
+                                                    <th><input type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody class="tableBody" style="height: 300px !important;" id="threePicKalaPart1"></tbody>
+                                        </table>
                                     </div>
 
-                                    <div class="col-sm-2 d-flex align-items-center justify-content-center">
-                                        <div class='modal-body'>
-                                            <div style="">
-                                                <a id="addData3Pic1">
-                                                    <i class="fa-regular fa-circle-chevron-left fa-3x text-success"></i>
-                                                </a>
-
-                                                <a id="removeData3Pic1">
-                                                    <i class="fa-regular fa-circle-chevron-right fa-3x text-success"></i>
-                                                </a>
-                                            </div>
-                                        </div>
+                                    <div class="col-sm-2 text-center">
+                                        <a id="addData3Pic1">
+                                            <i class="fa-regular fa-circle-chevron-left fa-3x text-success"></i>
+                                        </a>
+                                        <a id="removeData3Pic1">
+                                            <i class="fa-regular fa-circle-chevron-right fa-3x text-success"></i>
+                                        </a>
                                     </div>
-
                                     <div class="col-sm-5">
-                                        <div class='modal-body'>
-                                            <div class='c-checkout' style='padding-right:0;'>
-                                                <table class="tableSection table table-bordered table table-hover table-sm table-light" style='td:hover{ cursor:move;}'>
-                                                    <thead>
-                                                        <tr>
-                                                            <th>ردیف</th>
-                                                            <th>گروه اصلی </th>
-                                                            <th><input type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody style="height: 400px;" id="threePicAddedKalaPart1">
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </div>
+                                        <table class="table table-bordered table  table-sm "'>
+                                            <thead>
+                                                <tr>
+                                                    <th>ردیف</th>
+                                                    <th>گروه اصلی </th>
+                                                    <th><input type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody style="height: 300px !important;" id="threePicAddedKalaPart1">
+                                            </tbody>
+                                        </table>
                                     </div>
                                 </div>
                             </div>
@@ -979,211 +796,169 @@
 
                         <div class='c-checkout rounded-top p-0' id="secondListOf3Pic"  style="display:none;">
                             <div class="container m-0 p-0">
-                                <div class="row m-0 p-0">
-                                    <div class='modal-body'>
-                                        <div class='c-checkout' style='padding-right:0;'>
-                                            <div class="container" style="padding:15px;">
-                                                <div class="row">
-                                                    <div class="col-sm-4">
-                                                        <div class="form-group">
-                                                            <label class="form-label">جستجو</label>
-                                                            <input class="form-control form-control-sm" type="search" name="" id="searchKala3Pic2">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-sm-4">
-                                                        <div class="form-group">
-                                                            <label class="form-label"> جستجوی گروه اصلی</label>
-                                                            <select class="form-select form-select-sm" id="searchMainGroup3Pic2">
-                                                                <option value="" selected disabled hidden>همه کالا ها</option>
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-sm-4">
-                                                        <div class="form-group">
-                                                            <label class="form-label"> جستجوی گروه فرعی</label>
-                                                            <select class="form-select form-select-sm" id="searchSubGroup3Pic2">
-                                                                <option value="" selected disabled hidden>همه کالا ها</option>
-                                                            </select>
-                                                        </div>
-                                                    </div>
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <label class="form-label">جستجو</label>
+                                                    <input class="form-control form-control-sm" type="search" name="" id="searchKala3Pic2">
                                                 </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-5">
-                                        <div class='modal-body'>
-                                            <div class='c-checkout' style='padding-right:0;'>
-                                                <table class="tableSection table table-bordered table table-hover table-sm table-light" style='td:hover{ cursor:move;}'>
-                                                    <thead>
-                                                        <tr>
-                                                            <th>ردیف</th>
-                                                            <th>اسم </th>
-                                                            <th><input type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody style="height: 400px;" id="threePicKalaPart2">
-                                                        
-                                                    </tbody>
-                                                </table>
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <label class="form-label"> جستجوی گروه اصلی</label>
+                                                    <select class="form-select form-select-sm" id="searchMainGroup3Pic2">
+                                                        <option value="" selected disabled hidden>همه کالا ها</option>
+                                                    </select>
+                                                </div>
                                             </div>
-                                        </div>
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <label class="form-label"> جستجوی گروه فرعی</label>
+                                                    <select class="form-select form-select-sm" id="searchSubGroup3Pic2">
+                                                        <option value="" selected disabled hidden>همه کالا ها</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                    </div>
+                                    <div class="row">
+                                     <div class="col-sm-5">
+                                        <table class="table table-bordered table  table-sm "'>
+                                            <thead class="tableHeader">
+                                                <tr>
+                                                    <th>ردیف</th>
+                                                    <th>اسم </th>
+                                                    <th><input type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody class="tableBody" style="height: 300px !important;" id="threePicKalaPart2"> </tbody>
+                                        </table>
                                     </div>
 
                                     <div class="col-sm-2 d-flex align-items-center justify-content-center">
-                                        <div class='modal-body'>
-                                            <div style="">
-                                                <a id="addData3Pic2">
-                                                    <i class="fa-regular fa-circle-chevron-left fa-3x text-success"></i>
-                                                </a>
-                                                <br />
-                                                <a id="removeData3Pic2">
-                                                    <i class="fa-regular fa-circle-chevron-right fa-3x text-success"></i>
-                                                </a>
-                                            </div>
-                                        </div>
+                                        <a id="addData3Pic2">
+                                            <i class="fa-regular fa-circle-chevron-left fa-3x text-success"></i>
+                                        </a>
+                                        <br />
+                                        <a id="removeData3Pic2">
+                                            <i class="fa-regular fa-circle-chevron-right fa-3x text-success"></i>
+                                        </a>
                                     </div>
 
                                     <div class="col-sm-5">
-                                        <div class='modal-body'>
-                                            <div class='c-checkout' style='padding-right:0;'>
-                                                <table class="tableSection table table-bordered table table-hover table-sm table-light" style='td:hover{ cursor:move;}'>
-                                                    <thead>
-                                                        <tr>
-                                                            <th>ردیف</th>
-                                                            <th>گروه اصلی </th>
-                                                            <th><input type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody style="height: 400px;" id="threePicAddedKalaPart2">
-                                                    
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </div>
-                                    </div>
+                                        <table class="table table-bordered table  table-sm "'>
+                                            <thead class="tableHeader">
+                                                <tr>
+                                                    <th>ردیف</th>
+                                                    <th>گروه اصلی </th>
+                                                    <th><input type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody class="tableBody" style="height: 300px !important;" id="threePicAddedKalaPart2"> </tbody>
+                                        </table>
                                 </div>
                             </div>
                         </div>
                 
                         <div class='c-checkout rounded-top p-0' id="thirdListOf3Pic"  style="display:none;">
                             <div class="container m-0 p-0">
-                                <div class="row m-0 p-0">
-                                    <div class='modal-body'>
-                                        <div class='c-checkout' style='padding-right:0;'>
-                                            <div class="container" style="padding:15px;">
-                                                <div class="row">
-                                                    <div class="col-sm-4">
-                                                        <div class="form-group">
-                                                            <label class="form-label">جستجو</label>
-                                                            <input class="form-control form-control-sm" type="search" name="" id="searchKala3Pic3">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-sm-4">
-                                                        <div class="form-group">
-                                                            <label class="form-label"> جستجوی گروه اصلی</label>
-                                                            <select class="form-select form-select-sm" id="searchMainGroup3Pic3">
-                                                                <option value="" selected disabled hidden>همه کالا ها</option>
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-sm-4">
-                                                        <div class="form-group">
-                                                            <label class="form-label"> جستجوی گروه فرعی</label>
-                                                            <select class="form-select form-select-sm" id="searchSubGroup3Pic3">
-                                                                <option value="" selected disabled hidden>همه کالا ها</option>
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <label class="form-label">جستجو</label>
+                                                <input class="form-control form-control-sm" type="search" name="" id="searchKala3Pic3">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <label class="form-label"> جستجوی گروه اصلی</label>
+                                                <select class="form-select form-select-sm" id="searchMainGroup3Pic3">
+                                                    <option value="" selected disabled hidden>همه کالا ها</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <label class="form-label"> جستجوی گروه فرعی</label>
+                                                <select class="form-select form-select-sm" id="searchSubGroup3Pic3">
+                                                    <option value="" selected disabled hidden>همه کالا ها</option>
+                                                </select>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-sm-5">
-                                        <div class='modal-body'>
-                                            <div class='c-checkout' style='padding-right:0;'>
-                                                <table class="tableSection table table-bordered table table-hover table-sm table-light" style='td:hover{ cursor:move;}'>
-                                                    <thead>
-                                                        <tr>
-                                                            <th>ردیف</th>
-                                                            <th>اسم </th>
-                                                            <th><input type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody style="height: 400px;" id="threePicKalaPart3">
-                                                        
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <div class="row">
+                                      <div class="col-sm-5">
+                                            <table class="table table-bordered table  table-sm "'>
+                                                <thead>
+                                                    <tr>
+                                                        <th>ردیف</th>
+                                                        <th>اسم </th>
+                                                        <th><input type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody style="height: 300px !important;" id="threePicKalaPart3">
+                                                    
+                                                </tbody>
+                                            </table>
+                                      </div>
 
                                     <div class="col-sm-2 d-flex align-items-center justify-content-center">
-                                        <div class='modal-body'>
-                                            <div style="">
-                                                <a id="addData3Pic3">
-                                                    <i class="fa-regular fa-circle-chevron-left fa-3x text-success"></i>
-                                                </a>
-                                                <br />
-                                                <a id="removeData3Pic3">
-                                                    <i class="fa-regular fa-circle-chevron-right fa-3x text-success"></i>
-                                                </a>
-                                            </div>
-                                        </div>
+                                        <a id="addData3Pic3">
+                                            <i class="fa-regular fa-circle-chevron-left fa-3x text-success"></i>
+                                        </a>
+                                        <br />
+                                        <a id="removeData3Pic3">
+                                            <i class="fa-regular fa-circle-chevron-right fa-3x text-success"></i>
+                                        </a>
                                     </div>
 
                                     <div class="col-sm-5">
-                                        <div class='modal-body'>
-                                            <div class='c-checkout' style='padding-right:0;'>
-                                                <table class="tableSection table table-bordered table table-hover table-sm table-light" style='td:hover{ cursor:move;}'>
-                                                    <thead>
-                                                        <tr>
-                                                            <th>ردیف</th>
-                                                            <th>گروه اصلی </th>
-                                                            <th><input type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody style="height: 400px;" id="threePicAddedKalaPart3">
-                                                    
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div> 
-                        </div>
+                                        <table class="table table-bordered table  table-sm">
+                                            <thead>
+                                                <tr>
+                                                    <th>ردیف</th>
+                                                    <th>گروه اصلی </th>
+                                                    <th><input type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody style="height: 300px !important;" id="threePicAddedKalaPart3">
+                                            
+                                            </tbody>
+                                        </table>
+                                  </div> 
+                         </div>
                     </div>`;
+
             var fourPic = `<div class="container">
                             <div class='row d-flex justify-content-center m-auto p-1'>
-                                <div class='col-lg-2 col-md-3 col-sm-4 p-1 mx-2 align-items-center c-checkout' style='height:25vh !important;'>
-                                    <img id="imageSrc1" class="p-0" style="width:100%; height:18vh"  onerror='' src="">
+                                <div class='col-lg-2 col-md-3 col-sm-4 p-1 mx-2 align-items-center c-checkout' style='height:15vh !important;'>
+                                    <img id="imageSrc1" class="p-0" style="width:100%; height:13vh"  onerror='' src="">
                                     <div class="d-flex justify-content-center m-1 p-0">
-                                        <button class="btn btn-info btn-sm mx-1 text-warning" onclick="document.getElementById('firstPicId').click();" type="button" style="display: inline;margin-right: 2%;"><i class="fa-light fa-image fa-lg"></i></button>
-                                        <button class='btn btn-info btn-sm mx-1 text-warning' type="button" id="fourPicAddKala1"><i class="fa-light fa-cart-plus fa-lg"></i></button>
+                                        <button class="btn btn-success btn-sm mx-1 text-warning" onclick="document.getElementById('firstPicId').click();" type="button" style="display: inline;margin-right: 2%;"><i class="fa-light fa-image fa-lg"></i></button>
+                                        <button class='btn btn-success btn-sm mx-1 text-warning' type="button" id="fourPicAddKala1"><i class="fa-light fa-cart-plus fa-lg"></i></button>
                                     </div>
                                     <input type="file"  onchange='document.getElementById("imageSrc1").src = window.URL.createObjectURL(this.files[0])'  name="firstPic" id="firstPicId" style="display: none"/>
                                 </div>
-                                <div class='col-lg-2 col-md-3 col-sm-4 p-1 mx-2 align-items-center c-checkout' style='height:25vh !important;'>
-                                    <img id="imageSrc2" class="p-0" style="width:100%; height:18vh"  onerror='' src="">
+                                <div class='col-lg-2 col-md-3 col-sm-4 p-1 mx-2 align-items-center c-checkout' style='height:15vh !important;'>
+                                    <img id="imageSrc2" class="p-0" style="width:100%; height:13vh"  onerror='' src="">
                                     <div class="d-flex justify-content-center m-1 p-0">
-                                        <button class="btn btn-info btn-sm mx-1 text-warning" onclick="document.getElementById('secondPicId').click();" type="button" style="display: inline;margin-right: 2%;"><i class="fa-light fa-image fa-lg"></i></button>
-                                        <button class='btn btn-info btn-sm mx-1 text-warning' type="button" id="fourPicAddKala2"><i class="fa-light fa-cart-plus fa-lg"></i></button>
+                                        <button class="btn btn-success btn-sm mx-1 text-warning" onclick="document.getElementById('secondPicId').click();" type="button" style="display: inline;margin-right: 2%;"><i class="fa-light fa-image fa-lg"></i></button>
+                                        <button class='btn btn-success btn-sm mx-1 text-warning' type="button" id="fourPicAddKala2"><i class="fa-light fa-cart-plus fa-lg"></i></button>
                                     </div>
                                     <input type="file"  onchange='document.getElementById("imageSrc2").src = window.URL.createObjectURL(this.files[0])'  name="secondPic" id="secondPicId" style="display: none"/>
                                 </div>
-                                <div class='col-lg-2 col-md-3 col-sm-4 p-1 mx-2 align-items-center c-checkout' style='height:25vh !important;'>
-                                    <img id="imageSrc3" class="p-0" style="width:100%; height:18vh"  onerror='' src="">
+                                <div class='col-lg-2 col-md-3 col-sm-4 p-1 mx-2 align-items-center c-checkout' style='height:15vh !important;'>
+                                    <img id="imageSrc3" class="p-0" style="width:100%; height:13vh"  onerror='' src="">
                                     <div class="d-flex justify-content-center m-1 p-0">
-                                        <button class="btn btn-info btn-sm mx-1 text-warning" onclick="document.getElementById('thirdPicId').click();" type="button" style="display: inline;margin-right: 2%;"><i class="fa-light fa-image fa-lg"></i></button>
-                                        <button class='btn btn-info btn-sm mx-1 text-warning' type="button" id="fourPicAddKala3"><i class="fa-light fa-cart-plus fa-lg"></i></button>
+                                        <button class="btn btn-success btn-sm mx-1 text-warning" onclick="document.getElementById('thirdPicId').click();" type="button" style="display: inline;margin-right: 2%;"><i class="fa-light fa-image fa-lg"></i></button>
+                                        <button class='btn btn-success btn-sm mx-1 text-warning' type="button" id="fourPicAddKala3"><i class="fa-light fa-cart-plus fa-lg"></i></button>
                                     </div>
                                     <input type="file"  onchange='document.getElementById("imageSrc3").src = window.URL.createObjectURL(this.files[0])'  name="thirdPic" id="thirdPicId" style="display: none"/>
                                 </div>
-                                <div class='col-lg-2 col-md-3 col-sm-4 p-1 mx-2 align-items-center c-checkout' style='height:25vh !important;'>
-                                    <img id="imageSrc4" class="p-0" style="width:100%; height:18vh"  onerror='' src="">
+                                <div class='col-lg-2 col-md-3 col-sm-4 p-1 mx-2 align-items-center c-checkout' style='height:15vh !important;'>
+                                    <img id="imageSrc4" class="p-0" style="width:100%; height:13vh"  onerror='' src="">
                                     <div class="d-flex justify-content-center m-1 p-0">
-                                        <button class="btn btn-info btn-sm mx-1 text-warning" onclick="document.getElementById('fourthPicId').click();" type="button" style="display: inline;margin-right: 2%;"><i class="fa-light fa-image fa-lg"></i></button>
-                                        <button class='btn btn-info btn-sm mx-1 text-warning' type="button" id="fourPicAddKala4"><i class="fa-light fa-cart-plus fa-lg"></i></button>
+                                        <button class="btn btn-success btn-sm mx-1 text-warning" onclick="document.getElementById('fourthPicId').click();" type="button" style="display: inline;margin-right: 2%;"><i class="fa-light fa-image fa-lg"></i></button>
+                                        <button class='btn btn-success btn-sm mx-1 text-warning' type="button" id="fourPicAddKala4"><i class="fa-light fa-cart-plus fa-lg"></i></button>
                                     </div>
                                     <input type="file"  onchange='document.getElementById("imageSrc4").src = window.URL.createObjectURL(this.files[0])'  name="fourthPic" id="fourthPicId" style="display: none"/>
                                 </div>
@@ -1191,84 +966,64 @@
 
                             <div class='c-checkout rounded-top p-0' id="firstListOf4Pic" style="display:none;">
                                 <div class="container m-0 p-0">
-                                    <div class="row m-0 p-0">
-                                        <div class='modal-body'>
-                                            <div class='c-checkout' style='padding-right:0;'>
-                                                <div class="container" style="padding:15px;">
-                                                    <div class="row">
-                                                        <div class="col-sm-4">
-                                                            <div class="form-group">
-                                                                <label class="form-label">جستجو</label>
-                                                                <input class="form-control form-control-sm" type="search" name="" id="searchKala4Pic1">
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-sm-4">
-                                                            <div class="form-group">
-                                                                <label class="form-label"> جستجوی گروه اصلی</label>
-                                                                <select class="form-select form-select-sm" id="searchMainGroup4Pic1">
-                                                                    <option value="" selected disabled hidden>همه کالا ها</option>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-sm-4">
-                                                            <div class="form-group">
-                                                                <label class="form-label"> جستجوی گروه فرعی</label>
-                                                                <select class="form-select form-select-sm" id="searchSubGroup4Pic1">
-                                                                    <option value="" selected disabled hidden>همه کالا ها</option>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                    </div>
+                                    <div class="row">
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <label class="form-label">جستجو</label>
+                                                    <input class="form-control form-control-sm" type="search" name="" id="searchKala4Pic1">
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <label class="form-label"> جستجوی گروه اصلی</label>
+                                                    <select class="form-select form-select-sm" id="searchMainGroup4Pic1">
+                                                        <option value="" selected disabled hidden>همه کالا ها</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <label class="form-label"> جستجوی گروه فرعی</label>
+                                                    <select class="form-select form-select-sm" id="searchSubGroup4Pic1">
+                                                        <option value="" selected disabled hidden>همه کالا ها</option>
+                                                    </select>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-sm-5">
-                                            <div class='modal-body'>
-                                                <div class='c-checkout' style='padding-right:0;'>
-                                                    <table class="tableSection table table-bordered table table-hover table-sm table-light" style='td:hover{ cursor:move;}'>
-                                                        <thead>
-                                                            <tr>
-                                                                <th>ردیف</th>
-                                                                <th>اسم </th>
-                                                                <th><input type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody style="height: 400px;" id="fourPicKalaPart1">
-                                                            
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                            </div>
+                                        <div class="row">
+                                         <div class="col-sm-5">
+                                             <table class="table table-bordered table  table-sm ">
+                                                <thead class="tableHeader">
+                                                    <tr>
+                                                        <th>ردیف</th>
+                                                        <th>اسم </th>
+                                                        <th><input type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody class="tableBody" style="height: 300px !important;" id="fourPicKalaPart1"> </tbody>
+                                            </table>
                                         </div>
 
-                                        <div class="col-sm-2 d-flex align-items-center justify-content-center">
-                                            <div class='modal-body'>
-                                                <div style="">
-                                                    <a id="addData4Pic1">
-                                                        <i class="fa-regular fa-circle-chevron-left fa-3x text-success"></i>
-                                                    </a>
-                                                    <a id="removeData4Pic1">
-                                                        <i class="fa-regular fa-circle-chevron-right fa-3x text-success"></i>
-                                                    </a>
-                                                </div>
-                                            </div>
+                                        <div class="col-sm-2 text-center">
+                                            <a id="addData4Pic1">
+                                                <i class="fa-regular fa-circle-chevron-left fa-3x text-success"></i>
+                                            </a>
+                                            <a id="removeData4Pic1">
+                                                <i class="fa-regular fa-circle-chevron-right fa-3x text-success"></i>
+                                            </a>
                                         </div>
                                         <div class="col-sm-5">
-                                            <div class='modal-body'>
-                                                <div class='c-checkout' style='padding-right:0;'>
-                                                    <table class="tableSection table table-bordered table table-hover table-sm table-light" style='td:hover{ cursor:move;}'>
-                                                        <thead>
-                                                            <tr>
-                                                                <th>ردیف</th>
-                                                                <th>گروه اصلی </th>
-                                                                <th><input type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody style="height: 400px;" id="fourPicAddedKalaPart1">
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                            </div>
+                                            <table class="table table-bordered table  table-sm "'>
+                                                <thead class="tableHeader">
+                                                    <tr>
+                                                        <th>ردیف</th>
+                                                        <th>گروه اصلی </th>
+                                                        <th><input type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody style="height: 300px !important;" class="tableBody" id="fourPicAddedKalaPart1">
+                                                </tbody>
+                                            </table>
                                         </div>
                                     </div>
                                 </div>
@@ -1276,86 +1031,67 @@
 
                             <div class='c-checkout rounded-top p-0' id="secondListOf4Pic" style="display:none;">
                                 <div class="container m-0 p-0">
-                                    <div class="row m-0 p-0">
-                                        <div class='modal-body'>
-                                            <div class='c-checkout' style='padding-right:0;'>
-                                                <div class="container" style="padding:15px;">
-                                                    <div class="row">
-                                                        <div class="col-sm-4">
-                                                            <div class="form-group">
-                                                                <label class="form-label">جستجو</label>
-                                                                <input class="form-control form-control-sm" type="search" name="" id="searchKala4Pic2">
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-sm-4">
-                                                            <div class="form-group">
-                                                                <label class="form-label"> جستجوی گروه اصلی</label>
-                                                                <select class="form-selected form-select-sm" id="searchMainGroup4Pic2">
-                                                                    <option value="" selected disabled hidden>همه کالا ها</option>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-sm-4">
-                                                            <div class="form-group">
-                                                                <label class="form-label"> جستجوی گروه فرعی</label>
-                                                                <select class="form-select form-select-sm" id="searchSubGroup4Pic2">
-                                                                    <option value="" selected disabled hidden>همه کالا ها</option>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                    </div>
+                                   <div class="row">
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <label class="form-label">جستجو</label>
+                                                    <input class="form-control form-control-sm" type="search" name="" id="searchKala4Pic2">
                                                 </div>
                                             </div>
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <label class="form-label"> جستجوی گروه اصلی</label>
+                                                    <select class="form-select form-select-sm" id="searchMainGroup4Pic2">
+                                                        <option value="" selected disabled hidden>همه کالا ها</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <label class="form-label"> جستجوی گروه فرعی</label>
+                                                    <select class="form-select form-select-sm" id="searchSubGroup4Pic2">
+                                                        <option value="" selected disabled hidden>همه کالا ها</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                     <div class="row">
+                                        <div class="col-sm-5">
+                                             <table class="table table-bordered table  table-sm ">
+                                                <thead class="tableHeader">
+                                                    <tr>
+                                                        <th>ردیف</th>
+                                                        <th>اسم </th>
+                                                        <th><input type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody class="tableBody" style="height:300px;" id="fourPicKalaPart2">
+                                                </tbody>
+                                            </table>
+                                        </div>
+
+                                        <div class="col-sm-2 text-center mt-5">
+                                             <a id="addData4Pic2">
+                                                    <i class="fa-regular fa-circle-chevron-left fa-3x"></i>
+                                                </a>
+                                                <a id="removeData4Pic2">
+                                                    <i class="fa-regular fa-circle-chevron-right fa-3x"></i>
+                                                </a>
                                         </div>
 
                                         <div class="col-sm-5">
-                                            <div class='modal-body'>
-                                                <div class='c-checkout' style='padding-right:0;'>
-                                                    <table class="tableSection table table-bordered table table-hover table-sm table-light" style='td:hover{ cursor:move;}'>
-                                                        <thead>
-                                                            <tr>
-                                                                <th>ردیف</th>
-                                                                <th>اسم </th>
-                                                                <th><input type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody style="height: 400px;" id="fourPicKalaPart2">
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-sm-2 d-flex align-items-center justify-content-center">
-                                            <div class='modal-body'>
-                                                <div style="">
-                                                    <a id="addData4Pic2">
-                                                        <i class="fa-regular fa-circle-chevron-left fa-3x"></i>
-                                                    </a>
-                                                    <a id="removeData4Pic2">
-                                                        <i class="fa-regular fa-circle-chevron-right fa-3x"></i>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-sm-5">
-                                            <div class='modal-body'>
-                                                <div class='c-checkout' style='padding-right:0;'>
-                                                    <table class="tableSection table table-bordered table table-hover table-sm table-light" style='td:hover{ cursor:move;}'>
-                                                        <thead>
-                                                            <tr>
-                                                                <th>ردیف</th>
-                                                                <th>گروه اصلی </th>
-                                                                <th><input type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody style="height: 400px;" id="fourPicAddedKalaPart2">
-                                                        
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                            </div>
+                                             <table class="table table-bordered table  table-sm ">
+                                                <thead>
+                                                    <tr>
+                                                        <th>ردیف</th>
+                                                        <th>گروه اصلی </th>
+                                                        <th><input type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody style="height:300px !important;" id="fourPicAddedKalaPart2">
+                                                
+                                                </tbody>
+                                            </table>
                                         </div>
                                     </div>
                                 </div>
@@ -1363,85 +1099,65 @@
 
                             <div class='c-checkout rounded-top p-0' id="thirdListOf4Pic" style="display:none;">
                                 <div class="container m-0 p-0">
-                                    <div class="row m-0 p-0">
-                                        <div class='modal-body'>
-                                            <div class='c-checkout' style='padding-right:0;'>
-                                                <div class="container" style="padding:15px;">
-                                                    <div class="row">
-                                                        <div class="col-sm-4">
-                                                            <div class="form-group">
-                                                                <label class="form-label"> جستجوی گروه اصلی</label>
-                                                                <select class="form-control" id="searchMainGroup4Pic3">
-                                                                    <option value="0">همه کالا ها</option>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-sm-4">
-                                                            <div class="form-group">
-                                                                <label class="form-label"> جستجوی گروه فرعی</label>
-                                                                <select class="form-control" id="searchSubGroup4Pic3">
-                                                                    <option value="0">همه کالا ها</option>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-sm-4">
-                                                            <div class="form-group">
-                                                                <label class="form-label">جستجو</label>
-                                                                <input type="text" name="" size="20" class="form-control" id="searchKala4Pic3">
-                                                            </div>
-                                                        </div>
-                                                    </div>
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <label class="form-label"> جستجوی گروه اصلی</label>
+                                                    <select class="form-control form-control-sm" id="searchMainGroup4Pic3">
+                                                        <option value="0">همه کالا ها</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <label class="form-label"> جستجوی گروه فرعی</label>
+                                                    <select class="form-select form-select-sm" id="searchSubGroup4Pic3">
+                                                        <option value="0">همه کالا ها</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <label class="form-label">جستجو</label>
+                                                    <input type="text" name="" class="form-control form-control-sm" id="searchKala4Pic3">
                                                 </div>
                                             </div>
                                         </div>
-
+                                    <div class="row">
                                         <div class="col-sm-5">
-                                            <div class='modal-body'>
-                                                <div class='c-checkout' style='padding-right:0;'>
-                                                    <table class="tableSection table table-bordered table table-hover table-sm table-light" style='td:hover{ cursor:move;}'>
-                                                        <thead>
-                                                            <tr>
-                                                                <th>ردیف</th>
-                                                                <th>اسم </th>
-                                                                <th><input type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody style="height: 400px;" id="fourPicKalaPart3">
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                            </div>
+                                            <table class="table table-bordered table  table-sm "'>
+                                                <thead class="tableHeader">
+                                                    <tr>
+                                                        <th>ردیف</th>
+                                                        <th>اسم </th>
+                                                        <th><input type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody class="tableBody" style="height: 300px; !important" id="fourPicKalaPart3">
+                                                </tbody>
+                                            </table>
                                         </div>
 
-                                        <div class="col-sm-2 d-flex align-items-center justify-content-center">
-                                            <div class='modal-body'>
-                                                <div style="">
-                                                    <a id="addData4Pic3">
-                                                        <i class="fa-regular fa-circle-chevron-left fa-3x text-success"></i>
-                                                    </a>
-                                                    <a id="removeData4Pic3">
-                                                        <i class="fa-regular fa-circle-chevron-right fa-3x text-success"></i>
-                                                    </a>
-                                                </div>
-                                            </div>
+                                        <div class="col-sm-2 text-center mt-5">
+                                            <a id="addData4Pic3">
+                                                <i class="fa-regular fa-circle-chevron-left fa-3x text-success"></i>
+                                            </a>
+                                            <a id="removeData4Pic3">
+                                                <i class="fa-regular fa-circle-chevron-right fa-3x text-success"></i>
+                                            </a>
                                         </div>
                                                 
                                         <div class="col-sm-5">
-                                            <div class='modal-body'>
-                                                <div class='c-checkout' style='padding-right:0;'>
-                                                    <table class="tableSection table table-bordered table table-hover table-sm table-light" style='td:hover{ cursor:move;}'>
-                                                        <thead>
-                                                            <tr>
-                                                                <th>ردیف</th>
-                                                                <th>گروه اصلی </th>
-                                                                <th><input type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody style="height: 400px;" id="fourPicAddedKalaPart3">
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                            </div>
+                                             <table class="table table-bordered table  table-sm "'>
+                                                <thead>
+                                                    <tr>
+                                                        <th>ردیف</th>
+                                                        <th>گروه اصلی </th>
+                                                        <th><input type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody style="height: 300px !important;" id="fourPicAddedKalaPart3"> </tbody>
+                                            </table>
                                         </div>
                                     </div>
                                 </div>
@@ -1449,88 +1165,66 @@
 
                             <div class='c-checkout rounded-top p-0' id="fourthListOf4Pic"  style="display:none;">
                                 <div class="container m-0 p-0">
-                                    <div class="row m-0 p-0" >
-                                        <div class='modal-body'>
-                                            <div class='c-checkout' style='padding-right:0;'>
-                                                <div class="container" style="padding:15px;">
-                                                    <div class="row">
-                                                        <div class="col-sm-4">
-                                                            <div class="form-group">
-                                                                <label class="form-label"> جستجوی گروه اصلی</label>
-                                                                <select class="form-control" id="searchMainGroup4Pic4">
-                                                                    <option value="0">همه کالا ها</option>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-sm-4">
-                                                            <div class="form-group">
-                                                                <label class="form-label"> جستجوی گروه فرعی</label>
-                                                                <select class="form-control" id="searchSubGroup4Pic4">
-                                                                    <option value="0">همه کالا ها</option>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-sm-4">
-                                                            <div class="form-group">
-                                                                <label class="form-label">جستجو</label>
-                                                                <input type="text" name="" size="20" class="form-control" id="searchKala4Pic4">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <label class="form-label"> جستجوی گروه اصلی</label>
+                                                <select class="form-control form-control-sm" id="searchMainGroup4Pic4">
+                                                    <option value="0">همه کالا ها</option>
+                                                </select>
                                             </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <label class="form-label"> جستجوی گروه فرعی</label>
+                                                <select class="form-control form-control-sm" id="searchSubGroup4Pic4">
+                                                    <option value="0">همه کالا ها</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <label class="form-label">جستجو</label>
+                                                <input type="text" name=""  class="form-control form-control-sm" id="searchKala4Pic4">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-5">
+                                             <table class="table table-bordered table  table-sm">
+                                                    <thead class="tableHeader">
+                                                        <tr>
+                                                            <th>ردیف</th>
+                                                            <th>اسم </th>
+                                                            <th><input type="checkbox" name=""  class="selectAllFromTop form-check-input"></th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody style="height: 300px !important;" class="tableBody" id="fourPicKalaPart4"> </tbody>
+                                                </table>
+                                        </div>
+
+                                        <div class="col-sm-2 text-center mt-5">
+                                           <a id="addData4Pic4">
+                                                <i class="fa-regular fa-circle-chevron-left fa-3x"></i>
+                                            </a>
+                                            <a id="removeData4Pic4">
+                                                <i class="fa-regular fa-circle-chevron-right fa-3x"></i>
+                                            </a>
                                         </div>
 
                                         <div class="col-sm-5">
-                                            <div class='modal-body'>
-                                                <div class='c-checkout' style='padding-right:0;'>
-                                                    <table class="tableSection table table-bordered table table-hover table-sm table-light" style='td:hover{ cursor:move;}'>
-                                                        <thead>
-                                                            <tr>
-                                                                <th>ردیف</th>
-                                                                <th>اسم </th>
-                                                                <th><input type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody style="height: 400px;" id="fourPicKalaPart4">
-                                                            
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-sm-2" style="">
-                                            <div class='modal-body'style="position:relative; left: 5%; top: 30%;">
-                                                <div style="">
-                                                    <a id="addData4Pic4">
-                                                        <i class="fa-regular fa-circle-chevron-left fa-3x"></i>
-                                                    </a>
-                                                    <br />
-                                                    <a id="removeData4Pic4">
-                                                        <i class="fa-regular fa-circle-chevron-right fa-3x"></i>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-sm-5">
-                                            <div class='modal-body'>
-                                                <div class='c-checkout' style='padding-right:0;'>
-                                                    <table class="tableSection table table-bordered table table-hover table-sm table-light" style='td:hover{ cursor:move;}'>
-                                                        <thead>
-                                                            <tr>
-                                                                <th>ردیف</th>
-                                                                <th>گروه اصلی </th>
-                                                                <th><input type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody style="height: 400px;" id="fourPicAddedKalaPart4">
-                                                        
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                            </div>
+                                             <table class="table table-bordered table  table-sm "'>
+                                                <thead class="tableHeader">
+                                                    <tr>
+                                                        <th>ردیف</th>
+                                                        <th>گروه اصلی </th>
+                                                        <th><input type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody style="height: 300px !important;" class="tableBody" id="fourPicAddedKalaPart4">
+                                                
+                                                </tbody>
+                                            </table>
                                         </div>
                                     </div>
                                 </div>
@@ -1538,403 +1232,312 @@
                         </div>`;
 
             var fivePic = `<div class="container">
-                         <div class="row" style="padding:10px; padding-right:0px;">
-                            <table class='table table-hover table-bordered table-sm table-light' id='myTable' style='td:hover{ cursor:move;}'>
-                                <thead  class="table bg-danger">
-                                    <tr>
-                                        <th colspan="4"> تخصیص کالا به عکس </th>
-                                    </tr>
-                                </thead>
-                                <tbody style='text-align:center'>
-                                    <tr>
-                                        <td> <label for="firstPic" class="form-label">تصویر اول</label></td>
-                                        <td> 
+                           <div class="row" style="padding:5px; padding-right:0px;">
+                                    <span> تخصیص کالا به عکس </span>
+                                <div class="grid-picture" id='myTable'>
+                                        <div class="pic-item">
+                                            <label for="firstPic" class="form-label d-block">تصویر اول</label> 
                                             <input type="file" id="fivePicAllocation1" class="form-control" style=" display:none;" name="firstPic" >
-                                            <label for="fivePicAllocation1" id="fivePicLabel1" class='btn btn-success btn-md' class="form-label">انتخاب عکس <i class="fa-solid fa-image fa-lg"></i></label> 
-                                        </td>
-                                        <td><button class='btn btn-info btn-md text-white' type="button" data-toggle='modal' id="fivePicAddKala1"> تخصیص <i class="fa-solid fa-cart-plus fa-lg"></i></button></td>
-                                        
-                                    </tr>
-                                    <tr>
-                                        <td><label for="firstPic" class="form-label">تصویر دوم</label></td>
-                                        <td>
+                                            <label for="fivePicAllocation1" id="fivePicLabel1" class='btn btn-success btn-sm' class="form-label">انتخاب عکس <i class="fa-solid fa-image fa-lg"></i></label> 
+                                           <button class='btn btn-success btn-sm text-white mt-1' type="button" data-toggle='modal' id="fivePicAddKala1"> تخصیص <i class="fa-solid fa-cart-plus fa-lg"></i></button>
+                                        </div>
+                                        <div class="pic-item">
+                                           <label for="firstPic" class="form-label d-block">تصویر دوم</label>
                                             <input type="file" class="form-control" name="secondPic" style=" display:none;" id="fivePicAllocation2">
-                                            <label for="fivePicAllocation2" id="fivePicLabel2"class='btn btn-success btn-md' class="form-label">انتخاب عکس <i class="fa-solid fa-image fa-lg"></i></label>
-                                        </td>
-                                        <td><button class='btn btn-info btn-md text-white' type="button" id="fivePicAddKala2"> تخصیص <i class="fa-solid fa-cart-plus fa-lg"></i></button></td>
-                                        
-                                    </tr>
-                                    <tr>
-                                        <td><label for="firstPic" class="form-label">تصویر سوم</label></td>
-                                        <td>
+                                            <label for="fivePicAllocation2" id="fivePicLabel2"class='btn btn-success btn-sm' class="form-label">انتخاب عکس <i class="fa-solid fa-image fa-lg"></i></label>
+                                            <button class='btn btn-success btn-sm text-white mt-1' type="button" id="fivePicAddKala2"> تخصیص <i class="fa-solid fa-cart-plus fa-lg"></i></button>
+                                        </div>
+                                    
+                                        <div class="pic-item">
+                                            <label for="firstPic" class="form-label d-block">تصویر سوم</label>
                                             <input type="file" class="form-control" name="thirdPic" style=" display:none;" id="fivePicAllocation3"> 
-                                            <label for="fivePicAllocation3" id="fivePicLabel3"class='btn btn-success btn-md' class="form-label">انتخاب عکس <i class="fa-solid fa-image fa-lg"></i></label>
-                                        </td>
-                                        <td><button class='btn btn-info btn-md text-white'  type="button" id="fivePicAddKala3"> تخصیص <i class="fa-solid fa-cart-plus fa-lg"></i></button></td>
-                                        
-                                    </tr>
-                                    <tr>
-                                        <td><label for="firstPic" class="form-label">تصویر چهارم</label></td>
-                                        <td>
+                                            <label for="fivePicAllocation3" id="fivePicLabel3"class='btn btn-success btn-sm' class="form-label">انتخاب عکس <i class="fa-solid fa-image fa-lg"></i></label>
+                                            <button class='btn btn-success btn-sm text-white mt-1'  type="button" id="fivePicAddKala3"> تخصیص <i class="fa-solid fa-cart-plus fa-lg"></i></button>
+                                        </div>
+                                       
+                                        <div class="pic-item">
+                                            <label for="firstPic" class="form-label d-block">تصویر چهارم</label>
                                             <input type="file" class="form-control" name="fourthPic" style=" display:none;" id="fivePicAllocation4"> 
-                                            <label for="fivePicAllocation4" id="fivePicLabel4"class='btn btn-success btn-md' class="form-label">انتخاب عکس <i class="fa-solid fa-image fa-lg"></i></label>
-                                        </td>
-                                        <td><button class='btn btn-info btn-md text-white'  type="button" id="fivePicAddKala4"> تخصیص <i class="fa-solid fa-cart-plus fa-lg"></i></button></td>
-                                    </tr>
-                                    <tr>
-                                        <td><label for="firstPic" class="form-label">تصویر پنجم</label></td>
-                                        <td>
+                                            <label for="fivePicAllocation4" id="fivePicLabel4"class='btn btn-success btn-sm' class="form-label">انتخاب عکس <i class="fa-solid fa-image fa-lg"></i></label>
+                                           <button class='btn btn-success btn-sm text-white mt-1'  type="button" id="fivePicAddKala4"> تخصیص <i class="fa-solid fa-cart-plus fa-lg"></i></button>
+                                        </div>
+                                    
+                                        <div class="pic-item">
+                                            <label for="firstPic" class="form-label d-block">تصویر پنجم</label>
                                             <input type="file" class="form-control" name="fifthPic" style=" display:none;" id="fivePicAllocation5"> 
-                                            <label for="fivePicAllocation5" id="fivePicLabel5"class='btn btn-success btn-md' class="form-label">انتخاب عکس <i class="fa-solid fa-image fa-lg"></i></label>
-                                        </td>
-                                        <td><button class='btn btn-info btn-md text-white'  type="button" id="fivePicAddKala5"> تخصیص <i class="fa-solid fa-cart-plus fa-lg"></i></button></td>
-                                        
-                                    </tr>
-                                </tbody>
-                            </table>
+                                            <label for="fivePicAllocation5" id="fivePicLabel5"class='btn btn-success btn-sm' class="form-label">انتخاب عکس <i class="fa-solid fa-image fa-lg"></i></label>
+                                           <button class='btn btn-success btn-sm text-white mt-1'  type="button" id="fivePicAddKala5"> تخصیص <i class="fa-solid fa-cart-plus fa-lg"></i></button>
+                                        </div>
+                                </div>
                             <div style='direction:ltr; margin-left:0'>
-                                <button type="submit" class="btn btn-secondary btn-md" name="" id="onePicForm"> <i class="fa fa-save fa-lg" aria-hidden="true"></i> ذخیره </button>
+                                <button type="submit" class="btn btn-success btn-sm" name="" id="onePicForm"> <i class="fa fa-save fa-lg" aria-hidden="true"></i> ذخیره </button>
                             </div>
                         </div>
+
                     <div class='c-checkout' id="firstListOf5Pic" style="display:none;">
                         <div class="container">
-                            <div class="row" >
-                                <div class='modal-body'>
-                                    <div class='c-checkout' style='padding-right:0;'>
-                                        <div class="container" style="padding:15px;">
-                                            <div class="row">
-                                                <div class="col-sm-4">
-                                                    <div class="form-group">
-                                                        <label class="form-label"> جستجوی گروه اصلی</label>
-                                                        <select class="form-control" id="searchMainGroup5Pic1">
-                                                            <option value="0">همه کالا ها</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-4">
-                                                    <div class="form-group">
-                                                        <label class="form-label"> جستجوی گروه فرعی</label>
-                                                        <select class="form-control" id="searchSubGroup5Pic1">
-                                                            <option value="0">همه کالا ها</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-4">
-                                                    <div class="form-group">
-                                                        <label class="form-label">جستجو</label>
-                                                        <input type="text" name="" size="20" class="form-control" id="searchKala5Pic1">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                             <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="form-label"> جستجوی گروه اصلی</label>
+                                        <select class="form-select form-select-sm" id="searchMainGroup5Pic1">
+                                            <option value="0">همه کالا ها</option>
+                                        </select>
                                     </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="form-label"> جستجوی گروه فرعی</label>
+                                        <select class="form-select form-select-sm" id="searchSubGroup5Pic1">
+                                            <option value="0">همه کالا ها</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="form-label">جستجو</label>
+                                        <input type="text" name=""  class="form-control form-control-sm" id="searchKala5Pic1">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                            <div class="col-sm-5">
+                                 <table class="table table-bordered table table-sm">
+                                    <thead>
+                                        <tr>
+                                            <th>ردیف</th>
+                                            <th>اسم </th>
+                                            <th><input type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="tableBody" style="height: 300px !important;" id="fivePicKalaPart1">
+                                        
+                                    </tbody>
+                                </table>
+                            </div>
+
+                                <div class="col-sm-2 text-center">
+                                    <a id="addData5Pic1">
+                                        <i class="fa-regular fa-circle-chevron-left fa-3x"></i>
+                                    </a>
+                                    <br />
+                                    <a id="removeData5Pic1">
+                                        <i class="fa-regular fa-circle-chevron-right fa-3x"></i>
+                                    </a>
                                 </div>
                                 <div class="col-sm-5">
-                                    <div class='modal-body'>
-                                        <div class='c-checkout' style='padding-right:0;'>
-                                            <table class="tableSection table table-bordered table table-hover table-sm table-light" style='td:hover{ cursor:move;}'>
-                                                <thead>
-                                                    <tr>
-                                                        <th>ردیف</th>
-                                                        <th>اسم </th>
-                                                        <th><input type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody style="height: 400px;" id="fivePicKalaPart1">
-                                                    
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-sm-2" style="">
-                                    <div class='modal-body' style="position:relative; left: 5%; top: 30%;">
-                                        <div style="">
-                                            <a id="addData5Pic1">
-                                                <i class="fa-regular fa-circle-chevron-left fa-3x"></i>
-                                            </a>
-                                            <br />
-                                            <a id="removeData5Pic1">
-                                                <i class="fa-regular fa-circle-chevron-right fa-3x"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-sm-5">
-                                    <div class='modal-body'>
-
-                                        <div class='c-checkout' style='padding-right:0;'>
-                                            <table class="tableSection table table-bordered table table-hover table-sm table-light" style='td:hover{ cursor:move;}'>
-                                                <thead>
-                                                    <tr>
-                                                        <th>ردیف</th>
-                                                        <th>گروه اصلی </th>
-                                                        <th><input type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody style="height: 400px;" id="fivePicAddedKalaPart1">
-                                                   
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
+                                    <table class="table table-bordered table  table-sm">
+                                        <thead>
+                                            <tr>
+                                                <th>ردیف</th>
+                                                <th>گروه اصلی </th>
+                                                <th><input type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="tableBody" style="height: 300px !important;" id="fivePicAddedKalaPart1"> </tbody>
+                                    </table>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class='c-checkout' id="secondListOf5Pic"  style="display:none;">
                         <div class="container">
+                             <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="form-label"> جستجوی گروه اصلی</label>
+                                        <select class="form-control" id="searchMainGroup5Pic2">
+                                            <option value="0">همه کالا ها</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="form-label"> جستجوی گروه فرعی</label>
+                                        <select class="form-control" id="searchSubGroup5Pic2">
+                                            <option value="0">همه کالا ها</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="form-label">جستجو</label>
+                                        <input type="text" name="" size="20" class="form-control" id="searchKala5Pic2">
+                                    </div>
+                                </div>
+                            </div>
                             <div class="row">
-                                <div class='modal-body'>
-                                    <div class='c-checkout' style='padding-right:0;'>
-                                        <div class="container" style="padding:15px;">
-                                            <div class="row">
-                                                <div class="col-sm-4">
-                                                    <div class="form-group">
-                                                        <label class="form-label"> جستجوی گروه اصلی</label>
-                                                        <select class="form-control" id="searchMainGroup5Pic2">
-                                                            <option value="0">همه کالا ها</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-4">
-                                                    <div class="form-group">
-                                                        <label class="form-label"> جستجوی گروه فرعی</label>
-                                                        <select class="form-control" id="searchSubGroup5Pic2">
-                                                            <option value="0">همه کالا ها</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-4">
-                                                    <div class="form-group">
-                                                        <label class="form-label">جستجو</label>
-                                                        <input type="text" name="" size="20" class="form-control" id="searchKala5Pic2">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                <div class="col-sm-5">
+                                     <table class="table table-bordered table  table-sm "'>
+                                        <thead class="tableHeader">
+                                            <tr>
+                                                <th>ردیف</th>
+                                                <th>اسم </th>
+                                                <th><input type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="tableBody" style="height: 300px !important;" id="fivePicKalaPart2">
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="col-sm-2 text-center">
+                                    <a id="addData5Pic2">
+                                        <i class="fa-regular fa-circle-chevron-left fa-3x"></i>
+                                    </a>
+                                    <br />
+                                    <a id="removeData5Pic2">
+                                            <i class="fa-regular fa-circle-chevron-right fa-3x"></i>
+                                    </a>
                                 </div>
                                 <div class="col-sm-5">
-                                    <div class='modal-body'>
-                                        <div class='c-checkout' style='padding-right:0;'>
-                                            <table class="tableSection table table-bordered table table-hover table-sm table-light" style='td:hover{ cursor:move;}'>
-                                                <thead>
-                                                    <tr>
-                                                        <th>ردیف</th>
-                                                        <th>اسم </th>
-                                                        <th><input type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody style="height: 400px;" id="fivePicKalaPart2">
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-2" style="">
-                                    <div class='modal-body' style="position:relative; left: 5%; top: 30%;">
-                                        <div style="">
-                                            <a id="addData5Pic2">
-                                                <i class="fa-regular fa-circle-chevron-left fa-3x"></i>
-                                            </a>
-                                            <br />
-                                            <a id="removeData5Pic2">
-                                                 <i class="fa-regular fa-circle-chevron-right fa-3x"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-5">
-                                    <div class='modal-body'>
-                                        <div class='c-checkout' style='padding-right:0;'>
-                                            <table class="tableSection table table-bordered table table-hover table-sm table-light" style='td:hover{ cursor:move;}'>
-                                                <thead>
-                                                    <tr>
-                                                        <th>ردیف</th>
-                                                        <th>گروه اصلی </th>
-                                                        <th><input type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody style="height: 400px;" id="fivePicAddedKalaPart2">
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
+                                    <table class="table table-bordered table  table-sm "'>
+                                        <thead class="tableHeader">
+                                            <tr>
+                                                <th>ردیف</th>
+                                                <th>گروه اصلی </th>
+                                                <th><input type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="tableBody" style="height: 300px !important;" id="fivePicAddedKalaPart2">
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
                         </div>
                     </div>
-                        <div class='c-checkout' id="thirdListOf5Pic"  style="display:none;">
+
+                  <div class='c-checkout' id="thirdListOf5Pic"  style="display:none;">
                         <div class="container">
+                          <div class="row">
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label class="form-label"> جستجوی گروه اصلی</label>
+                                    <select class="form-control" id="searchMainGroup5Pic3">
+                                        <option value="0">همه کالا ها</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label class="form-label"> جستجوی گروه فرعی</label>
+                                    <select class="form-control" id="searchSubGroup5Pic3">
+                                        <option value="0">همه کالا ها</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label class="form-label">جستجو</label>
+                                    <input type="text" name="" size="20" class="form-control" id="searchKala5Pic3">
+                                </div>
+                            </div>
+                        </div>
                         <div class="row">
-                            <div class='modal-body'>
-                                <div class='c-checkout' style='padding-right:0;'>
-                                    <div class="container" style="padding:15px;">
-                                        <div class="row">
-                                            <div class="col-sm-4">
-                                                <div class="form-group">
-                                                    <label class="form-label"> جستجوی گروه اصلی</label>
-                                                    <select class="form-control" id="searchMainGroup5Pic3">
-                                                        <option value="0">همه کالا ها</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-4">
-                                                <div class="form-group">
-                                                    <label class="form-label"> جستجوی گروه فرعی</label>
-                                                    <select class="form-control" id="searchSubGroup5Pic3">
-                                                        <option value="0">همه کالا ها</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-4">
-                                                <div class="form-group">
-                                                    <label class="form-label">جستجو</label>
-                                                    <input type="text" name="" size="20" class="form-control" id="searchKala5Pic3">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                                 <div class="col-sm-5">
-                                    <div class='modal-body'>
-                                        <div class='c-checkout' style='padding-right:0;'>
-                                            <table class="tableSection table table-bordered table table-hover table-sm table-light" style='td:hover{ cursor:move;}'>
-                                                <thead>
-                                                    <tr>
-                                                        <th>ردیف</th>
-                                                        <th>اسم </th>
-                                                        <th><input type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody style="height: 400px;" id="fivePicKalaPart3">
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
+                                      <table class="table table-bordered table  table-sm "'>
+                                        <thead>
+                                            <tr>
+                                                <th>ردیف</th>
+                                                <th>اسم </th>
+                                                <th><input type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody style="height: 400px;" id="fivePicKalaPart3">
+                                        </tbody>
+                                    </table>
                                 </div>
 
-                                <div class="col-sm-2" style="">
-                                    <div class='modal-body' style="position:relative; left: 5%; top: 30%;">
-                                        <div style="">
-                                            <a id="addData5Pic3">
-                                                <i class="fa-regular fa-circle-chevron-left fa-3x"></i>
-                                            </a>
-                                            <br />
-                                            <a id="removeData5Pic3">
-                                                 <i class="fa-regular fa-circle-chevron-right fa-3x"></i>
-                                            </a>
-                                        </div>
-                                    </div>
+                                <div class="col-sm-2 text-center">
+                                   <a id="addData5Pic3">
+                                        <i class="fa-regular fa-circle-chevron-left fa-3x"></i>
+                                    </a>
+                                    <br />
+                                    <a id="removeData5Pic3">
+                                            <i class="fa-regular fa-circle-chevron-right fa-3x"></i>
+                                    </a>
                                 </div>
 
                                 <div class="col-sm-5">
-                                    <div class='modal-body'>
-                                        <div class='c-checkout' style='padding-right:0;'>
-                                            <table class="tableSection table table-bordered table table-hover table-sm table-light" style='td:hover{ cursor:move;}'>
-                                                <thead>
-                                                    <tr>
-                                                        <th>ردیف</th>
-                                                        <th>گروه اصلی </th>
-                                                        <th><input type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody style="height: 400px;" id="fivePicAddedKalaPart3">
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
+                                    <table class="table table-bordered table  table-sm ">
+                                        <thead class="tableHeader">
+                                            <tr>
+                                                <th>ردیف</th>
+                                                <th>گروه اصلی </th>
+                                                <th><input type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="tableBody" style="height: 300px !important;" id="fivePicAddedKalaPart3">
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
                         </div>
                         </div>
-                        </div>
-                        <div class='c-checkout' id="fourthListOf5Pic"  style="display:none;">
+                       
+                        <div class='c-checkout' id="fourthListOf5Pic" style="display:none;">
                         <div class="container">
-                        <div class="row">
-                            <div class='modal-body'>
-                                <div class='c-checkout' style='padding-right:0;'>
-                                    <div class="container" style="padding:15px;">
-                                        <div class="row">
-                                            <div class="col-sm-4">
-                                                <div class="form-group">
-                                                    <label class="form-label"> جستجوی گروه اصلی</label>
-                                                    <select class="form-control" id="searchMainGroup5Pic4">
-                                                        <option value="0">همه کالا ها</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-4">
-                                                <div class="form-group">
-                                                    <label class="form-label"> جستجوی گروه فرعی</label>
-                                                    <select class="form-control" id="searchSubGroup5Pic4">
-                                                        <option value="0">همه کالا ها</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-4">
-                                                <div class="form-group">
-                                                    <label class="form-label">جستجو</label>
-                                                    <input type="text" name="" size="20" class="form-control" id="searchKala5Pic4">
-                                                </div>
-                                            </div>
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <label class="form-label"> جستجوی گروه اصلی</label>
+                                            <select class="form-select form-select-sm" id="searchMainGroup5Pic4">
+                                                <option value="0">همه کالا ها</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <label class="form-label"> جستجوی گروه فرعی</label>
+                                            <select class="form-select form-select-sm" id="searchSubGroup5Pic4">
+                                                <option value="0">همه کالا ها</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <label class="form-label">جستجو</label>
+                                            <input type="text" name="" class="form-control form-control-sm" id="searchKala5Pic4">
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                             <div class="row">
                                 <div class="col-sm-5">
-                                    <div class='modal-body'>
-                                        <div class='c-checkout' style='padding-right:0;'>
-                                            <table class="tableSection table table-bordered table table-hover table-sm table-light" style='td:hover{ cursor:move;}'>
-                                                <thead>
-                                                    <tr>
-                                                        <th>ردیف</th>
-                                                        <th>اسم </th>
-                                                        <th><input type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody style="height: 400px;" id="fivePicKalaPart4">
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
+                                     <table class="table table-bordered table  table-sm ">
+                                        <thead class="tableHeader">
+                                            <tr>
+                                                <th>ردیف</th>
+                                                <th>اسم </th>
+                                                <th><input type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="tableBody" style="height: 300px !important;"  id="fivePicKalaPart4">
+                                        </tbody>
+                                    </table>
                                 </div>
 
-                                <div class="col-sm-2" style="">
-                                    <div class='modal-body' style="position:relative; left: 5%; top: 30%;">
-                                        <div style="">
-                                            <a id="addData5Pic4">
-                                                <i class="fa-regular fa-circle-chevron-left fa-3x"></i>
-                                            </a>
-                                            <br />
-                                            <a id="removeData5Pic4">
-                                                <i class="fa-regular fa-circle-chevron-right fa-3x"></i>
-                                            </a>
-                                        </div>
-                                    </div>
+                                <div class="col-sm-2 text-center">
+                                    <a id="addData5Pic4">
+                                        <i class="fa-regular fa-circle-chevron-left fa-3x"></i>
+                                    </a>
+                                    <br />
+                                    <a id="removeData5Pic4">
+                                        <i class="fa-regular fa-circle-chevron-right fa-3x"></i>
+                                    </a>
                                 </div>
 
                                 <div class="col-sm-5">
-                                    <div class='modal-body'>
-                                        <div class='c-checkout' style='padding-right:0;'>
-                                            <table class="tableSection table table-bordered table table-hover table-sm table-light" style='td:hover{ cursor:move;}'>
-                                                <thead>
-                                                    <tr>
-                                                        <th>ردیف</th>
-                                                        <th>گروه اصلی </th>
-                                                        <th><input type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody style="height: 400px;" id="fivePicAddedKalaPart4">
-                                                   
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
+                                    <table class="table table-bordered table  table-sm ">
+                                        <thead>
+                                            <tr>
+                                                <th>ردیف</th>
+                                                <th>گروه اصلی </th>
+                                                <th><input type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="tableBody" style="height: 300px !important;" id="fivePicAddedKalaPart4">
+                                            
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
                         </div>
@@ -1943,84 +1546,66 @@
                         <div class='c-checkout' id="fifthListOf5Pic"  style="display:none;">
                         <div class="container">
                         <div class="row">
-                            <div class='modal-body'>
-                                <div class='c-checkout' style='padding-right:0;'>
-                                    <div class="container" style="padding:15px;">
-                                        <div class="row">
-                                            <div class="col-sm-4">
-                                                <div class="form-group">
-                                                    <label class="form-label"> جستجوی گروه اصلی</label>
-                                                    <select class="form-control" id="searchMainGroup5Pic5">
-                                                        <option value="0">همه کالا ها</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-4">
-                                                <div class="form-group">
-                                                    <label class="form-label"> جستجوی گروه فرعی</label>
-                                                    <select class="form-control" id="searchSubGroup5Pic5">
-                                                        <option value="0">همه کالا ها</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-4">
-                                                <div class="form-group">
-                                                    <label class="form-label">جستجو</label>
-                                                    <input type="text" name="" size="20" class="form-control" id="searchKala5Pic5">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label class="form-label"> جستجوی گروه اصلی</label>
+                                    <select class="form-select form-select-sm" id="searchMainGroup5Pic5">
+                                        <option value="0">همه کالا ها</option>
+                                    </select>
                                 </div>
                             </div>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label class="form-label"> جستجوی گروه فرعی</label>
+                                    <select class="form-select form-select-sm" id="searchSubGroup5Pic5">
+                                        <option value="0">همه کالا ها</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label class="form-label">جستجو</label>
+                                    <input type="text" name=""  class="form-control form-control-sm" id="searchKala5Pic5">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
                                 <div class="col-sm-5">
-                                    <div class='modal-body'>
-                                        <div class='c-checkout' style='padding-right:0;'>
-                                            <table class="tableSection table table-bordered table table-hover table-sm table-light" style='td:hover{ cursor:move;}'>
-                                                <thead>
-                                                    <tr>
-                                                        <th>ردیف</th>
-                                                        <th>اسم </th>
-                                                        <th><input type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody style="height: 400px;" id="fivePicKalaPart5">
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
+                                   <table class="table table-bordered table  table-sm "'>
+                                        <thead>
+                                            <tr>
+                                                <th>ردیف</th>
+                                                <th>اسم </th>
+                                                <th><input type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="tableBody" style="height: 300px !important;" id="fivePicKalaPart5">
+                                        </tbody>
+                                    </table>
                                 </div>
 
-                                <div class="col-sm-2" style="">
-                                    <div class='modal-body' style="position:relative; left: 5%; top: 30%;">
-                                        <div style="">
-                                            <a id="addData5Pic5">
-                                                <i class="fa-regular fa-circle-chevron-left fa-3x"></i>
-                                            </a>
-                                            <br />
-                                            <a id="removeData5Pic5">
-                                                <i class="fa-regular fa-circle-chevron-right fa-3x"></i>
-                                            </a>
-                                        </div>
-                                    </div>
+                                <div class="col-sm-2 text-center">
+                                     <a id="addData5Pic5">
+                                            <i class="fa-regular fa-circle-chevron-left fa-3x"></i>
+                                        </a>
+                                        <br />
+                                        <a id="removeData5Pic5">
+                                            <i class="fa-regular fa-circle-chevron-right fa-3x"></i>
+                                        </a>
                                 </div>
 
                                 <div class="col-sm-5">
-                                    <div class='modal-body'>
-                                        <div class='c-checkout' style='padding-right:0;'>
-                                            <table class="tableSection table table-bordered table table-hover table-sm table-light" style='td:hover{ cursor:move;}'>
-                                                <thead>
-                                                    <tr>
-                                                        <th>ردیف</th>
-                                                        <th>گروه اصلی </th>
-                                                        <th><input type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody style="height: 400px;" id="fivePicAddedKalaPart5">
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
+                                    <table class="table table-bordered table  table-sm ">
+                                        <thead>
+                                            <tr>
+                                                <th>ردیف</th>
+                                                <th>گروه اصلی </th>
+                                                <th><input type="checkbox" name=""  class="selectAllFromTop form-check-input"></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="tableBody" style="height: 300px !important;"  id="fivePicAddedKalaPart5">
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
                         </div>
@@ -2034,14 +1619,14 @@
 
                                         <img id="imageSrc1" class="p-0" style="width:100%; height:18vh"  onerror='' src="">
                                         <div class="d-flex justify-content-center m-1 p-0">
-                                            <button class="btn btn-info btn-sm text-warning" onclick="document.getElementById('firstPic').click();" type="button" style="display: inline;margin-right: 2%;">انتخاب عکس</button>
+                                            <button class="btn btn-success btn-sm text-warning" onclick="document.getElementById('firstPic').click();" type="button" style="display: inline;margin-right: 2%;">انتخاب عکس</button>
                                         </div>
                                         <input type="file"  onchange='document.getElementById("imageSrc1").src = window.URL.createObjectURL(this.files[0])'  name="firstPic" id="firstPic" style="display: none"/>
                                     </div>
                                     <div class='col-lg-2 col-md-3 col-sm-4 p-1 mx-2 align-items-center c-checkout' style='height:25vh !important;'>
                                         <img id="imageSrc2" class="p-0" style="width:100%; height:18vh" src="">
                                         <div class="d-flex justify-content-center m-1 p-0">
-                                            <button class="btn btn-info btn-sm text-warning" onclick="document.getElementById('secondPic').click();" type="button" style="display: inline;margin-right: 2%;">انتخاب عکس</button>
+                                            <button class="btn btn-success btn-sm text-warning" onclick="document.getElementById('secondPic').click();" type="button" style="display: inline;margin-right: 2%;">انتخاب عکس</button>
                                         </div>
                                         <input type="file"  onchange='document.getElementById("imageSrc2").src = window.URL.createObjectURL(this.files[0])'  name="secondPic" id="secondPic" style="display: none"/>
                                     </div>
@@ -2049,21 +1634,21 @@
                                     <div class='col-lg-2 col-md-3 col-sm-4 p-1 mx-2 align-items-center c-checkout' style='height:25vh !important;'>
                                         <img id="imageSrc3" class="p-0" style="width:100%; height:18vh" src="">
                                         <div class="d-flex justify-content-center m-1 p-0">
-                                            <button class="btn btn-info btn-sm text-warning" onclick="document.getElementById('thirdPic').click();" type="button" style="display: inline;margin-right: 2%;">انتخاب عکس</button>
+                                            <button class="btn btn-success btn-sm text-warning" onclick="document.getElementById('thirdPic').click();" type="button" style="display: inline;margin-right: 2%;">انتخاب عکس</button>
                                         </div>
                                         <input type="file"  onchange='document.getElementById("imageSrc3").src = window.URL.createObjectURL(this.files[0])'  name="thirdPic" id="thirdPic" style="display: none"/>
                                     </div>
                                     <div class='col-lg-2 col-md-3 col-sm-4 p-1 mx-2 align-items-center c-checkout' style='height:25vh !important;'>
                                         <img id="imageSrc4" class="p-0" style="width:100%; height:18vh" src="">
                                         <div class="d-flex justify-content-center m-1 p-0">
-                                            <button class="btn btn-info btn-sm text-warning" onclick="document.getElementById('fourthPic').click();" type="button" style="display: inline;margin-right: 2%;">انتخاب عکس</button>
+                                            <button class="btn btn-success btn-sm text-warning" onclick="document.getElementById('fourthPic').click();" type="button" style="display: inline;margin-right: 2%;">انتخاب عکس</button>
                                         </div>
                                         <input type="file"  onchange='document.getElementById("imageSrc4").src = window.URL.createObjectURL(this.files[0])'  name="fourthPic" id="fourthPic" style="display: none"/>
                                     </div>
                                     <div class='col-lg-2 col-md-3 col-sm-4 p-1 mx-2 align-items-center c-checkout' style='height:25vh !important;'>
                                         <img id="imageSrc5" class="p-0" style="width:100%; height:18vh" src="">
                                         <div class="d-flex justify-content-center m-1 p-0">
-                                            <button class="btn btn-info btn-sm text-warning" onclick="document.getElementById('fifthPic').click();" type="button" style="display: inline;margin-right: 2%;">انتخاب عکس</button>
+                                            <button class="btn btn-success btn-sm text-warning" onclick="document.getElementById('fifthPic').click();" type="button" style="display: inline;margin-right: 2%;">انتخاب عکس</button>
                                         </div>
                                         <input type="file"  onchange='document.getElementById("imageSrc5").src = window.URL.createObjectURL(this.files[0])'  name="fifthPic" id="fifthPic" style="display: none"/>
                                     </div>
@@ -2075,14 +1660,14 @@
                                             <div class='col-lg-2 col-md-3 col-sm-4 p-1 mx-2 align-items-center c-checkout' style='height:25vh !important;'>
                                                 <img id="imageSrc1" class="p-0" style="width:100%; height:18vh"  onerror='' src="">
                                                 <div class="d-flex justify-content-center m-1 p-0">
-                                                    <button class="btn btn-info btn-sm text-warning" onclick="document.getElementById('firstPic').click();" type="button" style="display: inline;margin-right: 2%;">انتخاب عکس</button>
+                                                    <button class="btn btn-success btn-sm text-warning" onclick="document.getElementById('firstPic').click();" type="button" style="display: inline;margin-right: 2%;">انتخاب عکس</button>
                                                 </div>
                                                 <input type="file"  onchange='document.getElementById("imageSrc1").src = window.URL.createObjectURL(this.files[0])'  name="firstPic" id="firstPic" style="display: none"/>
                                             </div>
                                             <div class='col-lg-2 col-md-3 col-sm-4 p-1 mx-2 align-items-center c-checkout' style='height:25vh !important;'>
                                                 <img id="imageSrc2" class="p-0" style="width:100%; height:18vh" src="">
                                                 <div class="d-flex justify-content-center m-1 p-0">
-                                                    <button class="btn btn-info btn-sm text-warning" onclick="document.getElementById('secondPic').click();" type="button" style="display: inline;margin-right: 2%;">انتخاب عکس</button>
+                                                    <button class="btn btn-success btn-sm text-warning" onclick="document.getElementById('secondPic').click();" type="button" style="display: inline;margin-right: 2%;">انتخاب عکس</button>
                                                 </div>
                                                 <input type="file"  onchange='document.getElementById("imageSrc2").src = window.URL.createObjectURL(this.files[0])'  name="secondPic" id="secondPic" style="display: none"/>
                                             </div>
@@ -2350,13 +1935,11 @@
                                     </td>
                                 </tr>
                                 `);
-
                             }
                         },
                         error: function(data) {
                             console.log("not good");
                         }
-
                     });
                 }
 
@@ -2379,7 +1962,6 @@
                                     </td>
                                 </tr>
                                 `);
-
                             }
                         },
                         error: function(data) {
@@ -2391,7 +1973,6 @@
                 }
 
                 if (selectedVal == 6) {
-
                     $.ajax({
                         method: 'get',
                         url: '{{ url('/getListKala') }}',
@@ -2412,15 +1993,13 @@
                 </tr>
                 `);
 
-                            }
-                        },
-                        error: function(data) {
-                            console.log("not good");
-                        }
-
-                    });
-
                 }
+                },
+                error: function(data) {
+                    console.log("not good");
+                }
+            });
+        }
 
 
             });
@@ -2448,7 +2027,7 @@
                 </tr>
                 `);
 
-                        }
+                 }
                     },
                     error: function(data) {
                         console.log("not good");
@@ -2519,8 +2098,7 @@
                             $('#searchMainGroup2Pic2').append(`
                 <option value=` + arrayed_result[i].id + `>` + arrayed_result[i].title + `</option>
                 `);
-
-                        }
+                 }
                     },
                     error: function(data) {
                         console.log("not good");
@@ -2652,8 +2230,7 @@
                     </td>
                 </tr>
                 `);
-
-                        }
+                }
                     },
                     error: function(data) {
                         console.log("not good");
@@ -5372,7 +4949,7 @@ $(document).on('change', '#fivePicAllocation2', (function() {
             $('#fivePicAddKala5').css('background-color','#3c5772a6');
 
         }));
-        // $('.tableSection').attr("class", "tableSection");
+        // $('.).attr("class", ");
     }
 
 </script>

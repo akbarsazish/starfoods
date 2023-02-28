@@ -45,9 +45,7 @@
                                                     <td>{{ $loop->index+1 }}</td>
                                                     <td>{{ $group->title }}</td>
                                                     <td>
-                                                        <input class="mainGroupId" type="radio" name="mainGroupId[]"
-                                                            value="{{ $group->id . '_' . $group->title }}"
-                                                            id="flexCheckChecked">
+                                                        <input class="mainGroupId" type="radio" name="mainGroupId[]" value="{{ $group->id . '_' . $group->title }}" id="flexCheckChecked">
                                                     </td>
                                                 </tr>
                                             @endforeach
@@ -85,6 +83,7 @@
 
                                           </div>
                                         </div>
+                                        
                                         <input type="text" class="form-control" style="margin-top:10px;"  id="serachSubGroupId"  placeholder="جستجو"> <br>
                                        
                                     <table id="subGroupTable" class="table table-bordered" id="tableGroupList">
@@ -102,24 +101,25 @@
                         </div>
                     </div>
 
+
+
+
                     <div class="row" id="addKalaToGroup" style="display: none">
                         <div class="col-sm-5">
-                            <div class='modal-body'>
                                 <input type="text" class="form-control" style="margin-top:10px;"  id="serachKalaForSubGroup"  placeholder="جستجو"> <br>
-                                    <table class="table table-bordered table table-hover table-light">
-                                        <thead class="tableHeader bg-successs">
-                                            <tr>
-                                                <th>ردیف</th>
-                                                <th>اسم </th>
-                                                <th>
-                                                    <input type="checkbox" name="" @if(hasPermission(Session::get("adminId"),"listGroups") < 1) disabled @endif  class="selectAllFromTop form-check-input"  >
-                                                </th>
-                                            </tr>
-                                        </thead>
-                                        <tbody class="tableBody"  id="allKalaForGroup">
-                                        </tbody>
-                                    </table>
-                            </div>
+                                <table class="table table-bordered table table-hover table-light">
+                                    <thead class="tableHeader bg-successs">
+                                        <tr>
+                                            <th>ردیف</th>
+                                            <th>اسم </th>
+                                            <th>
+                                                <input type="checkbox" name="" @if(hasPermission(Session::get("adminId"),"listGroups") < 1) disabled @endif  class="selectAllFromTop form-check-input"  >
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="tableBody"  id="allKalaForGroup">
+                                    </tbody>
+                                </table>
                         </div>
                         <div class="col-sm-2" style="">
                             <div class='modal-body' style="position:relative; right: 15%; top: 30%;">
@@ -133,16 +133,14 @@
                             </div>
                         </div>
                         <div class="col-sm-5">
-                            <div class='modal-body'>
-                                <form action="{{url('/addKalaToGroup')}}" method="POST" style="display: inline" >
+                            <form action="{{url('/addKalaToGroup')}}" method="POST" style="display: inline" >
                                     @csrf
                                     <input type="text" style="display: none" id="firstGroupId" name="firstGroupId"/>
                                     <input type="text" style="display: none" id="secondGroupId" name="secondGroupId"/>
                                     @if(hasPermission(Session::get("adminId"),"listGroups") > 1) 
                                     <button class='btn btn-success buttonHover mb-2 buttonHove' style="float:left;" type="submit">ذخیره</button>
                                     @endif
-                                    <input type="text" class="form-control" style="margin-top:10px;" id="serachKalaOfSubGroup"  placeholder="جستجو">  <br>
-                                <div class='c-checkout' style='padding-right:0;'>
+                                    <input type="text" class="form-control" style="margin-top:10px;" id="serachKalaOfSubGroup"  placeholder="جستجو">  
                                     <table class="table table-bordered table table-hover">
                                         <thead class="tableHeader bg-success">
                                             <tr>
@@ -153,12 +151,9 @@
                                                 </th>
                                             </tr>
                                         </thead>
-                                        <tbody class="tableBody" id="allKalaOfGroup">
-                                        </tbody>
+                                        <tbody class="tableBody" id="allKalaOfGroup"></tbody>
                                     </table>
-                                </div>
                             </div>
-                        </div>
                       </form>
                     </div>
                 </div>

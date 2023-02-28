@@ -1,35 +1,41 @@
 @extends('admin.layout')
 @section('content')
 
-    <main>
-    <div class="container-xl px-4 mt-n10" style="margin-top:4.5%;">
-        <div class="o-headline" style="padding: 10; margin-bottom: 10px; margin-top: 0">
-            <div id="main-cart">
-                <span class="c-checkout-text c-checkout__tab--active">نقش کاربری </span>
-            </div>
-        </div>
-        <div class="card mb-4">
-            <div class="card-body">
-				<div class="row">
-					<div class="col-lg-6 col-md-6 col-sm-12">
-						   <input type="text" name="search_mainPart" class="form-control" id="basic-url" aria-describedby="basic-addon3" placeholder="جستجو ">
+<div class="container-fluid containerDiv">
+    <div class="row">
+            <div class="col-lg-2 col-md-2 col-sm-3 sideBar">
+                <fieldset class="border rounded mt-5 sidefieldSet">
+                    <legend  class="float-none w-auto legendLabel mb-0"> تنظیمات </legend>
+                    <!-- <div class="form-check">
+                        <input class="form-check-input p-2 float-end" type="radio" name="settings" id="elseSettingsRadio">
+                        <label class="form-check-label me-4" for="assesPast">  سطح دسترسی  </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input p-2 float-end" type="radio" name="settings" id="settingAndTargetRadio">
+                        <label class="form-check-label me-4" for="assesPast"> تارگت ها و امتیازات </label>
+                    </div> -->
+                    
+                </fieldset>
+                </div>
+            <div class="col-sm-10 col-md-10 col-sm-12 contentDiv">
+                <div class="row contentHeader"> 
+                    <div class="col-lg-6 col-md-6 col-sm-12 mt-1">
+						   <input type="text" name="search_mainPart" class="form-control form-control-sm" id="basic-url" aria-describedby="basic-addon3" placeholder="جستجو ">
 					</div>
-					<div class="col-lg-6 col-md-6 col-sm-12 text-end">
+					<div class="col-lg-6 col-md-6 col-sm-12 text-end mt-1">
 						 @if(hasPermission(Session::get("adminId"),"karbaran") > 1)
-                            <button style="margin-bottom:10px" class="btn btn-success btn-sm buttonHover" id="addingNewKarbar"> کاربر جدید <i class="fa fa-plus fa-lg" aria-hidden="true"></i></button>
+                            <button class="btn btn-success btn-sm" id="addingNewKarbar"> کاربر جدید <i class="fa fa-plus" aria-hidden="true"></i></button>
                         @endif  
                         @if(hasPermission(Session::get("adminId"),"karbaran") > 0)  
-                            <button  type="button" style="margin-bottom:10px" class="btn btn-info btn-sm text-white editButtonHover" onclick="openEditDashboard()"> ویرایش <i class="fa fa-edit fa-lg" aria-hidden="true"></i></button>
+                            <button  type="button" class="btn btn-success btn-sm text-white" onclick="openEditDashboard()"> ویرایش <i class="fa fa-edit" aria-hidden="true"></i></button>
                         @endif
                         @if(hasPermission(Session::get("adminId"),"karbaran") > 1)
-                            <button  type="button" style="margin-bottom:10px" class="btn btn-danger btn-sm text-white buttonHoverDelete" onclsuper ick="deleteConfirm()"> حذف <i class="fa fa-trash fa-lg" aria-hidden="true"></i></button>
+                            <button  type="button" class="btn btn-danger btn-sm text-white" onclsuper ick="deleteConfirm()"> حذف <i class="fa fa-trash" aria-hidden="true"></i></button>
                         @endif
 					</div>
-				</div>
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="well">
-                            <table class="table table-bordered table-striped display" style="width:100%;">
+                </div>
+                <div class="row mainContent">
+                        <table class="table table-bordered table-striped table-sm">
                                 <thead class="tableHeader">
                                     <tr>
                                         <th>ردیف</th>
@@ -54,12 +60,13 @@
                                     @endforeach
                                 </tbody>
                             </table>
-                        </div>
-                    </div>
                 </div>
+                <div class="row contentFooter"> </div>
             </div>
-        </div>
     </div>
+</div>
+
+
 
 
 
@@ -68,7 +75,7 @@
 <div class="modal fade dragAbleModal" id="editUserRoles" data-backdrop="static"  data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog modal-xl  modal-dialog-centered modal-dialog-scrollable">
             <div class="modal-content">
-                <div class="modal-header myModalHeader">
+                <div class="modal-header myModalHeader py-2">
                 <h5 class="modal-title" id="editKalaTitle"> ویرایش کاربر  </h5>
                <span style="display: flex; float:left;"> <button type="button" class="btn-close bg-danger" data-dismiss="modal" aria-label="Close"></button> </span>
             </div>
@@ -399,18 +406,12 @@
  </div>
 
 
-
-
-
-
- 
-
 <!-- modal for adding new karbar and new roles for karbar -->
      
 <div class="modal fade dragAbleModal" id="addingKarbar" data-backdrop="static"  data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog modal-xl  modal-dialog-centered modal-dialog-scrollable">
             <div class="modal-content">
-                <div class="modal-header myModalHeader">
+                <div class="modal-header myModalHeader py-2">
                 <h5 class="modal-title" id="editKalaTitle"> افزودن کاربر  </h5>
                <span style="display: flex; float:left;"> <button type="button" class="btn-close bg-danger" data-dismiss="modal" aria-label="Close"></button> </span>
             </div>
@@ -448,7 +449,7 @@
                                  </div>
                                  
                           </div>
-                        <div class="row">
+                          <div class="row">
                                 <div class="col-sm-3">
                                     <div class="input-group input-group-sm mb-3">
                                         <span class="input-group-text" id="inputGroup-sizing-default"> رمز </span>

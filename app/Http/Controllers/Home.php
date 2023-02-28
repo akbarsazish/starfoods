@@ -7,7 +7,6 @@ use BrowserDetect;
 use Carbon\Carbon;
 use \Morilog\Jalali\Jalalian;
 class Home extends Controller{
-
      public function index (Request $request)
     {
         if(!Session('psn')){
@@ -228,8 +227,9 @@ class Home extends Controller{
                                                         <button class='tobuy fw-bold' id='subFromPreBuy".$partId."_".$kala->GoodSn."' onclick='subFromPreBuy(".$kala->GoodSn.",".$partId.")'> -  </button>
                                                     </div>
                                                 </div>
+                                                
                                                 <a href='".$descUrl."'>
-													<img src='".$logoSrc."' class='".$logoClass."' />
+													
                                                     <img src='$imageSrc' alt='تصویر'>
                                                     <p class='title' ".$descUrl."'>".$kala->GoodName."</p>
                                                 </a>
@@ -364,7 +364,7 @@ class Home extends Controller{
 
                         $imageSrc="";
                         if(file_exists("resources/assets/images/kala/". $kala->GoodSn ."_1.jpg")){
-							$logoSrc='/resources/assets/images/starfood.png';
+							
 							
                             $imageSrc="/resources/assets/images/kala/".$kala->GoodSn."_1.jpg";
                         }else{
@@ -383,7 +383,9 @@ class Home extends Controller{
                         </div>
                         </div>
                             <a href='".$descUrl."'>
-							<img src='".$logoSrc."' class='".$logoClass."' />
+							
+                            
+                            
                                 <img src='$imageSrc' alt='تصویر'>
                                 <p class='title' ".$descUrl."'>".$kala->GoodName."</p>
                             </a>
@@ -528,7 +530,8 @@ class Home extends Controller{
                                                     </div>
 
                                                         <a href="'.$descUrl.'">
-														<img src="'.$logoSrc.'" class="'.$logoClass.'" />
+														
+                                                        
                                                             <img style="z-index:2" src="'.$imageSrc.'" alt="تصویر">
                                                             <p class="title pe-1 pt-1" href="'.$descUrl.'">'.$kala->GoodName.'</p>
                                                         </a>
@@ -614,7 +617,8 @@ class Home extends Controller{
                                 <div class='item-box mb-1' href='/listKalaFromPart/".$part->homepartId."/partPic/".$pic->id."' ".$disabled.">
                                     <div class='item-media'>
                                     <a href='/listKalaFromPart/".$part->homepartId."/partPic/".$pic->id."' ".$disabled.">
-									<img src='".$logoSrc."' class='".$logoClass."' />
+									
+                                    
                                         <img style='min-height:170px;' src='$imageSrc' ".$part->homepartId."_".$i.".jpg' alt='تصویر'>
                                     </a>
                                     </div>
@@ -662,7 +666,8 @@ class Home extends Controller{
                                     <div class='item-box mb-1' href='/listKalaFromPart/".$part->homepartId."/partPic/".$pic->id."' ".$disabled.">
                                         <div class='item-media'>
                                             <a href='/listKalaFromPart/".$part->homepartId."/partPic/".$pic->id."'  ".$disabled.">
-											<img src='".$logoSrc."' class='".$logoClass."' />
+											
+                                            
                                                 <img style='height:170px;' src='".$imageSrc."' alt=''>
                                             </a>
                                         </div>
@@ -700,7 +705,8 @@ class Home extends Controller{
                         }
                         $cart.="<div class='swiper-slide swiper-slide-prev d-flex justify-content-center'>
                                 <a style='display:block; width:100%;' href='/listKalaFromPart/".$part->homepartId."/partPic/".$pic->id."' ".$disabled.">
-								<img src='".$logoSrc."' class='".$logoClass."' />
+								
+                                
                                 <img class=img-responsiv' src='$imageSrc' alt=''></a> </div>";
                             }
                     $secondPartStringLocal="
@@ -739,7 +745,9 @@ class Home extends Controller{
                                     <div class='item-box mb-2' href='/listKalaFromPart/".$part->homepartId."/partPic/".$pic->id."' ".$disabled.">
                                         <div class='item-media'>
                                             <a href='/listKalaFromPart/".$part->homepartId."/partPic/".$pic->id."'>
-											<img src='".$logoSrc."' class='".$logoClass."' />
+										
+                                            
+
                                                 <img src='$imageSrc'  ".$disabled." alt=''>
                                             </a>
                                         </div>

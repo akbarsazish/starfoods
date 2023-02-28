@@ -18,6 +18,8 @@ class OnlineAccount extends Controller {
         JOIN SHop.dbo.Peopels on FactorHDS.CustomerSn=Peopels.PSN where CONVERT(date,payedOnline.TimeStamp)=CONVERT(date,current_timestamp)");
         return view("accounting.payedOnline",['pays'=>$pays]);
     }
+
+    
     public function sendPayToHisabdari(Request $request)
     {
         $paySn=$request->get("paySn");

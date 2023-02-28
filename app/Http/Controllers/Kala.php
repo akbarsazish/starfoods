@@ -11,19 +11,13 @@ use Carbon\Carbon;
 use \Morilog\Jalali\Jalalian;
 class Kala extends Controller {
 
-    public function index(Request $request)
-    {
-
+    public function index(Request $request) {
         $withoutRestrictions=DB::select("SELECT PubGoods.GoodSn from Shop.dbo.PubGoods where GoodSn not in (select productId from NewStarfood.dbo.star_GoodsSaleRestriction) and CompanyNo=5 and PubGoods.GoodGroupSn>49");
         if(count($withoutRestrictions)>0){
-
             foreach ($withoutRestrictions as $kala) {
-
                 DB::insert("INSERT INTO NewStarfood.dbo.star_GoodsSaleRestriction(maxSale,minSale,productId,overLine,callOnSale,zeroExistance,hideKala,activeTakhfifPercent,freeExistance,costLimit,costError,sabtDate ,costAmount ,inforsType,activePishKharid)
                 VALUES(-1, 1, ".$kala->GoodSn.",0,0,0,0,0,0,0,'',null ,0,0,0)");
-
             }
-
         }
 
         $kala_list=DB::select("SELECT TOP 100 * FROM(
@@ -39,14 +33,70 @@ class Kala extends Controller {
                         (SELECT Max(FactorBYS.TimeStamp) AS lastDate, GoodSn FROM Shop.dbo.PubGoods  
                         JOIN Shop.dbo.FactorBYS ON PubGoods.GoodSn=FactorBYS.SnGood
                         WHERE GoodGroupSn>49 AND GoodSn!=0 group by GoodSn)b ON a.GoodSn=b.GoodSn order by Amount desc");
-        foreach ($kala_list as $kala) {
-           $kala->Amount+=DB::select("select SUM(Amount) as SumAmount from Shop.dbo.ViewGoodExistsInStock where ViewGoodExistsInStock.SnStock in(select stockId from NewStarfood.dbo.star_addedStock where productId=".$kala->GoodSn.") and SnGood=".$kala->GoodSn)[0]->SumAmount;
-        }
+        // foreach ($kala_list as $kala) {
+        //    $kala->Amount+=DB::select("select SUM(Amount) as SumAmount from Shop.dbo.ViewGoodExistsInStock where ViewGoodExistsInStock.SnStock in(select stockId from NewStarfood.dbo.star_addedStock where productId=".$kala->GoodSn.") and SnGood=".$kala->GoodSn)[0]->SumAmount;
+        // }
 
         $stocks=DB::select("SELECT SnStock,CompanyNo,CodeStock,NameStock FROM Shop.dbo.Stocks WHERE SnStock!=0 AND NameStock!='' AND CompanyNo=5");
 
-        return view ('admin.listKala',['listKala'=>$kala_list,'stocks'=>$stocks]);
+        // کیوری کالای در خواست شده 
+         $requests=DB::select("SELECT * from(
+        SELECT countRequest,a.productId,GoodName,GoodSn,TimeStamp FROM(SELECT COUNT(star_requestedProduct.id) AS countRequest,min(TimeStamp) as TimeStamp,productId  FROM NewStarfood.dbo.star_requestedProduct group by productId)a
+        
+        JOIN Shop.dbo.PubGoods ON PubGoods.GoodSn=a.productId )b  order by TimeStamp desc");
+
+        // کیوری تخصیص تصویر کالا 
+        $mainGroups=DB::select("select id,title,show_hide from NewStarfood.dbo.Star_Group_Def where selfGroupId=0 order by mainGroupPriority asc");
+
+        // کیور پیش خرید 
+        $factors=DB::table("NewStarfood.dbo.star_pishKharidFactorAfter")->join("Shop.dbo.Peopels","CustomerSn","=","PSN")->where("orderStatus",0)->select("*")->get();
+
+        foreach ($factors as $factor) {
+            $allMoney=0;
+            $orders=DB::table("NewStarfood.dbo.star_pishKharidOrderAfter")->where("SnHDS",$factor->SnOrderPishKharidAfter)->select("*")->get();
+            foreach ($orders as $order) {
+                $allMoney+=$order->Price;
+            }
+            $factor->allMoney=$allMoney;
+        }
+
+        // کیور مربوط برند 
+         $brands=DB::table("NewStarfood.dbo.star_brands")->select("*")->get();
+
+        // کیور کالاهای شامل هشدار 
+         $alarmStuff=DB::select("SELECT * FROM(
+                    SELECT * FROM( SELECT GoodSn FROM Shop.dbo.PubGoods WHERE GoodSn
+                    in( SELECT productId FROM NewStarfood.dbo.star_GoodsSaleRestriction WHERE AlarmAmount>0)
+                    )a
+                    JOIN Shop.dbo.ViewGoodExists on a.GoodSn=ViewGoodExists.SnGood WHERE ViewGoodExists.CompanyNo=5 and ViewGoodExists.FiscalYear=".Session::get("FiscallYear").")b 
+                    JOIN (SELECT AlarmAmount,productId FROM NewStarfood.dbo.star_GoodsSaleRestriction)c on b.GoodSn=c.productId");
+    
+    foreach ($alarmStuff as $kala) {
+        $kala->Amount+=DB::select("select SUM(Amount) as SumAmount from Shop.dbo.ViewGoodExistsInStock where ViewGoodExistsInStock.SnStock in(select stockId from NewStarfood.dbo.star_addedStock where productId=".$kala->GoodSn.") and SnGood=".$kala->GoodSn)[0]->SumAmount;
     }
+    
+    $alarmedKala=array();
+    foreach ($alarmStuff as $stuff) {
+    if($stuff->AlarmAmount >= $stuff->Amount ){
+    array_push($alarmedKala,$stuff->productId);
+
+    } }
+    $alarmedKalas=array();
+    if(count($alarmedKala)>0){
+    $alarmedKalas=DB::select("SELECT GoodName,Amount FROM Shop.dbo.PubGoods
+                        JOIN Shop.dbo.ViewGoodExists on PubGoods.GoodSn=ViewGoodExists.SnGood 
+                        WHERE ViewGoodExists.CompanyNo=5 and ViewGoodExists.FiscalYear=".Session::get("FiscallYear")."
+                        AND GoodSn in(".implode(',',$alarmedKala).")");
+
+    foreach ($alarmedKalas as $kala) {
+        $kala->Amount+=DB::select("select SUM(Amount) as SumAmount from Shop.dbo.ViewGoodExistsInStock where ViewGoodExistsInStock.SnStock in(select stockId from NewStarfood.dbo.star_addedStock where productId=".$kala->GoodSn.") and SnGood=".$kala->GoodSn)[0]->SumAmount;
+    }
+    }
+// کیوری لیست گروپ 
+       $mainGroups=DB::select("select id,title,show_hide from NewStarfood.dbo.Star_Group_Def where selfGroupId=0 order by mainGroupPriority asc");
+        return view ('admin.listKala',['listKala'=>$kala_list,'stocks'=>$stocks, 'products'=>$requests, 'mainGroups'=>$mainGroups, 'factors'=>$factors, 'brands'=>$brands, 'alarmedKalas'=>$alarmedKalas]);
+    }
+
     public function searchKalaByName(Request $request)
     {
         $name=$request->get('name');
@@ -58,7 +108,6 @@ class Kala extends Controller {
                         and PubGoods.CompanyNo=5  and PubGoods.GoodGroupSn >49 and (GoodName like '%".$name."%' or GoodCde like '%".$name."%')") ;
         
         foreach ($kala_list as $kala) {
-
             $kala->Amount+=DB::select("select SUM(Amount) as SumAmount from Shop.dbo.ViewGoodExistsInStock where ViewGoodExistsInStock.SnStock in(select stockId from NewStarfood.dbo.star_addedStock where productId=".$kala->GoodSn.") and SnGood=".$kala->GoodSn)[0]->SumAmount;
         
         }
@@ -2786,14 +2835,18 @@ class Kala extends Controller {
         DB::table("NewStarfood.dbo.star_requestedProduct")->insert(["customerId"=>$customerId,"productId"=>$productId,'acceptance'=>0]);
         return Response::json("good");
     }
-    public function requestedProducts(Request $request)
-    {
-        $requests=DB::select("SELECT * from(
-SELECT countRequest,a.productId,GoodName,GoodSn,TimeStamp FROM(SELECT COUNT(star_requestedProduct.id) AS countRequest,min(TimeStamp) as TimeStamp,productId  FROM NewStarfood.dbo.star_requestedProduct group by productId)a
+
+
+    // public function requestedProducts(Request $request){
+    //     $requests=DB::select("SELECT * from(
+    //     SELECT countRequest,a.productId,GoodName,GoodSn,TimeStamp FROM(SELECT COUNT(star_requestedProduct.id) AS countRequest,min(TimeStamp) as TimeStamp,productId  FROM NewStarfood.dbo.star_requestedProduct group by productId)a
         
-        JOIN Shop.dbo.PubGoods ON PubGoods.GoodSn=a.productId )b  order by TimeStamp desc");
-        return View("admin.requestedKala",['products'=>$requests]);
-    }
+    //     JOIN Shop.dbo.PubGoods ON PubGoods.GoodSn=a.productId )b  order by TimeStamp desc");
+    //     return View("admin.requestedKala",['products'=>$requests]);
+    // }
+
+
+
     public function displayRequestedKala(Request $request)
     {
         $gsn=$request->get('productId');
@@ -2859,51 +2912,6 @@ public function getTenLastSales(Request $request)
     return Response::json($lastTenSales);
 }
 
-public function alarmedKalas(Request $request)
-{
-    $alarmStuff=DB::select("SELECT * FROM(
-                        SELECT * FROM(
-                        SELECT GoodSn FROM Shop.dbo.PubGoods WHERE GoodSn
-                        in( SELECT productId FROM NewStarfood.dbo.star_GoodsSaleRestriction WHERE AlarmAmount>0)
-                        )a
-                        JOIN Shop.dbo.ViewGoodExists on a.GoodSn=ViewGoodExists.SnGood WHERE ViewGoodExists.CompanyNo=5 and ViewGoodExists.FiscalYear=".Session::get("FiscallYear").")b 
-                        JOIN (SELECT AlarmAmount,productId FROM NewStarfood.dbo.star_GoodsSaleRestriction)c on b.GoodSn=c.productId");
-    
-    foreach ($alarmStuff as $kala) {
-
-        $kala->Amount+=DB::select("select SUM(Amount) as SumAmount from Shop.dbo.ViewGoodExistsInStock where ViewGoodExistsInStock.SnStock in(select stockId from NewStarfood.dbo.star_addedStock where productId=".$kala->GoodSn.") and SnGood=".$kala->GoodSn)[0]->SumAmount;
-
-    }
-    
-    $alarmedKala=array();
-
-    foreach ($alarmStuff as $stuff) {
-
-    if($stuff->AlarmAmount >= $stuff->Amount ){
-
-    array_push($alarmedKala,$stuff->productId);
-
-    }
-
-    }
-    $alarmedKalas=array();
-    if(count($alarmedKala)>0){
-
-    $alarmedKalas=DB::select("SELECT GoodName,Amount FROM Shop.dbo.PubGoods
-                        JOIN Shop.dbo.ViewGoodExists on PubGoods.GoodSn=ViewGoodExists.SnGood 
-                        WHERE ViewGoodExists.CompanyNo=5 and ViewGoodExists.FiscalYear=".Session::get("FiscallYear")."
-                        AND GoodSn in(".implode(',',$alarmedKala).")");
-
-    foreach ($alarmedKalas as $kala) {
-
-        $kala->Amount+=DB::select("select SUM(Amount) as SumAmount from Shop.dbo.ViewGoodExistsInStock where ViewGoodExistsInStock.SnStock in(select stockId from NewStarfood.dbo.star_addedStock where productId=".$kala->GoodSn.") and SnGood=".$kala->GoodSn)[0]->SumAmount;
-
-    }
-
-    }
-
-    return view('admin.alarmedGoods',['alarmedKalas'=>$alarmedKalas]);
-}
 
 
 }

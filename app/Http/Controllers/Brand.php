@@ -13,6 +13,9 @@ class Brand extends Controller
         $brands=DB::table("NewStarfood.dbo.star_brands")->select("*")->get();
         return view("admin.listBrands",['brands'=>$brands]);
     }
+
+
+    
     public function addBrand(Request $request)
     {
         $brandName=$request->post("brandName");
@@ -28,6 +31,7 @@ class Brand extends Controller
         return redirect("/brands");
 
     }
+
     public function editBrand(Request $request)
     {
         $title=$request->post("brandName");

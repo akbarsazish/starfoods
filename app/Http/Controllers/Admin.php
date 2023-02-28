@@ -23,8 +23,7 @@ class Admin extends Controller{
         $admins=DB::select("SELECT * FROM NewStarfood.dbo.admin");
         return view('admin.listKarbaran',['admins'=>$admins]);
     }
-    public function listCustomers(Request $request)
-    {
+    public function listCustomers(Request $request) {
         $withoutRestrictions=DB::select("SELECT * FROM Shop.dbo.Peopels WHERE Peopels.PSN NOT IN(SELECT customerId FROM NewStarfood.dbo.star_customerRestriction) AND CompanyNo=5 AND GroupCode IN ( ".implode(",",[291,297,299,312,313,314]).")");
         if(count($withoutRestrictions)>0){
             foreach ($withoutRestrictions as $customer) {
@@ -54,16 +53,11 @@ class Admin extends Controller{
             }
 
             foreach ($withoutPassword as $customer) {
-
                     if(isset($customer->PhoneStr)){
-
                         $pass =substr($customer->PhoneStr, -4);
                         DB::insert("INSERT INTO NewStarfood.dbo.star_CustomerPass(customerId,customerPss,userName)VALUES(".$customer->PSN.",'".$pass."','".$customer->PhoneStr."')");
-                
                     }
-
             }
-
         }
 
         $customers=DB::select("SELECT top 25 * from (
@@ -80,25 +74,29 @@ class Admin extends Controller{
             $sabit="";
 
             foreach ($phones as $phone) {
-
                 if($phone->PhoneType==1){
                     $sabit.="\n".$phone->PhoneStr;
                 }else{
                     $hamrah.="\n".$phone->PhoneStr;
                 }
-
             }
 
             $customer->sabit=$sabit;
             $customer->hamrah=$hamrah;
         }
-
         $regions=DB::select("SELECT * FROM Shop.dbo.MNM WHERE CompanyNo=5 and FatherMNM=80");
-        
         $cities=DB::select("SELECT * FROM Shop.dbo.MNM WHERE CompanyNo=5 and Rectype=1 and FatherMNM=79");
-        
-        return view('admin.listCustomers',['customers'=>$customers,'regions'=>$regions,'cities'=>$cities]);
+
+
+        // کیوری اشخاص رسمی 
+         $haqiqiCustomers=DB::table("NewStarfood.dbo.star_Customer")->where('customerType','haqiqi')->select("*")->get();
+         $hohoqiCustomers=DB::table("NewStarfood.dbo.star_Customer")->where('customerType','hoqoqi')->select("*")->get();
+
+        return view('admin.listCustomers',['customers'=>$customers,'regions'=>$regions,'cities'=>$cities, 'haqiqiCustomers'=>$haqiqiCustomers, 'hohoqiCustomers'=>$hohoqiCustomers]);
     }
+
+
+
     public function testSpeed(Request $request)
     {
         $customers=DB::select("SELECT * from (
@@ -459,17 +457,34 @@ public function searchByCity(Request $request)
         return Response::json($customers); 
     }
 
-    public function controlMainPage(Request $request)
-    {
+    public function controlMainPage(Request $request){
         $parts=DB::select('select * from NewStarfood.dbo.HomePart ORDER BY priority ASC');
+         $specialSettings=DB::select("SELECT * FROM NewStarfood.dbo.star_webSpecialSetting");
+        $settings=[];
+        foreach ($specialSettings as $setting) {
+            $settings=$setting;
+        }
+        $stocks=DB::select("SELECT SnStock,CompanyNo,CodeStock,NameStock from Shop.dbo.Stocks where SnStock!=0 and NameStock!='' and CompanyNo=5");
+        $addedStocks=DB::table("NewStarfood.dbo.addedStocks")->join("Shop.dbo.Stocks","addedStocks.stockId","=","SnStock")->select("*")->get();
+        $regions=DB::select("SELECT * FROM Shop.dbo.MNM WHERE CompanyNo=5 and SnMNM>82 and FatherMNM=80");
+        $cities=DB::select("SELECT * FROM Shop.dbo.MNM WHERE CompanyNo=5 and Rectype=1 and FatherMNM=79");
 
-        return view('admin.controlMainPage',['parts'=>$parts]);
+        // کیوری مربوط به تنظیمات امتیازها 
+        $targets=DB::table("NewStarfood.dbo.star_customer_baseBonus")->get();
+        $lotteryPrizes=DB::table("NewStarfood.dbo.star_lotteryPrizes")->get();
+        $nazarSanjies=DB::table("NewStarfood.dbo.star_nazarsanji")->join("NewStarfood.dbo.star_question","nazarId","=","star_nazarsanji.id")->get();
+        $lotteryMinBonus=DB::select("SELECT * FROM NewStarfood.dbo.star_webSpecialSetting")[0]->lotteryMinBonus;
+        
+        return view('admin.controlMainPage',['parts'=>$parts, 'settings'=>$settings,'stocks'=>$stocks,'addedStocks'=>$addedStocks,'regions'=>$regions,'cities'=>$cities, 
+    'targets'=>$targets,'prizes'=>$lotteryPrizes,'nazars'=>$nazarSanjies,'lotteryMinBonus'=>$lotteryMinBonus]);
+
     }
 
-    public function addNewGroup(Request $request)
-    {
+
+    public function addNewGroup(Request $request) {
         return view('admin.addGroup');
     }
+    
 
     public function AddAdmin(Request $request)
     {
@@ -1023,7 +1038,7 @@ public function searchByCity(Request $request)
         $addedStocks=DB::table("NewStarfood.dbo.addedStocks")->join("Shop.dbo.Stocks","addedStocks.stockId","=","SnStock")->select("*")->get();
         $regions=DB::select("SELECT * FROM Shop.dbo.MNM WHERE CompanyNo=5 and SnMNM>82 and FatherMNM=80");
         $cities=DB::select("SELECT * FROM Shop.dbo.MNM WHERE CompanyNo=5 and Rectype=1 and FatherMNM=79");
-        return view('admin.webSpecialSettings',['settings'=>$settings,'stocks'=>$stocks,'addedStocks'=>$addedStocks,'regions'=>$regions,'cities'=>$cities]);
+        return view('admin.controlMainPage',['settings'=>$settings,'stocks'=>$stocks,'addedStocks'=>$addedStocks,'regions'=>$regions,'cities'=>$cities]);
     }
     public function takhsisMasirs(Request $request)
     {
@@ -1194,10 +1209,11 @@ public function searchByCity(Request $request)
                 }
             }
             $addedStocks=DB::table("NewStarfood.dbo.addedStocks")->join("Shop.dbo.Stocks","addedStocks.stockId","=","SnStock")->select("*")->get();
-            return redirect("/webSpecialSettings");
+            return redirect("/controlMainPage");
     }
-    public function emptyGame(Request $request)
-    {
+
+
+    public function emptyGame(Request $request){
         $gameHistory=DB::table("NewStarfood.dbo.star_game_score")->orderbydesc("score")->get();
         $prizes=DB::table("NewStarfood.dbo.star_webSpecialSetting")->get();
         $firstPosId=0;
@@ -1212,11 +1228,9 @@ public function searchByCity(Request $request)
         $teenthPosId=0;
 
         if(isset($gameHistory[0]->customerId)){
-            
             $firstPosId=$gameHistory[0]->customerId;
         }
         if(isset($gameHistory[1])){
-            
             $secPosId=$gameHistory[1]->customerId;
         }
 
@@ -1253,25 +1267,25 @@ public function searchByCity(Request $request)
         }
 
         DB::table("NewStarfood.dbo.star_game_history")->insert([ "firstPosId"=>$firstPosId
-                                                                ,"secondPosId"=>$secPosId
-                                                                ,"thirdPosId"=>$thirdPosId
-                                                                ,"fourthPosId"=>$fourthPosId
-                                                                ,"fifthPosId"=>$fifthPosId
-                                                                ,"sixthPosId"=>$sixthPosId
-                                                                ,"seventhPosId"=>$seventhPosId
-                                                                ,"eightPosId"=>$eightthPosId
-                                                                ,"ninthPosId"=>$ninthPosId
-                                                                ,"teenthPosId"=>$teenthPosId
-                                                                ,"firstPrize"=>$prizes[0]->firstPrize
-                                                                ,"secondPrize"=>$prizes[0]->secondPrize
-                                                                ,"thirdPrize"=>$prizes[0]->thirdPrize
-                                                                ,"fourthPrize"=>$prizes[0]->fourthPrize
-                                                                ,"fifthPrize"=>$prizes[0]->fifthPrize
-                                                                ,"sixthPrize"=>$prizes[0]->sixthPrize
-                                                                ,"seventhPrize"=>$prizes[0]->seventhPrize
-                                                                ,"eightthPrize"=>$prizes[0]->eightPrize
-                                                                ,"ninthPrize"=>$prizes[0]->ninthPrize
-                                                                ,"teenthPrize"=>$prizes[0]->teenthPrize]);
+                                                            ,"secondPosId"=>$secPosId
+                                                            ,"thirdPosId"=>$thirdPosId
+                                                            ,"fourthPosId"=>$fourthPosId
+                                                            ,"fifthPosId"=>$fifthPosId
+                                                            ,"sixthPosId"=>$sixthPosId
+                                                            ,"seventhPosId"=>$seventhPosId
+                                                            ,"eightPosId"=>$eightthPosId
+                                                            ,"ninthPosId"=>$ninthPosId
+                                                            ,"teenthPosId"=>$teenthPosId
+                                                            ,"firstPrize"=>$prizes[0]->firstPrize
+                                                            ,"secondPrize"=>$prizes[0]->secondPrize
+                                                            ,"thirdPrize"=>$prizes[0]->thirdPrize
+                                                            ,"fourthPrize"=>$prizes[0]->fourthPrize
+                                                            ,"fifthPrize"=>$prizes[0]->fifthPrize
+                                                            ,"sixthPrize"=>$prizes[0]->sixthPrize
+                                                            ,"seventhPrize"=>$prizes[0]->seventhPrize
+                                                            ,"eightthPrize"=>$prizes[0]->eightPrize
+                                                            ,"ninthPrize"=>$prizes[0]->ninthPrize
+                                                            ,"teenthPrize"=>$prizes[0]->teenthPrize]);
         DB::table("NewStarfood.dbo.star_game_score")->delete();
         return redirect("/webSpecialSettings");
     }

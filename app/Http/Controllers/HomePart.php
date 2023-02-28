@@ -7,8 +7,7 @@ use Illuminate\Support\Facades\Validator;
 use Response;
 use Session;
 class HomePart extends Controller {
-    public function editParts(Request $request)
-    {
+    public function editParts(Request $request) {
         $partType=$request->post('partType');
         $partId=$request->post('partId');
         $title=$request->post('title');
@@ -59,6 +58,7 @@ class HomePart extends Controller {
             return view('admin.editPicturesPart',['title'=>$title,'parts'=>$parts,'pictures'=>$pictures,'countHomeParts'=>$countHomeParts]);
         }
     }
+    
 
     public function doEditGroupPart(Request $request)
     {

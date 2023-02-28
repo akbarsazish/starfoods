@@ -1,21 +1,25 @@
 @extends('admin.layout')
 @section('content')
-    <div class="container" style="margin-top:80px;">
-        <h5 style="border-bottom:2px solid gray; width:50%"> لیست پیامها</h5>
-    <div class="card mb-1">
-      <div class="card-body">
-        <div class="row">
-            <div class="col-sm-12">
-                    <div class="well">
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <label class="form-label fs-6"> جستجو</label>
-                                    <input type="text" name="" class="form-control" id="allKalaFirst">
-                                </div>
-                            </div>
-                        </div><br>
-                            <table class="table table-bordered message">
+<div class="container-fluid containerDiv">
+    <div class="row">
+            <div class="col-lg-2 col-md-2 col-sm-3 sideBar">
+                <fieldset class="border rounded mt-5 sidefieldSet">
+                    <legend  class="float-none w-auto legendLabel mb-0"> تنظیمات </legend>
+                    <!-- <div class="form-check">
+                        <input class="form-check-input p-2 float-start" type="radio" name="settings" id="elseSettingsRadio">
+                        <label class="form-check-label me-4" for="assesPast">  سطح دسترسی  </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input p-2 float-start" type="radio" name="settings" id="settingAndTargetRadio">
+                        <label class="form-check-label me-4" for="assesPast"> تارگت ها و امتیازات </label>
+                    </div> -->
+                    
+                </fieldset>
+                </div>
+            <div class="col-sm-10 col-md-10 col-sm-12 contentDiv">
+                <div class="row contentHeader"> </div>
+                <div class="row mainContent">
+                         <table class="table table-bordered table-sm">
                                 <thead class="tableHeader">
                                 <tr>
                                     <th class="for-mobil">ردیف</th>
@@ -47,19 +51,19 @@
                                 @endforeach
                                 </tbody>
                             </table>
-                        </div>
-                    </div>
                 </div>
+                <div class="row contentFooter"> </div>
             </div>
-        </div>
     </div>
-</main>
+</div>
+
+
 
   <!-- Modal -->
   <div class="modal fade" id="customerMessage" tabindex="-1" role="dialog" aria-labelledby="customerMessageLabel" aria-hidden="true" style="position: absolute;">
     <div class="modal-dialog modal-dialog-scrollable modal-xl" role="document">
       <div class="modal-content">
-        <div class="modal-header bg-success text-white">
+        <div class="modal-header bg-success text-white py-2">
           <h5 class="modal-title" id="exampleModalLabel">پیام های  مشتری</h5>
           <button type="button" class="close text-white bg-danger" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>

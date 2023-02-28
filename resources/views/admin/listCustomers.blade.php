@@ -1,140 +1,209 @@
 @extends('admin.layout')
 @section('content')
+
 <style>
-tr th {
-    padding: 0px 25px !important;
-    height: 40px !important;
+#officialCustomerStaff{
+    display: none;
 }
-tr th:first-child {
-    padding: 0 !important;
-    height: 30px !important;
-    border: 0 !important;
-}
-tr th:last-child {
-    padding: 0 6px !important;
-    height: 30px !important;
-    border: 0 !important;
-}
-
-table {
-    height:200px;
-}
-
-
 </style>
-    <!-- Main page content-->
-    <div class="container" style="margin-top:90px">
-        <h5 style="width:50%; border-bottom:2px solid gray">لیست مشتریان</h5>
-    <div class="card mb-4" style="margin: 0; padding:0;">
-        <div class="card-body">
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="well">
-                        <div class="container p-1 pb-2 rounded-3">
-                            <span class="row" style="margin: 0;">
-                                <div class="col-sm-2">
-                                    <input type="text" name="" size="20" class="form-control" placeholder="نام" id="searchCustomerByName">
-                                </div>
-                                <div class="col-sm-2">
-                                    <input type="text" name="" size="20" class="form-control" placeholder="کد حساب" id="searchCustomerByCode">
-                                </div>
-                                <div class="col-sm-1">
-                                    <select  style="" class="form-select" id='searchCityId'>
-                                            <option value="1" hidden>شهر</option>  
-                                        @foreach($cities as $city)
-                                            <option value="{{$city->SnMNM}}">{{$city->NameRec}}</option>
-                                        @endforeach
-										<option value="0">بدون شهر</option>
-                                    </select>
-                                </div>
-                                <div class="col-sm-2">
-                                    <select  style="" class="form-select" id="searchSelectMantiqah">
-                                        <option value="1" hidden>منطقه</option> 
-                                        <option value="0">--</option>
-                                    </select>
-                                </div>
-                                <div class="form-group col-sm-1">
-                                    <select  style="" class="form-select" id="searchActiveOrNot">
-                                        <option  value="1" hidden>فعال</option>
-                                        <option value="1">فعال</option>
-                                        <option value="0"> غیر فعال</option>
-                                    </select>
-                                </div>
-                                <div class="form-group col-sm-2">
-                                    <select  style="" class="form-select" id="searchLocationOrNot">
-                                    <option value="1" hidden>موقعیت</option> 
-                                        <option value="1">موقعیت دار </option>
-                                        <option value="0"> بدون موقعیت </option>
-                                    </select>
-                                </div>
-                                <div class="form-group col-sm-2">
-                                    <select style="" class="form-select" id="orderCustomers">
-                                        <option value="1" hidden>مرتب سازی</option> 
-                                        <option value="1">اسم</option>
-                                        <option value="0">کد</option>
-                                    </select>
-                                </div>
-                            </span>
+
+
+<div class="container-fluid containerDiv">
+    <div class="row">
+            <div class="col-lg-2 col-md-2 col-sm-3 sideBar">
+                <fieldset class="border rounded mt-5 sidefieldSet">
+                    <legend  class="float-none w-auto legendLabel mb-0"> تنظیمات </legend>
+                    <div class="form-check">
+                        <input class="form-check-input p-2 float-start" type="radio" name="settings" id="customerListRadioBtn" checked>
+                        <label class="form-check-label me-4" for="assesPast"> لیست مشتریان </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input p-2 float-start" type="radio" name="settings" id="officialCustomerListRadioBtn">
+                        <label class="form-check-label me-4" for="assesPast"> اشخاص رسمی </label>
+                    </div>
+                     <div class="col-sm-12 customerListStaff">
+                        <input type="text" name="" size="20" class="form-control form-control-sm" placeholder="نام" id="searchCustomerByName">
+                    </div>
+                    <div class="col-sm-12 customerListStaff">
+                        <input type="text" name="" size="20" class="form-control form-control-sm" placeholder="کد حساب" id="searchCustomerByCode">
+                    </div>
+                    <div class="col-sm-12 customerListStaff">
+                        <select  style="" class="form-select form-select-sm" id='searchCityId'>
+                                <option value="1" hidden>شهر</option>  
+                            @foreach($cities as $city)
+                                <option value="{{$city->SnMNM}}">{{$city->NameRec}}</option>
+                            @endforeach
+                            <option value="0">بدون شهر</option>
+                        </select>
+                    </div>
+                        <div class="col-sm-12 customerListStaff">
+                            <select  style="" class="form-select form-select-sm" id="searchSelectMantiqah">
+                                <option value="1" hidden>منطقه</option> 
+                                <option value="0">--</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-sm-12 customerListStaff">
+                            <select  style="" class="form-select form-select-sm" id="searchActiveOrNot">
+                                <option  value="1" hidden>فعال</option>
+                                <option value="1">فعال</option>
+                                <option value="0"> غیر فعال</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-sm-12 customerListStaff">
+                            <select  style="" class="form-select form-select-sm" id="searchLocationOrNot">
+                            <option value="1" hidden>موقعیت</option> 
+                                <option value="1">موقعیت دار </option>
+                                <option value="0"> بدون موقعیت </option>
+                            </select>
+                        </div>
+                        <div class="form-group col-sm-12 customerListStaff">
+                            <select style="" class="form-select form-select-sm" id="orderCustomers">
+                                <option value="1" hidden>مرتب سازی</option> 
+                                <option value="1">اسم</option>
+                                <option value="0">کد</option>
+                            </select>
                         </div>
 
-                        <div class="row mt-3">
-                            <div class="col-sm-12 text-end">
-                                <form action="{{ url('/editCustomer') }}" method="POST" style="display: inline;">
-                                    @csrf
-                                    <input type="text" id="customerSn" style="display: none" name="customerSn" value="" />
-                                    <input type="text" id="customerGroup" style="display: none" name="customerGRP" value="" />
-                                    @if(hasPermission(Session::get( 'adminId'),'customers' ) > -1) 
-                                    <button class='enableBtn btn btn-success text-warning starfoodbntHover' data-toggle='modal' type="submit" id='editPart' disabled style="color:#9ed5b6 "> ویرایش <i class="fal fa-edit fa-lg"></i></button>
-                                    <button class='enableBtn btn btn-success text-warning starfoodbntHover' type="button" id="openDashboard" disabled>داشبورد<i class="fal fa-money-bill-alt fa-lg"></i></button>
-                                    @endif
-                                    @if(hasPermission(Session::get( 'adminId'),'customers' ) > 1) 
-                                    <button class='enableBtn btn btn-success btn-md text-warning starfoodbntHover' data-toggle='modal' type="submit" id='editPart'disabled> ارسال به اکسل <i class="fal fa-file-excel fa-lg" aria-hidden="true"></i></button>
-                                    <button class="enableBtn btn btn-success btn-md text-warning starfoodbntHover" id="defineRoute" type="button" disabled>تعیین مسیر <i class="fal fa-address-card fa-lg"></i></button>
-                                    @endif
-                                </form>
-                            </div>
-                            <div class="col-sm-2">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <table id="strCusDataTable" class='table table-bordered mt-4 homeTables'>
-                                <thead class="tableHeader">
-                                    <tr>
-                                        <th>ردیف</th>
-                                        <th>کد</th>
-                                        <th>اسم</th>
-                                        <th style="width:390px">آدرس </th>
-                                        <th>همراه</th>
-                                        <th>تلفن</th>
-                                        <th>منطقه </th>
-                                        <th>درج </th>
-                                        <th>انتخاب</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody id="customerList" class="select-highlight tableBody">
-                                        @foreach ($customers as $customer)
-                                            <tr>
-                                                <td></td>
-                                                <td>{{$customer->PCode}}</td>
-                                                <td>{{$customer->Name}}</td>
-                                                <td style="width:390px">{{$customer->peopeladdress}}</td>
-                                                <td>{{$customer->hamrah}}</td>
-                                                <td>{{$customer->sabit}}</td>
-                                                <td>{{$customer->NameRec}}</td>
-                                                <td>2</td>
-                                                <td> <input class="customerList form-check-input" name="customerId" type="radio" value="{{$customer->PSN.'_'.$customer->GroupCode}}" id="flexCheckChecked"></td>
-                                            </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
+                </fieldset>
+                </div>
+            <div class="col-sm-10 col-md-10 col-sm-12 contentDiv">
+                <div class="row contentHeader">
+                    <div class="col-sm-12 text-end mt-1 customerListStaff">
+                        <form action="{{ url('/editCustomer') }}" method="POST" style="display: inline;">
+                            @csrf
+                            <input type="text" id="customerSn" style="display: none" name="customerSn" value="" />
+                            <input type="text" id="customerGroup" style="display: none" name="customerGRP" value="" />
+                            @if(hasPermission(Session::get( 'adminId'),'customers' ) > -1) 
+                            <button class='enableBtn btn btn-success btn-sm text-warning' data-toggle='modal' type="submit" id='editPart' disabled style="color:#9ed5b6 "> ویرایش <i class="fal fa-edit"></i></button>
+                            <button class='enableBtn btn btn-success btn-sm text-warning' type="button" id="openDashboard" disabled> داشبورد <i class="fal fa-money-bill-alt"></i></button>
+                            @endif
+                            @if(hasPermission(Session::get( 'adminId'),'customers' ) > 1) 
+                            <button class='enableBtn btn btn-success btn-sm text-warning' data-toggle='modal' type="submit" id='editPart'disabled> ارسال به اکسل <i class="fal fa-file-excel" aria-hidden="true"></i></button>
+                            <button class="enableBtn btn btn-success btn-sm text-warning" id="defineRoute" type="button" disabled>تعیین مسیر <i class="fal fa-address-card"></i></button>
+                            @endif
+                        </form>
                     </div>
                 </div>
+                <div class="row mainContent">
+                    <table id="strCusDataTable" class='table table-bordered table-sm customerListStaff'>
+                        <thead class="tableHeader">
+                            <tr>
+                                <th>ردیف</th>
+                                <th>کد</th>
+                                <th>اسم</th>
+                                <th style="width:390px">آدرس </th>
+                                <th>همراه</th>
+                                <th>تلفن</th>
+                                <th>منطقه </th>
+                                <th>درج </th>
+                                <th>انتخاب</th>
+                            </tr>
+                            </thead>
+                            <tbody id="customerList" class="select-highlight tableBody">
+                                @foreach ($customers as $customer)
+                                    <tr>
+                                        <td></td>
+                                        <td>{{$customer->PCode}}</td>
+                                        <td>{{$customer->Name}}</td>
+                                        <td style="width:390px">{{$customer->peopeladdress}}</td>
+                                        <td>{{$customer->hamrah}}</td>
+                                        <td>{{$customer->sabit}}</td>
+                                        <td>{{$customer->NameRec}}</td>
+                                        <td>2</td>
+                                        <td> <input class="customerList form-check-input" name="customerId" type="radio" value="{{$customer->PSN.'_'.$customer->GroupCode}}" id="flexCheckChecked"></td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                        <!-- لیست اشخاص حقیقی -->
+                        <form action="{{url('/customer')}}" method="POST" enctype="multipart/form-data" id="officialCustomerStaff" class="px-0 mx-0">
+                        @csrf
+                        <div class="c-checkout" style="background: linear-gradient(#3ccc7a, #034620); border-radius:5px 5px 2px 2px;">
+                            <div class="col-sm-6">
+                                <ul class="header-list nav nav-tabs" data-tabs="tabs" style="margin: 0; padding:0;">
+                                    <li><a class="active" data-toggle="tab" style="color:black;"  href="#custAddress"> اشخاص حقیقی  </a></li>
+                                    <li><a data-toggle="tab" style="color:black;"  href="#moRagiInfo"> اشخاص حقوقی </a></li>
+                                </ul>
+                            </div>
+                            <div class="c-checkout tab-content" style="background-color:#f5f5f5; border-radius:5px 5px 2px 2px;">
+                                    <div class="row c-checkout rounded-2 tab-pane active" id="custAddress">
+                                            <table class="table table-responsive table-bordered table-sm" id="myTable" style="text-align:center">
+                                                <thead class="table bg-success tableHeader">
+                                                    <tr>
+                                                        <th>ردیف  </th>
+                                                        <th>نام </th>
+                                                        <th>نام خانودگی  </th>
+                                                        <th>شماره ملی </th>
+                                                        <th>کد نقش </th>
+                                                        <th>کد پستی </th>
+                                                        <th> آدرس</th>
+                                                        <th>ارسال به دفتر حساب </th>
+                                                        <th>ویرایش </th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody class="tableBody">
+                                                <?php if(!empty($haqiqiCustomers)){ ?>
+                                                    @foreach ($haqiqiCustomers as $haqiqiCustomer)
+                                                    <tr>
+                                                        <td> {{$loop->index+1}} </td>
+                                                        <td> {{$haqiqiCustomer->customerName}}</td>
+                                                        <td> {{$haqiqiCustomer->familyName}}</td>
+                                                        <td> {{$haqiqiCustomer->codeMilli}} </td>
+                                                        <td> {{$haqiqiCustomer->codeNaqsh}}</td>
+                                                        <td> {{$haqiqiCustomer->codePosti}}</td>
+                                                        <td> {{$haqiqiCustomer->address}}</td>
+                                                    <td> <i class="fa fa-paper-plane" style="color:#198754"> </td>
+                                                        <td> <a  @if(hasPermission(Session::get( 'adminId'),'homePage' ) >0 ) href="{{url('haqiqiCustomerAdmin', $haqiqiCustomer->customerShopSn)}}" @else href="#" @endif> <i class="fal fa-edit fa-md" style="color:#ffc107"></i> </a></td>
+                                                    </tr>
+                                                @endforeach
+                                                <?php } ?>
+                                                </tbody>
+                                            </table>
+                                     </div>
+
+                                     <div class="row c-checkout rounded-2 tab-pane" id="moRagiInfo">
+                                                <table class="table table-hover table-bordered table-sm" id="myTable" style="text-align:center">
+                                                    <thead class="table bg-success tableHeader">
+                                                        <tr>
+                                                            <th> ردیف </th> 
+                                                            <th>نام شرکت</th>
+                                                            <th>شناسه ملی </th>
+                                                            <th>کد نقش </th>
+                                                            <th>کد پستی </th>
+                                                            <th> آدرس </th>
+                                                            <th>ارسال به دفتر حساب </th>
+                                                            <th>ویرایش </th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody class="tableBody">
+                                                        <?php if(!empty($hohoqiCustomers)){  ?>
+                                                        @foreach ($hohoqiCustomers as $hohoqiCustomer)
+                                                        <tr>
+                                                            <td> {{$loop->index+1}} </td>
+                                                            <td> {{$hohoqiCustomer->companyName}}</td>
+                                                            <td> {{$hohoqiCustomer->shenasahMilli}}</td>
+                                                            <td> {{$hohoqiCustomer->codeNaqsh}}</td>
+                                                            <td> {{$hohoqiCustomer->codePosti}}</td>
+                                                            <td> {{$hohoqiCustomer->address}}</td>
+                                                            <td> <i class="fa fa-paper-plane" style="color:#198754"> </td>
+                                                            <td> <a  @if(hasPermission(Session::get( 'adminId'),'homePage' ) >0 ) href="{{url('haqiqiCustomerAdmin', $hohoqiCustomer->customerShopSn)}}" @else href="#" @endif> <i class="fal fa-edit fa-md" style="color:#ffc107"></i> </a> </td>
+                                                            </tr>
+                                                        @endforeach
+                                                    <?php }?>
+                                                    </tbody>
+                                            </table>
+                                     </div>
+                                 </div>
+                             </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="row contentFooter"> </div>
             </div>
-        </div>
     </div>
+</div>
+
+
 
     <!-- dashboard Modal -->
     <div class="modal fade notScroll" id="customerDashboard"data-backdrop="static"  data-keyboard="false" aria-labelledby="staticBackdropLabel" aria-hidden="true">

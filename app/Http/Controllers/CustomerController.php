@@ -9,17 +9,6 @@ use Session;
 use URL;
 class CustomerController extends Controller{
 
-
-// The following method shows the list of haqiqi customer
-    public function showHaqiqiCustomer(){
-
-            $haqiqiCustomers=DB::table("NewStarfood.dbo.star_Customer")->where('customerType','haqiqi')->select("*")->get();
-            $hohoqiCustomers=DB::table("NewStarfood.dbo.star_Customer")->where('customerType','hoqoqi')->select("*")->get();
-
-            return View('admin.customer.customerList', ['haqiqiCustomers'=>$haqiqiCustomers, 'hohoqiCustomers'=>$hohoqiCustomers]);
-    }
-
-
 // The following method return the form to insert haqiq customer into database
         public function haqiqiCustomerAdd(){
 

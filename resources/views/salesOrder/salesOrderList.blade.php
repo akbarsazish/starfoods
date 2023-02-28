@@ -1,13 +1,6 @@
 @extends('admin.layout')
 @section('content')
 <style>
-    table tr {
-        font-size:14px;
-        resize: horizontal !important;
-    }
-    table tr th{
-        resize: horizontal !important;
-    }
     .trFocus:focus {
          background-color: lightblue !important;
     }
@@ -20,17 +13,6 @@
         display:inline;
     }
 	
- body{
-	 max-height:100vh; 
-	 position:fixed;
-	}
-
-
-.tableBody {
-      height:244px !important; 
-      overflow-y:scroll !important;
-      display:block !important;
-  }	
 	
 .grid-tableFooter {
   display: grid;
@@ -52,19 +34,22 @@
 .input-group>input.someInput {flex: 0 1 100px;}
 	
 </style>
-<div class="container-fluid" id="salesOrderCont" style="margin-top:60px; overflow-y:auto;">
-    <div class="row px-0 mx-0">
-        <div class="col-lg-3 sideDive">
-                <button type="button" class="btn btn-success btn-sm topButton" id="saleToFactorSaleBtn">ارسال به فاکتور فروش <i class="fa fa-send"></i> </button>
-                <button type="button" class="btn btn-success btn-sm topButton" disabled data-toggle="modal" data-target="#orderReport">  گزارش سفارش   &nbsp; <i class="fa fa-list"></i> </button>
-                <fieldset class="border rounded">
+
+
+<div class="container-fluid containerDiv">
+    <div class="row">
+            <div class="col-lg-2 col-md-2 col-sm-3 sideBar">
+                <fieldset class="border rounded mt-4 sidefieldSet">
                     <legend  class="float-none w-auto legendLabel mb-0">انتخاب</legend>
+                      <button type="button" class="btn btn-success btn-sm topButton" id="saleToFactorSaleBtn">ارسال به فاکتور فروش <i class="fa fa-send"></i> </button>
+                      <button type="button" class="btn btn-success btn-sm topButton" disabled data-toggle="modal" data-target="#orderReport">  گزارش سفارش   &nbsp; <i class="fa fa-list"></i> </button>
+           
                         <span class="situation">
-                          <fieldset class="border rounded">
+                            <fieldset class="border rounded">
                               <legend  class="float-none w-auto legendLabel mb-0">وضعیت</legend>
                                     <div class="form-check">
                                         <input class="form-check-input float-start" type="radio" name="sefRadio" id="sefNewOrderRadio">
-                                                <label class="form-check-label ms-3" for="sefNewOrderRadio"> جدید </label>
+                                            <label class="form-check-label ms-3" for="sefNewOrderRadio"> جدید </label>
                                       </div>
                                       <div class="form-check">
                                         <input class="form-check-input float-start" type="radio" name="sefRadio" id="sefRemainOrderRadio">
@@ -83,105 +68,106 @@
 
                         <div class="input-group input-group-sm mb-1">
                             <span class="input-group-text" id="inputGroup-sizing-sm">تاریخ </span>
-                            <input type="text" class="form-control" id="sefFirstDate">
+                            <input type="text" class="form-control form-control-sm" id="sefFirstDate">
                         </div>
                         <div class="input-group input-group-sm mb-1">
                             <span class="input-group-text" id="inputGroup-sizing-sm"> الی </span>
-                            <input type="text" class="form-control" id="sefSecondDate">
+                            <input type="text" class="form-control form-control-sm" id="sefSecondDate">
                         </div>
                         <div class="input-group input-group-sm mb-1">
                             <span class="input-group-text" > طرف حساب </span>
-                            <input type="text" id="sefTarafHisabCode" class="form-control"  placeholder="کد ">
+                            <input type="text" id="sefTarafHisabCode" class="form-control form-control-sm"  placeholder="کد ">
                         </div>
                         <div class="mb-1">
-                            <input type="text" id="sefTarafHisabName" placeholder="نام " class="form-control form-control-sm">
+                            <input type="text" id="sefTarafHisabName" placeholder="نام " class="form-control form-control-sm form-control-sm">
                         </div>
                         <div class="input-group input-group-sm mb-1">
                             <span class="input-group-text" id="inputGroup-sizing-sm"> پشتیبان  </span>
-                            <input type="text" class="form-control" placeholder="نام" id="sefPoshtibanName">
+                            <input type="text" class="form-control form-control-sm" placeholder="نام" id="sefPoshtibanName">
                         </div>
                         
-               </fieldset>
-                        <button type="button" class="btn btn-success btn-sm topButton" id="newOrderBtn"  data-toggle="modal" disabled data-target="#newOrder">سفارش جدید &nbsp; <i class="fa fa-list"></i></button>
-                        <button type="button" class="btn btn-success btn-sm topButton" id="editOrderBtn" disabled>اصلاح &nbsp; <i class="fa fa-check"></i> </button>
-                        <button type="button" class="btn btn-success btn-sm topButton deletOrderButton" id="distroyOrderBtn" disabled  >باطل  &nbsp; <i class="fa fa-xmark"></i></button>
-                        <form action="https://starfoods.ir/crmLogin" target="_blank"  method="get">
+                  </fieldset>
+            </div>
+            <div class="col-sm-10 col-md-10 col-sm-12 contentDiv">
+                <div class="row contentHeader"> 
+                    <div class="col-lg-12 text-end mt-1">
+                         <button type="button" class="btn btn-success btn-sm" id="newOrderBtn"  data-toggle="modal" disabled data-target="#newOrder">سفارش جدید &nbsp; <i class="fa fa-list"></i></button>
+                        <button type="button" class="btn btn-success btn-sm" id="editOrderBtn" disabled>اصلاح &nbsp; <i class="fa fa-check"></i> </button>
+                        <button type="button" class="btn btn-success btn-sm deletOrderButton" id="distroyOrderBtn" disabled  >باطل  &nbsp; <i class="fa fa-xmark"></i></button>
+                        <form action="https://starfoods.ir/crmLogin" target="_blank"  method="get" style="display:inline;">
                             <input type="hidden" id="psn" name="psn" value="" />
                             <input type="hidden" name="otherName" value="{{Session::get('adminName')}}" />
-                            <Button class="btn btn-success btn-sm topButton" disabled id="fakeLogin" type="submit"> ورود جعلی  <i class="fas fa-sign-in fa-lg"> </i> </Button>
+                            <Button class="btn btn-success btn-sm" disabled id="fakeLogin" type="submit"> ورود جعلی  <i class="fas fa-sign-in fa-lg"> </i> </Button>
                         </form>
-        </div>
-
-        <div class="col-lg-9 contentDiv mt-1">
-            <div class="row">
-                <table class="table table-hover table-bordered">
-                    <thead class="tableHeader">
-                        <tr class="bg-success">
-                            <th> ردیف </th>
-                            <th style="width:70px;"> شماره  </th>
-                            <th style="width:80px;">  تاریخ  </th>
-                            <th style="width:180px;"> خریدار </th>
-                            <th>پشتیبان </th>
-                            <th> مبلغ کل </th>
-                            <th> مبلغ مانده  </th>
-                            <th> پرداختی </th>
-                            <th> شرح </th>
-                            <th style="width:77px;"> زمان ثبت</th>
-                            <th>  ارسال</th>
-                        </tr>
-                    </thead>
-                    <tbody id="orderListBody" class="tableBody">
-                        @foreach ($orders as $order)
-                            <tr @if($order->isPayed==1) class="payedOnline" @endif onclick="getOrderDetail(this,{{$order->SnOrder}},{{$order->isPayed}},{{$order->CustomerSn}})">
-                                <td>{{$loop->iteration}}</td>
-                                <td style="width:70px;">{{$order->OrderNo}}</td>
-                                <td style="width:80px;">{{$order->OrderDate}}</td>
-                                <td style="width:180px; font-weight:bold;">{{$order->Name}}</td>
-                                <td>@if($order->adminName){{$order->adminName}} @else ندارد @endif</td>
-                                <td  style="font-weight:bold;">{{number_format($order->allPrice/10)}} ت</td>
-                                <td  style="color:red">{{number_format(($order->allPrice - $order->payedMoney)/10)}} ت</td>
-                                <td>{{number_format(($order->payedMoney)/10)}} ت</td>
-                                <td>{{$order->OrderDesc}}</td>
-                                <td style="width:77px;">{{$order->SaveTimeOrder}}</td>
-                                <td>@if($order->OrderErsalTime==1) صبح @else بعد از ظهر @endif</td>
-                                
-                            </tr>
-                        @endforeach
-                    </tbody>
-					<table id="footer">
-                    <div class="grid-tableFooter">
-						  <div class="tableFooter-item"> مجموع : <span class="textContent" id="sendTotalMoney"> {{number_format($allMoney/10)}} ت </span>  </div>
-						  <div class="tableFooter-item"> مبلغ باقی مانده :  <span class="textContent text-danger" id="sendRemainedTotalMoney"> {{number_format(($allMoney-$allPayed)/10)}} ت </span>  </div>  
-						  <div class="tableFooter-item"> پرداختی : <span class="textContent" id="sendAllPayedMoney"> {{number_format(($allPayed)/10)}} ت </span>  </div>
-						</div>
-
-</table>
-                </table>
-				
-            </div> <hr>
-            <div class="row mt-2">
-            <table class="table table-hover table-bordered">
-                    <thead class="tableHeader">
-                        <tr class="bg-success">
-                            <th> ردیف</th>
-                            <th style="width:160px;">  نام کالا </th>
-                            <th>  تاریخ  </th>
-                            <th>  نوع بسته بندی  </th>
-                            <th>  مقدار کل    </th>
-                            <th> مقدار جز</th>
-                            <th> مقدار سفارش </th>
-                            <th> مقدار فاکتور شده  </th>
-                            <th>نرخ </th>
-                            <th>مبلغ  </th>
-                            <th>شرح  </th>
-                        </tr>
-                    </thead>
-                    <tbody id="orderDetailBody" class="tableBody" style="height:300px ! important; overflow-y: scroll;">
-                    </tbody>
-                </table>
+                    </div>
+                </div>
+                  <div class="row mainContent">
+                     <table class="table table-hover table-bordered table-sm">
+                            <thead class="tableHeader">
+                                <tr class="bg-success">
+                                    <th> ردیف </th>
+                                    <th style="width:70px;"> شماره  </th>
+                                    <th style="width:80px;">  تاریخ  </th>
+                                    <th style="width:180px;"> خریدار </th>
+                                    <th>پشتیبان </th>
+                                    <th> مبلغ کل </th>
+                                    <th> مبلغ مانده  </th>
+                                    <th> پرداختی </th>
+                                    <th> شرح </th>
+                                    <th style="width:77px;"> زمان ثبت</th>
+                                    <th>  ارسال</th>
+                                </tr>
+                            </thead>
+                            <tbody id="orderListBody" class="tableBody" style="height:233px !important;">
+                                @foreach ($orders as $order)
+                                    <tr @if($order->isPayed==1) class="payedOnline" @endif onclick="getOrderDetail(this,{{$order->SnOrder}},{{$order->isPayed}},{{$order->CustomerSn}})">
+                                        <td>{{$loop->iteration}}</td>
+                                        <td style="width:70px;">{{$order->OrderNo}}</td>
+                                        <td style="width:80px;">{{$order->OrderDate}}</td>
+                                        <td style="width:180px; font-weight:bold;">{{$order->Name}}</td>
+                                        <td>@if($order->adminName){{$order->adminName}} @else ندارد @endif</td>
+                                        <td  style="font-weight:bold;">{{number_format($order->allPrice/10)}} ت</td>
+                                        <td  style="color:red">{{number_format(($order->allPrice - $order->payedMoney)/10)}} ت</td>
+                                        <td>{{number_format(($order->payedMoney)/10)}} ت</td>
+                                        <td>{{$order->OrderDesc}}</td>
+                                        <td style="width:77px;">{{$order->SaveTimeOrder}}</td>
+                                        <td>@if($order->OrderErsalTime==1) صبح @else بعد از ظهر @endif</td>
+                                        
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                            <table id="footer">
+                            <div class="grid-tableFooter">
+                                <div class="tableFooter-item"> مجموع : <span class="textContent" id="sendTotalMoney"> {{number_format($allMoney/10)}} ت </span>  </div>
+                                <div class="tableFooter-item"> مبلغ باقی مانده :  <span class="textContent text-danger" id="sendRemainedTotalMoney"> {{number_format(($allMoney-$allPayed)/10)}} ت </span>  </div>  
+                                <div class="tableFooter-item"> پرداختی : <span class="textContent" id="sendAllPayedMoney"> {{number_format(($allPayed)/10)}} ت </span>  </div>
+                                </div>
+                            </table>
+                        </table> <hr>
+                   
+                        <table class="table table-hover table-bordered table-sm">
+                            <thead class="tableHeader">
+                                <tr>
+                                    <th> ردیف</th>
+                                    <th style="width:160px;">  نام کالا </th>
+                                    <th>  تاریخ  </th>
+                                    <th>  نوع بسته بندی  </th>
+                                    <th>  مقدار کل    </th>
+                                    <th> مقدار جز</th>
+                                    <th> مقدار سفارش </th>
+                                    <th>  فاکتور شده  </th>
+                                    <th>نرخ </th>
+                                    <th>مبلغ  </th>
+                                    <th>شرح  </th>
+                                </tr>
+                            </thead>
+                            <tbody id="orderDetailBody" class="tableBody" style="height:188px ! important; overflow-y: scroll;">
+                            </tbody>
+                        </table>
+                </div>
+                <div class="row contentFooter"> </div>
             </div>
-         </div>
-    </div>
+     </div>
 </div>
 
 
@@ -190,10 +176,8 @@
 <div class='modal fade dragAbleModal' id='sentTosalesFactor' data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class='modal-dialog modal-dialog-scrollable modal-fullscreen'>
         <div class='modal-content'>
-            <div class='modal-header bg-success'>
-                <button type='button' class='close bg-danger' data-dismiss='modal' aria-label='Close'>
-                    <span aria-hidden='true'>&times;</span>
-                </button>
+            <div class='modal-header bg-success py-2'>
+                <button type="button" class="btn-close bg-danger" data-dismiss="modal" aria-label="Close"></button>
                 <h6 class='modal-title text-white' id='exampleModalLongTitle'>جزئیات سفارش در حال ارسال</h6>
             </div>
             <div class='modal-body'>
@@ -370,7 +354,7 @@
                             </div>
                         </div>
                     </div> <br>
-                    <table class="table table-striped table-bordered">
+                    <table class="table table-striped table-bordered table-sm">
                         <thead class="tableHeader">
                         <tr class="bg-success">
                                 <th> ردیف</th>
@@ -382,7 +366,7 @@
                                 <th>  مقدار کل    </th>
                                 <th> مقدار جز</th>
                                 <th> مقدار سفارش </th>
-                                <th> مقدار فاکتور شده  </th>
+                                <th>  فاکتور شده  </th>
                                 <th>نرخ </th>
                                 <th>مبلغ  </th>
                                 <th>شرح  </th>
@@ -502,11 +486,9 @@
 <div class="modal fade" id="notExistGoodsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-      <div class="modal-header">
+      <div class="modal-header py-2 text-white">
         <h5 class="modal-title" >کالاهای بدون موجودی</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
+          <button type="button" class="btn-close bg-danger" data-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         <h3>کالاهای زیر موجود نیستند می خواهید بقیه ثبت شوند؟</h3>
@@ -536,7 +518,7 @@
 <div class="modal fade dragAbleModal" id="gardishKala" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="gardishKalaLabel" aria-hidden="true">
   <div class="modal-dialog  modal-xl modal-dialog-scrollable">
     <div class="modal-content">
-      <div class="modal-header" style="background-color:#1c4431; color:white">
+      <div class="modal-header text-white py-2">
           <button type="button" class="btn-close bg-danger" data-dismiss="modal" aria-label="Close"></button>
           <h5 class="modal-title fs-5" id="gardishKalaLabel"> گردش کالا  </h5>
       </div>
@@ -583,7 +565,7 @@
                 </fieldset>
             </div>
             <div class="col-lg-9">
-            <table class="table table-striped table-bordered">
+            <table class="table table-striped table-bordered table-sm">
                     <thead class="tableHeader">
                         <tr>
                             <th>ردیف</th>
@@ -631,10 +613,8 @@
 <div class='modal fade dragAbleModal' id='newOrder' data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class='modal-dialog modal-dialog-scrollable modal-xl'>
         <div class='modal-content'>
-            <div class='modal-header bg-success'>
-                <button type='button' class='close bg-danger' data-dismiss='modal' aria-label='Close'>
-                    <span aria-hidden='true'>&times;</span>
-                </button>
+            <div class='modal-header bg-success text-white py-2'>
+                <button type="button" class="btn-close bg-danger" data-dismiss="modal" aria-label="Close"></button>
                 <h5 class='modal-title text-white' id='exampleModalLongTitle'> سفارش فروش </h5>
             </div>
             <div class='modal-body'>
@@ -751,7 +731,7 @@
                          </div>
                     </div>
                 </div> <br>
-                <table class="table table-striped table-bordered">
+                <table class="table table-striped table-bordered table-sm">
                     <thead class="tableHeader">
                         <tr>
                             <th>ردیف</th>
@@ -806,7 +786,7 @@
                            <button> <i class="fa fa-minus-circle fa-2xl " aria-hidden="true" style="color:green;"></i></button>
                              
                         </div>
-                        <table class="table table-striped table-bordered">
+                        <table class="table table-striped table-bordered table-sm">
                             <thead class="tableHeader">
                                 <tr>
                                     <th>ردیف</th>
@@ -863,10 +843,8 @@
     <div class='modal-dialog modal-dialog-scrollable modal-xl'>
         <div class='modal-content'>
             <form action="{{url('/editorderSendState')}}" method="get" id="editSendForm">
-                <div class='modal-header bg-success'>
-                    <button type='button' class='close bg-danger' data-dismiss='modal' aria-label='Close'>
-                        <span aria-hidden='true'>&times;</span>
-                    </button>
+                <div class='modal-header bg-success text-white py-2'>
+                    <button type="button" class="btn-close bg-danger" data-dismiss="modal" aria-label="Close"></button>
                     <h5 class='modal-title text-white' id='exampleModalLongTitle'> ویرایش سفارش فروش </h5>
                     <input type="hidden" id="editInVoiceNumber">
                 </div>
@@ -993,7 +971,7 @@
                             </div>
                         </div>
                     </div> <br>
-                    <table class="table table-striped table-bordered ">
+                    <table class="table table-striped table-bordered table-sm">
                         <thead class="tableHeader">
                             <tr>
                                 <th>ردیف</th>
@@ -1083,23 +1061,23 @@
         </button>
       </div>
       <div class="modal-body">
-      <table class="table table-striped table-bordered ">
+      <table class="table table-striped table-bordered table-sm">
       <thead>
-                                    <tr>
-                                        <th >ردیف</th>
-                                        <th >کد رهگیری</th>
-                                        <th >کد ارجاع</th>
-                                        <th >تاریخ تراکنش </th>
-                                        <th > شماره تراکنش </th>
-                                        <th >مبلغ</th>
-										<th > شماره کارت</th>
-										<th > موفقیت</th>
-										<th > پیام</th>
-                                    </tr>
-                                    </thead>
-                    <tbody class="tableBody" id="editOnlinePaymentBody">
-                    </tbody>
-                </table> 
+            <tr>
+                <th >ردیف</th>
+                <th >کد رهگیری</th>
+                <th >کد ارجاع</th>
+                <th >تاریخ تراکنش </th>
+                <th > شماره تراکنش </th>
+                <th >مبلغ</th>
+                <th > شماره کارت</th>
+                <th > موفقیت</th>
+                <th > پیام</th>
+            </tr>
+            </thead>
+                <tbody class="tableBody" id="editOnlinePaymentBody">
+                </tbody>
+            </table> 
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-dismiss="modal">بستن</button>
@@ -1112,7 +1090,7 @@
 <div class="modal fade" id="orderReport" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="orderReportLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
-      <div class="modal-header bg-success">
+      <div class="modal-header bg-success text-white py-2">
           <button type="button" class="btn-close bg-danger" data-dismiss="modal" aria-label="Close"></button>
           <h6 class="modal-title " id="ordeportLabel"> گزارش سفارش </h6>
       </div>
@@ -1268,7 +1246,7 @@
                     </div>
                 </div>
                 <div class="col-lg-6">
-                   <table class="table table-striped table-bordered" style="background-color:white">
+                   <table class="table table-striped table-bordered table-sm" style="background-color:white">
                             <thead>
                                 <tr>
                                     <th>ردیف</th>
@@ -1301,7 +1279,7 @@
 <div class="modal fade dragAbleModal" id="factorCostBtn" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="factorCostBtnLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
-      <div class="modal-header text-white" style="background-color:#086e3f">
+      <div class="modal-header text-white py-2" style="background-color:#086e3f">
           <button type="button" class="btn-close bg-danger" data-dismiss="modal" aria-label="Close"></button>
           <h5 class="modal-title fs-6" id="factorCostBtnLabel">  هزینه های فاکتور ها  </h5>
       </div>
@@ -1314,7 +1292,7 @@
                 </div>
             </div>
             <div class="row">
-                <table class="table table-bordered">
+                <table class="table table-bordered table-sm">
                     <thead class="tableHeader">
                         <tr>
                             <th>ردیف</th>
@@ -1348,7 +1326,7 @@
 <div class="modal fade dragAbleModal" id="addingResoan" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="addingResoanLabel" aria-hidden="true">
   <div class="modal-dialog modal-xl">
     <div class="modal-content">
-      <div class="modal-header text-white" style="background-color:#052c1a">
+      <div class="modal-header text-white py-2" style="background-color:#052c1a">
           <button type="button" class="btn-close bg-danger" data-dismiss="modal" aria-label="Close"></button>
           <h5 class="modal-title fs-6" id="addingResoanLabel"> بابت ها  </h5>
       </div>
@@ -1380,7 +1358,7 @@
                         <div class="row c-checkout rounded-3 tab-pane active" id="effectiveCostFactor" style="width:99%; margin:0 auto; padding:1% 0% 0% 0%">
                             <div class="col-sm-12">
                                 <div class="row " style="width:98%; padding:0 1% 2% 0%">
-                                     <table class="table table-bordered">
+                                     <table class="table table-bordered table-sm">
                                         <thead class="tableHeader">
                                             <tr>
                                                 <th>ردیف</th>
@@ -1401,7 +1379,7 @@
                         </div>
                         <div class="row c-checkout rounded-3 tab-pane" id="received" style="background-color:#f5f5f5; width:99%; margin:0 auto; padding:1% 0% 0% 0%">
                             <div class="row " style="width:98%; padding:0 1% 2% 0%">
-                                <table class="table table-bordered">
+                                <table class="table table-bordered table-sm">
                                     <thead class="tableHeader">
                                         <tr>
                                             <th>ردیف</th>
@@ -1421,7 +1399,7 @@
                        </div>
                     <div class="row c-checkout rounded-3 tab-pane" id="payMent" style="background-color:#f5f5f5; width:99%; margin:0 auto; padding:1% 0% 0% 0%">
                         <div class="row " style="width:98%; padding:0 1% 2% 0%">
-                            <table class="table table-bordered">
+                            <table class="table table-bordered table-sm">
                                 <thead>
                                     <tr>
                                         <th>ردیف</th>
@@ -1441,7 +1419,7 @@
                     </div>
                     <div class="row c-checkout rounded-3 tab-pane" id="siteAdmin" style="background-color:#f5f5f5; width:99%; margin:0 auto; padding:1% 0% 0% 0%">
                         <div class="row " style="width:98%; padding:0 1% 2% 0%">
-                            <table class="table table-bordered">
+                            <table class="table table-bordered table-sm">
                                 <thead>
                                     <tr>
                                         <th>ردیف</th>
@@ -1461,7 +1439,7 @@
                     </div>
                     <div class="row c-checkout rounded-3 tab-pane" id="minusFromAccount" style="background-color:#f5f5f5; width:99%; margin:0 auto; padding:1% 0% 0% 0%">
                         <div class="row " style="width:98%; padding:0 1% 2% 0%">
-                               <table class="table table-bordered">
+                               <table class="table table-bordered table-sm">
                                     <thead>
                                         <tr>
                                             <th>ردیف</th>
@@ -1481,7 +1459,7 @@
                     </div>
                     <div class="row c-checkout rounded-3 tab-pane" id="addToAccount" style="background-color:#f5f5f5; width:99%; margin:0 auto; padding:1% 0% 0% 0%">
                         <div class="row " style="width:98%; padding:0 1% 2% 0%">
-                              <table class="table table-bordered">
+                              <table class="table table-bordered table-sm">
                                     <thead>
                                         <tr>
                                             <th>ردیف</th>
@@ -1517,8 +1495,8 @@
 <div class="modal fade dragAbleModal" id="insertingBabat" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="insertingBabatLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
-      <div class="modal-header bg-success text-white">
-          <button type="button" class="btn-close bg-danger" data-dismiss="modal" aria-label="Close"></button>
+      <div class="modal-header bg-success text-white py-2">
+         <button type="button" class="btn-close bg-danger" data-dismiss="modal" aria-label="Close"></button>
           <h5 class="modal-title fs-5" id="insertingBabatLabel">افزودن بابت </h5>
       </div>
       <div class="modal-body">
@@ -1543,7 +1521,7 @@
 <div class="modal fade dragAbleModal" id="editingResoan" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="editingResoanLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
-      <div class="modal-header bg-success text-white">
+      <div class="modal-header bg-success text-white py-2">
           <button type="button" class="btn-close bg-danger" data-dismiss="modal" aria-label="Close"></button>
           <h5 class="modal-title fs-5" id="editingResoanLabel"> اصلاح بابت </h5>
       </div>
@@ -1570,7 +1548,7 @@
 <div class="modal fade dragAbleModal" id="payFactorAmount" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="payFactorAmountLabel" aria-hidden="true">
   <div class="modal-dialog modal-xl">
     <div class="modal-content">
-      <div class="modal-header bg-success text-white">
+      <div class="modal-header bg-success text-white py-2">
           <button type="button" class="btn-close bg-danger" data-dismiss="modal" aria-label="Close"></button>
           <h5 class="modal-title fs-5" id="payFactorAmountLabel"> دریافت مبلغ فاکتور </h5>
       </div>
@@ -1629,7 +1607,7 @@
                     </div>
                     <div class="row">
                         <div class="col-lg-12">
-                        <table class="table table-striped table-bordered bg-white">
+                        <table class="table table-striped table-bordered bg-white table-sm">
                             <thead>
                                 <tr>
                                     <th>ردیف</th>
@@ -1675,7 +1653,7 @@
                 </fieldset>
             </div>
             <div class="col-lg-10 col-md-10 col-sm-10">
-                <table class="table table-striped table-bordered bg-white">
+                <table class="table table-striped table-bordered bg-white table-sm">
                             <thead>
                                 <tr>
                                     <th>ردیف</th>
@@ -1805,7 +1783,7 @@
 
             <div class="row">
                 <div class="col-lg-12 p-3">
-                    <table class="table table-striped table-bordered bg-white">
+                    <table class="table table-striped table-bordered bg-white table-sm">
                         <thead>
                             <tr>
                                 <th>ردیف</th>
@@ -1860,7 +1838,7 @@
     <div class="modal fade dragAbleModal" id="naqdCashModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="naqdCashModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-        <div class="modal-header bg-success text-white">
+        <div class="modal-header bg-success text-white py-2">
             <button type="button" class="btn-close bg-danger" data-dismiss="modal" aria-label="Close"></button>
             <h5 class="modal-title fs-5" id="naqdCashModalLabel"> دریافت وجه نقد  </h5>
         </div>
@@ -1929,7 +1907,7 @@
     <div class="modal fade dragAbleModal" id="checkModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="checkModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-        <div class="modal-header bg-success text-white">
+        <div class="modal-header bg-success text-white py-2">
             <button type="button" class="btn-close bg-danger" data-dismiss="modal" aria-label="Close"></button>
             <h5 class="modal-title fs-5" id="checkModalLabel"> اطلاعات چک  </h5>
         </div> 
@@ -2094,7 +2072,7 @@
  <div class="modal fade dragAbleModal" id="havalaModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="havalaModalLabel" aria-hidden="true">
      <div class="modal-dialog">
         <div class="modal-content">
-        <div class="modal-header bg-success text-white">
+        <div class="modal-header bg-success text-white py-2">
             <button type="button" class="btn-close bg-danger" data-dismiss="modal" aria-label="Close"></button>
             <h5 class="modal-title fs-5" id="havalaModalLabel"> اطلاعات حواله   </h5>
         </div> 
@@ -2172,7 +2150,7 @@
  <div class="modal fade dragAbleModal" id="dispensedCheckList" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="dispensedCheckListLabel" aria-hidden="true">
      <div class="modal-dialog modal-lg">
         <div class="modal-content">
-        <div class="modal-header bg-success text-white">
+        <div class="modal-header bg-success text-white py-2">
             <button type="button" class="btn-close bg-danger" data-dismiss="modal" aria-label="Close"></button>
             <h5 class="modal-title fs-5" id="dispensedCheckListLabel"> لیست چک ها ی خرچ شده   </h5>
         </div> 
@@ -2199,7 +2177,7 @@
                 </div>
             </div>
             <div class="row">
-                  <table class="table table-striped table-bordered bg-white">
+                  <table class="table table-striped table-bordered bg-white table-sm">
                         <thead>
                             <tr>
                                 <th>ردیف</th>
@@ -2255,7 +2233,7 @@
     <div class="modal fade dragAbleModal" id="discountModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="discountModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-        <div class="modal-header bg-success text-white">
+        <div class="modal-header bg-success text-white py-2">
             <button type="button" class="btn-close bg-danger" data-dismiss="modal" aria-label="Close"></button>
             <h5 class="modal-title fs-5" id="discountModalLabel"> تخفیف  </h5>
         </div>
@@ -2318,13 +2296,13 @@
      </div>
     </div>
 </div>
-                                    </div>
+ </div>
 <!-- exported factor list modal -->
 <div class='modal fade dragAbleModal' id='kalaDescription' tabindex='-1' role='dialog' aria-labelledby='exampleModalCenterTitle' aria-hidden='true'>
     <div class='modal-dialog modal-dialog-centered modal-fullscreen' >
         <div class='modal-content'>
-            <div class='modal-header bg-danger'>
-                <button type='button' class='close bg-danger' data-bs-dismiss='modal' aria-label='Close'>
+            <div class='modal-header bg-danger py-2'>
+                <button type='button' class='close bg-danger' data-dismiss='modal' aria-label='Close'>
                     <span aria-hidden='true'>&times;</span>
                 </button>
                 <h6 class='modal-title text-white' id='exampleModalLongTitle'>لیست فاکتورهای صادر شده </h6>
@@ -2364,7 +2342,7 @@
 
         <!-- Modal  -->
 <div class="modal fade dragAbleModal" id="editOrderItem" data-backdrop="static" data-keyboard="false" tabindex="-1">
-    <div class="modal-dialog modal-lg">
+    <div class="modal-dialog modal-lg py-2">
         <div class="modal-content">
             <div class="modal-header text-white" style="background-color:#045630;">
                 <button type="button" class="btn-close bg-danger" data-dismiss="modal" aria-label="Close"></button>
@@ -2420,7 +2398,7 @@
 <div class="modal fade dragAbleModal" id="addOrderItem" data-backdrop="static" data-keyboard="false" tabindex="-1">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
-            <div class="modal-header text-white" style="background-color:#045630;">
+            <div class="modal-header text-white py-2" style="background-color:#045630;">
                 <button type="button" class="btn-close bg-danger" data-dismiss="modal" aria-label="Close"></button>
                 <h5 class="modal-title" id="updatingOrderSalesLabel"> افزودن به سفارش </h5>
             </div>

@@ -99,6 +99,7 @@ Route::post('/cartView',[Carts::class,'cartView'])->middleware('checkUser');
 Route::post('/factorView',[Carts::class,'factorView'])->middleware('checkUser');
 Route::get('/allGroups',[Group::class,'mainGroups'])->middleware('checkUser');
 Route::get('/listKala',[Kala::class,'index'])->middleware('checkAdmin');
+
 Route::get('/listKalaFromPart/{id}/partPic/{picId}',[Kala::class,'listKalaFromPart'])->middleware('checkUser');
 Route::get('/listKala/groupId/{id}',[Kala::class,'listSubKala'])->middleware('checkUser');
 Route::get('/subGroups',[SubGroup::class,'subGroups'])->middleware('checkAdmin');
@@ -180,7 +181,7 @@ Route::get('/getAllKalas',[Kala::class,'getAllKalas'])->middleware('checkAdmin')
 Route::get('/addKalaToList',[Kala::class,'addKalaToList'])->middleware('checkAdmin');
 Route::post('/addStockToList',[Kala::class,'addStockToList'])->middleware('checkAdmin');
 Route::get('/addOrDeleteKalaFromSubGroup',[Kala::class,'addOrDeleteKalaFromSubGroup'])->middleware('checkAdmin');
-Route::get('/changePictures',[Kala::class,'changePictures'])->middleware('checkAdmin');
+
 Route::get('/getKalaWithPic/{id}',[Kala::class,'getKalaWithPic'])->middleware('checkAdmin');
 Route::get('/changePriceKala',[Kala::class,'changePriceKala'])->middleware('checkAdmin');
 Route::get('/getStocks',[Kala::class,'getStocks'])->middleware('checkAdmin');
@@ -220,8 +221,7 @@ Route::get('/listCustomers',[Admin::class,'listCustomers'])->middleware('checkAd
 Route::post('/editCustomer',[Admin::class,'editCustomer'])->middleware('checkAdmin');
 Route::get('/afterEditCustomer',[Admin::class,'afterEditCustomer'])->middleware('checkAdmin');
 Route::get('/searchPreBuyAbleKalas',[Kala::class,'searchPreBuyAbleKalas'])->middleware('checkAdmin');
-// routes for haqiqi customers
-Route::get('/customerList', [CustomerController::class, 'showHaqiqiCustomer'])->middleware('checkAdmin');
+
 Route::get('/customerAdd/{id}', [CustomerController::class, 'haqiqiCustomerAdd'])->middleware('checkUser');
 Route::get('/haqiqiCustomerAdmin/{id}', [CustomerController::class, 'haqiqiCustomerAdmin'])->middleware('checkUser');
 Route::post('/storeHaqiqiCustomer', [CustomerController::class, 'storeHaqiqiCustomer'])->middleware('checkUser');
@@ -236,7 +236,7 @@ Route::get('/policy', [Home::class, 'policy'])->middleware('checkUser');
 Route::get('/contactUs', [Home::class, 'contactUs'])->middleware('checkUser');
 Route::get('/privacy', [Home::class, 'privacy'])->middleware('checkUser');
 Route::get('/addRequestedProduct', [Kala::class, 'addRequestedProduct'])->middleware('checkUser');
-Route::get('/requestedProducts', [Kala::class, 'requestedProducts'])->middleware('checkAdmin');
+
 Route::get('/displayRequestedKala', [Kala::class, 'displayRequestedKala'])->middleware('checkAdmin');
 Route::get('/respondKalaRequest', [Kala::class, 'respondKalaRequest'])->middleware('checkAdmin');
 Route::get('/cancelRequestedProduct', [Kala::class, 'cancelRequestedProduct'])->middleware('checkUser');
@@ -274,7 +274,7 @@ Route::get("/loginCrm",[Admin::class,'loginCrm2']);
 Route::get("/getTenLastSales",[Kala::class,'getTenLastSales'])->middleware('checkAdmin');
 Route::get("/customerDashboard",[CustomerController::class,'customerDashboard'])->middleware('checkAdmin');
 Route::get("/getFactorDetail",[CustomerController::class,'getFactorDetail'])->middleware('checkAdmin');
-Route::get("/alarmedKalas",[Kala::class,'alarmedKalas'])->middleware('checkAdmin');
+
 Route::get("/getAdminInfo",[Admin::class,'getAdminInfo'])->middleware('checkAdmin');
 Route::get('/constact',[ContactUs::class,'index'])->middleware('checkUser');
 Route::get('/downloadApk',[Admin::class,'downloadApk']);
@@ -297,7 +297,6 @@ Route::get('/planetSave', function() {
     return view('game.planetDefense.planet');
   });
 
-Route::get("/gamerList",[SaveEarth::class,"gamerList"])->middleware('checkAdmin');
 Route::get('/addGameScore',[SaveEarth::class,'addGameScore'])->middleware('checkUser');
 Route::post('/addGamePrize',[Admin::class,'addGamePrize'])->middleware('checkAdmin');
 Route::get('/emptyGame',[Admin::class,'emptyGame'])->middleware('checkAdmin');
@@ -312,6 +311,7 @@ Route::post("/tasviyeahLottery",[Lottery::class,"tasviyeahLottery"])->middleware
 Route::get("/setFactorSessions",[Shipping::class,"setFactorSessions"])->middleware('checkUser');
 
 Route::get('/strayMaster',[SaveEarth::class,'strayMaster'])->middleware('checkUser');
+Route::get('/towerGame',[SaveEarth::class,'towerGame'])->middleware('checkUser');
 
 
 Route::get("/salesOrder",[SalesOrder::class,"salesOrder"])->middleware('checkAdmin');

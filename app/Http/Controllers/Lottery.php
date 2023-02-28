@@ -133,7 +133,45 @@ return redirect('/baseBonusSettings');
         join (SELECT SnPeopel, STRING_AGG(PhoneStr, '-') AS PhoneStr
 		FROM Shop.dbo.PhoneDetail
 		GROUP BY SnPeopel)e on Peopels.PSN=e.SnPeopel");
-        return view('admin.lotteryResult',['lotteryTryResult'=>$lotteryTryResult]);
+        // گیمر لیست کیوری
+     $players=DB::select("SELECT * FROM (
+        SELECT Row,Name,posId,PosName FROM (
+        SELECT ROW_NUMBER() 
+                        OVER (ORDER BY id)  AS Row,id,PosName,
+          posId
+        FROM NewStarfood.dbo.star_game_history
+        
+        unpivot
+        (
+          posId
+          for PosName IN (firstPosId,secondPosId,thirdPosId,fourthPosId,fifthPosId,sixthPosId,seventhPosId,eightPosId,ninthPosId,teenthPosId)
+        ) unpiv
+        
+        )a 
+        
+        JOIN Shop.dbo.Peopels ON a.posId=PSN
+        
+        WHERE a.id=(SELECT MAX(id) AS lastId FROM NewStarfood.dbo.star_game_history)
+        )b JOIN 
+        (
+        SELECT * FROM(
+        SELECT Row,PrizeName,prize FROM (
+        SELECT ROW_NUMBER() OVER (ORDER BY id)  AS Row,id,PrizeName,
+          prize
+        FROM NewStarfood.dbo.star_game_history
+        
+        unpivot
+        (
+          prize
+          for PrizeName in (firstPrize,secondPrize,thirdPrize,fourthPrize,fifthPrize,sixthPrize,seventhPrize,eightthPrize,ninthPrize,teenthPrize)
+        ) unpiv
+        
+        
+        )a WHERE a.id=(SELECT MAX(id) AS lastId FROM NewStarfood.dbo.star_game_history)
+        )c )d ON b.Row=d.Row");
+
+
+        return view('admin.lotteryResult',['lotteryTryResult'=>$lotteryTryResult, 'players'=>$players]);
     }
     public function tasviyeahLottery(Request $request)
     {

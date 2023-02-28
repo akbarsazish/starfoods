@@ -1,24 +1,35 @@
 @extends('admin.layout')
 @section('content')
-    <section class="main-cart container px-0">
-        <div class="o-page__content" style=" width: 80%; margin:0 auto; margin-top: 65px; padding:0">
-            <div class="o-headline" style="padding: 0; margin-bottom: 10px; margin-top: 0">
-                <div id="main-cart p-1" class="p-1">
-                    <span class="c-checkout__tab--active">{{ $title }}</span>
+<div class="container-fluid containerDiv">
+    <div class="row">
+            <div class="col-lg-2 col-md-2 col-sm-3 sideBar">
+                <fieldset class="border rounded mt-5 sidefieldSet">
+                    <legend  class="float-none w-auto legendLabel mb-0"> سلایدرها  </legend>
+                    <!-- <div class="form-check">
+                        <input class="form-check-input p-2 float-start" type="radio" name="settings" id="elseSettingsRadio">
+                        <label class="form-check-label me-4" for="assesPast">  سطح دسترسی  </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input p-2 float-start" type="radio" name="settings" id="settingAndTargetRadio">
+                        <label class="form-check-label me-4" for="assesPast"> تارگت ها و امتیازات </label>
+                    </div> -->
+                    
+                </fieldset>
                 </div>
-            </div>
-            <div class="c-checkout" style="padding-right:0; border-radius:10px 10px 2px 2px; padding:0">
-                <div class="container" style="padding-top:12px;">
+            <div class="col-sm-10 col-md-10 col-sm-12 contentDiv">
+                <div class="row contentHeader">
+                    <div class="col-lg-12 text-end mt-1">
+                        <button form="sliderEditForm" type="submit" @if(hasPermission(Session::get( 'adminId'),'homePage' ) < 1 ) disabled @endif class="btn btn-success btn-sm text-warning" id="sliderEditSaveBtn">ذخیره <i class="fa fa-save fa-lg" aria-hidden="true"></i></button>
+                    </div>
+                </div>
+                <div class="row mainContent">
                     @foreach ($parts as $part)
-                        <form class="p-0" action="{{ url('/doEditGroupPart') }}" method="POST" enctype="multipart/form-data" class='form'>
+                        <form class="p-0" action="{{ url('/doEditGroupPart') }}" method="POST" enctype="multipart/form-data" class='form' id="sliderEditForm">
                             @csrf
                             @if($picture[0]->partType==4)
-                                <label class="form-label">نمایش</label>
-                                <input type="checkbox" name="activeOrNot" @if ($part->activeOrNot==1)checked @else @endif>
+                                <label class="form-label fs-6 mt-1">نمایش</label>
+                                <input class="float-start" type="checkbox" style="margin:10px;" name="activeOrNot" @if ($part->activeOrNot==1)checked @else @endif>
                             @endif
-                            <div class="d-flex flex-row-reverse">
-                                <button type="submit" @if(hasPermission(Session::get( 'adminId'),'homePage' ) < 1 ) disabled @endif class="btn btn-success btn-sm text-warning" style="foloat:left;">ذخیره <i class="fa fa-save fa-lg" aria-hidden="true"></i></button>
-                            </div>
                             <div class="row d-none">
                                 <div class='modal-body'>
                                     <div class='' style='padding-right:0;'>
@@ -45,6 +56,7 @@
                                     </div>
                                 </div>
                             </div>
+                            
                             <div class="row p-0">
                                 <div class="col-sm-12" style="padding: 1%">
                                     <div class="container">
@@ -133,11 +145,14 @@
                             </div>
                         </form>
                     @endforeach
+
                 </div>
+                <div class="row contentFooter"> </div>
             </div>
-        </div>
-    </section>
-    
+    </div>
+</div>
+
+
      <script>    
         var mslider = {
         loop: !0,
@@ -188,6 +203,10 @@
     }
  
     var swiper = new Swiper('#pslider', pslider);
+
+    $("#sliderEditSaveBtn").on("click", ()=>{
+       $("#sliderEditForm").submit();
+    })
     
 </script>
 @endsection
