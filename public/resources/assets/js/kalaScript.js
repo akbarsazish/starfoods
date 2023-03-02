@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    var baseUrl = "https://starfoods.ir";
+    var baseUrl = "http://192.168.10.26:8080";
     $('#listKala tr').on('click', function () {
         $(this).find('input:radio').prop('checked', true);
         let inp = $(this).find('input:radio:checked');
@@ -27,6 +27,7 @@ $(document).ready(function () {
         $("#kalaIdSameKala").val(kalaId);
         $('#mainPicEdit').attr('src', baseUrl + '/resources/assets/images/kala/' + kalaId + '_1.jpg');
         $("#kalaIdChangePic").val(kalaId);
+
 
         $.ajax({
             method: "get",
@@ -57,7 +58,6 @@ $(document).ready(function () {
                 $("#descriptionKala").text(kala.descProduct);
                 $("#minSaleValue").text(kala.minSale + " " + kala.secondUnit + " " + " تعیین شده است ");
                 $("#maxSaleValue").text(kala.maxSale + " " + kala.secondUnit + " " + " تعیین شده است ");
-
 
                 $("#maingroupTableBody").empty();
                 maingroupList.forEach((element, index) => {
@@ -179,7 +179,6 @@ $(document).ready(function () {
                             }
                         });
                     }));
-
 
 
 
@@ -416,6 +415,7 @@ $(document).ready(function () {
                         $("#completDescriptionbtn").css("display", "none");
                         $("#addToListSubmit").css("display", "none");
                         $("#submitChangePic").css("display", "none");
+                        $("#displayTakhisAnbarTables").css("display", "grid");
                     } else {
                         $("#stockSubmit").css("display", "none");
                         $("#kalaRestictionbtn").css("display", "none");
@@ -666,6 +666,7 @@ $(document).ready(function () {
             $("#addAndDelete").css("display", "flex");
             $("#addedList").css("display", "flex");
             $("#addToListSubmit").css("display", "block");
+            $("#displaySameKalaTables").css("display", "grid");
 
             $("#submitChangePic").prop('disabled', false);
             $("#stockSubmit").css("display", "none");

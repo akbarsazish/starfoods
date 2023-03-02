@@ -127,14 +127,14 @@
                     <div class="row p-0">
                         <div class="col-sm-5">
                             <table class="table table-bordered table  table-sm ">
-                                <thead>
+                                <thead class="tableHeader">
                                     <tr>
                                         <th>ردیف</th>
                                         <th>گروه اصلی </th>
                                         <th><input type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
                                     </tr>
                                 </thead>
-                                <tbody  id="groupPart" style="height: 360px !important;"></tbody>
+                                <tbody class="tableBody" id="groupPart" style="height: 300px !important;"></tbody>
                             </table>
                         </div>
 
@@ -148,7 +148,7 @@
                         </div>
 
                         <div class="col-sm-5">  
-                            <table class="table table-bordered table  table-sm "'>
+                            <table class="table table-bordered table  table-sm">
                                 <thead>
                                     <tr>
                                         <th>ردیف</th>
@@ -156,7 +156,7 @@
                                         <th><input type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
                                     </tr>
                                 </thead>
-                                <tbody  id="addedGroupPartAdd" style="height: 360px !important;"></tbody>
+                                <tbody  id="addedGroupPartAdd" style="height: 300px !important;"></tbody>
                             </table> 
                      </div> 
                     `;
@@ -184,7 +184,7 @@
                     <input type="search" class='col-sm-3 form-control form-control-sm mx-3' id="searchKala" name="search_mainPart" placeholder="جستجو"/>
                 </div>
                 <div class="col-sm-5" >
-                    <table class="table table-bordered table  table-sm " id="kalaTableRight"'>
+                    <table class="table table-bordered table  table-sm" id="kalaTableRight">
                         <thead class="tableHeader">
                             <tr>
                                 <th>ردیف</th>
@@ -241,7 +241,7 @@
                     <input type="search" class='col-sm-3 form-control form-control-sm mx-2' id="searchKala" name="search_mainPart" placeholder="جستجو"/>
                 </div>
                 <div class="col-sm-5" >
-                        <table class="table table-bordered table-sm" id="kalaTableRight"'>
+                        <table class="table table-bordered table-sm" id="kalaTableRight">
                             <thead class="tableHeader">
                                 <tr>
                                     <th>ردیف</th>
@@ -262,7 +262,7 @@
                         </a>
                 </div>
                 <div class="col-sm-5">
-                        <table id="tblLocations" class="table table-bordered table  table-sm "'>
+                        <table id="tblLocations" class="table table-bordered table  table-sm ">
                             <thead class="tableHeader">
                                 <tr>
                                     <th> ردیف </th>
@@ -328,12 +328,12 @@
                 <div class="col-sm-5">
                     <div class='modal-body'>
                         <div class='c-checkout' style='padding-right:0;'>
-                            <table class="table table-bordered table  table-sm "'>
+                            <table class="table table-bordered table  table-sm">
                                 <thead class="tableHeader">
                                     <tr>
                                         <th>ردیف</th>
                                         <th>اسم </th>
-                                        <th><input type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
+                                        <th><input type="checkbox" name=""  class="selectAllFromTop form-check-input"></th>
                                     </tr>
                                 </thead>
                                 <tbody class="tableBody" style="height: 300px !important;" id="kalaList">
@@ -359,12 +359,12 @@
                 <div class="col-sm-5">
                     <div class='modal-body'>
                         <div class='c-checkout' style='padding-right:0;'>
-                            <table class="table table-bordered table  table-sm "'>
+                            <table class="table table-bordered table  table-sm">
                                 <thead class="tableHeader">
                                     <tr>
                                         <th>ردیف</th>
                                         <th>گروه اصلی </th>
-                                        <th><input type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
+                                        <th><input type="checkbox" name=""  class="selectAllFromTop form-check-input"></th>
                                     </tr>
                                 </thead>
                                 <tbody class="tableBody" style="height: 300px !important;" id="addedShegeftAdd">
@@ -378,7 +378,7 @@
             var brands = `
             <div class="row p-0" >
                 <div class="col-sm-12" id="addTakhsisKala">
-                        <div class="takhsisContainerDisplay row rounded border m-1" id="takhsisContainer1" >
+                        <div class="takhsisContainerDisplay row rounded border m-1" id="takhsisContainer1">
                             <div class="col-sm-2 d-flex align-items-stretch align-items-center">
                                 <div class="form-group d-flex text-nowrap align-items-center justify-content-center">
                                     <input class="form-control d-flex form-check-input align-items-end mx-2" type="checkbox" name="showAll" id="activeAllSelection">
@@ -401,7 +401,7 @@
                                             <tr>
                                                 <th>ردیف</th>
                                                 <th>اسم  </th>
-                                                <th><input type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
+                                                <th><input type="checkbox" name=""  class="selectAllFromTop form-check-input"></th>
                                             </tr>
                                         </thead>
                                         <tbody class="tableBody" style="height: 300px !important;"  id="kalaListBrand1"> </tbody>
@@ -421,12 +421,12 @@
                                     <select class="col-sm-10 form-select form-select-sm" name="cars" id="cars">
                                         <option value="volvo">جستجوی گروهی</option>
                                     </select>
-                                    <table class="table table-bordered table  table-sm "'>
+                                    <table class="table table-bordered table  table-sm">
                                         <thead class="tableHeader">
                                             <tr>
                                                 <th>ردیف</th>
                                                 <th>گروه اصلی </th>
-                                                <th><input type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
+                                                <th><input type="checkbox" name=""  class="selectAllFromTop form-check-input"></th>
                                             </tr>
                                         </thead>
                                         <tbody class="tableBody" style="height: 300px !important;" id="addedKalaOfBrand1">
@@ -478,7 +478,7 @@
                                      <div class="col-sm-5">
                                         <div class='modal-body'>
                                             <div class='c-checkout' style='padding-right:0;'>
-                                                <table class="table table-bordered table  table-sm "'>
+                                                <table class="table table-bordered table  table-sm ">
                                                     <thead tableHeader>
                                                         <tr>
                                                             <th>ردیف</th>
@@ -509,12 +509,12 @@
                                     <div class="col-sm-5">
                                         <div class='modal-body'>
                                             <div class='c-checkout' style='padding-right:0;'>
-                                                <table class="table table-bordered table  table-sm "'>
+                                                <table class="table table-bordered table  table-sm ">
                                                     <thead class="tableHeader">
                                                         <tr>
                                                             <th>ردیف</th>
                                                             <th>گروه اصلی </th>
-                                                            <th><input type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
+                                                            <th><input type="checkbox" name=""  class="selectAllFromTop form-check-input"></th>
                                                         </tr>
                                                     </thead>
                                                     <tbody class="tableBody" style="height: 288px !important;" id="onePicAddedKalaPart1">
@@ -579,7 +579,7 @@
                                                 <tr>
                                                     <th>ردیف</th>
                                                     <th>اسم </th>
-                                                    <th><input type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
+                                                    <th><input type="checkbox" name=""  class="selectAllFromTop form-check-input"></th>
                                                 </tr>
                                             </thead>
                                             <tbody class="tableBody" style="height:300px !important;" id="twoPicKalaPart1"> </tbody>
@@ -693,7 +693,7 @@
                         </div>
                     </div>
                 </div>`;
-                
+
     var threePic = `<div class="container">
                         <div class='row d-flex justify-content-center m-auto p-1'>
                             <div class='col-lg-2 col-md-3 col-sm-4 p-1 mx-2 align-items-center c-checkout' style='height:15vh !important;'>
@@ -1081,14 +1081,14 @@
 
                                         <div class="col-sm-5">
                                              <table class="table table-bordered table  table-sm ">
-                                                <thead>
+                                                <thead class="tableHeader">
                                                     <tr>
                                                         <th>ردیف</th>
                                                         <th>گروه اصلی </th>
                                                         <th><input type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
                                                     </tr>
                                                 </thead>
-                                                <tbody style="height:300px !important;" id="fourPicAddedKalaPart2">
+                                                <tbody class="tableBody" style="height:300px !important;" id="fourPicAddedKalaPart2">
                                                 
                                                 </tbody>
                                             </table>
@@ -2326,16 +2326,16 @@
                         for (var i = 0; i <= arrayed_result.length - 1; i++) {
 
                             $('#fourPicKalaPart1').append(`
-                <tr onclick="checkCheckBox(this,event)">
-                    <td>` + arrayed_result[i].GoodSn + `</td>
-                    <td>` + arrayed_result[i].GoodName + `</td>
-                    <td>
-                    <input class="form-check-input" name="fourPicAllKalaListIds1[]" type="checkbox" value="` +
-                                arrayed_result[i].GoodSn + `_` + arrayed_result[i]
-                                .GoodName + `" id="kalaId">
-                    </td>
-                </tr>
-                `);
+                                    <tr onclick="checkCheckBox(this,event)">
+                                        <td>` + arrayed_result[i].GoodSn + `</td>
+                                        <td>` + arrayed_result[i].GoodName + `</td>
+                                        <td>
+                                        <input class="form-check-input" name="fourPicAllKalaListIds1[]" type="checkbox" value="` +
+                                                    arrayed_result[i].GoodSn + `_` + arrayed_result[i]
+                                                    .GoodName + `" id="kalaId">
+                                        </td>
+                                    </tr>
+                             `);
 
                         }
                     },
@@ -2381,16 +2381,16 @@
                         for (var i = 0; i <= arrayed_result.length - 1; i++) {
 
                             $('#fourPicKalaPart2').append(`
-                <tr onclick="checkCheckBox(this,event)">
-                    <td>` + arrayed_result[i].GoodSn + `</td>
-                    <td>` + arrayed_result[i].GoodName + `</td>
-                    <td>
-                    <input class="form-check-input" name="fourPicAllKalaListIds2[]" type="checkbox" value="` +
-                                arrayed_result[i].GoodSn + `_` + arrayed_result[i]
-                                .GoodName + `" id="kalaId">
-                    </td>
-                </tr>
-                `);
+                                <tr onclick="checkCheckBox(this,event)">
+                                    <td>` + arrayed_result[i].GoodSn + `</td>
+                                    <td>` + arrayed_result[i].GoodName + `</td>
+                                    <td>
+                                    <input class="form-check-input" name="fourPicAllKalaListIds2[]" type="checkbox" value="` +
+                                                arrayed_result[i].GoodSn + `_` + arrayed_result[i]
+                                                .GoodName + `" id="kalaId">
+                                    </td>
+                                </tr>
+                              `);
 
                         }
                     },
@@ -2408,8 +2408,8 @@
                         for (var i = 0; i <= arrayed_result.length - 1; i++) {
 
                             $('#searchMainGroup4Pic2').append(`
-                <option value=` + arrayed_result[i].id + `>` + arrayed_result[i].title + `</option>
-                `);
+                                      <option value=` + arrayed_result[i].id + `>` + arrayed_result[i].title + `</option>
+                                `);
 
                         }
                     },
@@ -2435,16 +2435,16 @@
                         for (var i = 0; i <= arrayed_result.length - 1; i++) {
 
                             $('#fourPicKalaPart3').append(`
-                <tr onclick="checkCheckBox(this,event)">
-                    <td>` + arrayed_result[i].GoodSn + `</td>
-                    <td>` + arrayed_result[i].GoodName + `</td>
-                    <td>
-                    <input class="form-check-input" name="fourPicAllKalaListIds3[]" type="checkbox" value="` +
-                                arrayed_result[i].GoodSn + `_` + arrayed_result[i]
-                                .GoodName + `" id="kalaId">
-                    </td>
-                </tr>
-                `);
+                                    <tr onclick="checkCheckBox(this,event)">
+                                        <td>` + arrayed_result[i].GoodSn + `</td>
+                                        <td>` + arrayed_result[i].GoodName + `</td>
+                                        <td>
+                                        <input class="form-check-input" name="fourPicAllKalaListIds3[]" type="checkbox" value="` +
+                                                    arrayed_result[i].GoodSn + `_` + arrayed_result[i]
+                                                    .GoodName + `" id="kalaId">
+                                        </td>
+                                    </tr>
+                                 `);
 
                         }
                     },
@@ -4568,8 +4568,8 @@ $(document).on('change', '#searchMainGroup2Pic2', (function() {
                 });
             }));
 
-                        //جستجوی کالا برای تصویر 5 4 تصویره
-                        $(document).on('change', '#searchMainGroup5Pic4', (function() {
+        //جستجوی کالا برای تصویر 5 4 تصویره
+        $(document).on('change', '#searchMainGroup5Pic4', (function() {
             alert($(this).val());
             $.ajax({
                     method: 'get',
@@ -4596,7 +4596,6 @@ $(document).on('change', '#searchMainGroup2Pic2', (function() {
                         $('#searchSubGroup5Pic4').empty();
                         $('#searchSubGroup5Pic4').append(`<option value="0">همه گروه ها </option>`);
                         }
-
                         $('#searchSubGroup5Pic4').empty();
                             for (let i = 0; i < arrayed_result.subGroups.length; i++) {
                             $('#searchSubGroup5Pic4').append(` <option value=` + arrayed_result.subGroups[i].id + `>` + arrayed_result.subGroups[i].title + `</option>`);

@@ -1,84 +1,29 @@
 @extends('admin.layout')
 @section('content')
-<style>
-    *, html, body{
-        margin: 0;
-        padding: 0;
-    }
-    
-    button:hover{ 
-        /* background: linear-gradient(#9ed5b6, #198754); */
-        background: linear-gradient(#d3fde4, #198754);
-        color: #f1e253 !important;
-        font-size: 18px; 
-        font-weight: bold;
-        border-color: #bb993a !important;
-        border-width: 2px;
-    }
-    
-    #addGroupData i:hover,
-    #removeGroupData i:hover
-    { 
-        color: #f1e253 !important;
-        font-size: 40px; 
-        font-weight: bold;
-        border-color: #bb993a !important;
-        border-width: 2px;
-    }
 
-    button.btn-info {
-        padding: 0;
-        width: 122px;
-        height: 34px;
-    }
-
-    button.btn-info{
-        background-color: #198754;
-        color: #bb993a;
-        border-color: #000;
-    }
-
-    #top, #down{
-        display: inline;
-        padding:0;
-        border:none;
-        background:none
-    }
-    
-    i::before{
-        padding:0;
-    }
-
-    label{
-        font-family:IRANSans;
-        font-size: 0.9rem;
-        line-height: 1;
-        color: rgb(19, 7, 129);
-        font-weight: 300;
-    }
-
-    .checkbox-label{
-        font-weight: bold;
-    }
-    </style>
-    <section class="main-cart container px-0">
-        <div class="o-page__content" style=" width: 80%; margin:0 auto; margin-top: 65px; padding:0">
-            <div class="o-headline" style="padding: 0; margin-bottom: 10px; margin-top: 0">
-                <div id="main-cart" class="p-1">
-                    <span class="c-checkout__tab--active">{{ $title }}</span>
+<div class="container-fluid containerDiv">
+    <div class="row">
+            <div class="col-lg-2 col-md-2 col-sm-3 sideBar">
+                <fieldset class="border rounded mt-5 sidefieldSet">
+                    <legend  class="float-none w-auto legendLabel mb-0"> تنظیمات </legend>
+                    <!-- <div class="form-check">
+                        <input class="form-check-input p-2 float-start" type="radio" name="settings" id="elseSettingsRadio">
+                        <label class="form-check-label me-4" for="assesPast">  سطح دسترسی  </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input p-2 float-start" type="radio" name="settings" id="settingAndTargetRadio">
+                        <label class="form-check-label me-4" for="assesPast"> تارگت ها و امتیازات </label>
+                    </div> -->
+                    
+                </fieldset>
                 </div>
-            </div>
-            <div class="c-checkout" style="border-radius:10px 10px 2px 2px; padding:0">
-                <div class="container p-1">
-                    @foreach ($parts as $part)
-                    <form class="p-1" action="{{ url('/doEditGroupPart') }}" method="POST" class='form' autocomplete="off">
+            <div class="col-sm-10 col-md-10 col-sm-12 contentDiv">
+                <div class="row contentHeader"> </div>
+                <div class="row mainContent">
+                       @foreach ($parts as $part)
+                       <form class="p-1" action="{{ url('/doEditGroupPart') }}" method="POST" class='form' autocomplete="off">
                         @csrf
-                        <div class="d-flex flex-row-reverse">
-                            <button type="submit"  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 ) disabled @endif class="btn btn-info btn-md text-warning" style="foloat:left;">ذخیره <i class="fa-light fa-save fa-lg"></i></button>
-                        </div>
-                        <div class='row m-2 p-0'>
-                            <div class='c-checkout mx-auto rounded pl-0 pt-2 pb-3'>
-                                <div class="row">
+                        <div class="row">
                                     <div class="col-sm-3">
                                         <div class='form-group'>
                                             <label class='form-label'>اسم سطر</label>
@@ -110,31 +55,16 @@
                                             <label class="form-check-label align-items-end" style="font-weight: bold" for="activeOrNot">نمایش</label>
                                         </div>
                                     </div>
+                                    <div class="col-sm-3 text-end">
+                                         <button type="submit"  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 ) disabled @endif class="btn btn-success btn-sm text-warning" style="foloat:left;">ذخیره <i class="fa-light fa-save"></i></button>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
 
-                        <div class="row p-0 m-2 mt-0" style="border: 1px solid #e7e7e7; border-radius:10px 10px 2px 2px;">
-                            <div class="col-sm-12 p-3 py-0">
-                                <div class='modal-body row py-0'>
-                                    <div class="form-group col-sm-4 justify-content-start">
-                                        <label class="form-label pt-2">جستجو</label>
-                                        <input class="form-control form-control-sm" type="text" name="" size="20" id="searchThingGroups">
-                                    </div>
-                                    <div class="" style="width:27%">
-                                    </div>
-                                    <div class="form-group col-sm-4  text-nowrap  justify-content-start">
-                                        <label class="form-label pt-2">جستجوی گروه</label>
-                                        <select class="form-select form-select-sm" id="searchGroup">
-                                            <option value="0">همه گروه ها</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-5">
-                                <div class='modal-body'>
-                                    <div class='c-checkout' style='padding-right:0;'>
-                                        <table class="tableSection table table-bordered table table-hover table-sm table-light" style='td:hover{ cursor:move;}'>
+                                <div class="grid-subgroup">
+                                    <div class="subgroup-item">
+                                         <label class="form-label pt-2">جستجوی  </label>
+                                        <input class="form-control form-control-sm" type="text" name=""  id="searchThingGroups">
+                                        <table class="tableSection table table-bordered table table-hover table-sm" style='td:hover{ cursor:move;}'>
                                             <thead>
                                                 <tr>
                                                     <th>ردیف</th>
@@ -142,8 +72,7 @@
                                                     <th><input type="checkbox" @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 ) disabled @endif  class="selectAllFromTop form-check-input"  ></th>
                                                 </tr>
                                             </thead>
-                                            <tbody style="height: 400px; overflow-y: scroll;display:block;width:100%;"
-                                                id="groupsPart">
+                                            <tbody class="tableBody" style="height: 300px !important" id="groupsPart">
                                                 @foreach ($groups as $group)
                                                     <tr   @if(hasPermission(Session::get( 'adminId'),'homePage' ) > 0 )  onclick="checkCheckBox(this,event)" @endif>
                                                         <td>{{ $loop->index+1 }}</td>
@@ -156,37 +85,33 @@
                                             </tbody>
                                         </table>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-2 d-flex align-items-center">
-                                <div class='modal-body'>
-                                    <div>
-                                        <button id="addGroupData" @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 ) disabled @endif>
-                                            <i class="fa-regular fa-circle-chevron-left fa-3x"></i>
-                                        </button>
-                                        <button id="removeGroupData" @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 ) disabled @endif>
-                                            <i class="fa-regular fa-circle-chevron-right fa-3x"></i>
+                                    <div class="subgroup-item" style="margin-top:88px;">
+                                         <button style="background-color:transparent;" id="addGroupData" @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 ) disabled @endif>
+                                            <i class="fa-regular fa-circle-chevron-left fa-2x"></i>
+                                        </button> <br>
+                                        <button style="background-color:transparent;" id="removeGroupData" @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 ) disabled @endif>
+                                            <i class="fa-regular fa-circle-chevron-right fa-2x"></i>
                                         </button>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-5">
-                                <div class='modal-body'>
-                                    <div class='c-checkout' style='padding-right:0;'>
-                                        <table class="tableSection table table-bordered table table-hover table-sm table-light" style='td:hover{ cursor:move;}'>
+                                    <div class="subgroup-item">
+                                         <label class="form-label pt-2">جستجوی گروه</label>
+                                        <select class="form-select form-select-sm" id="searchGroup">
+                                            <option value="0">همه گروه ها</option>
+                                        </select>
+                                         <table class="tableSection table table-bordered table table-hover table-sm" style='td:hover{ cursor:move;}'>
                                             <thead>
                                                 <tr>
                                                     <th>ردیف</th>
                                                     <th class="position-relative"> گروه اصلی <div style="color:white!important;" class="rounded-circle d-flex position-absolute top-50 justify-content-end w-100 m-0 p-0 px-3">
                                                         
-                                                        <button class='groupPartPriority' type="button" value="down"><i class="fa-solid fa-circle-chevron-down fa-sm" style=''></i></button>
-                                                        <button class='groupPartPriority' type="button" value="up"><i class="fa-solid fa-circle-chevron-up fa-sm" style=''></i></button>
+                                                        <button class='groupPartPriority' style="background-color:transparent; margin-top:-10px;" type="button" value="down"><i class="fa-solid fa-circle-chevron-down fa-sm" style=''></i></button>
+                                                        <button class='groupPartPriority' style="background-color:transparent; margin-top:-10px;" type="button" value="up"><i class="fa-solid fa-circle-chevron-up fa-sm" style=''></i></button>
                                                         
                                                     </th>
                                                     <th><input type="checkbox" @if(hasPermission(Session::get( 'adminId'),'homePage' ) < 1 ) disabled @endif class="selectAllFromTop form-check-input"  ></th>
                                                 </tr>
                                             </thead>
-                                            <tbody style="height: 400px; overflow-y: scroll;display:block;width:100%;" id="addedGroups">
+                                            <tbody class="tableBody" style="height: 300px !important" id="addedGroups">
                                                 @foreach ($addedGroups as $group)
                                                     <tr class="addedTr"  @if(hasPermission(Session::get( 'adminId'),'homePage' ) > 0 ) onClick="checkCheckBox(this,event)" @endif>
                                                         <td>{{ $loop->index+1}}</td>
@@ -200,14 +125,15 @@
                                         </table>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
                         @endforeach
                     </form>
                 </div>
+                <div class="row contentFooter"> </div>
             </div>
-        </div>
-    </section>
+    </div>
+</div>
+
+
     <script>
         window.onload = function() {
             //used for searching groups to add to a part
@@ -303,14 +229,14 @@
                 $('input[name="mainGroupIds[]"]:checked').prop("checked", false);
                 for (let i = 0; i < groupListIds.length; i++) {
                     $('#addedGroups').append(`<tr class="addedTr" onClick="checkCheckBox(this,event)">
-                                                    <td>` + (i+1) + `</td>
-                                                    <td>` + groupListIds[i].split('_')[1] + `</td>
-                                                    <td>
-                                                        <input class="mainGroupId  form-check-input" type="checkBox" name="groupIds[]"
-                                                            value="` + groupListIds[i].split('_')[0] + `"
-                                                            id="flexCheckChecked" checked>
-                                                    </td>
-                                                </tr>`);
+                            <td>` + (i+1) + `</td>
+                            <td>` + groupListIds[i].split('_')[1] + `</td>
+                            <td>
+                                <input class="mainGroupId  form-check-input" type="checkBox" name="groupIds[]"
+                                    value="` + groupListIds[i].split('_')[0] + `"
+                                    id="flexCheckChecked" checked>
+                            </td>
+                        </tr>`);
 
                 }
             });
@@ -338,7 +264,6 @@
                     error: function(data) {
                         alert("not good");
                     }
-
                 });
             }));
         }

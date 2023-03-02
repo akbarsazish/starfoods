@@ -186,7 +186,7 @@
                                                             <td> {{$hohoqiCustomer->codePosti}}</td>
                                                             <td> {{$hohoqiCustomer->address}}</td>
                                                             <td> <i class="fa fa-paper-plane" style="color:#198754"> </td>
-                                                            <td> <a  @if(hasPermission(Session::get( 'adminId'),'homePage' ) >0 ) href="{{url('haqiqiCustomerAdmin', $hohoqiCustomer->customerShopSn)}}" @else href="#" @endif> <i class="fal fa-edit fa-md" style="color:#ffc107"></i> </a> </td>
+                                                            <td> <a @if(hasPermission(Session::get( 'adminId'),'homePage' ) > 0 ) href="{{url('haqiqiCustomerAdmin', $hohoqiCustomer->customerShopSn)}}" @else href="#" @endif> <i class="fal fa-edit" style="color:#ffc107"></i> </a> </td>
                                                             </tr>
                                                         @endforeach
                                                     <?php }?>
@@ -209,8 +209,8 @@
     <div class="modal fade notScroll" id="customerDashboard"data-backdrop="static"  data-keyboard="false" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-scrollable  modal-xl">
             <div class="modal-content">
-                <div class="modal-header bg-success text-white">
-                    <button type="button" class="btn-close btn-danger" style="background-color:red;" data-dismiss="modal" aria-label="Close"></button>
+                <div class="modal-header bg-success text-white py-2">
+                    <button type="button" class="btn-close bg-danger" data-dismiss="modal" aria-label="Close"></button>
                     <h5 class="modal-title" id="exampleModalLabel"> داشبورد </h5>
                 </div>
                 <div class="modal-body">
@@ -222,7 +222,7 @@
                             <form action="https://starfoods.ir/crmLogin" target="_blank"  method="get">
                                 <input type="hidden" id="psn" name="psn" value="" />
                                 <input type="hidden" name="otherName" value="{{Session::get('adminName')}}" />
-                                    <Button class="btn btn-md btn-success buttonHover float-end" type="submit"> ورود جعلی  <i class="fas fa-sign-in fa-lg"> </i> </Button>
+                                    <Button class="btn btn-sm btn-success  float-end" type="submit"> ورود جعلی  <i class="fas fa-sign-in"> </i> </Button>
                             </form>
                         </div>
                     </div>
@@ -230,7 +230,7 @@
                        <div class="col-lg-8 col-md-8 col-sm-8">
                            <div class="row">
                                 <div class="col-lg-3 col-md-4 col-sm-4">
-                                    <div class="input-group input-group-sm mb-3">
+                                    <div class="input-group input-group-sm mb-1">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="inputGroup-sizing-sm"> کد </span>
                                         </div>
@@ -239,7 +239,7 @@
                                 </div>
 
                                 <div class="col-lg-6 col-md-4 col-sm-4">
-                                   <div class="input-group input-group-sm mb-3">
+                                   <div class="input-group input-group-sm mb-1">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="inputGroup-sizing-sm"> نام و نام خانوادگی </span>
                                         </div>
@@ -247,7 +247,7 @@
                                     </div>
                                 </div>
                                 <div class="col-lg-3 col-md-4 col-sm-4">
-                                     <div class="input-group input-group-sm mb-3">
+                                     <div class="input-group input-group-sm mb-1">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="inputGroup-sizing-sm"> تعداد فاکتور </span>
                                         </div>
@@ -258,7 +258,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-lg-6 col-md-4 col-sm-4">
-                                   <div class="input-group input-group-sm mb-3">
+                                   <div class="input-group input-group-sm mb-1">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="inputGroup-sizing-sm">  تلفن ثابت  </span>
                                         </div>
@@ -267,7 +267,7 @@
                                   </div>
                                
                                 <div class="col-lg-6 col-md-4 col-sm-4">
-                                   <div class="input-group input-group-sm mb-3">
+                                   <div class="input-group input-group-sm mb-1">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="inputGroup-sizing-sm">  تلفن همراه   </span>
                                         </div>
@@ -277,7 +277,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-lg-12 col-md-12">
-                                <div class="input-group input-group-sm mb-3">
+                                <div class="input-group input-group-sm mb-1">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="inputGroup-sizing-sm"> آدرس   </span>
                                         </div>
@@ -288,7 +288,7 @@
                         </div>
                         <div class="col-lg-4 col-md-4 col-sm-4">
                             <div class="col-lg-4 col-md-4 col-sm-12">
-                                <div class="mb-3" style="width:350px;">
+                                <div class="mb-1" style="width:350px;">
                                     <label for="exampleFormControlTextarea1" class="form-label fw-bold">یاداشت  </label>
                                     <textarea class="form-control" id="customerProperty" onblur="saveCustomerCommentProperty(this)" rows="4"></textarea>
                                 </div>
@@ -429,14 +429,14 @@
     <div class="modal fade dragableModal" id="viewFactorDetail" tabindex="0" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-xl">
             <div class="modal-content">
-                <div class="modal-header bg-success text-white">
+                <div class="modal-header bg-success text-white py-2">
                     <button type="button" class="btn-close bg-danger" data-dismiss="modal" aria-label="Close"></button>
                     <h5 class="modal-title" id="exampleModalLabel">جزئیات فاکتور</h5>
                 </div>
                 <div class="modal-body" id="readCustomerComment">
                     <div class="container">
-                        <div class="row" style=" border:1px solid #dee2e6; padding:10px">
-                                <h4 style="padding:10px; border-bottom: 1px solid #dee2e6; text-align:center;">فاکتور فروش </h4>
+                        <div class="row" style=" border:1px solid #dee2e6; padding:5px">
+                                <h4 style="padding:5px; border-bottom: 1px solid #dee2e6; text-align:center;">فاکتور فروش </h4>
 							
 							         <div class="factorDetails">
 											<div class="factorDetailsItem"> تاریخ فاکتور : <span id="factorDate"> </span> </div>
@@ -477,8 +477,8 @@
   <div class="modal fade dragableModal" id="personRoute" data-backdrop="static" data--keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
-        <div class="modal-header bg-success text-white">
-            <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close" style="background-color:red;"></button>
+        <div class="modal-header bg-success text-white py-2">
+            <button type="button" class="btn-close bg-danger" data-dismiss="modal" aria-label="Close" style="background-color:red;"></button>
           <h5 class="modal-title" id="staticBackdropLabel"> تعین مسیر اشخاص </h5>
         </div>
         <div class="modal-body">

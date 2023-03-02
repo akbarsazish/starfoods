@@ -9,16 +9,7 @@
         display:none;
     }
 
-.grid-subgroup {
-  display: grid;
-  grid-template-columns: auto auto auto;
 
-}
-.subgroup-item {
-  padding: 5px;
-  font-size: 14px;
-  text-align: center;
-}
 </style>
    <div class="modalBackdrop">
         <div id='unitStuffContainer' class="alert alert-danger" style="max-width: 200px; background-color: #ffffff66; padding: 5px; width: 100%; max-height: 85vh; overflow: auto;">
@@ -34,7 +25,7 @@
                 <fieldset class="border rounded mt-5 sidefieldSet">
                     <legend  class="float-none w-auto legendLabel mb-0"> انتخاب </legend>
                         <div class="form-check">
-                            <input class="form-check-input p-2 float-start" type="radio" name="settings" id="kalaListRadio">
+                            <input class="form-check-input p-2 float-start" type="radio" name="settings" id="kalaListRadio" checked>
                             <label class="form-check-label me-4" for="assesPast"> لیست کالاها  </label>
                         </div>
                         <div class="form-check">
@@ -608,25 +599,25 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header bg-success text-white py-2">
-                <h5 class="modal-title" id="exampleModalLongTitle" style="font-size: 20px; font-weight:bold;"> تغییر قیمت  </h5>
-                    <button type="button" class="btn-close bg-danger" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="btn-close bg-danger" data-dismiss="modal" aria-label="Close"></button>
+                <h5 class="modal-title" id="exampleModalLongTitle"> تغییر قیمت  </h5>
                 </button>
             </div>
-            <div class="modal-body" style="padding:5%; padding-right:0; padding-top:0; margin-right:10px">
+            <div class="modal-body">
                 <form action="{{url('/changePriceKala')}}" method="GET" id="changePriceForm" class="form">
                     <div class="form-group mt-2">
                         <label class="form-label" style="font-size: 14px; font-weight:bold; color:red">قیمت خط خورده (ریال) </label>
-                        <input type="text" required class="form-control" style="color: red;" value="" autocomplete="off" name="firstPrice" id="firstPrice" placeholder="">
+                        <input type="text" required class="form-control form-control-sm" style="color: red;" value="" autocomplete="off" name="firstPrice" id="firstPrice" placeholder="">
                     </div>
                     <div class="form-group">
                         <label class="form-label" style="font-size: 14px; font-weight:bold; color:rgb(25, 0, 255)"> قیمت اصلی (ریال) </label>
-                        <input type="text" required class="form-control"  style="font-weight: bold;" value="" autocomplete="off" name="secondPrice" id="secondPrice" placeholder="">
+                        <input type="text" required class="form-control form-control-sm"  style="font-weight: bold;" value="" autocomplete="off" name="secondPrice" id="secondPrice" placeholder="">
                     </div>
                         <input type="text" name="kalaId" style="display: none" id="kalaId">
                         <span style="display:none" id="moreAlert">قیمت خورده باید بیشتر از قیمت اصلی باشد.</span>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" id="cancelChangePrice" data-dismiss="modal">انصراف <i class="fa-solid fa-xmark "></i></button>
-                        <button type="submit" id="submitChangePrice"  class="btn btn-success">ذخیره <i class="fa fa-save " aria-hidden="true"></i></button>
+                        <button type="button" class="btn btn-sm btn-danger" id="cancelChangePrice" data-dismiss="modal">انصراف <i class="fa-solid fa-xmark "></i></button>
+                        <button type="submit" id="submitChangePrice"  class="btn btn-sm btn-success">ذخیره <i class="fa fa-save " aria-hidden="true"></i></button>
                     </div>
                 </form>
              </div>
@@ -638,9 +629,9 @@
 <div class="modal fade dragAbleModal" id="viewTenSales" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
-                <div class="modal-header bg-success text-white">
-                    <h5 class="modal-title" style="font-size: 20px; font-weight:bold;">ده فروش آخر</h5>
-                       <button type="button" class="btn-close bg-danger" data-bs-dismiss="modal" aria-label="Close"></button>
+                <div class="modal-header bg-success text-white py-2">
+                    <button type="button" class="btn-close bg-danger" data-dismiss="modal" aria-label="Close"></button>
+                    <h5 class="modal-title">ده فروش آخر</h5>
                     </button>
                 </div>
                 <div class="modal-body">
@@ -678,52 +669,48 @@
 <div class="modal fade dragAbleModal" id="editingListKala" data-backdrop="static"  data-bs-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog modal-xl modal-dialog-scrollable">
             <div class="modal-content">
-            <div class="modal-header myModalHeader">
+            <div class="modal-header myModalHeader py-2">
+                <button type="button" class="btn-close bg-danger" data-dismiss="modal" id="closeEditModal" aria-label="Close"></button>
                 <h5 class="modal-title" id="editKalaTitle"> </h5>
-               <span style="display: flex; float:left;"> <button type="button" class="btn-close bg-danger" data-dismiss="modal" id="closeEditModal" aria-label="Close"></button> </span>
             </div>
-            <div class="modal-body">
-              <div class='container'>
-                 <div class="row descForall">
-                                <div class="col-sm-3">
-                                    <div class="form-group">
-                                        <label class="fs-6" for="label">گروه اصلی</label>
-                                        <input type="text" disabled class="form-control" value="" id="original">
-                                    </div>
-                                 </div>
-                                 <div class="col-sm-3">
-                                    <div class="form-group">
-                                        <label class="fs-6" for="label">گروه فرعی</label>
-                                        <input type="email" disabled class="form-control" value="فرعی " id="subsidiary">
-                                    </div>
-                                 </div>
-                                 <div class="col-sm-2"> 
-                                    <div class="form-group ">
-                                            <label class="fs-6 mt-1" for="label" style="display: block;font-siz:20px;color:black;">قیمت اصلی </label>
-                                            <div style="display: inline;"><p style="font-siz:16px;color:black;font-weight:bold;display:inline"> </p></div>
-                                        <span style="color:red" id="mainPrice">ریال</span>
-                                    </div>
+            <div class="modal-body p-0 m-0">
+              <div class='container p-0 m-0'>
+                   <div class="row descForall">
+                        <div class="col-sm-3">
+                                <div class="input-group input-group-sm">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="inputGroup-sizing-sm"> گروه اصلی </span>
                                 </div>
-                                <div class="col-sm-2"> 
-                                    <div class="form-group">
-                                            <label class="fs-6 mt-1" for="label" style="display: block;font-siz:18px;color:black;">قیمت خط خورده</label>
-                                            <div style="display: inline"><p style="font-siz:16px;color:rgb(172, 11, 11);font-weight:bold;display:inline"></p></div>
-                                            <span style="color:red;text-decoration: line-through;" id="overLinePrice">  ریال   </span>
-                                    </div>
+                                    <input type="text" disabled class="form-control form-control-sm" value="" id="original">
                                 </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="input-group input-group-sm">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="inputGroup-sizing-sm"> گروه فرعی </span>
+                                </div>
+                                    <input type="email" disabled class="form-control form-control-sm" value="فرعی " id="subsidiary">
+                                </div>
+                            </div>
+                            <div class="col-sm-3"> 
+                                قیمت اصلی  : <span style="color:red" id="mainPrice">ریال</span>
+                            </div>
+                            <div class="col-sm-3"> 
+                                قیمت خط خورده   : <span style="color:red;text-decoration: line-through;" id="overLinePrice">  ریال   </span> 
+                            </div>
                      </div>
        
-        <div class='card mb-4' style="background-color:#c5c5c5; padding-top:1%; paddding:0;">
-            <div class="container">
-                <ul class="header-list nav nav-tabs" data-tabs="tabs">
-                    <li><a class="active" data-toggle="tab" style="color:black;"  href="#parts">دسته بندی</a></li>
-                    <li><a data-toggle="tab" style="color:black;"  href="#yellow">تنظیمات اختصاصی</a></li>
-                    <li><a data-toggle="tab" style="color:black;"  href="#green"> ویژگی های کالا</a></li>
-                    <li><a data-toggle="tab" style="color:black;"  href="#pictures">تصاویر </a></li>
-                    <li><a data-toggle="tab" style="color:black;"  href="#orange">گردش قیمت</a></li>
-                </ul>
-                <div class="c-checkout tab-content" style="background-color:#f5f5f5; margin:0; margin-bottom:2%; padding:2%; border-radius:10px 10px 2px 2px;">
-                    <div class="tab-pane active" id="parts">
+                 <div class='card mb-4' style="background-color:#63bea2;">
+                  <div class="container">
+                    <ul class="header-list nav nav-tabs" data-tabs="tabs">
+                        <li><a class="active" data-toggle="tab" style="color:black;"  href="#parts">دسته بندی</a></li>
+                        <li><a data-toggle="tab" style="color:black;"  href="#yellow">تنظیمات اختصاصی</a></li>
+                        <li><a data-toggle="tab" style="color:black;"  href="#green"> ویژگی های کالا</a></li>
+                        <li><a data-toggle="tab" style="color:black;"  href="#pictures">تصاویر </a></li>
+                        <li><a data-toggle="tab" style="color:black;"  href="#orange">گردش قیمت</a></li>
+                    </ul>
+                  <div class="c-checkout tab-content" style="background-color:#f5f5f5; margin:0; margin-bottom:1%; padding:1%; border-radius:10px 10px 2px 2px;">
+                     <div class="tab-pane active" id="parts">
                         <div class="c-checkout" style="border-radius:10px 10px 2px 2px;">
                             <div class="container">
                              <form action="{{url('/addOrDeleteKalaFromSubGroup')}}" style="display: inline" method="GET" id="groupSubgoupCategory">
@@ -731,14 +718,13 @@
                                     <input type="text" style="display: none;" name="kalaId" id="kalaIdEdit" value=""/>
                                 <div class="row">
                                     <div class="col-sm-6">
-                                            <div class="well" style="margin-top:2%;">
+                                            <div class="well" style="margin-top:1%;">
                                                 <h6 style="">گروه های اصلی</h6>
                                             </div>
-										<!---
-                                            <div class="alert">
+									
+                                            <!-- <div class="alert">
                                                 <input type="text" class="form-control" style="margin-top:10px;" name="search_mainPart" placeholder="جستجو">
-                                            </div>
-!--->
+                                            </div> -->
                                             <table class="table table-bordered table table-sm ">
                                                 <thead class="tableHeader bg-success">
                                                     <tr>
@@ -753,7 +739,7 @@
                                             </table>
                                     </div>
                                     <div class="col-sm-6">
-                                        <div class="well" style="margin-top:2%;">
+                                        <div class="well" style="margin-top:1%;">
                                             <div class="well">
                                                 <h6 style="">گروه های فرعی</h6>
                                             </div>
@@ -781,16 +767,10 @@
                     </div>
                     <div class="c-checkout tab-pane" id="orange" style="border-radius:10px 10px 2px 2px;">
                         <span class="row" style="padding: 1%">
-
                             <div class="col-sm-12">
-                                <div class="well" style="margin-top:1%;">
-                                    <h6 style="">گردش قیمت </h6>
-                                </div>
-                                <div class="alert">
-                                    <input type="text" class="form-control" style="width:40%" name="search_mainPart" placeholder="جستجو">
-                                </div>
-                                <table class="table table-bordered table-sm  text-center">
-                                    <thead class="tableHeader bg-success">
+                                    <input type="text" class="form-control form-control-sm" style="width:40%" name="search_mainPart" placeholder="جستجو">
+                                   <table class="table table-bordered table-sm  text-center">
+                                     <thead class="tableHeader bg-success">
                                         <tr>
                                             <th>ردیف</th>
                                             <th>اسم کاربر </th>
@@ -803,40 +783,35 @@
                                             <th>انتخاب</th>
                                         </tr>
                                     </thead>
-                                    <tbody class="tableBody" id="priceCycle">
-                                    </tbody>
+                                    <tbody class="tableBody" id="priceCycle"> </tbody>
                                 </table>
-                        </div>
-
+                            </div>
                         </span>
                     </div>
 
                     <div class="c-checkout tab-pane" id="pictures" style="border-radius:10px 10px 2px 2px;">
-                        <div class="container" style="padding:5px 10px 10px 10px">
-                            <span>
-
-                            </span>
+                        <div class="container">
                             <div class="row">
                                 <div class='modal-body'style="display:flex;  justify-content: flex-end; float:right;">
-                                    <div id='pslider' class=' swiper-container swiper-container-horizontal swiper-container-rtl' style="padding-left:5%">
+                                    <div id='pslider' class=' swiper-container swiper-container-horizontal swiper-container-rtl'>
                                         <div class=' product-box swiper-wrapper'>
                                            <iframe name="votar" style="display:none;"></iframe>
                                             <form action="{{ url('/addpicture') }}" target="votar" id="kalaPicForm" enctype="multipart/form-data" method="POST">
                                                 @csrf
                                                 <input type="text" style="display: none;" name="kalaId" id="kalaIdChangePic" value="">
                                             <table class="table align-middle table-sm text-center">
-                                                <thead class="tableHeader bg-success">
+                                                <thead class="bg-success">
                                                     <tr>
-                                                        <th>تصویر اصلی </th>
+                                                        <th style="width:160px !important;">تصویر اصلی </th>
                                                         <th>تصویر اول</th>
                                                         <th>تصویر دوم</th>
                                                         <th> تصویر سوم</th>
-                                                        <th>تصویر چهارم </th>
+                                                        <th style="width:160px !important;">تصویر چهارم </th>
                                                     </tr>
                                                 </thead>
-                                                <tbody class="tableBody">
-                                                <tr>
-                                                        <td>
+                                                <tbody>
+                                                    <tr>
+                                                        <td style="width:160px !important;">
                                                             <div class='product-item swiper-slide' style='width:100%;'>
                                                                 <img id="mainPicEdit" src="" />
                                                             </div>
@@ -845,6 +820,7 @@
                                                                 <input type="file"  onchange='document.getElementById("mainPicEdit").src = window.URL.createObjectURL(this.files[0]);' style="display:none" class="form-control" name="firstPic" id="mainPic">
                                                             </div>
                                                         </td>
+
                                                         <td>
                                                             <div class='product-item swiper-slide' style='width:100%;'>
                                                                     <img id="secondPic" src="{{url('/resources/assets/images/kala/_2.jpg')}}" />
@@ -873,7 +849,7 @@
                                                                 <input type="file"   style="display: none" class="form-control" name="fourthPic" >
                                                             </div>
                                                         </td>
-                                                        <td>
+                                                        <td style="width:160px !important;">
                                                             <div class='product-item swiper-slide' style='width:100%;'>
                                                                 <img id="4PicEdit" src="{{url('/resources/assets/images/kala/_5.jpg')}}" />
                                                             </div>
@@ -883,7 +859,6 @@
                                                             </div>
                                                         </td>
                                                     </tr>
-                                                    
                                                 </tbody>
                                             </table>
                                           </form>
@@ -1016,49 +991,39 @@
                                 </div>
                             </div>
 
-
-                            
-                            <div class="row" >
-                                <div class="col-sm-5" id="allStock" style="display:none">
-                                    <div class='modal-body'>
-                                        <input type="text" class="form-control" style="margin-top:10px;" id=""  placeholder="جستجو"> <br>
-                                        <div class='c-checkout' style='padding-right:0;'>
-                                            <table class="table table-bordered table-sm">
-                                                <thead class="tableHeader">
-                                                    <tr>
-                                                        <th>ردیف</th>
-                                                        <th>اسم </th>
-                                                        <th>انتخاب</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody class="tableBody" id="allStockForList">
-                                                </tbody>
-                                            </table>
-                                        </div>
+                            <div class="grid-subgroup" id="displayTakhisAnbarTables" style="display:none;">
+                                <div class="subgroup-item" id="allStock">
+                                  <div class='modal-body'>
+                                        <input type="text" class="form-control form-control" id=""  placeholder="جستجو">
+                                        <table class="table table-bordered table-sm">
+                                            <thead class="tableHeader">
+                                                <tr>
+                                                    <th>ردیف</th>
+                                                    <th>اسم </th>
+                                                    <th>انتخاب</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody class="tableBody" id="allStockForList">
+                                            </tbody>
+                                        </table>
                                     </div>
+                               </div>
+                                <div class="subgroup-item" id="addAndDeleteStock"  style="margin-top:88px;">
+                                    <a id="addStockToList">
+                                        <i class="fa-regular fa-circle-chevron-left fa-2x chevronHover"></i>
+                                    </a>
+                                    <br />
+                                    <a id="removeStockFromList">
+                                        <i class="fa-regular fa-circle-chevron-right fa-2x chevronHover"></i>
+                                    </a>
                                 </div>
 
-                                <div class="col-sm-2"  id="addAndDeleteStock" style="display:none">
-                                    <div class='' style="position:relative; right: 5%; top: 30%;">
-                                        <div >
-                                            <a id="addStockToList">
-                                                <i class="fa-regular fa-circle-chevron-left fa-3x chevronHover"></i>
-                                            </a>
-                                            <br />
-                                            <a id="removeStockFromList">
-                                                <i class="fa-regular fa-circle-chevron-right fa-3x chevronHover"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-sm-5" id="addedStock">
+                                <div class="subgroup-item" id="addedStock" >
                                     <div class='modal-body'>
-                                    <form action="{{url('/addStockToList')}}" method="POST" id="submitStockToList" style="display: inline" >
+                                      <form action="{{url('/addStockToList')}}" method="POST" id="submitStockToList" style="display: inline" >
                                             <input type="text" name="kalaId" value="" style="display: none" id="kalaIdForAddStock">
                                             @csrf
-                                            <input type="text" class="form-control" style="margin-top:10px;" id="serachKalaOfSubGroup"  placeholder="جستجو"> <br>
-                                            <div class='c-checkout' style='padding-right:0;'>
+                                            <input type="text" class="form-control form-control-sm" id="serachKalaOfSubGroup"  placeholder="جستجو"> 
                                                 <table class="table table-bordered table-sm">
                                                     <thead class="tableHeader">
                                                         <tr >
@@ -1075,7 +1040,6 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
                     </div>
 
                     <div class="c-checkout tab-pane" id="green" style="border-radius:10px 10px 2px 2px;">
@@ -1102,48 +1066,37 @@
                                     <label  class="fs-6"  for="exampleFormControlTextarea1">لیست کالاهای مشابه</label>
                                 </div>
                          </div>
-                        <div class="row" >
-                            <div class="col-sm-5" id="addKalaToList" style="display:none">
-                                <div class='modal-body'>
-                                  <input type="text" class="form-control" style="margin-top:10px;" id="serachKalaForAssameList" placeholder="جستجو">
-                                    <div class='c-checkout' style='padding-right:0;'>
-                                        <table class="table table-bordered table-sm">
-                                            <thead class="tableHeader">
-                                                <tr>
-                                                    <th>ردیف</th>
-                                                    <th>اسم </th>
-                                                    <th><input type="checkbox" name=""  class="selectAllFromTop form-check-input"></th>
-                                                </tr>
-                                            </thead>
-                                            <tbody class="tableBody" id="allKalaForList">
-                                            </tbody>
-                                        </table>
+
+                            <div class="grid-subgroup" id="displaySameKalaTables" style="display:none;">
+                                <div class="subgroup-item" id="addKalaToList"> 
+                                 <div>  <input type="text" class="form-control form-control-sm" id="serachKalaForAssameList" placeholder="جستجو"> 
+                                  <table class="table table-bordered table-sm">
+                                        <thead class="tableHeader">
+                                            <tr>
+                                                <th>ردیف</th>
+                                                <th>اسم </th>
+                                                <th><input type="checkbox" name=""  class="selectAllFromTop form-check-input"></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="tableBody" id="allKalaForList">
+                                        </tbody>
+                                    </table>
                                     </div>
                                 </div>
-                            </div>
-
-                            <div class="col-sm-2"  id="addAndDelete" style="display:none">
-                                <div class='' style="position:relative; left: 5%; top: 30%;">
-                                    <div>
-                                        <a id="addDataToList">
-                                            <i class="fa-regular fa-circle-chevron-left fa-3x chevronHover"></i>
+                                <div class="subgroup-item" style="margin-top:80px;" id="addAndDelete"> 
+                                      <a id="addDataToList">
+                                            <i class="fa-regular fa-circle-chevron-left fa-2x chevronHover"></i>
                                         </a>
                                         <br />
                                         <a id="removeDataFromList">
-                                            <i class="fa-regular fa-circle-chevron-right fa-3x chevronHover"></i>
+                                            <i class="fa-regular fa-circle-chevron-right fa-2x chevronHover"></i>
                                         </a>
-                                    </div>
                                 </div>
-                            </div>
-
-                            <div class="col-sm-5" id="addedList">
-                                <div class='modal-body'>
-                                    <iframe name="votar" style="display:none;"></iframe>
-                                    <form action="{{url('/addKalaToList')}}" target="votar"  method="GET" style="display: inline" id="sameKalaForm">
+                                <div class="subgroup-item" id="addedList">
+                                        <form action="{{url('/addKalaToList')}}" target="votar"  method="GET" style="display: inline" id="sameKalaForm">
                                         <input type="text" name="mainKalaId" value="" style="display: none" id="kalaIdSameKala">
                                          @csrf
-                                        <input type="text" class="form-control" style="margin-top:10px;" id="serachKalaOfSubGroup"  placeholder="جستجو">
-                                        <div class='c-checkout' style='padding-right:0;'>
+                                        <input type="text" class="form-control form-control-sm" id="serachKalaOfSubGroup"  placeholder="جستجو">
                                         <table class="table table-bordered table table-sm">
                                             <thead class="tableHeader">
                                                 <tr>
@@ -1152,29 +1105,23 @@
                                                     <th><input type="checkbox" name=""  class="selectAllFromTop form-check-input"></th>
                                                 </tr>
                                             </thead>
-                                            <tbody class="tableBody" id="allKalaOfList">
-                                              
-                                             </tbody>
+                                            <tbody class="tableBody" id="allKalaOfList">  </tbody>
                                          </table>
-                                      </div>
-                                    </div>
-                                 </form>
-                                </div>
+                                   </form>
                               </div>
-                             </div>
                            </div>
                          </div>
                        </div>
                      </div> 
                   </div>
                 <div class="modal-footer">
-                    <button class="btn btn-success buttonHover" type="submit" id="submitSubGroup"           form="groupSubgoupCategory" disabled> ذخیره <i class="fa fa-save "></i> </Button>
-                    <button class="btn btn-success buttonHover" type="submit" id="stockSubmit"              form="submitStockToList" style="display:none"> ذخیره <i class="fa fa-save "></i> </button>
-                    <button class="btn btn-success buttonHover" type="submit" id="kalaRestictionbtn"        form="restrictFormStuff" style="display:none"> ذخیره <i class="fa fa-save "></i></button>
-                    <button class="btn btn-success buttonHover" type="submit" id="completDescriptionbtn"    form="completDescription" style="display:none">ذخیره <i class="fa fa-save "></i></button>
-                    <button class="btn btn-success buttonHover" type="submit" id="addToListSubmit"          form="sameKalaForm" style="display:none">ذخیره <i class="fa fa-save "></i> </button>
-                    <button class="btn btn-success buttonHover" type="submit" id="submitChangePic"          form="kalaPicForm" style="display:none"> ذخیره <i class="fa fa-save "></i></button>
-                    <button type="button" class="btn btn-danger" data-dismiss="modal" id="cancelEditModal"> انصراف <i class="fa fa-xmark"></i></button>
+                    <button class="btn btn-sm btn-success buttonHover" type="submit" id="submitSubGroup"           form="groupSubgoupCategory" disabled> ذخیره <i class="fa fa-save "></i> </Button>
+                    <button class="btn btn-sm btn-success buttonHover" type="submit" id="stockSubmit"              form="submitStockToList" style="display:none"> ذخیره <i class="fa fa-save "></i> </button>
+                    <button class="btn btn-sm btn-success buttonHover" type="submit" id="kalaRestictionbtn"        form="restrictFormStuff" style="display:none"> ذخیره <i class="fa fa-save "></i></button>
+                    <button class="btn btn-sm btn-success buttonHover" type="submit" id="completDescriptionbtn"    form="completDescription" style="display:none">ذخیره <i class="fa fa-save "></i></button>
+                    <button class="btn btn-sm btn-success buttonHover" type="submit" id="addToListSubmit"          form="sameKalaForm" style="display:none">ذخیره <i class="fa fa-save "></i> </button>
+                    <button class="btn btn-sm btn-success buttonHover" type="submit" id="submitChangePic"          form="kalaPicForm" style="display:none"> ذخیره <i class="fa fa-save "></i></button>
+                    <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal" id="cancelEditModal"> انصراف <i class="fa fa-xmark"></i></button>
               </div>
             </div>
           </div>

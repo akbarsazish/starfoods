@@ -6469,8 +6469,6 @@ span.footerbasket {
 }
 
 
-
-
 #cssmenu,
 #cssmenu ul,
 #cssmenu li,
@@ -6905,7 +6903,7 @@ input:focus::placeholder {
 #pslider .product-item {
     min-height: 190px !important;
     width: 190px !important;
-    height: 190px !important;
+    height: 111px !important;
     text-align: center !important;
     display: flex !important;
     flex-direction: column;
@@ -6956,8 +6954,8 @@ input:focus::placeholder {
 .descForall {
     background-color: #dee2e6;
     border-radius: 5px;
-    padding: 10px;
-    margin-bottom: 20px;
+    padding: 5px;
+    margin-bottom: 10px;
 }
 
 .starfoodbntHover:hover {
@@ -7095,17 +7093,17 @@ table thead {
 .factorDetails {
     display: grid;
     grid-template-columns: auto auto auto;
-    padding: 6px;
+    padding: 3px;
 }
 
 .factorDetailsItem {
     background-color: #d5e5ef;
     border: 1px solid #cceafc;
-    padding: 10px;
-    font-size: 16px;
+    padding: 5px;
+    font-size: 14px;
     text-align: center;
-    border-radius: 8px;
-    margin: 5px;
+    border-radius: 6px;
+    margin: 3px;
 }
 
 .factorDetailsItem>span {
@@ -7188,4 +7186,17 @@ table thead {
         display: block !important;
     }
 
+}
+
+
+.grid-subgroup {
+    display: grid;
+    grid-template-columns: auto auto auto;
+
+}
+
+.subgroup-item {
+    padding: 5px;
+    font-size: 14px;
+    text-align: center;
 }

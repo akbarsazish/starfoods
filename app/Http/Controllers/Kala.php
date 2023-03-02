@@ -28,7 +28,7 @@ class Kala extends Controller {
                         JOIN (SELECT Amount AS SumAmount,SnGood,FiscalYear FROM Shop.dbo.ViewGoodExists) V ON PubGoods.GoodSn=V.SnGood 
                         JOIN(SELECT productId,hideKala FROM NewStarfood.dbo.star_GoodsSaleRestriction)S ON PubGoods.GoodSn=S.productId
                         WHERE GoodName!='' AND NameGRP!='' AND GoodSn!=0 AND PubGoods.GoodGroupSn >49
-                        AND PubGoods.CompanyNo=5 AND V.FiscalYear=".Session::get("FiscallYear").")a
+                        AND PubGoods.CompanyNo=5 AND V.FiscalYear=1399)a
                         JOIN
                         (SELECT Max(FactorBYS.TimeStamp) AS lastDate, GoodSn FROM Shop.dbo.PubGoods  
                         JOIN Shop.dbo.FactorBYS ON PubGoods.GoodSn=FactorBYS.SnGood
@@ -36,7 +36,6 @@ class Kala extends Controller {
         // foreach ($kala_list as $kala) {
         //    $kala->Amount+=DB::select("select SUM(Amount) as SumAmount from Shop.dbo.ViewGoodExistsInStock where ViewGoodExistsInStock.SnStock in(select stockId from NewStarfood.dbo.star_addedStock where productId=".$kala->GoodSn.") and SnGood=".$kala->GoodSn)[0]->SumAmount;
         // }
-
         $stocks=DB::select("SELECT SnStock,CompanyNo,CodeStock,NameStock FROM Shop.dbo.Stocks WHERE SnStock!=0 AND NameStock!='' AND CompanyNo=5");
 
         // کیوری کالای در خواست شده 

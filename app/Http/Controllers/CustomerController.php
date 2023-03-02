@@ -11,7 +11,6 @@ class CustomerController extends Controller{
 
 // The following method return the form to insert haqiq customer into database
         public function haqiqiCustomerAdd(){
-
                 $customerId=Session::get('psn');
                 $checkHaqiqiExist=DB::table("NewStarfood.dbo.star_Customer")->where("customerShopSn",Session::get('psn'))->count();
                 $haqiqiCustomers=DB::table("NewStarfood.dbo.star_Customer")->where('customerType','haqiqi')->where('customerShopSn', Session::get('psn'))->select("*")->get();
@@ -28,8 +27,9 @@ class CustomerController extends Controller{
                 return View('customer.addCustomerProfile', ['checkHaqiqiExist'=>$checkHaqiqiExist, 'haqiqiCustomers'=>$haqiqiCustomers,'exactHoqoqi'=>$exactHoqoqi, 'exacHaqiqi'=>$exacHaqiqi]);
 
         }
-        public function haqiqiCustomerAdmin($id){
 
+
+        public function haqiqiCustomerAdmin($id){
             $customerId=$id;
             $checkHaqiqiExist=DB::table("NewStarfood.dbo.star_Customer")->where("customerShopSn",$id)->count();
             $haqiqiCustomers=DB::table("NewStarfood.dbo.star_Customer")->where('customerType','haqiqi')->where('customerShopSn', $id)->select("*")->get();
@@ -38,6 +38,7 @@ class CustomerController extends Controller{
             foreach ($haqiqiCustomers as $haqiqiCustomer) {
                 $exacHaqiqi=$haqiqiCustomer;
             }
+
             $hoqoqiCustomers=DB::table("NewStarfood.dbo.star_Customer")->where('customerType','hoqoqi')->where('customerShopSn', $id)->select("*")->get();
             $exactHoqoqi=array();
             foreach ($hoqoqiCustomers as $hoqoqiCustomer) {
@@ -184,7 +185,7 @@ public function storeHaqiqiCustomerAdmin(Request $request){
             DB::update("UPDATE NewStarfood.dbo.star_customerRestriction set activeOfficialInfo=0 where customerId=".$id);
             // return View('userProfile.profile', ['haqiqicustomers'=>$haqiqiCustomers]);
 
-            return redirect('/customerList');
+            return redirect('/listCustomers');
 
 
     }else{
@@ -220,7 +221,7 @@ public function storeHaqiqiCustomerAdmin(Request $request){
             $officialAllowed=DB::table("NewStarfood.dbo.star_customerRestriction")->where("customerId",$id)->get();
             DB::update("UPDATE NewStarfood.dbo.star_customerRestriction set activeOfficialInfo=0 where customerId=".$id);
 
-            return redirect('/customerList');
+            return redirect('/listCustomers');
 
 
     }
@@ -489,11 +490,11 @@ public function storeHaqiqiCustomerAdmin(Request $request){
     {
         $fsn=$request->get("FactorSn");
         $orders=DB::select("SELECT FactorBYS.Price AS goodPrice, *  FROM Shop.dbo.FactorHDS
-                            JOIN Shop.dbo.FactorBYS ON FactorHDS.SerialNoHDS=FactorBYS.SnFact 
-                            JOIN Shop.dbo.Peopels ON FactorHDS.CustomerSn=Peopels.PSN
-                            JOIN Shop.dbo.PubGoods ON FactorBYS.SnGood=PubGoods.GoodSn 
-                            JOIN Shop.dbo.PUBGoodUnits ON PUBGoodUnits.USN=PubGoods.DefaultUnit
-                            where FactorHDS.SerialNoHDS=".$fsn);
+                    JOIN Shop.dbo.FactorBYS ON FactorHDS.SerialNoHDS=FactorBYS.SnFact 
+                    JOIN Shop.dbo.Peopels ON FactorHDS.CustomerSn=Peopels.PSN
+                    JOIN Shop.dbo.PubGoods ON FactorBYS.SnGood=PubGoods.GoodSn 
+                    JOIN Shop.dbo.PUBGoodUnits ON PUBGoodUnits.USN=PubGoods.DefaultUnit
+                    where FactorHDS.SerialNoHDS=".$fsn);
         
         foreach ($orders as $order) {
             $sabit="";

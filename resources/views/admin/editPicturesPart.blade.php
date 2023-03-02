@@ -1,142 +1,29 @@
 @extends('admin.layout')
 @section('content')
-
-<style>
-    button[disabled] {
-        background-color: #0f3c6e !important;
-        border-color: #198754 !important;
-        color: white !important;
-    }
-
-    button:hover{ 
-        /* background: linear-gradient(#9ed5b6, #198754); */
-        background: linear-gradient(#d3fde4, #198754);
-        color: #f1e253 !important;
-        font-size: 18px; 
-        font-weight: bold;
-        border-color: #bb993a !important;
-        border-width: 2px;
-    }  
-    
-    .brandBetweenButton i:hover,
-    #addOnePicKalaList1 i:hover,
-    #removeOnePicKalaList1 i:hover,
-    #add2PicKalaList1 i:hover,
-    #remove2PicKalaList1 i:hover,
-    #add2PicKalaList2 i:hover,
-    #remove2PicKalaList2 i:hover,
-    #add3PicKalaList1 i:hover,
-    #remove3PicKalaList1 i:hover,
-    #add3PicKalaList2 i:hover,
-    #remove3PicKalaList2 i:hover,
-    #add3PicKalaList3 i:hover,
-    #remove3PicKalaList3 i:hover,
-    #add4PicKalaList1 i:hover,
-    #remove4PicKalaList1 i:hover,
-    #add4PicKalaList2 i:hover,
-    #remove4PicKalaList2 i:hover,
-    #add4PicKalaList3 i:hover,
-    #remove4PicKalaList3 i:hover,
-    #add4PicKalaList4 i:hover,
-    #remove4PicKalaList4 i:hover,
-    #add5PicKalaList1 i:hover,
-    #remove5PicKalaList1 i:hover,
-    #add5PicKalaList2 i:hover,
-    #remove5PicKalaList2 i:hover,
-    #add5PicKalaList3 i:hover,
-    #remove5PicKalaList3 i:hover,
-    #add5PicKalaList4 i:hover,
-    #remove5PicKalaList4 i:hover,
-    #add5PicKalaList5 i:hover,
-    #remove5PicKalaList5 i:hover{ 
-        color: #f1e253 !important;
-        font-size: 40px; 
-        font-weight: bold;
-        border-color: #bb993a !important;
-        border-width: 2px;
-    }
-
-    .editKalaPic1_5Pic i:hover,
-    .takhsisKala1_5Pic i:hover,
-     label i:hover,
-    .editTakhsisBtn i:hover,
-    .changePicBrandKalaEdit i:hover{
-        font-size: 30px !important; 
-        font-weight: bold !important;
-        color:red !important;
-        border-width: 6px !important; 
-    }
-
-    button.btn-info {
-        padding: 0;
-        width: 122px;
-        height: 34px;
-    }
-
-    button.btn-dark{
-        padding: 0;
-        width: 160px;
-        height: 34px;
-    }
-
-    button.btn-success{
-        padding: 0;
-        width: 160px;
-        height: 34px;
-    }
-
-    #addBrandButton{
-        padding: 0;
-        width: 200px;
-        height: 34px;
-    }
-
-    #deleteBrandButton{
-        padding: 0;
-        width: 160px;
-        height: 34px;
-    }
-
-    button.btn-info, button.btn-dark, button.btn-success{
-        background-color: #198754;
-        color: #bb993a;
-        border-color: #000;
-    }
-    
-    i::before{
-        padding:0;
-    }
-
-    label{
-        font-family:IRANSans;
-        font-size: 0.9rem;
-        line-height: 1;
-        color: rgb(19, 7, 129);
-        font-weight: 300;
-    }
-
-    .checkbox-label{
-        font-weight: bold;
-    }
-</style>
-    <section class="main-cart container px-0">
-        <div class="o-page__content" style=" width: 80%; margin:0 auto; margin-top: 65px; padding:0">
-            <div class="o-headline" style="padding: 0; margin-bottom: 10px; margin-top: 0">
-                <div id="main-cart" class="p-1">
-                    <span class="c-checkout__tab--active">{{ $title }}</span>
+<div class="container-fluid containerDiv">
+    <div class="row">
+            <div class="col-lg-2 col-md-2 col-sm-3 sideBar">
+                <fieldset class="border rounded mt-5 sidefieldSet">
+                    <legend  class="float-none w-auto legendLabel mb-0"> تنظیمات </legend>
+                    <div class="form-check">
+                        <input class="form-check-input p-2 float-start" type="radio" name="settings" id="elseSettingsRadio">
+                        <label class="form-check-label me-4" for="assesPast">  سطح دسترسی  </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input p-2 float-start" type="radio" name="settings" id="settingAndTargetRadio">
+                        <label class="form-check-label me-4" for="assesPast"> تارگت ها و امتیازات </label>
+                    </div>
+                    
+                </fieldset>
                 </div>
-            </div>
-            <div class="c-checkout" style="padding-right:0; border-radius:10px 10px 2px 2px; padding:0">
-                <div class="container p-1">
+            <div class="col-sm-10 col-md-10 col-sm-12 contentDiv">
+                <div class="row contentHeader" style="height:2%"> </div>
+
+                <div class="row mainContent">
                     @foreach ($parts as $part)
                         <form class="p-1" action="{{ url('/doEditGroupPart') }}" method="POST" enctype="multipart/form-data" class='form'>
                             @csrf
-                            <div class="d-flex flex-row-reverse">
-                            <button type="submit"  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif class="btn btn-info btn-md m-2 p-0 text-warning" style="foloat:left;">ذخیره <i class="fa-light fa-save fa-lg"></i></button>
-                            </div>
-                            <div class='modal-body'>
-                                <div class='c-checkout rounded pt-2 pb-3' style='padding: 10px; padding-right:0;'>
-                                    <div class="row ">
+                                  <div class="row ">
                                         <div class="col-sm-3">
                                             <div class='form-group'>
                                                 <label class='form-label'>اسم سطر</label>
@@ -163,491 +50,375 @@
                                                         <option @if((int)$part->priority==$i) selected @endif value="{{$i}}">{{$i-2}}</option>
                                                         @endfor
                                                 </select>
-
                                             </div>
                                         </div>  
-
                                         <div class="col-sm-1 d-flex align-items-stretch">
                                             <div class="form-group d-flex text-nowrap align-items-center pt-3">
                                                 <input class="form-control d-flex form-check-input align-items-end" @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif type="checkbox" name="activeOrNot" id="activeOrNot" @if ($part->activeOrNot==1)checked @else @endif>
                                                 <label class="form-check-label align-items-end" style="font-weight: bold" for="activeOrNot">نمایش</label>
                                             </div>
                                         </div>
+                                         <div class="col-sm-3 text-end"> 
+                                              <button type="submit"  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif class="btn btn-success btn-sm text-warning mt-1"> ذخیره <i class="fa-light fa-save"></i></button>
+                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="row p-0 m-0">
-                                <div class="col-sm-12 p-0">
-                                    <div class="container p-0 m-0" id="addTakhsisKala" >
-                                        <div class="row p-0 m-0">
+                           
+                                    <div class="container p-0 m-0" id="addTakhsisKala">
+                                        <div class="row p-0 m-0" >
                                             <div class='modal-body p-0'style="display:flex;  justify-content:center;">
-                                                <div id='pslider' class='swiper-container swiper-container-horizontal swiper-container-rtl rounded border border-danger' style="width:100%">
-                                                    <div class='product-box swiper-wrapper' id="addBrandItem">
+                                                <div id='pslider' class='swiper-container swiper-container-horizontal swiper-container-rtl' style="width:100%">
+                                                    <div class='product-box swiper-wrapper rounded border border-success' id="addBrandItem" style="height:170px !important;" >
                                                         @if($part->partType!=12)
                                                             @foreach ($pictures as $pic)
-                                                            <div class='product-item swiper-slide p-2' style='width:30%; height:15vh;'>
-                                                                <div class="p-1" style="height:15%;" >
-
-                                                                    <button id="assignToType{{$part->partType}}Pic{{ $loop->iteration }}" class="takhsisKala1_5Pic" value="{{$pic->picId}}" type="button" onclick="this.querySelector('i.inheritHover').style.setProperty('color', 'red', 'important');" style="display: inline; padding:0; border:none; background:none">
-                                                                         <i class="fa-light fa-circle-plus fa-lg text-success p-0 inheritHover" style="font-size: 27px; padding:0;"></i>
-                                                                    </button>
-                                                                </div>
-                                                                <div class="p-0 justify-content-start" style="height:70%">
+                                                            <div class='product-item swiper-slide'>
+                                                                <div class="p-0 justify-content-start">
                                                                         @if($part->partType==6)
-                                                                        <img style="height:90%; width:90%" class="p-0" src="{{url('/resources/assets/images/onePic/'.$part->partId.'.jpg')}}" id="PicId{{$loop->iteration}}" />
+                                                                        <img class="p-0" src="{{url('/resources/assets/images/onePic/'.$part->partId.'.jpg')}}" id="PicId{{$loop->iteration}}" />
                                                                         @elseif($part->partType==7)
-                                                                        <img style="height:90%; width:90%" class="p-0" src="{{url('/resources/assets/images/twoPics/'.$part->partId.'_'.($loop->iteration).'.jpg')}}" id="PicId{{$loop->iteration}}" />
+                                                                        <img class="p-0" src="{{url('/resources/assets/images/twoPics/'.$part->partId.'_'.($loop->iteration).'.jpg')}}" id="PicId{{$loop->iteration}}" />
                                                                         @elseif($part->partType==8)
-                                                                        <img style="height:90%; width:90%" class="p-0" src="{{url('/resources/assets/images/threePics/'.$part->partId.'_'.($loop->iteration).'.jpg')}}" id="PicId{{$loop->iteration}}" />
+                                                                        <img class="p-0" src="{{url('/resources/assets/images/threePics/'.$part->partId.'_'.($loop->iteration).'.jpg')}}" id="PicId{{$loop->iteration}}" />
                                                                         @elseif($part->partType==9)
-                                                                        <img style="height:90%; width:90%" class="p-0" src="{{url('/resources/assets/images/fourPics/'.$part->partId.'_'.($loop->iteration).'.jpg')}}" id="PicId{{$loop->iteration}}" />
+                                                                        <img class="p-0" src="{{url('/resources/assets/images/fourPics/'.$part->partId.'_'.($loop->iteration).'.jpg')}}" id="PicId{{$loop->iteration}}" />
                                                                         @elseif($part->partType==10)
-                                                                        <img style="height:90%; width:90%" class="p-0" src="{{url('/resources/assets/images/fivePics/'.$part->partId.'_'.($loop->iteration).'.jpg')}}" id="PicId{{$loop->iteration}}" />
+                                                                        <img class="p-0" src="{{url('/resources/assets/images/fivePics/'.$part->partId.'_'.($loop->iteration).'.jpg')}}" id="PicId{{$loop->iteration}}" />
                                                                         
                                                                         @endif
                                                                         <input style="display:none" id="pic{{ $loop->iteration }}" value="{{$pic->picId}}"/>
                                                                         <input style="display:none" name="pic{{$loop->iteration}}" value="{{$pic->picId}}"/>
-                                                                </div>
-                                                                <div class="p-0 pt-3" style="height:15%">
+                                                                </div> <br>
+                                                                <div class="p-0 pt-1">
                                                                     <button type="button"    @if(hasPermission(Session::get( 'adminId'),'homePage' ) >0 ) onclick="changePicBrandKalaEdit(this)" @endif value="{{$loop->iteration}}" style="display: inline; padding:0; border:none; background:none" class="editKalaPic1_5Pic">
                                                                         <i class="fa-light fa-pen-to-square fa-lg text-success p-1 inheritHover" style="font-size: 25px"></i>
                                                                     </button>
                                                                     <input type="file" style="display:none;" onchange='document.getElementById("PicId{{$loop->iteration}}").src = window.URL.createObjectURL(this.files[0])' id="file{{$loop->iteration}}" name="editPic{{$loop->iteration}}"/>
+                                                                     <button id="assignToType{{$part->partType}}Pic{{ $loop->iteration }}" class="takhsisKala1_5Pic" value="{{$pic->picId}}" type="button" onclick="this.querySelector('i.inheritHover').style.setProperty('color', 'red', 'important');" style="display: inline; padding:0; border:none; background:none">
+                                                                         <i class="fa-light fa-circle-plus fa-lg text-success p-0 inheritHover" style="font-size: 27px; padding:0;"></i>
+                                                                    </button>
                                                                 </div>
                                                             </div>
-                                                            @endforeach
+                                                           @endforeach
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                         @else 
-                                        <div style="margin:0 auto; width:80%; padding-right:0; border-radius:10px 10px 2px 2px; padding:0" >
                                             <div class="container">
-                                                <div class="row">
-                                                    <div class="col-sm-5">
-                                                        <div class='modal-body'>
-                                                            <div class='c-checkout' style='padding-right:0;'>
-                                                                <table class="tableSection table table-bordered table table-hover table-sm table-light" style='td:hover{ cursor:move;}'>
-                                                                    <thead>
-                                                                        <tr>
-                                                                            <th>ردیف</th>
-                                                                            <th>اسم برند&nbsp;&nbsp;<div style="background-color:black;color:white!important; height:inherit; width:20px;"
-                                                                                 class="rounded-circle d-inline-flex justify-content-center m-0 p-0">  </div> </th>
-                                                                            <th><input  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
-                                                                        </tr>
-                                                                    </thead>
-                                                                    <tbody style="height: 400px;" id="brandAllKalaContainer">
-                                                                        @foreach ($brands as $brand)
-                                                                            <tr  onclick="checkCheckBox(this,event)">
-                                                                                <td>{{$loop->iteration}}</td>
-                                                                                <td>{{$brand->name}}</td>
-                                                                                <td>
-                                                                                <input class="form-check-input" name="brandAllKala[]" type="checkbox" value="{{$brand->id.'_'.$brand->name}}" id="kalaId">
-                                                                                </td>
-                                                                            </tr>
-                                                                            @endforeach
-                                                                    </tbody>
-                                                                </table>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-sm-2" style="">
-                                                        <div class='modal-body'style="position:relative; top: 30%;">
-                                                            <div style="">
-                                                                <button type="button" id="addBrandKalaList" onclick="addAllKalaToBrand(this)" value=""
-                                                                        class="brandBetweenButton"
-                                                                        style="display: inline; padding:0; border:none; background:none">
-                                                                    <i class="fa-regular fa-circle-chevron-left fa-3x text-success"></i>
-                                                                </button>
-                                                                <br/>
-                                                                <button type="button" id="removeBrandKalaList" onclick="removeAddedKalaFromBrand(this)" value=""
-                                                                        class="brandBetweenButton"
-                                                                        style="display: inline; padding:0; border:none; background:none">
-                                                                    <i class="fa-regular fa-circle-chevron-right fa-3x text-success"></i>
-                                                                </button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                    
-                                                    <div class="col-sm-5">
-                                                        <div class='modal-body'>
-                                                            <div class='c-checkout' style='padding-right:0;'>
-                                                                <table class="t table table-bordered table table-hover table-sm table-light">
-                                                                    <thead class="tableHeader">
-                                                                        <tr>
-                                                                            <th>ردیف</th>
-                                                                            <th>اسم برند
-                                                                            <button class='brandPriority' id="down" type="button" value="down" ><i class="fa-solid fa-circle-chevron-down fa-sm" style=''></i></button>
-                                                                            <button class='brandPriority' id="top"  type="button" value="up" >  <i class="fa-solid fa-circle-chevron-up fa-sm" style=''></i></button> 
-                                                                            
-                                                                        </th>
-                                                                            <th><input  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
-                                                                        </tr>
-                                                                    </thead>
-                                                                    <tbody class="tableBody" id="brandAddedKalaContainer">
-                                                                        @foreach ($addedBrands as $brand)
-                                                                        <tr  onclick="checkCheckBox(this,event)">
-                                                                                <td>{{$loop->iteration}}</td>
-                                                                                <td>{{$brand->name}}</td>
-                                                                                <td>
-                                                                                <input class="form-check-input" name="brandAddedKala[]" type="checkbox" value="{{$brand->id}}" id="kalaId">
-                                                                                </td>
-                                                                            </tr>
-                                                                        @endforeach
-                                                                    </tbody>
-                                                                </table>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                @endif      
-                                        {{-- برای نشان دادن کالاهای مربوط به تک تصویر  --}}
-                                <div class='c-checkout mt-2' id="picturesKalaContainer" style="display: none; margin:0 auto; width:80%; padding-right:0; border-radius:10px 10px 2px 2px; padding:0">
-                                    <div class="container">
-                                        <div class="row">
-                                            <div class='modal-body 'style='padding-bottom:2%;'>
-                                                <div class='c-checkout rounded-top' >
-                                                    <div class="container"  style="padding:15px; padding-bottom: 25px;">
-                                                        <div class="row">
-                                                            <div class="col-sm-4">
-                                                                <div class="form-group">
-                                                                    <label class="form-label">جستجو</label>
-                                                                    <input type="text" name="" size="20" class="form-control form-control-sm" id="searchKalaEdit1Pic1">
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-sm-4">
-                                                                <div class="form-group">
-                                                                    <label class="form-label"> جستجوی گروه اصلی</label>
-                                                                    <select class="form-control form-control-sm" id="searchMainGroupEdit1Pic1">
-                                                                        <option value="0">همه کالا ها</option>
-                                                                    </select>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-sm-4">
-                                                                <div class="form-group">
-                                                                    <label class="form-label"> جستجوی گروه فرعی</label>
-                                                                    <select class="form-control form-control-sm" id="searchSubGroupEdit1Pic1">
-                                                                        <option value="0">همه کالا ها</option>
-                                                                    </select>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-5">
-                                                <div class='modal-body'>
-                                                    <div class='c-checkout' style='padding-right:0;'>
-                                                        <table class="table table-bordered table table-hover table-sm table-light" style='td:hover{ cursor:move;}'>
-                                                            <thead class="tableHeader">
-                                                                <tr>
-                                                                    <th>ردیف</th>
-                                                                    <th> اسم کالا </th>
-                                                                    <th><input  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody class="tableBody" id="onePic1AllKala">
-                                                                
-                                                            </tbody>
-                                                        </table>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-2" style="">
-                                                <div class='modal-body'style="position:relative; top: 30%;">
-                                                    <div>
-                                                        <button    @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif id="addOnePicKalaList1" style="display: inline; padding:0; border:none; background:none">
-                                                            <i class="fa-regular fa-circle-chevron-left fa-3x text-success"></i>
-</button>
-                                                        <br />
-                                                        <button    @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif id="removeOnePicKalaList1" style="display: inline; padding:0; border:none; background:none">
-                                                            <i class="fa-regular fa-circle-chevron-right fa-3x text-success"></i>
-</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-            
-                                            <div class="col-sm-5">
-                                                <div class='modal-body'>
-                                                    <div class='c-checkout' style='padding-right:0;'>
-                                                        <table class="table table-bordered table table-hover table-sm table-light">
+                                                <div class="grid-subgroup">
+                                                    <div class="subgroup-item">
+                                                        <table class="tableSection table table-bordered table table-hover table-sm " style='td:hover{ cursor:move;}'>
                                                             <thead>
                                                                 <tr>
                                                                     <th>ردیف</th>
-                                                                    <th>گروه اصلی </th>
-                                                                    <th><input  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif type="checkbox" name=""  class="selectAllFromTop form-check-input"></th>
+                                                                    <th>اسم برند&nbsp;&nbsp;<div style="background-color:black;color:white!important; height:inherit; width:20px;"
+                                                                            class="rounded-circle d-inline-flex justify-content-center m-0 p-0">  </div> </th>
+                                                                    <th><input  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
                                                                 </tr>
                                                             </thead>
-                                                            <tbody class="tableBody" id="onePic1AddedKala1">
-                                                                
+                                                            <tbody style="height: 400px;" id="brandAllKalaContainer">
+                                                                @foreach ($brands as $brand)
+                                                                    <tr  onclick="checkCheckBox(this,event)">
+                                                                        <td>{{$loop->iteration}}</td>
+                                                                        <td>{{$brand->name}}</td>
+                                                                        <td>
+                                                                        <input class="form-check-input" name="brandAllKala[]" type="checkbox" value="{{$brand->id.'_'.$brand->name}}" id="kalaId">
+                                                                        </td>
+                                                                    </tr>
+                                                                    @endforeach
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                    <div class="subgroup-item text-center mt-5">
+                                                        <button style="background-color:transparent;" type="button" id="addBrandKalaList" onclick="addAllKalaToBrand(this)" value=""
+                                                                        class="brandBetweenButton"  style="display: inline; padding:0; border:none; background:none">
+                                                            <i class="fa-regular fa-circle-chevron-left fa-2x text-success"></i></button>
+                                                                <br/>
+                                                        <button style="background-color:transparent;"  type="button" id="removeBrandKalaList" onclick="removeAddedKalaFromBrand(this)" value=""
+                                                                        class="brandBetweenButton"style="display: inline; padding:0; border:none; background:none">
+                                                             <i class="fa-regular fa-circle-chevron-right fa-2x text-success"></i></button>
+                                                    </div>
+
+                                                    <div class="subgroup-item">
+                                                        <table class="t table table-bordered table table-hover table-sm ">
+                                                            <thead class="tableHeader">
+                                                                <tr>
+                                                                    <th>ردیف</th>
+                                                                    <th>اسم برند
+                                                                    <button  class='brandPriority' id="down" type="button" value="down" ><i class="fa-solid fa-circle-chevron-down fa-sm" style=''></i></button>
+                                                                    <button class='brandPriority' id="top"  type="button" value="up" >  <i class="fa-solid fa-circle-chevron-up fa-sm" style=''></i></button> 
+                                                                </th>
+                                                                    <th><input  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody class="tableBody" id="brandAddedKalaContainer">
+                                                                @foreach ($addedBrands as $brand)
+                                                                <tr  onclick="checkCheckBox(this,event)">
+                                                                        <td>{{$loop->iteration}}</td>
+                                                                        <td>{{$brand->name}}</td>
+                                                                        <td>
+                                                                        <input class="form-check-input" name="brandAddedKala[]" type="checkbox" value="{{$brand->id}}" id="kalaId">
+                                                                        </td>
+                                                                    </tr>
+                                                                @endforeach
                                                             </tbody>
                                                         </table>
                                                     </div>
                                                 </div>
+                                            </div>
+                                     @endif      
+                                        {{-- برای نشان دادن کالاهای مربوط به تک تصویر  --}}
+                                 <div class='c-checkout mt-2' id="picturesKalaContainer" style="display: none; margin:0 auto; width:100%; padding-right:0; border-radius:10px 10px 2px 2px; padding:0">
+                                    <div class="container">
+                                         <div class="row">
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <label class="form-label">جستجو</label>
+                                                    <input type="text" name="" size="20" class="form-control form-control-sm" id="searchKalaEdit1Pic1">
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <label class="form-label"> جستجوی گروه اصلی</label>
+                                                    <select class="form-control form-control-sm" id="searchMainGroupEdit1Pic1">
+                                                        <option value="0">همه کالا ها</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <label class="form-label"> جستجوی گروه فرعی</label>
+                                                    <select class="form-control form-control-sm" id="searchSubGroupEdit1Pic1">
+                                                        <option value="0">همه کالا ها</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="grid-subgroup">
+                                            <div class="subgroup-item">
+                                                <table class="table table-bordered table table-sm">
+                                                    <thead class="tableHeader">
+                                                        <tr>
+                                                            <th>ردیف</th>
+                                                            <th> اسم کالا </th>
+                                                            <th><input  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody class="tableBody" id="onePic1AllKala"> </tbody>
+                                                </table>
+                                            </div>
+                                            <div class="subgroup-item mt-5">
+                                                <button style="background-color:transparent;" @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif id="addOnePicKalaList1" style="display: inline; padding:0; border:none; background:none">
+                                                        <i class="fa-regular fa-circle-chevron-left fa-2x text-success"></i> </button>
+                                                    <br />
+                                                <button style="background-color:transparent;" @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif id="removeOnePicKalaList1" style="display: inline; padding:0; border:none; background:none">
+                                                            <i class="fa-regular fa-circle-chevron-right fa-2x text-success"></i> </button>
+                                            </div>
+                                            <div class="subgroup-item">
+                                                    <table class="table table-bordered table-sm">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>ردیف</th>
+                                                            <th>گروه اصلی </th>
+                                                            <th><input  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif type="checkbox" name=""  class="selectAllFromTop form-check-input"></th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody class="tableBody" id="onePic1AddedKala1"></tbody>
+                                                </table>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                         {{-- آخر تک عکسی --}}
                                         {{-- برای نشان دادن کالاهای مربوط به تصویر اول دو تصویره --}}
-                                <div class='c-checkout mt-2'  id="picturesKalaContainer2Pic1" style="display:none; margin:0 auto; width:80%; padding-right:0; border-radius:10px 10px 2px 2px; padding:0">
+                                <div class='c-checkout mt-2'  id="picturesKalaContainer2Pic1" style="display:none; margin:0 auto; width:100%; padding-right:0; border-radius:10px 10px 2px 2px; padding:0">
                                     <div class="container">
-                                        <div class="row">
-                                            <div class="row">
-                                                <div class='modal-body'style='padding-bottom:2%;'>
-                                                    <div class='c-checkout rounded-top' >
-                                                        <div class="container"style="padding: 15px; padding-bottom: 25px;">
-                                                            <div class="row">
-                                                                <div class="col-sm-4">
-                                                                    <div class="form-group">
-                                                                        <label class="form-label">جستجو</label>
-                                                                        <input type="text" name="" size="20" class="form-control form-control-sm" id="searchKalaEdit2Pic1">
-                                                                    </div>
-                                                                </div>
-
-                                                                <div class="col-sm-4">
-                                                                    <div class="form-group">
-                                                                        <label class="form-label"> جستجوی گروه اصلی</label>
-                                                                        <select class="form-control form-control-sm" id="searchMainGroupEdit2Pic1">
-                                                                            <option value="0">همه کالا ها</option>
-                                                                        </select>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-sm-4">
-                                                                    <div class="form-group">
-                                                                        <label class="form-label"> جستجوی گروه فرعی</label>
-                                                                        <select class="form-control form-control-sm" id="searchSubGroupEdit2Pic1">
-                                                                            <option value="0">همه کالا ها</option>
-                                                                        </select>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
+                                         <div class="row">
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <label class="form-label">جستجو</label>
+                                                    <input type="text" name="" size="20" class="form-control form-control-sm" id="searchKalaEdit2Pic1">
                                                 </div>
-                                            <div class="col-sm-5">
-                                                <div class='modal-body'>
-                                                    <div class='c-checkout' style='padding-right:0;'>
-                                                        <table class="tableSection table table-bordered table table-hover table-sm table-light" style='td:hover{ cursor:move;}'>
-                                                            <thead>
-                                                                <tr>
-                                                                    <th>ردیف</th>
-                                                                    <th> اسم کالا &nbsp;&nbsp;<div style="background-color:black;color:white!important; height:inherit; width:20px;"
-                                                                        class="rounded-circle d-inline-flex justify-content-center m-0 p-0"> 1 </div></th>
-                                                                    <th>
-                                                                        <input type="checkbox" name=""  class="selectAllFromTop form-check-input"  >
-                                                                    </th>
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody style="height: 400px;" id="twoPicAllKala1">
-                                                                
-                                                            </tbody>
-                                                        </table>
-                                                    </div>
+                                                </div>
+
+                                                <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <label class="form-label"> جستجوی گروه اصلی</label>
+                                                    <select class="form-control form-control-sm" id="searchMainGroupEdit2Pic1">
+                                                        <option value="0">همه کالا ها</option>
+                                                    </select>
+                                                </div>
+                                                </div>
+                                                <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <label class="form-label"> جستجوی گروه فرعی</label>
+                                                    <select class="form-control form-control-sm" id="searchSubGroupEdit2Pic1">
+                                                        <option value="0">همه کالا ها</option>
+                                                    </select>
                                                 </div>
                                             </div>
-            
-                                            <div class="col-sm-2" style="">
-                                                <div class='modal-body' style="position:relative; top: 30%;">
-                                                    <div style="">
-                                                        <button id="add2PicKalaList1" @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif>
-                                                            <i class="fa-regular fa-circle-chevron-left fa-3x text-success"></i>
-                                                        </button>
-                                                        <br />
-                                                        <button id="remove2PicKalaList1"  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif>
-                                                            <i class="fa-regular fa-circle-chevron-right fa-3x text-success"></i>
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            </div>
-            
-                                            <div class="col-sm-5">
-                                                <div class='modal-body'>
+                                        </div>
 
-                                                    <div class='c-checkout' style='padding-right:0;'>
-                                                            <table class="table table-bordered table table-hover table-sm table-light">
-                                                            <thead class="tableBody">
-                                                                <tr>
-                                                                    <th>ردیف</th>
-                                                                    <th>گروه اصلی </th>
-                                                                    <th><input  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif type="checkbox" name=""  class="selectAllFromTop form-check-input"></th>
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody class="tableBody" id="twoPicAddedKala1">
-                                                                
-                                                            </tbody>
-                                                        </table>
-                                                    </div>
-                                                </div>
+                                        <div class="grid-subgroup">
+                                            <div class="subgroup-item">
+                                                 <table class="table table-bordered  table-sm">
+                                                    <thead class="tableHeader">
+                                                        <tr>
+                                                            <th>ردیف</th>
+                                                            <th> اسم کالا &nbsp;&nbsp;<div style="background-color:black;color:white!important; height:inherit; width:20px;"
+                                                                class="rounded-circle d-inline-flex justify-content-center m-0 p-0"> 1 </div></th>
+                                                            <th>
+                                                                <input type="checkbox" name=""  class="selectAllFromTop form-check-input"  >
+                                                            </th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody class="tableBody" style="height:300px !important;" id="twoPicAllKala1"></tbody>
+                                                </table>
+                                            </div>
+                                            <div class="subgroup-item mt-5">
+                                                    <button style="background-color:transparent;" id="add2PicKalaList1" @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif>
+                                                        <i class="fa-regular fa-circle-chevron-left fa-2x text-success"></i>
+                                                    </button>
+                                                    <br />
+                                                    <button style="background-color:transparent;" id="remove2PicKalaList1"  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif>
+                                                        <i class="fa-regular fa-circle-chevron-right fa-2x text-success"></i>
+                                                    </button>
+                                            </div>
+                                            <div class="subgroup-item">
+                                                 <table class="table table-bordered table-sm ">
+                                                    <thead class="tableHeader">
+                                                        <tr>
+                                                            <th>ردیف</th>
+                                                            <th>گروه اصلی </th>
+                                                            <th><input  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif type="checkbox" name=""  class="selectAllFromTop form-check-input"></th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody class="tableBody" style="height:300px !important;"  id="twoPicAddedKala1"></tbody>
+                                                </table>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                                         {{-- برای نشان دادن کالاهای مربوط به تصویر دوم دو تصویره --}}
-                                <div class='c-checkout mt-2'  id="picturesKalaContainer2Pic2" style="display:none; margin:0 auto; width:80%; padding-right:0; border-radius:10px 10px 2px 2px; padding:0">
+                                <div class='c-checkout mt-2'  id="picturesKalaContainer2Pic2" style="display:none; margin:0 auto; width:100%; padding-right:0; border-radius:10px 10px 2px 2px; padding:0">
                                     <div class="container">
-                                        <div class="row" >
-                                            <div class='modal-body'style='padding-bottom:2%;'>
-                                                <div class='c-checkout rounded-top' >
-                                                    <div class="container" style="padding:15px; padding-bottom: 25px;">
-                                                        <div class="row">
-                                                            <div class="col-sm-4">
-                                                                <div class="form-group">
-                                                                    <label class="form-label">جستجو</label>
-                                                                    <input type="text" name="" size="20" class="form-control form-control-sm" id="searchKalaEdit2Pic2">
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-sm-4">
-                                                                <div class="form-group">
-                                                                    <label class="form-label"> جستجوی گروه اصلی</label>
-                                                                    <select class="form-control form-control-sm" id="searchMainGroupEdit2Pic2">
-                                                                        <option value="0">همه کالا ها</option>
-                                                                    </select>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-sm-4">
-                                                                <div class="form-group">
-                                                                    <label class="form-label"> جستجوی گروه فرعی</label>
-                                                                    <select class="form-control form-control-sm" id="searchSubGroupEdit2Pic2">
-                                                                        <option value="0">همه کالا ها</option>
-                                                                    </select>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
+                                         <div class="row">
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <label class="form-label">جستجو</label>
+                                                    <input type="text" name="" size="20" class="form-control form-control-sm" id="searchKalaEdit2Pic2">
                                                 </div>
                                             </div>
-                                            <div class="col-sm-5">
-                                                <div class='modal-body'>
-                                                    <div class='c-checkout' style='padding-right:0;'>
-                                                        <table class="table table-bordered table table-hover table-sm table-light" style='td:hover{ cursor:move;}'>
-                                                            <thead class="tableHeader">
-                                                                <tr>
-                                                                    <th>ردیف</th>
-                                                                    <th> اسم کالا &nbsp;&nbsp;<div style="background-color:black;color:white!important; height:inherit; width:20px;"
-                                                                        class="rounded-circle d-inline-flex justify-content-center m-0 p-0"> 2 </div></th>
-                                                                    <th><input  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif type="checkbox" name=""  class="selectAllFromTop form-check-input"></th>
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody class="tableBody" id="twoPicAllKala2">
-                                                                
-                                                            </tbody>
-                                                        </table>
-                                                    </div>
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <label class="form-label"> جستجوی گروه اصلی</label>
+                                                    <select class="form-control form-control-sm" id="searchMainGroupEdit2Pic2">
+                                                        <option value="0">همه کالا ها</option>
+                                                    </select>
                                                 </div>
                                             </div>
-            
-                                            <div class="col-sm-2" style="">
-                                                <div class='modal-body'style="position:relative; top: 30%;">
-                                                    <div style="">
-                                                        <button  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif id="add2PicKalaList2">
-                                                        <i class="fa-regular fa-circle-chevron-left fa-3x text-success"></i>
-</button>
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <label class="form-label"> جستجوی گروه فرعی</label>
+                                                    <select class="form-control form-control-sm" id="searchSubGroupEdit2Pic2">
+                                                        <option value="0">همه کالا ها</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="grid-subgroup">
+                                            <div class="subgroup-item">
+                                                <table class="table table-bordered table table-hover table-sm " style='td:hover{ cursor:move;}'>
+                                                    <thead class="tableHeader">
+                                                        <tr>
+                                                            <th>ردیف</th>
+                                                            <th> اسم کالا &nbsp;&nbsp;<div style="background-color:black;color:white!important; height:inherit; width:20px;"
+                                                                class="rounded-circle d-inline-flex justify-content-center m-0 p-0"> 2 </div></th>
+                                                            <th><input  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif type="checkbox" name=""  class="selectAllFromTop form-check-input"></th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody class="tableBody" style="height:300px !important;"  id="twoPicAllKala2"></tbody>
+                                                </table>
+                                            </div>
+                                            <div class="subgroup-item mt-5">
+                                                <button  style="background-color:transparent;" @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif id="add2PicKalaList2">
+                                                        <i class="fa-regular fa-circle-chevron-left fa-2x text-success"></i>
+                                                     </button>
                                                         <br />
-                                                        <button  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif id="remove2PicKalaList2">
-                                                        <i class="fa-regular fa-circle-chevron-right fa-3x text-success"></i>
-</button>
-                                                    </div>
-                                                </div>
+                                                <button  style="background-color:transparent;" @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif id="remove2PicKalaList2">
+                                                <i class="fa-regular fa-circle-chevron-right fa-2x text-success"></i>
+                                                </button>
                                             </div>
-            
-                                            <div class="col-sm-5">
-                                                <div class='modal-body'>
-                                                    <div class='c-checkout' style='padding-right:0;'>
-                                                        <table class="table table-bordered table table-hover table-sm table-light" style='td:hover{ cursor:move;}'>
-                                                            <thead class="tableHeader">
-                                                                <tr>
-                                                                    <th>ردیف</th>
-                                                                    <th>گروه اصلی </th>
-                                                                    <th><input  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody class="tableBody" id="twoPicAddedKala2">
-                                                                
-                                                            </tbody>
-                                                        </table>
-                                                    </div>
-                                                </div>
+                                            <div class="subgroup-item">
+                                                <table class="table table-bordered table table-hover table-sm " style='td:hover{ cursor:move;}'>
+                                                    <thead class="tableHeader">
+                                                        <tr>
+                                                            <th>ردیف</th>
+                                                            <th>گروه اصلی </th>
+                                                            <th><input  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody class="tableBody" style="height:300px !important;" id="twoPicAddedKala2"> </tbody>
+                                                </table>
                                             </div>
-                                        </div>  
-                                    </div>  
+                                     </div>   
                                 </div>  
                             </div>  
                                         {{-- برای نشان دادن کالاهای مربوط به تصویر اول سه تصویره --}}
-                                <div class='c-checkout mt-2'  id="picturesKalaContainer3Pic1" style="display: none; none; margin:0 auto; width:80%; padding-right:0; border-radius:10px 10px 2px 2px; padding:0">
+                                <div class='c-checkout mt-2'  id="picturesKalaContainer3Pic1" style="display: none; none; margin:0 auto; width:100%; padding-right:0; border-radius:10px 10px 2px 2px; padding:0">
                                     <div class="container">
-                                        <div class="row" >
-                                            <div class='modal-body'style='padding-bottom:2%;'>
-                                                <div class='c-checkout rounded-top' >
-                                                    <div class="container" style="padding:15px; padding-bottom: 25px;">
-                                                        <div class="row">
-                                                            <div class="col-sm-4">
-                                                                <div class="form-group">
-                                                                    <label class="form-label">جستجو</label>
-                                                                    <input type="text" name="" size="20" class="form-control form-control-sm" id="searchKalaEdit3Pic1">
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-sm-4">
-                                                                <div class="form-group">
-                                                                    <label class="form-label"> جستجوی گروه اصلی</label>
-                                                                    <select class="form-control form-control-sm" id="searchMainGroupEdit3Pic1">
-                                                                        <option value="0">همه کالا ها</option>
-                                                                    </select>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-sm-4">
-                                                                <div class="form-group">
-                                                                    <label class="form-label"> جستجوی گروه فرعی</label>
-                                                                    <select class="form-control form-control-sm" id="searchSubGroupEdit3Pic1">
-                                                                        <option value="0">همه کالا ها</option>
-                                                                    </select>
-                                                                </div>
-                                                            </div>
-                                                        </div>
+                                         <div class="row">
+                                               <div class="col-sm-4">
+                                                    <div class="form-group">
+                                                        <label class="form-label">جستجو</label>
+                                                        <input type="text" name="" size="20" class="form-control form-control-sm" id="searchKalaEdit3Pic1">
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-4">
+                                                    <div class="form-group">
+                                                        <label class="form-label"> جستجوی گروه اصلی</label>
+                                                        <select class="form-control form-control-sm" id="searchMainGroupEdit3Pic1">
+                                                            <option value="0">همه کالا ها</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-4">
+                                                    <div class="form-group">
+                                                        <label class="form-label"> جستجوی گروه فرعی</label>
+                                                        <select class="form-control form-control-sm" id="searchSubGroupEdit3Pic1">
+                                                            <option value="0">همه کالا ها</option>
+                                                        </select>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-sm-5">
-                                                <div class='modal-body'>
-                                                    <div class='c-checkout' style='padding-right:0;'>
-                                                        <table class="tableSection table table-bordered table table-hover table-sm table-light" style='td:hover{ cursor:move;}'>
-                                                            <thead class="tableHeader">
-                                                                <tr>
-                                                                    <th>ردیف</th>
-                                                                    <th> اسم کالا &nbsp;&nbsp;<div style="background-color:black;color:white!important; height:inherit; width:20px;"
-                                                                        class="rounded-circle d-inline-flex justify-content-center m-0 p-0"> 1 </div></th>
-                                                                    <th><input  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif type="checkbox" name=""  class="selectAllFromTop form-check-input"></th>
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody class="tableBody" id="threePicAllKala1">
-                                                                
-                                                            </tbody>
-                                                        </table>
-                                                    </div>
+
+                                            <div class="grid-subgroup">
+                                                <div class="subgroup-item">
+                                                      <table class="tableSection table table-bordered table table-hover table-sm " style='td:hover{ cursor:move;}'>
+                                                        <thead class="tableHeader">
+                                                            <tr>
+                                                                <th>ردیف</th>
+                                                                <th> اسم کالا &nbsp;&nbsp;<div style="background-color:black;color:white!important; height:inherit; width:20px;"
+                                                                    class="rounded-circle d-inline-flex justify-content-center m-0 p-0"> 1 </div></th>
+                                                                <th><input  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif type="checkbox" name=""  class="selectAllFromTop form-check-input"></th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody class="tableBody" style="height:300px !important;"  id="threePicAllKala1"> </tbody>
+                                                    </table>
                                                 </div>
-                                            </div>
-            
-                                            <div class="col-sm-2" style="">
-                                                <div class='modal-body' style="position:relative; top: 30%;">
-                                                    <div style="">
-                                                        <button  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif id="add3PicKalaList1">
-                                                        <i class="fa-regular fa-circle-chevron-left fa-3x text-success"></i>
-</button>
+                                                <div class="subgroup-item mt-5">
+                                                       <button style="background-color:transparent;" @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif id="add3PicKalaList1">
+                                                        <i class="fa-regular fa-circle-chevron-left fa-2x text-success"></i>
+                                                        </button>
                                                         <br />
-                                                        <button  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif id="remove3PicKalaList1">
-                                                        <i class="fa-regular fa-circle-chevron-right fa-3x text-success"></i>
-</button>
-                                                    </div>
+                                                        <button style="background-color:transparent;" @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif id="remove3PicKalaList1">
+                                                        <i class="fa-regular fa-circle-chevron-right fa-2x text-success"></i>
+                                                        </button>
                                                 </div>
-                                            </div>
-            
-                                            <div class="col-sm-5">
-                                                <div class='modal-body'>
-                                                    <div class='c-checkout' style='padding-right:0;'>
-                                                        <table class="tableSection table table-bordered table table-hover table-sm table-light" style='td:hover{ cursor:move;}'>
+                                                <div class="subgroup-item">
+                                                    <table class="tableSection table table-bordered table-sm">
                                                             <thead class="tableHeader">
                                                                 <tr>
                                                                     <th>ردیف</th>
@@ -655,236 +426,176 @@
                                                                     <th><input  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
                                                                 </tr>
                                                             </thead>
-                                                            <tbody class="tableBody" id="threePicAddedKala1">
-                                                                
-                                                            </tbody>
-                                                        </table>
-                                                    </div>
+                                                            <tbody class="tableBody" style="height:300px !important;" id="threePicAddedKala1"> </tbody>
+                                                    </table>
                                                 </div>
                                             </div>
-                                        </div>
                                     </div>
                                 </div>
                                         {{-- برای نشان دادن کالاهای مربوط به تصویر دوم سه تصویره --}}
-                                <div class='c-checkout mt-2'  id="picturesKalaContainer3Pic2" style="display: none; none; margin:0 auto; width:80%; padding-right:0; border-radius:10px 10px 2px 2px; padding:0">
+                                <div class='c-checkout mt-2'  id="picturesKalaContainer3Pic2" style="display: none; none; margin:0 auto; width:100%; padding-right:0; border-radius:10px 10px 2px 2px; padding:0">
                                     <div class="container">
-                                        <div class="row" >
                                             <div class="row">
-                                                <div class='modal-body'style='padding-bottom:2%;'>
-                                                    <div class='c-checkout rounded-top' >
-                                                        <div class="container" style="padding: 15px; padding-bottom: 25px;">
-                                                            <div class="row">
-                                                                <div class="col-sm-4">
-                                                                    <div class="form-group">
-                                                                        <label class="form-label">جستجو</label>
-                                                                        <input type="text" name="" size="20" class="form-control form-control-sm" id="searchKalaEdit3Pic2">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-sm-4">
-                                                                    <div class="form-group">
-                                                                        <label class="form-label"> جستجوی گروه اصلی</label>
-                                                                        <select class="form-control form-control-sm" id="searchMainGroupEdit3Pic2">
-                                                                            <option value="0">همه کالا ها</option>
-                                                                        </select>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-sm-4">
-                                                                    <div class="form-group">
-                                                                        <label class="form-label"> جستجوی گروه فرعی</label>
-                                                                        <select class="form-control form-control-sm" id="searchSubGroupEdit3Pic2">
-                                                                            <option value="0">همه کالا ها</option>
-                                                                        </select>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
+                                                <div class="col-sm-4">
+                                                    <div class="form-group">
+                                                        <label class="form-label">جستجو</label>
+                                                        <input type="text" name="" size="20" class="form-control form-control-sm" id="searchKalaEdit3Pic2">
                                                     </div>
                                                 </div>
-                                            <div class="col-sm-5">
-                                                <div class='modal-body'>
-                                                    <div class='c-checkout' style='padding-right:0;'>
-                                                        <table class="table table-bordered table table-hover table-sm table-light" style='td:hover{ cursor:move;}'>
-                                                            <thead class="tableHeader">
-                                                                <tr>
-                                                                    <th>ردیف</th>
-                                                                    <th> اسم کالا &nbsp;&nbsp;<div style="background-color:black;color:white!important; height:inherit; width:20px;"
-                                                                        class="rounded-circle d-inline-flex justify-content-center m-0 p-0"> 2 </div></th>
-                                                                    <th><input  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif type="checkbox" name=""  class="selectAllFromTop form-check-input"></th>
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody class="tableBody" id="threePicAllKala2">
-                                                                
-                                                            </tbody>
-                                                        </table>
+                                                <div class="col-sm-4">
+                                                    <div class="form-group">
+                                                        <label class="form-label"> جستجوی گروه اصلی</label>
+                                                        <select class="form-control form-control-sm" id="searchMainGroupEdit3Pic2">
+                                                            <option value="0">همه کالا ها</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-4">
+                                                    <div class="form-group">
+                                                        <label class="form-label"> جستجوی گروه فرعی</label>
+                                                        <select class="form-control form-control-sm" id="searchSubGroupEdit3Pic2">
+                                                            <option value="0">همه کالا ها</option>
+                                                        </select>
                                                     </div>
                                                 </div>
                                             </div>
-            
-                                            <div class="col-sm-2" style="">
-                                                <div class='modal-body' style="position:relative; top: 30%;">
-                                                    <div style="">
-                                                        <button  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif id="add3PicKalaList2">
-                                                        <i class="fa-regular fa-circle-chevron-left fa-3x text-success"></i>
-</button>
+
+
+                                            <div class="grid-subgroup">
+                                                <div class="subgroup-item">
+                                                    <table class="table table-bordered table-sm">
+                                                        <thead class="tableHeader">
+                                                            <tr>
+                                                                <th>ردیف</th>
+                                                                <th> اسم کالا &nbsp;&nbsp;<div style="background-color:black;color:white!important; height:inherit; width:20px;"
+                                                                    class="rounded-circle d-inline-flex justify-content-center m-0 p-0"> 2 </div></th>
+                                                                <th><input  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif type="checkbox" name=""  class="selectAllFromTop form-check-input"></th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody class="tableBody" style="height:300px !important;"  id="threePicAllKala2"> </tbody>
+                                                    </table>
+                                                </div>
+
+                                                <div class="subgroup-item mt-5">
+                                                     <button style="background-color:transparent;" @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif id="add3PicKalaList2">
+                                                        <i class="fa-regular fa-circle-chevron-left fa-2x text-success"></i>
+                                                    </button>
                                                         <br />
-                                                        <button  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif id="remove3PicKalaList2">
-                                                        <i class="fa-regular fa-circle-chevron-right fa-3x text-success"></i>
-</button>
-                                                    </div>
+                                                        <button style="background-color:transparent;" @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif id="remove3PicKalaList2">
+                                                        <i class="fa-regular fa-circle-chevron-right fa-2x text-success"></i>
+                                                    </button>
                                                 </div>
-                                            </div>
-            
-                                            <div class="col-sm-5">
-                                                <div class='modal-body'>
-                                                    <div class='c-checkout' style='padding-right:0;'>
-                                                        <table class="tableSection table table-bordered table table-hover table-sm table-light" style='td:hover{ cursor:move;}'>
-                                                            <thead class="tableHeader">
-                                                                <tr>
-                                                                    <th>ردیف</th>
-                                                                    <th>گروه اصلی </th>
-                                                                    <th><input  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody class="tableBody" id="threePicAddedKala2">
-                                                                
-                                                            </tbody>
-                                                        </table>
-                                                    </div>
+                                                <div class="subgroup-item">
+                                                     <table class="tableSection table table-bordered table-sm ">
+                                                        <thead class="tableHeader">
+                                                            <tr>
+                                                                <th>ردیف</th>
+                                                                <th>گروه اصلی </th>
+                                                                <th><input  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody class="tableBody" style="height:300px !important;"  id="threePicAddedKala2"> </tbody>
+                                                    </table>
                                                 </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                         </div>
+                                   </div>
                             </div>
                                         {{-- برای نشان دادن کالاهای مربوط به تصویر سوم سه تصویره --}}
-                                <div class='c-checkout mt-2'  id="picturesKalaContainer3Pic3" style="display: none; none; margin:0 auto; width:80%; padding-right:0; border-radius:10px 10px 2px 2px; padding:0">
+                                <div class='c-checkout mt-2'  id="picturesKalaContainer3Pic3" style="display: none; none; margin:0 auto; width:100%; padding-right:0; border-radius:10px 10px 2px 2px; padding:0">
                                     <div class="container">
-                                        <div class="row" >
                                             <div class="row">
-                                                <div class='modal-body'style='padding-bottom:2%;'>
-                                                    <div class='c-checkout rounded-top' >
-                                                        <div class="container" style="padding: 15px; padding-bottom: 25px;">
-                                                            <div class="row">
-                                                                <div class="col-sm-4">
-                                                                    <div class="form-group">
-                                                                        <label class="form-label">جستجو</label>
-                                                                        <input type="text" name="" size="20" class="form-control form-control-sm" id="searchKalaEdit3Pic3">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-sm-4">
-                                                                    <div class="form-group">
-                                                                        <label class="form-label"> جستجوی گروه اصلی</label>
-                                                                        <select class="form-control form-control-sm" id="searchMainGroupEdit3Pic3">
-                                                                            <option value="0">همه کالا ها</option>
-                                                                        </select>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-sm-4">
-                                                                    <div class="form-group">
-                                                                        <label class="form-label"> جستجوی گروه فرعی</label>
-                                                                        <select class="form-control form-control-sm" id="searchSubGroupEdit3Pic3">
-                                                                            <option value="0">همه کالا ها</option>
-                                                                        </select>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
+                                                <div class="col-sm-4">
+                                                    <div class="form-group">
+                                                        <label class="form-label">جستجو</label>
+                                                        <input type="text" name="" size="20" class="form-control form-control-sm" id="searchKalaEdit3Pic3">
                                                     </div>
                                                 </div>
-                                            <div class="col-sm-5">
-                                                <div class='modal-body'>
-                                                    <div class='c-checkout' style='padding-right:0;'>
-                                                        <table class="table table-bordered table table-hover table-sm table-light">
-                                                            <thead class="tableHeader">
-                                                                <tr>
-                                                                    <th>ردیف</th>
-                                                                    <th> اسم کالا &nbsp;&nbsp;<div style="background-color:black;color:white!important; height:inherit; width:20px;"
-                                                                        class="rounded-circle d-inline-flex justify-content-center m-0 p-0"> 3 </div></th>
-                                                                    <th><input  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody class="tableBody" id="threePicAllKala3">
-                                                                
-                                                            </tbody>
-                                                        </table>
+                                                <div class="col-sm-4">
+                                                    <div class="form-group">
+                                                        <label class="form-label"> جستجوی گروه اصلی</label>
+                                                        <select class="form-control form-control-sm" id="searchMainGroupEdit3Pic3">
+                                                            <option value="0">همه کالا ها</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-4">
+                                                    <div class="form-group">
+                                                        <label class="form-label"> جستجوی گروه فرعی</label>
+                                                        <select class="form-control form-control-sm" id="searchSubGroupEdit3Pic3">
+                                                            <option value="0">همه کالا ها</option>
+                                                        </select>
                                                     </div>
                                                 </div>
                                             </div>
 
-                                            <div class="col-sm-2" style="">
-                                                <div class='modal-body' style="position:relative; top: 30%;">
-                                                    <div style="">
-                                                        <button  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif id="add3PicKalaList3">
-                                                        <i class="fa-regular fa-circle-chevron-left fa-3x text-success"></i>
-</button>
+                                            <div class="grid-subgroup">
+                                                <div class="subgroup-item">
+                                                     <table class="table table-bordered table-hover table-sm">
+                                                        <thead class="tableHeader">
+                                                            <tr>
+                                                                <th>ردیف</th>
+                                                                <th> اسم کالا &nbsp;&nbsp;<div style="background-color:black;color:white!important; height:inherit; width:20px;"
+                                                                    class="rounded-circle d-inline-flex justify-content-center m-0 p-0"> 3 </div></th>
+                                                                <th><input  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody class="tableBody" style="height:300px !important;"  id="threePicAllKala3"></tbody>
+                                                    </table>
+                                                </div>
+                                                <div class="subgroup-item mt-5">
+                                                    <button style="background-color:transparent;"  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif id="add3PicKalaList3">
+                                                        <i class="fa-regular fa-circle-chevron-left fa-2x text-success"></i>
+                                                        </button>
                                                         <br />
-                                                        <button  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif id="remove3PicKalaList3">
-                                                        <i class="fa-regular fa-circle-chevron-right fa-3x text-success"></i>
-</button>
-                                                    </div>
+                                                        <button style="background-color:transparent;"  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif id="remove3PicKalaList3">
+                                                        <i class="fa-regular fa-circle-chevron-right fa-2x text-success"></i>
+                                                    </button>
+                                                </div>
+                                                <div class="subgroup-item">
+                                                     <table class="table table-bordered table table-hover table-sm ">
+                                                        <thead class="tableHeader">
+                                                            <tr>
+                                                                <th>ردیف</th>
+                                                                <th>گروه اصلی </th>
+                                                                <th><input  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody class="tableBody" style="height:300px !important;"  id="threePicAddedKala3"></tbody>
+                                                    </table>
                                                 </div>
                                             </div>
-
-                                            <div class="col-sm-5">
-                                                <div class='modal-body'>
-                                                    <div class='c-checkout' style='padding-right:0;'>
-                                                        <table class="table table-bordered table table-hover table-sm table-light">
-                                                            <thead class="tableHeader">
-                                                                <tr>
-                                                                    <th>ردیف</th>
-                                                                    <th>گروه اصلی </th>
-                                                                    <th><input  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody class="tableBody" id="threePicAddedKala3">
-                                                            </tbody>
-                                                        </table>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                                      </div>
+                                 </div>
                                         {{-- برای نشان دادن کالاهای مربوط به تصویر اول 4 تصویره --}}
-                                <div class='c-checkout mt-2'  id="picturesKalaContainer4Pic1" style="display: none; margin:0 auto; width:80%; padding-right:0; border-radius:10px 10px 2px 2px; padding:0">
+                                <div class='c-checkout mt-2'  id="picturesKalaContainer4Pic1" style="display: none; margin:0 auto; width:100%; padding-right:0; border-radius:10px 10px 2px 2px; padding:0">
                                     <div class="container">
-                                        <div class="row" >
-                                            <div class="row">
-                                                <div class='modal-body'style='padding-bottom:2%;'>
-                                                    <div class='c-checkout rounded-top' >
-                                                        <div class="container" style="padding: 15px; padding-bottom: 25px;">
-                                                            <div class="row">
-                                                                <div class="col-sm-4">
-                                                                    <div class="form-group">
-                                                                        <label class="form-label">جستجو</label>
-                                                                        <input type="text" name="" size="20" class="form-control form-control-sm" id="searchKalaEdit4Pic1">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-sm-4">
-                                                                    <div class="form-group">
-                                                                        <label class="form-label"> جستجوی گروه اصلی</label>
-                                                                        <select class="form-control form-control-sm" id="searchMainGroupEdit4Pic1">
-                                                                            <option value="0">همه کالا ها</option>
-                                                                        </select>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-sm-4">
-                                                                    <div class="form-group">
-                                                                        <label class="form-label"> جستجوی گروه فرعی</label>
-                                                                        <select class="form-control form-control-sm" id="searchSubGroupEdit4Pic1">
-                                                                            <option value="0">همه کالا ها</option>
-                                                                        </select>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
+                                           <div class="row">
+                                                <div class="col-sm-4">
+                                                    <div class="form-group">
+                                                        <label class="form-label">جستجو</label>
+                                                        <input type="text" name="" size="20" class="form-control form-control-sm" id="searchKalaEdit4Pic1">
                                                     </div>
                                                 </div>
-                                            <div class="col-sm-5">
-                                                <div class='modal-body'>
-                                                    <div class='c-checkout' style='padding-right:0;'>
-                                                        <table class="tableSection table table-bordered table table-hover table-sm table-light" style='td:hover{ cursor:move;}'>
+                                                <div class="col-sm-4">
+                                                    <div class="form-group">
+                                                        <label class="form-label"> جستجوی گروه اصلی</label>
+                                                        <select class="form-control form-control-sm" id="searchMainGroupEdit4Pic1">
+                                                            <option value="0">همه کالا ها</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-4">
+                                                    <div class="form-group">
+                                                        <label class="form-label"> جستجوی گروه فرعی</label>
+                                                        <select class="form-control form-control-sm" id="searchSubGroupEdit4Pic1">
+                                                            <option value="0">همه کالا ها</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="grid-subgroup">
+                                                    <div class="subgroup-item">
+                                                        <table class="table table-bordered table-hover table-sm">
                                                             <thead>
                                                                 <tr>
                                                                     <th>ردیف</th>
@@ -893,123 +604,86 @@
                                                                     <th><input  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
                                                                 </tr>
                                                             </thead>
-                                                            <tbody style="height: 400px;" id="fourPicAllKala1">
-                                                                
-                                                            </tbody>
+                                                            <tbody class="tableBody" style="height:300px !important;"  id="fourPicAllKala1"> </tbody>
                                                         </table>
                                                     </div>
-                                                </div>
-                                            </div>
-            
-                                            <div class="col-sm-2" style="">
-                                                <div class='modal-body' style="position:relative; top: 30%;">
-                                                    <div style="">
-                                                        <button  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif id="add4PicKalaList1">
-                                                        <i class="fa-regular fa-circle-chevron-left fa-3x text-success"></i>
-</button>
-                                                        <br />
-                                                        <button  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif id="remove4PicKalaList1">
-                                                        <i class="fa-regular fa-circle-chevron-right fa-3x text-success"></i>
-</button>
+                                                    <div class="subgroup-item mt-5">
+                                                            <button  style="background-color:transparent;" @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif id="add4PicKalaList1">
+                                                            <i class="fa-regular fa-circle-chevron-left fa-2x text-success"></i>
+                                                            </button>
+                                                            <br />
+                                                            <button  style="background-color:transparent;" @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif id="remove4PicKalaList1">
+                                                            <i class="fa-regular fa-circle-chevron-right fa-2x text-success"></i>
+                                                            </button>
                                                     </div>
-                                                </div>
-                                            </div>
-            
-                                            <div class="col-sm-5">
-                                                <div class='modal-body'>
-                                                    <div class='c-checkout' style='padding-right:0;'>
-                                                        <table class="table table-bordered table table-hover table-sm table-light" style='td:hover{ cursor:move;}'>
-                                                            <thead class="tableBody">
+                                                    <div class="subgroup-item">
+                                                        <table class="table table-bordered table-hover table-sm " style='td:hover{ cursor:move;}'>
+                                                            <thead class="tableHeader">
                                                                 <tr>
                                                                     <th>ردیف</th>
                                                                     <th>گروه اصلی </th>
                                                                     <th><input  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
                                                                 </tr>
                                                             </thead>
-                                                            <tbody class="tableBody" id="fourPicAddedKala1">
-                                                                
-                                                            </tbody>
+                                                            <tbody class="tableBody" style="height:300px !important;"  id="fourPicAddedKala1"> </tbody>
                                                         </table>
                                                     </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                                             </div>
+                                      </div>
+                                  </div>
+
                                         {{-- برای نشان دادن کالاهای مربوط به تصویر دوم 4 تصویره --}}
-                                <div class='c-checkout mt-2'  id="picturesKalaContainer4Pic2" style="display: none; margin:0 auto; width:80%; padding-right:0; border-radius:10px 10px 2px 2px; padding:0">
-                                    <div class="container">
-                                        <div class="row" >
+                                 <div class='c-checkout mt-2'  id="picturesKalaContainer4Pic2" style="display: none; margin:0 auto; width:100%; padding-right:0; border-radius:10px 10px 2px 2px; padding:0">
+                                     <div class="container">
                                             <div class="row">
-                                                <div class='modal-body'style='padding-bottom:2%;'>
-                                                    <div class='c-checkout rounded-top' >
-                                                        <div class="container" style="padding: 15px; padding-bottom: 25px;">
-                                                            <div class="row">
-                                                                <div class="col-sm-4">
-                                                                    <div class="form-group">
-                                                                        <label class="form-label">جستجو</label>
-                                                                        <input type="text" name="" size="20" class="form-control form-control-sm" id="searchKalaEdit4Pic2">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-sm-4">
-                                                                    <div class="form-group">
-                                                                        <label class="form-label"> جستجوی گروه اصلی</label>
-                                                                        <select class="form-control form-control-sm" id="searchMainGroupEdit4Pic2">
-                                                                            <option value="0">همه کالا ها</option>
-                                                                        </select>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-sm-4">
-                                                                    <div class="form-group">
-                                                                        <label class="form-label"> جستجوی گروه فرعی</label>
-                                                                        <select class="form-control form-control-sm" id="searchSubGroupEdit4Pic2">
-                                                                            <option value="0">همه کالا ها</option>
-                                                                        </select>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
+                                                <div class="col-sm-4">
+                                                    <div class="form-group">
+                                                        <label class="form-label">جستجو</label>
+                                                        <input type="text" name="" size="20" class="form-control form-control-sm" id="searchKalaEdit4Pic2">
                                                     </div>
                                                 </div>
-                                            <div class="col-sm-5">
-                                                <div class='modal-body'>
-                                                    <div class='c-checkout' style='padding-right:0;'>
-                                                        <table class="table table-bordered table table-hover table-sm table-light">
+                                                <div class="col-sm-4">
+                                                    <div class="form-group">
+                                                        <label class="form-label"> جستجوی گروه اصلی</label>
+                                                        <select class="form-control form-control-sm" id="searchMainGroupEdit4Pic2">
+                                                            <option value="0">همه کالا ها</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-4">
+                                                    <div class="form-group">
+                                                        <label class="form-label"> جستجوی گروه فرعی</label>
+                                                        <select class="form-control form-control-sm" id="searchSubGroupEdit4Pic2">
+                                                            <option value="0">همه کالا ها</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="grid-subgroup">
+                                                    <div class="subgroup-item">
+                                                        <table class="table table-bordered table-hover table-sm">
                                                             <thead class="tableHeader">
                                                                 <tr>
                                                                     <th>ردیف</th>
-                                                                    <th> اسم کالا &nbsp;&nbsp;<div style="background-color:black;color:white!important; height:inherit; width:20px;"
-                                                                        class="rounded-circle d-inline-flex justify-content-center m-0 p-0"> 2 </div></th>
-                                                                    <th><input  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
+                                                                    <th> اسم کالا </th>
+                                                                    <th> <input  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif type="checkbox" name=""  class="selectAllFromTop form-check-input"> </th>
                                                                 </tr>
                                                             </thead>
-                                                            <tbody class="tableBody" id="fourPicAllKala2">
-                                                                
-                                                            </tbody>
+                                                            <tbody cclass="tableBody" style="height:300px !important;" id="fourPicAllKala2"> </tbody>
                                                         </table>
                                                     </div>
-                                                </div>
-                                            </div>
-            
-                                            <div class="col-sm-2" style="">
-                                                <div class='modal-body' style="position:relative; top: 30%;">
-                                                    <div style="">
-                                                        <button  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif id="add4PicKalaList2">
-                                                        <i class="fa-regular fa-circle-chevron-left fa-3x text-success"></i>
-</button>
-                                                        <br />
-                                                        <button  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif id="remove4PicKalaList2">
-                                                        <i class="fa-regular fa-circle-chevron-right fa-3x text-success"></i>
-</button>
+                                                    <div class="subgroup-item mt-5">
+                                                        <button  style="background-color:transparent;" @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif id="add4PicKalaList2">
+                                                            <i class="fa-regular fa-circle-chevron-left fa-2x text-success"></i>
+                                                            </button>
+                                                            <br />
+                                                            <button  style="background-color:transparent;" @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif id="remove4PicKalaList2">
+                                                            <i class="fa-regular fa-circle-chevron-right fa-2x text-success"></i>
+                                                        </button>
                                                     </div>
-                                                </div>
-                                            </div>
-            
-                                            <div class="col-sm-5">
-                                                <div class='modal-body'>
-                                                    <div class='c-checkout' style='padding-right:0;'>
-                                                        <table class="table table-bordered table table-hover table-sm table-light">
+                                                    <div class="subgroup-item">
+                                                        <table class="table table-bordered table-hover table-sm">
                                                             <thead class="tableHeader">
                                                                 <tr>
                                                                     <th>ردیف</th>
@@ -1017,56 +691,43 @@
                                                                     <th><input  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
                                                                 </tr>
                                                             </thead>
-                                                            <tbody class="tableBody" id="fourPicAddedKala2">
-                                                                
-                                                            </tbody>
+                                                            <tbody class="tableBody" style="height:300px !important;" id="fourPicAddedKala2"> </tbody>
                                                         </table>
                                                     </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                                             </div>
+                                       </div>
+                                   </div>
+
                                         {{-- برای نشان دادن کالاهای مربوط به تصویر سوم 4 تصویره --}}
-                                <div class='c-checkout mt-2'  id="picturesKalaContainer4Pic3" style="display: none; margin:0 auto; width:80%; padding-right:0; border-radius:10px 10px 2px 2px; padding:0">
+                                <div class='c-checkout mt-2'  id="picturesKalaContainer4Pic3" style="display: none; margin:0 auto; width:100%; padding-right:0; border-radius:10px 10px 2px 2px; padding:0">
                                     <div class="container">
-                                        <div class="row" >
-                                            <div class="row">
-                                                <div class='modal-body'style='padding-bottom:2%;'>
-                                                    <div class='c-checkout rounded-top' >
-                                                        <div class="container" style="padding: 15px; padding-bottom: 25px;">
-                                                            <div class="row">
-                                                                <div class="col-sm-4">
-                                                                    <div class="form-group">
-                                                                        <label class="form-label">جستجو</label>
-                                                                        <input type="text" name="" size="20" class="form-control form-control-sm" id="searchKalaEdit4Pic3">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-sm-4">
-                                                                    <div class="form-group">
-                                                                        <label class="form-label"> جستجوی گروه اصلی</label>
-                                                                        <select class="form-control form-control-sm" id="searchMainGroupEdit4Pic3">
-                                                                            <option value="0">همه کالا ها</option>
-                                                                        </select>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-sm-4">
-                                                                    <div class="form-group">
-                                                                        <label class="form-label"> جستجوی گروه فرعی</label>
-                                                                        <select class="form-control form-control-sm" id="searchSubGroupEdit4Pic3">
-                                                                            <option value="0">همه کالا ها</option>
-                                                                        </select>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
+                                             <div class="row">
+                                                    <div class="col-sm-4">
+                                                        <div class="form-group">
+                                                            <label class="form-label">جستجو</label>
+                                                            <input type="text" name="" size="20" class="form-control form-control-sm" id="searchKalaEdit4Pic3">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-4">
+                                                        <div class="form-group">
+                                                            <label class="form-label"> جستجوی گروه اصلی</label>
+                                                            <select class="form-control form-control-sm" id="searchMainGroupEdit4Pic3">
+                                                                <option value="0">همه کالا ها</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-4">
+                                                        <div class="form-group">
+                                                            <label class="form-label"> جستجوی گروه فرعی</label>
+                                                            <select class="form-control form-control-sm" id="searchSubGroupEdit4Pic3">
+                                                                <option value="0">همه کالا ها</option>
+                                                            </select>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            <div class="col-sm-5">
-                                                <div class='modal-body'>
-                                                    <div class='c-checkout' style='padding-right:0;'>
-                                                        <table class=" table table-bordered table table-hover table-sm table-light">
+                                                <div class="grid-subgroup">
+                                                    <div class="subgroup-item">
+                                                        <table class="table table-bordered  table-hover table-sm ">
                                                             <thead class="tableHeader">
                                                                 <tr>
                                                                     <th>ردیف</th>
@@ -1075,32 +736,20 @@
                                                                     <th><input  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
                                                                 </tr>
                                                             </thead>
-                                                            <tbody class="tableBody" id="fourPicAllKala3">
-                                                                
-                                                            </tbody>
+                                                            <tbody class="tableBody" style="height:300px !important;"  id="fourPicAllKala3"> </tbody>
                                                         </table>
                                                     </div>
-                                                </div>
-                                            </div>
-            
-                                            <div class="col-sm-2" style="">
-                                                <div class='modal-body' style="position:relative; top: 30%;">
-                                                    <div style="">
-                                                        <button  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif id="add4PicKalaList3">
-                                                        <i class="fa-regular fa-circle-chevron-left fa-3x text-success"></i>
-</button>
-                                                        <br />
-                                                        <button  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif id="remove4PicKalaList3">
-                                                        <i class="fa-regular fa-circle-chevron-right fa-3x text-success"></i>
-</button>
+                                                    <div class="subgroup-item mt-5">
+                                                           <button style="background-color:transparent;"  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif id="add4PicKalaList3">
+                                                          <i class="fa-regular fa-circle-chevron-left fa-2x text-success"></i>
+                                                            </button>
+                                                                <br />
+                                                                <button style="background-color:transparent;"  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif id="remove4PicKalaList3">
+                                                                <i class="fa-regular fa-circle-chevron-right fa-2x text-success"></i>
+                                                            </button>
                                                     </div>
-                                                </div>
-                                            </div>
-            
-                                            <div class="col-sm-5">
-                                                <div class='modal-body'>
-                                                    <div class='c-checkout' style='padding-right:0;'>
-                                                        <table class="table table-bordered table table-hover table-sm table-light">
+                                                    <div class="subgroup-item">
+                                                         <table class="table table-bordered table table-hover table-sm ">
                                                             <thead class="tableHeader">
                                                                 <tr>
                                                                     <th>ردیف</th>
@@ -1108,571 +757,415 @@
                                                                     <th><input  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
                                                                 </tr>
                                                             </thead>
-                                                            <tbody class="tableBody" id="fourPicAddedKala3">
-                                                                
-                                                            </tbody>
+                                                            <tbody class="tableBody" style="height:300px !important;"  id="fourPicAddedKala3"> </tbody>
                                                         </table>
                                                     </div>
                                                 </div>
-                                            </div>
+                                           </div>
                                         </div>
-                                    </div>
-                                </div>
-                            </div>
                                         {{-- برای نشان دادن کالاهای مربوط به تصویر چهارم 4 تصویره --}}
-                                <div class='c-checkout mt-2'  id="picturesKalaContainer4Pic4" style="display: none; margin:0 auto; width:80%; padding-right:0; border-radius:10px 10px 2px 2px; padding:0">
-                                    <div class="container">
-                                        <div class="row" >
+                                 <div class='c-checkout mt-2'  id="picturesKalaContainer4Pic4" style="display: none; margin:0 auto; width:100%; padding-right:0; border-radius:10px 10px 2px 2px; padding:0">
+                                     <div class="container">
                                             <div class="row">
-                                                <div class='modal-body'style='padding-bottom:2%;'>
-                                                    <div class='c-checkout rounded-top' >
-                                                        <div class="container" style="padding: 15px; padding-bottom: 25px;">
-                                                            <div class="row">
-                                                                <div class="col-sm-4">
-                                                                    <div class="form-group">
-                                                                        <label class="form-label">جستجو</label>
-                                                                        <input type="text" name="" size="20" class="form-control form-control-sm" id="searchKalaEdit4Pic4">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-sm-4">
-                                                                    <div class="form-group">
-                                                                        <label class="form-label"> جستجوی گروه اصلی</label>
-                                                                        <select class="form-control form-control-sm" id="searchMainGroupEdit4Pic4">
-                                                                            <option value="0">همه کالا ها</option>
-                                                                        </select>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-sm-4">
-                                                                    <div class="form-group">
-                                                                        <label class="form-label"> جستجوی گروه فرعی</label>
-                                                                        <select class="form-control form-control-sm" id="searchSubGroupEdit4Pic4">
-                                                                            <option value="0">همه کالا ها</option>
-                                                                        </select>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
+                                                <div class="col-sm-4">
+                                                    <div class="form-group">
+                                                        <label class="form-label">جستجو</label>
+                                                        <input type="text" name="" size="20" class="form-control form-control-sm" id="searchKalaEdit4Pic4">
                                                     </div>
                                                 </div>
-                                            <div class="col-sm-5">
-                                                <div class='modal-body'>
-                                                    <div class='c-checkout' style='padding-right:0;'>
-                                                        <table class="table table-bordered table table-hover table-sm table-light">
-                                                            <thead class="tableHeader">
-                                                                <tr>
-                                                                    <th>ردیف</th>
-                                                                    <th> اسم کالا &nbsp;&nbsp;<div style="background-color:black;color:white!important; height:inherit; width:20px;"
-                                                                        class="rounded-circle d-inline-flex justify-content-center m-0 p-0"> 4 </div></th>
-                                                                    <th><input  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody class="tableBody" id="fourPicAllKala4">
-                                                                
-                                                            </tbody>
-                                                        </table>
+                                                <div class="col-sm-4">
+                                                    <div class="form-group">
+                                                        <label class="form-label"> جستجوی گروه اصلی</label>
+                                                        <select class="form-control form-control-sm" id="searchMainGroupEdit4Pic4">
+                                                            <option value="0">همه کالا ها</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-4">
+                                                    <div class="form-group">
+                                                        <label class="form-label"> جستجوی گروه فرعی</label>
+                                                        <select class="form-control form-control-sm" id="searchSubGroupEdit4Pic4">
+                                                            <option value="0">همه کالا ها</option>
+                                                        </select>
                                                     </div>
                                                 </div>
                                             </div>
-            
-                                            <div class="col-sm-2" style="">
-                                                <div class='modal-body' style="position:relative; top: 30%;">
-                                                    <div style="">
-                                                        <button  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif id="add4PicKalaList4">
-                                                        <i class="fa-regular fa-circle-chevron-left fa-3x text-success"></i>
-</button>
+                                            <div class="grid-subgroup">
+                                                <div class="subgroup-item">
+                                                    <table class="table table-bordered table table-hover table-sm ">
+                                                        <thead class="tableHeader">
+                                                            <tr>
+                                                                <th>ردیف</th>
+                                                                <th> اسم کالا &nbsp;&nbsp;<div style="background-color:black;color:white!important; height:inherit; width:20px;"
+                                                                    class="rounded-circle d-inline-flex justify-content-center m-0 p-0"> 4 </div></th>
+                                                                <th><input  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody class="tableBody" style="height:300px !important;"  id="fourPicAllKala4"> </tbody>
+                                                    </table>
+                                                </div>
+                                                <div class="subgroup-item mt-5">
+                                                    <button style="background-color:transparent;" @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif id="add4PicKalaList4">
+                                                        <i class="fa-regular fa-circle-chevron-left fa-2x text-success"></i>
+                                                    </button>
                                                         <br />
-                                                        <button  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif id="remove4PicKalaList4">
-                                                        <i class="fa-regular fa-circle-chevron-right fa-3x text-success"></i>
-</button>
-                                                    </div>
+                                                        <button style="background-color:transparent;" @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif id="remove4PicKalaList4">
+                                                        <i class="fa-regular fa-circle-chevron-right fa-2x text-success"></i>
+                                                    </button>
+                                                </div>
+                                                <div class="subgroup-item">
+                                                     <table class="table table-bordered table table-hover table-sm ">
+                                                        <thead class="tableHeader">
+                                                            <tr>
+                                                                <th>ردیف</th>
+                                                                <th>گروه اصلی </th>
+                                                                <th><input  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody class="tableBody" style="height:300px !important;"  id="fourPicAddedKala4"> </tbody>
+                                                    </table>
                                                 </div>
                                             </div>
-            
-                                            <div class="col-sm-5">
-                                                <div class='modal-body'>
-                                                    <div class='c-checkout' style='padding-right:0;'>
-                                                        <table class="table table-bordered table table-hover table-sm table-light">
-                                                            <thead class="tableBody">
-                                                                <tr>
-                                                                    <th>ردیف</th>
-                                                                    <th>گروه اصلی </th>
-                                                                    <th><input  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody class="tableBody" id="fourPicAddedKala4">
-                                                                
-                                                            </tbody>
-                                                        </table>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                                        {{-- برای نشان دادن کالاهای مربوط به تصویر اول 5 تصویره --}}
-                                <div class='c-checkout mt-2'   id="picturesKalaContainer5Pic1" style="display: none; margin:0 auto; width:80%; padding-right:0; border-radius:10px 10px 2px 2px; padding:0">
+                                      </div>
+                                 </div>
+                                 {{-- برای نشان دادن کالاهای مربوط به تصویر اول 5 تصویره --}}
+                                <div class='c-checkout mt-2'   id="picturesKalaContainer5Pic1" style="display: none; margin:0 auto; width:100%; padding-right:0; border-radius:10px 10px 2px 2px; padding:0">
                                     <div class="container">
                                         <div class="row">
-                                            <div class="row">
-                                                <div class='modal-body'style='padding-bottom:2%;'>
-                                                    <div class='c-checkout rounded-top' >
-                                                        <div class="container" style="padding: 15px; padding-bottom: 25px;">
-                                                            <div class="row">
-                                                                <div class="col-sm-4">
-                                                                    <div class="form-group">
-                                                                        <label class="form-label">جستجو</label>
-                                                                        <input type="text" name="" size="20" class="form-control form-control-sm" id="searchKalaEdit5Pic1">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-sm-4">
-                                                                    <div class="form-group">
-                                                                        <label class="form-label"> جستجوی گروه اصلی</label>
-                                                                        <select class="form-control form-control-sm" id="searchMainGroupEdit5Pic1">
-                                                                            <option value="0">همه کالا ها</option>
-                                                                        </select>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-sm-4">
-                                                                    <div class="form-group">
-                                                                        <label class="form-label"> جستجوی گروه فرعی</label>
-                                                                        <select class="form-control form-control-sm" id="searchSubGroupEdit5Pic1">
-                                                                            <option value="0">همه کالا ها</option>
-                                                                        </select>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            <div class="col-sm-5">
-                                                <div class='modal-body'>
-                                                    <div class='c-checkout' style='padding-right:0;'>
-                                                        <table class="table table-bordered table table-hover table-sm table-light">
-                                                            <thead class="tableHeader">
-                                                                <tr>
-                                                                    <th>ردیف</th>
-                                                                    <th> اسم کالا &nbsp;&nbsp;<div style="background-color:black;color:white!important; height:inherit; width:20px;"
-                                                                        class="rounded-circle d-inline-flex justify-content-center m-0 p-0"> 1 </div></th>
-                                                                    <th><input  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody class="tableBody" id="fivePicAllKala1">
-                                                                
-                                                            </tbody>
-                                                        </table>
-                                                    </div>
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <label class="form-label">جستجو</label>
+                                                    <input type="text" name="" size="20" class="form-control form-control-sm" id="searchKalaEdit5Pic1">
                                                 </div>
                                             </div>
-            
-                                            <div class="col-sm-2" style="">
-                                                <div class='modal-body' style="position:relative; top: 30%;">
-                                                    <div style="">
-                                                        <button  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif id="add5PicKalaList1">
-                                                        <i class="fa-regular fa-circle-chevron-left fa-3x text-success"></i>
-</button>
-                                                        <br />
-                                                        <button  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif id="remove5PicKalaList1">
-                                                        <i class="fa-regular fa-circle-chevron-right fa-3x text-success"></i>
-</button>
-                                                    </div>
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <label class="form-label"> جستجوی گروه اصلی</label>
+                                                    <select class="form-control form-control-sm" id="searchMainGroupEdit5Pic1">
+                                                        <option value="0">همه کالا ها</option>
+                                                    </select>
                                                 </div>
                                             </div>
-            
-                                            <div class="col-sm-5">
-                                                <div class='modal-body'>
-                                                    <div class='c-checkout' style='padding-right:0;'>
-                                                        <table class="table table-bordered table table-hover table-sm table-light" style='td:hover{ cursor:move;}'>
-                                                            <thead class="tableHeader">
-                                                                <tr>
-                                                                    <th>ردیف</th>
-                                                                    <th>گروه اصلی </th>
-                                                                    <th><input  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody class="tableBody" id="fivePicAddedKala1">
-                                                                
-                                                            </tbody>
-                                                        </table>
-                                                    </div>
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <label class="form-label"> جستجوی گروه فرعی</label>
+                                                    <select class="form-control form-control-sm" id="searchSubGroupEdit5Pic1">
+                                                        <option value="0">همه کالا ها</option>
+                                                    </select>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                                        <div class="grid-subgroup">
+                                            <div class="subgroup-item">
+                                                 <table class="table table-bordered table table-hover table-sm">
+                                                    <thead class="tableHeader">
+                                                        <tr>
+                                                            <th>ردیف</th>
+                                                            <th> اسم کالا &nbsp;&nbsp;<div style="background-color:black;color:white!important; height:inherit; width:20px;"
+                                                                class="rounded-circle d-inline-flex justify-content-center m-0 p-0"> 1 </div></th>
+                                                            <th><input  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody class="tableBody" style="height:300px !important;"  id="fivePicAllKala1"> </tbody>
+                                                </table>
+                                            </div>
+                                            <div class="subgroup-item mt-5">
+                                                <button style="background-color:transparent;"  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif id="add5PicKalaList1">
+                                                        <i class="fa-regular fa-circle-chevron-left fa-2x text-success"></i>
+                                                </button>
+                                                    <br />
+                                                    <button style="background-color:transparent;"  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif id="remove5PicKalaList1">
+                                                    <i class="fa-regular fa-circle-chevron-right fa-2x text-success"></i>
+                                                </button>
+                                            </div>
+                                            <div class="subgroup-item">
+                                                <table class="table table-bordered table-hover table-sm " style='td:hover{ cursor:move;}'>
+                                                    <thead class="tableHeader">
+                                                        <tr>
+                                                            <th>ردیف</th>
+                                                            <th>گروه اصلی </th>
+                                                            <th><input  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody class="tableBody" style="height:300px !important;" id="fivePicAddedKala1"> </tbody>
+                                                </table>
+                                            </div>
+                                     </div>
                                 </div>
                             </div>
                                         {{-- برای نشان دادن کالاهای مربوط به تصویر دوم 5 تصویره --}}
-                                <div class='c-checkout mt-2'   id="picturesKalaContainer5Pic2" style="display:none; margin:0 auto; width:80%; padding-right:0; border-radius:10px 10px 2px 2px; padding:0">
+                                <div class='c-checkout mt-2'   id="picturesKalaContainer5Pic2" style="display:none; margin:0 auto; width:100%; padding-right:0; border-radius:10px 10px 2px 2px; padding:0">
                                     <div class="container">
-                                        <div class="row" >
                                             <div class="row">
-                                                <div class='modal-body'style='padding-bottom:2%;'>
-                                                    <div class='c-checkout rounded-top' >
-                                                        <div class="container" style="padding: 15px; padding-bottom: 25px;">
-                                                            <div class="row">
-                                                                <div class="col-sm-4">
-                                                                    <div class="form-group">
-                                                                        <label class="form-label">جستجو</label>
-                                                                        <input type="text" name="" size="20" class="form-control form-control-sm" id="searchKalaEdit5Pic2">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-sm-4">
-                                                                    <div class="form-group">
-                                                                        <label class="form-label"> جستجوی گروه اصلی</label>
-                                                                        <select class="form-control form-control-sm" id="searchMainGroupEdit5Pic2">
-                                                                            <option value="0">همه کالا ها</option>
-                                                                        </select>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-sm-4">
-                                                                    <div class="form-group">
-                                                                        <label class="form-label"> جستجوی گروه فرعی</label>
-                                                                        <select class="form-control form-control-sm" id="searchSubGroupEdit5Pic2">
-                                                                            <option value="0">همه کالا ها</option>
-                                                                        </select>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
+                                                <div class="col-sm-4">
+                                                    <div class="form-group">
+                                                        <label class="form-label">جستجو</label>
+                                                        <input type="text" name="" size="20" class="form-control form-control-sm" id="searchKalaEdit5Pic2">
                                                     </div>
                                                 </div>
-                                            <div class="col-sm-5">
-                                                <div class='modal-body'>
-                                                    <div class='c-checkout' style='padding-right:0;'>
-                                                        <table class="table table-bordered table table-hover table-sm table-light">
-                                                            <thead class="tableHeader">
-                                                                <tr>
-                                                                    <th>ردیف</th>
-                                                                    <th> اسم کالا &nbsp;&nbsp;<div style="background-color:black;color:white!important; height:inherit; width:20px;"
-                                                                        class="rounded-circle d-inline-flex justify-content-center m-0 p-0"> 2 </div></th>
-                                                                    <th><input  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody class="tableBody" id="fivePicAllKala2">
-                                                                
-                                                            </tbody>
-                                                        </table>
+                                                <div class="col-sm-4">
+                                                    <div class="form-group">
+                                                        <label class="form-label"> جستجوی گروه اصلی</label>
+                                                        <select class="form-control form-control-sm" id="searchMainGroupEdit5Pic2">
+                                                            <option value="0">همه کالا ها</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-4">
+                                                    <div class="form-group">
+                                                        <label class="form-label"> جستجوی گروه فرعی</label>
+                                                        <select class="form-control form-control-sm" id="searchSubGroupEdit5Pic2">
+                                                            <option value="0">همه کالا ها</option>
+                                                        </select>
                                                     </div>
                                                 </div>
                                             </div>
-            
-                                            <div class="col-sm-2" style="">
-                                                <div class='modal-body' style="position:relative; top: 30%;">
-                                                    <div style="">
-                                                        <button  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif id="add5PicKalaList2">
-                                                        <i class="fa-regular fa-circle-chevron-left fa-3x text-success"></i>
-</button>
+                                            <div class="grid-subgroup">
+                                                <div class="subgroup-item">
+                                                    <table class="table table-bordered table table-hover table-sm ">
+                                                        <thead class="tableHeader">
+                                                            <tr>
+                                                                <th>ردیف</th>
+                                                                <th> اسم کالا &nbsp;&nbsp;<div style="background-color:black;color:white!important; height:inherit; width:20px;"
+                                                                    class="rounded-circle d-inline-flex justify-content-center m-0 p-0"> 2 </div></th>
+                                                                <th><input  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody class="tableBody" style="height:300px !important;" id="fivePicAllKala2"> </tbody>
+                                                    </table>
+                                                </div>
+                                                <div class="subgroup-item mt-5">
+                                                    <button style="background-color:transparent;"  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif id="add5PicKalaList2">
+                                                        <i class="fa-regular fa-circle-chevron-left fa-2x text-success"></i>
+                                                    </button>
                                                         <br />
-                                                        <button  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif id="remove5PicKalaList2">
-                                                        <i class="fa-regular fa-circle-chevron-right fa-3x text-success"></i>
-</button>
-                                                    </div>
+                                                        <button style="background-color:transparent;"  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif id="remove5PicKalaList2">
+                                                        <i class="fa-regular fa-circle-chevron-right fa-2x text-success"></i>
+                                                    </button>
                                                 </div>
-                                            </div>
-            
-                                            <div class="col-sm-5">
-                                                <div class='modal-body'>
-                                                    <div class='c-checkout' style='padding-right:0;'>
-                                                        <table class="table table-bordered table table-hover table-sm table-light">
-                                                            <thead class="tableHeader">
-                                                                <tr>
-                                                                    <th>ردیف</th>
-                                                                    <th>گروه اصلی </th>
-                                                                    <th><input  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody class="tableBody" id="fivePicAddedKala2">
-                                                                
-                                                            </tbody>
-                                                        </table>
-                                                    </div>
+                                                <div class="subgroup-item">
+                                                    <table class="table table-bordered table table-hover table-sm ">
+                                                        <thead class="tableHeader">
+                                                            <tr>
+                                                                <th>ردیف</th>
+                                                                <th>گروه اصلی </th>
+                                                                <th><input  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody class="tableBody" style="height:300px !important;" id="fivePicAddedKala2"> </tbody>
+                                                    </table>
                                                 </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                         </div>
+                                     </div>
                                 </div>
-                            </div>
                                         {{-- برای نشان دادن کالاهای مربوط به تصویر سوم 5 تصویره --}}
-                                <div class='c-checkout mt-2'    id="picturesKalaContainer5Pic3" style="display:none; margin:0 auto; width:80%; padding-right:0; border-radius:10px 10px 2px 2px; padding:0">
+                                <div class='c-checkout mt-2'    id="picturesKalaContainer5Pic3" style="display:none; margin:0 auto; width:100%; padding-right:0; border-radius:10px 10px 2px 2px; padding:0">
+                                    <div class="container">
+                                            <div class="row">
+                                                <div class="col-sm-4">
+                                                    <div class="form-group">
+                                                        <label class="form-label">جستجو</label>
+                                                        <input type="text" name="" size="20" class="form-control form-control-sm" id="searchKalaEdit5Pic3">
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-4">
+                                                    <div class="form-group">
+                                                        <label class="form-label"> جستجوی گروه اصلی</label>
+                                                        <select class="form-control form-control-sm" id="searchMainGroupEdit5Pic3">
+                                                            <option value="0">همه کالا ها</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-4">
+                                                    <div class="form-group">
+                                                        <label class="form-label"> جستجوی گروه فرعی</label>
+                                                        <select class="form-control form-control-sm" id="searchSubGroupEdit5Pic3">
+                                                            <option value="0">همه کالا ها</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="grid-subgroup">
+                                                <div class="subgroup-item">
+                                                    <table class="tableSection table table-bordered table table-hover table-sm " style='td:hover{ cursor:move;}'>
+                                                        <thead class="tableHeader">
+                                                            <tr>
+                                                                <th>ردیف</th>
+                                                                <th> اسم کالا &nbsp;&nbsp;<div style="background-color:black;color:white!important; height:inherit; width:20px;"
+                                                                    class="rounded-circle d-inline-flex justify-content-center m-0 p-0"> 3 </div></th>
+                                                                <th><input  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody class="tableBody" style="height:300px !important;"  id="fivePicAllKala3"> </tbody>
+                                                    </table>
+                                                </div>
+
+                                                <div class="subgroup-item mt-5">
+                                                     <button style="background-color:transparent;"  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif id="add5PicKalaList3">
+                                                        <i class="fa-regular fa-circle-chevron-left fa-2x text-success"></i>
+                                                        </button>
+                                                        <br />
+                                                        <button style="background-color:transparent;"  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif id="remove5PicKalaList3">
+                                                        <i class="fa-regular fa-circle-chevron-right fa-2x text-success"></i>
+                                                    </button>
+                                                </div>
+                                                <div class="subgroup-item">
+                                                    <table class="table table-bordered table table-hover table-sm ">
+                                                        <thead class="tableHeader">
+                                                            <tr>
+                                                                <th>ردیف</th>
+                                                                <th>گروه اصلی </th>
+                                                                <th><input  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody class="tableBody" style="height:300px !important;"  id="fivePicAddedKala3"> </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                      </div>
+                                 </div>
+                                        {{-- برای نشان دادن کالاهای مربوط به تصویر چهارم 5 تصویره --}}
+                                <div class='c-checkout mt-2'    id="picturesKalaContainer5Pic4" style="display:none; margin:0 auto; width:100%; padding-right:0; border-radius:10px 10px 2px 2px; padding:0">
                                     <div class="container">
                                         <div class="row">
-                                            <div class="row">
-                                                <div class='modal-body'style='padding-bottom:2%;'>
-                                                    <div class='c-checkout rounded' >
-                                                        <div class="container" style="padding: 15px; padding-bottom: 25px;">
-                                                            <div class="row">
-                                                                <div class="col-sm-4">
-                                                                    <div class="form-group">
-                                                                        <label class="form-label">جستجو</label>
-                                                                        <input type="text" name="" size="20" class="form-control form-control-sm" id="searchKalaEdit5Pic3">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-sm-4">
-                                                                    <div class="form-group">
-                                                                        <label class="form-label"> جستجوی گروه اصلی</label>
-                                                                        <select class="form-control form-control-sm" id="searchMainGroupEdit5Pic3">
-                                                                            <option value="0">همه کالا ها</option>
-                                                                        </select>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-sm-4">
-                                                                    <div class="form-group">
-                                                                        <label class="form-label"> جستجوی گروه فرعی</label>
-                                                                        <select class="form-control form-control-sm" id="searchSubGroupEdit5Pic3">
-                                                                            <option value="0">همه کالا ها</option>
-                                                                        </select>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            <div class="col-sm-5">
-                                                <div class='modal-body'>
-                                                    <div class='c-checkout' style='padding-right:0;'>
-                                                        <table class="tableSection table table-bordered table table-hover table-sm table-light" style='td:hover{ cursor:move;}'>
-                                                            <thead>
-                                                                <tr>
-                                                                    <th>ردیف</th>
-                                                                    <th> اسم کالا &nbsp;&nbsp;<div style="background-color:black;color:white!important; height:inherit; width:20px;"
-                                                                        class="rounded-circle d-inline-flex justify-content-center m-0 p-0"> 3 </div></th>
-                                                                    <th><input  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody style="height: 400px;" id="fivePicAllKala3">
-                                                                
-                                                            </tbody>
-                                                        </table>
-                                                    </div>
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <label class="form-label">جستجو</label>
+                                                    <input type="text" name="" size="20" class="form-control form-control-sm" id="searchKalaEdit5Pic4">
                                                 </div>
                                             </div>
-            
-                                            <div class="col-sm-2" style="">
-                                                <div class='modal-body' style="position:relative; top: 30%;">
-                                                    <div style="">
-                                                        <button  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif id="add5PicKalaList3">
-                                                        <i class="fa-regular fa-circle-chevron-left fa-3x text-success"></i>
-</button>
-                                                        <br />
-                                                        <button  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif id="remove5PicKalaList3">
-                                                        <i class="fa-regular fa-circle-chevron-right fa-3x text-success"></i>
-</button>
-                                                    </div>
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <label class="form-label"> جستجوی گروه اصلی</label>
+                                                    <select class="form-control form-control-sm" id="searchMainGroupEdit5Pic4">
+                                                        <option value="0">همه کالا ها</option>
+                                                    </select>
                                                 </div>
                                             </div>
-            
-                                            <div class="col-sm-5">
-                                                <div class='modal-body'>
-                                                    <div class='c-checkout' style='padding-right:0;'>
-                                                        <table class="table table-bordered table table-hover table-sm table-light">
-                                                            <thead class="tableHeader">
-                                                                <tr>
-                                                                    <th>ردیف</th>
-                                                                    <th>گروه اصلی </th>
-                                                                    <th><input  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody class="tableBody" id="fivePicAddedKala3">
-                                                                
-                                                            </tbody>
-                                                        </table>
-                                                    </div>
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <label class="form-label"> جستجوی گروه فرعی</label>
+                                                    <select class="form-control form-control-sm" id="searchSubGroupEdit5Pic4">
+                                                        <option value="0">همه کالا ها</option>
+                                                    </select>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
-                            </div>
-                                        {{-- برای نشان دادن کالاهای مربوط به تصویر چهارم 5 تصویره --}}
-                                <div class='c-checkout mt-2'    id="picturesKalaContainer5Pic4" style="display:none; margin:0 auto; width:80%; padding-right:0; border-radius:10px 10px 2px 2px; padding:0">
-                                    <div class="container">
-                                        <div class="row" >
-                                            <div class="row">
-                                                <div class='modal-body'style='padding-bottom:2%;'>
-                                                    <div class='c-checkout rounded-top' >
-                                                        <div class="container" style="padding: 15px; padding-bottom: 25px;">
-                                                            <div class="row">
-                                                                <div class="col-sm-4">
-                                                                    <div class="form-group">
-                                                                        <label class="form-label">جستجو</label>
-                                                                        <input type="text" name="" size="20" class="form-control form-control-sm" id="searchKalaEdit5Pic4">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-sm-4">
-                                                                    <div class="form-group">
-                                                                        <label class="form-label"> جستجوی گروه اصلی</label>
-                                                                        <select class="form-control form-control-sm" id="searchMainGroupEdit5Pic4">
-                                                                            <option value="0">همه کالا ها</option>
-                                                                        </select>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-sm-4">
-                                                                    <div class="form-group">
-                                                                        <label class="form-label"> جستجوی گروه فرعی</label>
-                                                                        <select class="form-control form-control-sm" id="searchSubGroupEdit5Pic4">
-                                                                            <option value="0">همه کالا ها</option>
-                                                                        </select>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            <div class="col-sm-5">
-                                                <div class='modal-body'>
-                                                    <div class='c-checkout' style='padding-right:0;'>
-                                                        <table class="table table-bordered table table-hover table-sm table-light">
-                                                            <thead class="tableHeader">
-                                                                <tr>
-                                                                    <th>ردیف</th>
-                                                                    <th> اسم کالا &nbsp;&nbsp;<div style="background-color:black;color:white!important; height:inherit; width:20px;"
-                                                                        class="rounded-circle d-inline-flex justify-content-center m-0 p-0"> 4 </div></th>
-                                                                    <th><input  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody class="tableBody" id="fivePicAllKala4">
-                                                                
-                                                            </tbody>
-                                                        </table>
-                                                    </div>
-                                                </div>
+                                        <div class="grid-subgroup">
+                                            <div class="subgroup-item">
+                                                 <table class="table table-bordered table table-hover table-sm ">
+                                                    <thead class="tableHeader">
+                                                        <tr>
+                                                            <th>ردیف</th>
+                                                            <th> اسم کالا </th>
+                                                            <th><input  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody class="tableBody" style="height:300px !important;"  id="fivePicAllKala4"> </tbody>
+                                                </table>
                                             </div>
-            
-                                            <div class="col-sm-2" style="">
-                                                <div class='modal-body' style="position:relative; top: 30%;">
-                                                    <div style="">
-                                                        <button  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif id="add5PicKalaList4">
-                                                        <i class="fa-regular fa-circle-chevron-left fa-3x text-success"></i>
-</button>
-                                                        <br />
-                                                        <button  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif id="remove5PicKalaList4">
-                                                        <i class="fa-regular fa-circle-chevron-right fa-3x text-success"></i>
-</button>
-                                                    </div>
-                                                </div>
+                                            <div class="subgroup-item mt-5">
+                                                 <button  style="background-color:transparent;" @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif id="add5PicKalaList4">
+                                                    <i class="fa-regular fa-circle-chevron-left fa-2x text-success"></i>
+                                                    </button>
+                                                    <br />
+                                                    <button  style="background-color:transparent;" @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif id="remove5PicKalaList4">
+                                                    <i class="fa-regular fa-circle-chevron-right fa-2x text-success"></i>
+                                                    </button>
                                             </div>
-            
-                                            <div class="col-sm-5">
-                                                <div class='modal-body'>
-                                                    <div class='c-checkout' style='padding-right:0;'>
-                                                        <table class="table table-bordered table table-hover table-sm table-light">
-                                                            <thead class="tableHeader">
-                                                                <tr>
-                                                                    <th>ردیف</th>
-                                                                    <th>گروه اصلی </th>
-                                                                    <th><input  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody class="tableBody" id="fivePicAddedKala4">
-                                                                
-                                                            </tbody>
-                                                        </table>
-                                                    </div>
-                                                </div>
+                                            <div class="subgroup-item">
+                                                <table class="table table-bordered table table-hover table-sm ">
+                                                    <thead class="tableHeader">
+                                                        <tr>
+                                                            <th>ردیف</th>
+                                                            <th>گروه اصلی </th>
+                                                            <th><input  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody class="tableBody" style="height:300px !important;"  id="fivePicAddedKala4"> </tbody>
+                                                </table>
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
-                            </div>
+                                  </div>
+                              </div>
                                         {{-- برای نشان دادن کالاهای مربوط به تصویر پنجم 5 تصویره --}}
-                                <div class='c-checkout mt-2'    id="picturesKalaContainer5Pic5" style="display: none; margin:0 auto; width:80%; padding-right:0; border-radius:10px 10px 2px 2px; padding:0">
+                                <div class='c-checkout mt-2'    id="picturesKalaContainer5Pic5" style="display: none; margin:0 auto; width:100%; padding-right:0; border-radius:10px 10px 2px 2px; padding:0">
                                     <div class="container">
-                                        <div class="row" >
-                                            <div class="row">
-                                                <div class='modal-body'style='padding-bottom:2%;'>
-                                                    <div class='c-checkout rounded-top' >
-                                                        <div class="container" style="padding: 15px; padding-bottom: 25px;">
-                                                            <div class="row">
-                                                                <div class="col-sm-4">
-                                                                    <div class="form-group">
-                                                                        <label class="form-label">جستجو</label>
-                                                                        <input type="text" name="" size="20" class="form-control form-control-sm" id="searchKalaEdit5Pic5">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-sm-4">
-                                                                    <div class="form-group">
-                                                                        <label class="form-label"> جستجوی گروه اصلی</label>
-                                                                        <select class="form-control form-control-sm" id="searchMainGroupEdit5Pic5">
-                                                                            <option value="0">همه کالا ها</option>
-                                                                        </select>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-sm-4">
-                                                                    <div class="form-group">
-                                                                        <label class="form-label"> جستجوی گروه فرعی</label>
-                                                                        <select class="form-control form-control-sm" id="searchSubGroupEdit5Pic5">
-                                                                            <option value="0">همه کالا ها</option>
-                                                                        </select>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            <div class="col-sm-5">
-                                                <div class='modal-body'>
-                                                    <div class='c-checkout' style='padding-right:0;'>
-                                                        <table class="table table-bordered table table-hover table-sm table-light">
-                                                            <thead class="tableHeader">
-                                                                <tr>
-                                                                    <th>ردیف</th>
-                                                                    <th> اسم کالا &nbsp;&nbsp;<div style="background-color:black;color:white!important; height:inherit; width:20px;"
-                                                                        class="rounded-circle d-inline-flex justify-content-center m-0 p-0"> 5 </div></th>
-                                                                    <th><input  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody class="tableHeader" id="fivePicAllKala5">
-                                                                
-                                                            </tbody>
-                                                        </table>
-                                                    </div>
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <label class="form-label">جستجو</label>
+                                                    <input type="text" name="" size="20" class="form-control form-control-sm" id="searchKalaEdit5Pic5">
                                                 </div>
                                             </div>
-            
-                                            <div class="col-sm-2" style="">
-                                                <div class='modal-body' style="position:relative; top: 30%;">
-                                                    <div style="">
-                                                        <button  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif id="add5PicKalaList5">
-                                                        <i class="fa-regular fa-circle-chevron-left fa-3x text-success"></i>
-</button>
-                                                        <br />
-                                                        <button  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif id="remove5PicKalaList5">
-                                                        <i class="fa-regular fa-circle-chevron-right fa-3x text-success"></i>
-</button>
-                                                    </div>
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <label class="form-label"> جستجوی گروه اصلی</label>
+                                                    <select class="form-control form-control-sm" id="searchMainGroupEdit5Pic5">
+                                                        <option value="0">همه کالا ها</option>
+                                                    </select>
                                                 </div>
                                             </div>
-            
-                                            <div class="col-sm-5">
-                                                <div class='modal-body'>
-                                                    <div class='c-checkout' style='padding-right:0;'>
-                                                        <table class="table table-bordered table table-hover table-sm table-light">
-                                                            <thead class="tableHeader">
-                                                                <tr>
-                                                                    <th>ردیف</th>
-                                                                    <th>گروه اصلی </th>
-                                                                    <th><input  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody class="tableHeader" id="fivePicAddedKala5">
-                                                            </tbody>
-                                                        </table>
-                                                    </div>
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <label class="form-label"> جستجوی گروه فرعی</label>
+                                                    <select class="form-control form-control-sm" id="searchSubGroupEdit5Pic5">
+                                                        <option value="0">همه کالا ها</option>
+                                                    </select>
                                                 </div>
                                             </div>
                                         </div>
+
+                                        <div class="grid-subgroup">
+                                            <div class="subgroup-item">
+                                                <table class="table table-bordered table table-hover table-sm">
+                                                    <thead class="tableHeader">
+                                                        <tr>
+                                                            <th>ردیف</th>
+                                                            <th> اسم کالا </th>
+                                                            <th><input  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody class="tableHeader" id="fivePicAllKala5"> </tbody>
+                                                </table>
+                                            </div>
+
+                                            <div class="subgroup-item mt-5">
+                                                 <button style="background-color:transparent;"  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif id="add5PicKalaList5">
+                                                <i class="fa-regular fa-circle-chevron-left fa-2x text-success"></i>
+                                                </button>
+                                                <br />
+                                                <button style="background-color:transparent;"  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif id="remove5PicKalaList5">
+                                                <i class="fa-regular fa-circle-chevron-right fa-2x text-success"></i>
+                                                </button>
+                                            </div>
+
+                                            <div class="subgroup-item">
+                                                  <table class="table table-bordered table table-hover table-sm ">
+                                                    <thead class="tableHeader">
+                                                        <tr>
+                                                            <th>ردیف</th>
+                                                            <th>گروه اصلی </th>
+                                                            <th><input  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody class="tableHeader" id="fivePicAddedKala5">
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                                </div>
-                            </div>
-                            </div>
+                                 </div>
+                               </div>
                             </div>
                         </form>
                     @endforeach
                 </div>
+              <div class="row contentFooter"> </div>
             </div>
         </div>
-    </section>
+   </div>
+
     <script>
         window.onload = function() {
             //used for dispalying kala TO pic 1(1pic edit)

@@ -26,5 +26,13 @@
     </div>
 </div>
 
+
+<div class="grid-subgroup">
+    <div class="subgroup-item"></div>
+    <div class="subgroup-item"></div>
+    <div class="subgroup-item"></div>
+</div>
+
 @endsection
+
 

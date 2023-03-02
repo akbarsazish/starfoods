@@ -1,67 +1,68 @@
 @extends('admin.layout')
 @section('content')
-<style>
-        button:hover{
-            /* background: linear-gradient(#9ed5b6, #198754); */
-            background: linear-gradient(#d3fde4, #198754);
-            color: #f1e253 !important;
-            font-weight: bold;
-            border-color: #bb993a !important;
-        }
 
-        label{
-            font-family:IRANSans;
-            font-size: 0.9rem;
-            line-height: 1;
-            color: rgb(19, 7, 129);
-            font-weight: 300;
-        }
-</style>
-    <section class='container' style='padding:0; margin-top:5%;'>
-        <div class=" tab-pane active" id="custInfo" style="border-radius:10px 10px 2px 2px; padding:0;">
-            <fieldset class="row c-checkout rounded-3 m-0" style='padding-right:0; padding-top:0.5%; background-color:#81d3a4;'>
-
-                <div class="col-sm-12" style="display:none;">
-                    <button class="btn btn-info btn-md text-warning"  @if(hasPermission(Session::get( 'adminId'),'customers' ) < 1) disabled @endif  style=" float:left; margin-left:2%;">ذخیره <i class="fa fa-save"></i> </button>
-                </div>
-                <fieldset class="row c-checkout col-sm-10 rounded-3 card" style="width:98%; margin:1% 1% 0 0; padding:0 1% 0.4% 0%; background-color:#f7f7f7;">
-            
-                         <h5 class="p-3"> ویرایش ({{$customer->Name}}) </h5>
-                   
-                    <div class="row">
-                            <div class="col-sm-2">
-                                <div class="input-group input-group-sm mb-2">
-                                    <span class="input-group-text" id="inputGroup-sizing-sm">کد </span>
-                                    <input type="text" @if(hasPermission(Session::get( 'adminId'),'customers' ) < 1) disabled @endif  class="form-control form-control-sm"  name="" value="{{$customer->PCode}}" placeholder="red" size="20" id="allKalaFirst">
-                                </div>
-                            </div>
-                            <div class="col-sm-4">
-                                <div class="input-group input-group-sm mb-2">
-                                    <span class="input-group-text" id="inputGroup-sizing-sm">نام و نام خانوادگی </span>
-                                    <input type="text"  @if(hasPermission(Session::get( 'adminId'),'customers' ) < 1) disabled @endif class="form-control form-control-sm"  name="" size="20"  value="{{trim($customer->Name)}}" id="allKalaFirst">
-                                </div>
-                            </div>
-                            <div class="col-sm-2">
-                                <div class="input-group input-group-sm mb-2">
-                                    <span class="input-group-text" id="inputGroup-sizing-sm"> تاریخ </span>
-                                    <input type="text" class="form-control form-control-sm"  @if(hasPermission(Session::get( 'adminId'),'customers' ) < 1) disabled @endif   name=""  value="{{\Morilog\Jalali\Jalalian::fromCarbon(\Carbon\Carbon::parse($customer->TimeStamp))->format('Y/m/d')}}" placeholder="red" size="20" class="form-control" id="allKalaFirst">
-                                   
-                                </div>
-                            </div>
-                            <div class="col-sm-2">
-                                <div class="input-group input-group-sm mb-2">
-                                    <span class="input-group-text" id="inputGroup-sizing-sm"> مانده حساب  </span>
-                                    <input type="text"  @if(hasPermission(Session::get( 'adminId'),'customers' ) < 1) disabled @endif class="form-control form-control-sm"  name="" size="20" class="form-control" id="allKalaFirst">
-                                </div>
-                            </div>
-                            <div class="col-sm-2">
-                                <div class="input-group input-group-sm mb-2">
-                                    <span class="input-group-text" id="inputGroup-sizing-sm"> گروه   </span>
-                                    <input type="text"  @if(hasPermission(Session::get( 'adminId'),'customers' ) < 1) disabled @endif class="form-control form-control-sm" name="" placeholder="" size="20" id="allKalaFirst">
-                                </div>
-                            </div>
+<div class="container-fluid containerDiv">
+    <div class="row">
+            <div class="col-lg-2 col-md-2 col-sm-3 sideBar">
+                <fieldset class="border rounded mt-5 sidefieldSet">
+                    <legend  class="float-none w-auto legendLabel mb-0" style="font-size:12px;"> </legend>
+                    <!-- <div class="form-check">
+                        <input class="form-check-input p-2 float-start" type="radio" name="settings" id="elseSettingsRadio">
+                        <label class="form-check-label me-4" for="assesPast">  سطح دسترسی  </label>
                     </div>
-                    <div class="row">
+                    <div class="form-check">
+                        <input class="form-check-input p-2 float-start" type="radio" name="settings" id="settingAndTargetRadio">
+                        <label class="form-check-label me-4" for="assesPast"> تارگت ها و امتیازات </label>
+                    </div> -->
+                    
+                </fieldset>
+                </div>
+            <div class="col-sm-10 col-md-10 col-sm-12 contentDiv">
+                <!-- <div class="row contentHeader"> 
+                     <div class="col-sm-6 mt-2">
+                           <p>  ویرایش ({{$customer->Name}})  </p>
+                      </div>
+                     <div class="col-sm-6 text-end mt-2">
+                            <button class="btn btn-success btn-sm text-warning"  @if(hasPermission(Session::get( 'adminId'),'customers' ) < 1) disabled @endif  style=" float:left; margin-left:2%;">ذخیره <i class="fa fa-save"></i> </button>
+                      </div>
+                </div> -->
+                <div class="row mainContent">
+                       <div class="col-lg-12 p-2">
+                           <div class="row">
+                                <div class="col-sm-2">
+                                    <div class="input-group input-group-sm mb-2">
+                                        <span class="input-group-text" id="inputGroup-sizing-sm">کد </span>
+                                        <input type="text" @if(hasPermission(Session::get( 'adminId'),'customers' ) < 1) disabled @endif  class="form-control form-control-sm"  name="" value="{{$customer->PCode}}" placeholder="red" size="20" id="allKalaFirst">
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="input-group input-group-sm mb-2">
+                                        <span class="input-group-text" id="inputGroup-sizing-sm">نام و نام خانوادگی </span>
+                                        <input type="text"  @if(hasPermission(Session::get( 'adminId'),'customers' ) < 1) disabled @endif class="form-control form-control-sm"  name="" size="20"  value="{{trim($customer->Name)}}" id="allKalaFirst">
+                                    </div>
+                                </div>
+                                <div class="col-sm-2">
+                                    <div class="input-group input-group-sm mb-2">
+                                        <span class="input-group-text" id="inputGroup-sizing-sm"> تاریخ </span>
+                                        <input type="text" class="form-control form-control-sm"  @if(hasPermission(Session::get( 'adminId'),'customers' ) < 1) disabled @endif   name=""  value="{{\Morilog\Jalali\Jalalian::fromCarbon(\Carbon\Carbon::parse($customer->TimeStamp))->format('Y/m/d')}}" placeholder="red" size="20" class="form-control" id="allKalaFirst">
+                                    
+                                    </div>
+                                </div>
+                                <div class="col-sm-2">
+                                    <div class="input-group input-group-sm mb-2">
+                                        <span class="input-group-text" id="inputGroup-sizing-sm"> مانده حساب  </span>
+                                        <input type="text"  @if(hasPermission(Session::get( 'adminId'),'customers' ) < 1) disabled @endif class="form-control form-control-sm"  name="" size="20" class="form-control" id="allKalaFirst">
+                                    </div>
+                                </div>
+                                <div class="col-sm-2">
+                                    <div class="input-group input-group-sm mb-2">
+                                        <span class="input-group-text" id="inputGroup-sizing-sm"> گروه   </span>
+                                        <input type="text"  @if(hasPermission(Session::get( 'adminId'),'customers' ) < 1) disabled @endif class="form-control form-control-sm" name="" placeholder="" size="20" id="allKalaFirst">
+                                    </div>
+                                </div>
+                         </div>
+                   
+                         <div class="row">
                             <div class="col-sm-8">
                                 <div class="input-group input-group-sm mb-2">
                                     <span class="input-group-text" id="inputGroup-sizing-sm"> آدرس  </span>
@@ -92,7 +93,7 @@
 
                             <div class="col-sm-2">
                                 <div class="input-group input-group-sm mb-2">
-                                    <span class="input-group-text" id="inputGroup-sizing-sm">  تلفن همراه 1  </span>
+                                    <span class="input-group-text" id="inputGroup-sizing-sm">   همراه 1  </span>
                                     <input  @if(hasPermission(Session::get( 'adminId'),'customers' ) < 1) disabled @endif class="form-control form-control-sm pr-0 mr-0" type="text" name="" id="allKalaFirst">
                                 </div>
                             </div>
@@ -105,7 +106,7 @@
                             </div>
                             <div class="col-sm-2">
                                 <div class="input-group input-group-sm mb-2">
-                                    <span class="input-group-text" id="inputGroup-sizing-sm"> تلفن همراه 2  </span>
+                                    <span class="input-group-text" id="inputGroup-sizing-sm">  همراه 2  </span>
                                     <input  @if(hasPermission(Session::get( 'adminId'),'customers' ) < 1) disabled @endif class="form-control form-control-sm pr-0 mr-0" type="text" name="" id="allKalaFirst">
                                 </div>
                             </div>
@@ -120,28 +121,26 @@
                              
                             <div class="col-sm-2">
                                 <div class="input-group input-group-sm mb-2">
-                                    <span class="input-group-text" id="inputGroup-sizing-sm">  تلفن همراه 3   </span>
+                                    <span class="input-group-text" id="inputGroup-sizing-sm">   همراه 3   </span>
                                     <input @if(hasPermission(Session::get( 'adminId'),'customers' ) < 1) disabled @endif class="form-control form-control-sm pr-0 mr-0" type="text" name="" id="allKalaFirst">
                                 </div>
                             </div>
                         </div>
-                    </fieldset>
               </div>
-        <div class="c-checkout container" style="background-color:#81d3a4; margin:0.2% 0; margin-bottom:0; padding:0.5% !important; border-radius:10px 10px 2px 2px;">
+            <div class="c-checkout container" style="background-color:#81d3a4; border-radius:10px 10px 2px 2px;">
+                <div class="col-sm-12" style="margin: 0; padding:0;">
+                    <ul class="header-list nav nav-tabs" data-tabs="tabs" style="margin: 0; padding:0;">
+                        <li><a class="active" data-toggle="tab" style="color:black;"  href="#custAddress"> آدرس مشتری </a></li>
+                        <li><a data-toggle="tab" style="color:black;"  href="#moRagiInfo">  اطلاعات مویرگی </a></li>
+                        <li><a data-toggle="tab" style="color:black;"  href="#userLoginInfo"> اطلاعات دسترسی </a></li>
+                        <li><a data-toggle="tab" style="color:black;"  href="#pictures">ورود جعلی</a></li>
+                        <li><a data-toggle="tab" style="color:black;"  href="#takhfifCalc"> مدیریت کیف تخفیفی</a></li>
+                        <li><a data-toggle="tab" style="color:black;"  href="#takhfifCaseHistory"> تاریخچه کیف تخفیفی</a></li>
+                    </ul>
+                </div>
 
-            <div class="col-sm-12" style="margin: 0; padding:0;">
-                <ul class="header-list nav nav-tabs" data-tabs="tabs" style="margin: 0; padding:0;">
-                    <li><a class="active" data-toggle="tab" style="color:black;"  href="#custAddress"> آدرس مشتری </a></li>
-                    <li><a data-toggle="tab" style="color:black;"  href="#moRagiInfo">  اطلاعات مویرگی </a></li>
-                    <li><a data-toggle="tab" style="color:black;"  href="#userLoginInfo"> اطلاعات دسترسی </a></li>
-                    <li><a data-toggle="tab" style="color:black;"  href="#pictures">ورود جعلی</a></li>
-                    <li><a data-toggle="tab" style="color:black;"  href="#takhfifCalc"> مدیریت کیف تخفیفی</a></li>
-                    <li><a data-toggle="tab" style="color:black;"  href="#takhfifCaseHistory"> تاریخچه کیف تخفیفی</a></li>
-                </ul>
-            </div>
-
-            <div class="c-checkout tab-content" style="background-color:#f5f5f5; margin:0;  padding:0.3%; border-radius:10px 10px 2px 2px;">
-                    <div class="row c-checkout rounded-3 tab-pane active" id="custAddress" style="width:99%; margin:0 auto; padding:1% 0% 0% 0%">
+               <div class="c-checkout tab-content" style="background-color:#f5f5f5; margin:0;  padding:0.2%; border-radius:10px 10px 2px 2px; display:block; height:333px; overflow-y:scroll; overflow-x:hidden;">
+                     <div class="row c-checkout rounded-3 tab-pane active" id="custAddress" style="width:100%; margin:0 auto; padding:1% 0% 0% 0%">
                         <div class="col-sm-12">
                             <table class="table table-bordered table-striped table-sm" style="text-align:center;">
                                 <thead class="tableHeader table bg-success text-warning">
@@ -265,7 +264,7 @@
                                 </div>
                            </div>
                         <div class="col-sm-12" style="display:none;">
-                            <button class="btn btn-info btn-md text-warning"   @if(hasPermission(Session::get( 'adminId'),'customers' ) < 1) disabled @endif style=" float:left; margin-top:-2%">ذخیره</button>
+                            <button class="btn btn-success btn-sm text-warning"   @if(hasPermission(Session::get( 'adminId'),'customers' ) < 1) disabled @endif style=" float:left; margin-top:-2%">ذخیره</button>
                         </div>
                     </div>
                       
@@ -378,7 +377,7 @@
                                 <textarea class="form-control takhfifbagdesc"  name="discription"> @if($customer->discription) {{trim($customer->discription)}} @else از تخفیف عمومی سایت مستفید است. @endif</textarea>
                             </div>
                         </div>
-                        <button id="takhfifBag" class="btn btn-info text-warning btn-sm pr-0 mr-5 mt-2 hidden" type="submit">ذخیره</button>
+                        <button id="takhfifBag" class="btn btn-success text-warning btn-sm pr-0 mr-5 mt-2 hidden" type="submit">ذخیره</button>
                     </form>
                     </div>
 
@@ -408,14 +407,20 @@
                 !--->
                <div class="row" style="text-align:left;">
                     <span style="float:left">
-                        <button class="btn btn-success btn-md text-warning infoAccess "  @if(hasPermission(Session::get( 'adminId'),'customers' ) < 1) disabled @endif id="customerEdit" >ذخیره<i class="fa fa-save"> </i> </button>
-                        <button class="btn btn-success text-warning disabled"  @if(hasPermission(Session::get( 'adminId'),'customers' ) < 1) disabled @endif type="button"  style="display:none;" name="" id="allKalaFirst1"> ذخیره  <i class="fa fa-save"> </i> </button>
-                        <label class="btn btn-success text-warning" id="takhfifLabel" for="takhfifBag" tabindex="0" style="display:none;">ذخیره   <i class="fa fa-save"> </i> </label>
+                        <button class="btn btn-success btn-sm text-warning infoAccess "  @if(hasPermission(Session::get( 'adminId'),'customers' ) < 1) disabled @endif id="customerEdit" > ذخیره <i class="fa fa-save"> </i> </button>
+                        <button class="btn btn-success btn-sm text-warning disabled"  @if(hasPermission(Session::get( 'adminId'),'customers' ) < 1) disabled @endif type="button"  style="display:none;" name="" id="allKalaFirst1"> ذخیره  <i class="fa fa-save"> </i> </button>
+                        <label class="btn btn-success btn-sm text-warning" id="takhfifLabel" for="takhfifBag" tabindex="0" style="display:none;"> ذخیره    <i class="fa fa-save"> </i> </label>
                     </span> 
                </div>
             </div>
         </div>
-    </section>
+
+                </div>
+                <div class="row contentFooter"> </div>
+            </div>
+    </div>
+</div>
+
     <meta name="csrf-token" content="{{ csrf_token() }}" />
     <script>
         window.onload = function() {
