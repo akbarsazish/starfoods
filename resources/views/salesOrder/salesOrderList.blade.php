@@ -1054,7 +1054,7 @@
 <div class="modal" id="onlinePaymentModalInfo"   data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog-lg" role="document">
     <div class="modal-content">
-      <div class="modal-header">
+      <div class="modal-header  bg-success text-white py-2">
         <h5 class="modal-title" id="exampleModalLabel">جزءیات پرداخت آنلاین</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="بستن">
           <span aria-hidden="true">&times;</span>
@@ -1736,7 +1736,7 @@
 <div class="modal fade dragAbleModal" id="rasgeriModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="rasgeriModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
-      <div class="modal-header text-white" style="background-color:#055226">
+      <div class="modal-header text-white py-2" style="background-color:#055226">
           <button type="button" class="btn-close bg-danger" data-dismiss="modal" aria-label="Close"></button>
           <h5 class="modal-title fs-5" id="rasgeriModalLabel">  راس گیری  </h5>
       </div>
@@ -2344,7 +2344,7 @@
 <div class="modal fade dragAbleModal" id="editOrderItem" data-backdrop="static" data-keyboard="false" tabindex="-1">
     <div class="modal-dialog modal-lg py-2">
         <div class="modal-content">
-            <div class="modal-header text-white" style="background-color:#045630;">
+            <div class="modal-header text-white py-2" style="background-color:#045630;">
                 <button type="button" class="btn-close bg-danger" data-dismiss="modal" aria-label="Close"></button>
                 <h5 class="modal-title" id="updatingOrderSalesLabel">ویرایش آیتم سفارش </h5>
             </div>

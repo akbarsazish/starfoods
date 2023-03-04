@@ -763,7 +763,7 @@
             <input type="text" style="display:none" id="editAdminId" value="" name="adminId"/>
             @csrf
                 <div class="modal-content">
-                        <div class="modal-header bg-success text-white">
+                        <div class="modal-header bg-success text-white py-2">
                             <button type="button" class="btn btn-danger bg-danger btn-close" data-dismiss="modal" aria-label="Close"> </button>
                             
                             <h5 class="modal-title" id="staticBackdropLabel">ویرایش کاربر</h5>
@@ -1050,7 +1050,7 @@
         <div class="modal-dialog modal-xl  modal-dialog-scrollable">
             <form style="display:inline" action="{{url('/doAddAdmin')}}" method="post" enctype="multipart/form-data">
                 <div class="modal-content">
-                    <div class="modal-header bg-success text-white">
+                    <div class="modal-header bg-success text-white py-2">
                         @csrf
                         <button type="button" class="btn btn-danger" data-dismiss="modal"> <i class="fa fa-xmark"></i></button>
                         <span style="font-size:20px; font-weight:bold; text-align:center;">افزودن کاربر </span>
