@@ -18,7 +18,7 @@
 	}
 
 #nazaranjicontainer {
-      height:388px !important; 
+      height:400px !important; 
       overflow-y:scroll !important;
       display:block !important;
   }
@@ -369,21 +369,20 @@
                          </div>
                     </div>
 
-                    <div class="tab-pane" id="customerAddress">
-                        <div class="c-checkout" style="border-radius:10px 10px 2px 2px;">
-                            <div class="row">
-                        <div class="col-sm-6 mt-3">
-							<div class="row"> 
-								<div class="col-sm-4"> 
-									<h5 style="font-style:bold; margin-right:10px;">شهر ها </h5>
-								</div>
-								<div class="col-sm-8 text-end"> 
-									<button type="button" style="margint:0" class="btn btn-success btn-sm" @if(hasPermission(Session::get( 'adminId'),'specialSetting' ) < 2) disabled @endif  id="addNewCity"> جدید <i class="fa fa-plus" aria-hidden="true"></i></button>
-                                    <button type="button" value="Reterive data" class="btn btn-info btn-sm text-white" data-toggle="modal" id="editCityButton" disabled>ویرایش <i class="fa fa-edit" aria-hidden="true"></i></button>
-                                    <button type="button" disabled id="deleteCityButton" class="btn btn-danger btn-sm">حذف <i class="fa fa-trash" aria-hidden="true"></i></button>
-                                    <input type="text" style="display:none" value="" id="CityId" style=""/>
-								</div>
-							</div>
+                        <div class="tab-pane" id="customerAddress">
+                          <div class="c-checkout" style="border-radius:10px 10px 2px 2px;">
+                                  <div class="row"> <div class="col-sm-6 mt-3">
+						          	<div class="row"> 
+                          <div class="col-sm-4"> 
+                            <h5 style="font-style:bold; margin-right:10px;">شهر ها </h5>
+                          </div>
+                          <div class="col-sm-8 text-end"> 
+                            <button type="button" style="margint:0" class="btn btn-success btn-sm" @if(hasPermission(Session::get( 'adminId'),'specialSetting' ) < 2) disabled @endif  id="addNewCity"> جدید <i class="fa fa-plus" aria-hidden="true"></i></button>
+                                <button type="button" value="Reterive data" class="btn btn-info btn-sm text-white" data-toggle="modal" id="editCityButton" disabled>ویرایش <i class="fa fa-edit" aria-hidden="true"></i></button>
+                                <button type="button" disabled id="deleteCityButton" class="btn btn-danger btn-sm">حذف <i class="fa fa-trash" aria-hidden="true"></i></button>
+                                <input type="text" style="display:none" value="" id="CityId" style=""/>
+                          </div>
+                        </div>
                              <div class="well" style="margin-top:2%;">
                                     <table class="table table-bordered table table-hover table-sm" id="tableGroupList">
                                         <thead class="tableHeader">
@@ -393,7 +392,7 @@
                                                 <th>فعال</th>
                                             </tr>
                                         </thead>
-                                        <tbody class="c-checkout tableBody" id="cityList" style="height:200px !important;">
+                                        <tbody class="c-checkout tableBody" id="cityList" style="height:222px !important;">
                                             @foreach ($cities as $city)
                                                 <tr  @if(hasPermission(Session::get( 'adminId'),'specialSetting' ) > 1) onclick="changeCityStuff(this)" @endif  >
                                                     <td>{{ $loop->index+1 }}</td>
@@ -409,17 +408,16 @@
                             </div>
                         </div>
                         <div class="col-sm-6">
-							<div class="row mt-3"> 
-								<div class="col-sm-4"> 
-									<h5 style="font-style:bold; margin-right:10px;"> منطقه ها  </h5>
-								</div>
-								<div class="col-sm-8 text-end"> 
-									 <button class="btn btn-success btn-sm buttonHover" type="button" disabled  id="addNewMantiqah"> جدید <i class="fa fa-plus" aria-hidden="true"></i></button>
-                                    <button  class="btn btn-info btn-sm text-white editButtonHover" type="button" disabled id="editMantiqah"  > ویرایش <i class="fa fa-edit" aria-hidden="true"></i></button>
-                                    <button id="deleteMantagheh" type="button" disabled class="btn btn-danger btn-sm buttonHoverDelete"> حذف <i class="fa fa-trash" aria-hidden="true"></i></button>
-							    </div>
-							</div>
-							
+						          	<div class="row mt-3"> 
+                          <div class="col-sm-4"> 
+                            <h5 style="font-style:bold; margin-right:10px;"> منطقه ها  </h5>
+                          </div>
+                          <div class="col-sm-8 text-end"> 
+                            <button class="btn btn-success btn-sm buttonHover" type="button" disabled  id="addNewMantiqah"> جدید <i class="fa fa-plus" aria-hidden="true"></i></button>
+                                      <button  class="btn btn-info btn-sm text-white editButtonHover" type="button" disabled id="editMantiqah"  > ویرایش <i class="fa fa-edit" aria-hidden="true"></i></button>
+                                      <button id="deleteMantagheh" type="button" disabled class="btn btn-danger btn-sm buttonHoverDelete"> حذف <i class="fa fa-trash" aria-hidden="true"></i></button>
+                            </div>
+                        </div>
                             <div class="well" style="margin-top:2%;">
                                 <div class=" c-checkout">
                                     <table id="subGroupTable" class="table table-bordered table table-hover table-sm" id="tableGroupList">
@@ -430,7 +428,7 @@
                                                 <th> فعال </th>
                                             </tr>
                                         </thead>
-                                        <tbody class="tableBody" id="mantiqaBody" style="height:200px !important;">
+                                        <tbody class="tableBody" id="mantiqaBody" style="height:222px !important;">
                                         </tbody>
                                     </table>
                                 </div>
@@ -622,7 +620,7 @@
                                           <th> <input type="checkbox"  name="" class="selectAllFromTop form-check-input"/>  </th>
                                       </tr>
                                 </thead>
-                                <tbody class="tableBody" style="height:200px;">
+                                <tbody class="tableBody" style="height:222px;">
                                     <tr>
                                         <th scope="row">1</th>
                                         <td> محمود الیاسی  </td>
