@@ -2,9 +2,7 @@
 @section('content')
 
 <style>
-.specialSettings, .specialSettingsBtn, .emteyazSettingsPart{
-    display:none;
-}
+
 .targetCheck{
     width:22px;
     height:22px;
@@ -111,7 +109,7 @@
                     </ul>
                    <form action="{{url('/doUpdatewebSpecialSettings')}}" method="post" enctype="multipart/form-data" id="webSpecialSettingForm">
                      @csrf
-                  <div class="c-checkout tab-content" style="background-color:#f5f5f5;  border-radius:5px 5px 2px 2px; font-size:16px; disply:block; height:400px; overflow-y:scroll; overflow-x: hidden;">
+                  <div class="c-checkout tab-content tableBody" style="background-color:#f5f5f5;  border-radius:5px 5px 2px 2px; font-size:16px;">
                      <div class="tab-pane active" id="webSettings">
                          <div class="row bg-white">
                             <div class="col-sm-3">
@@ -503,7 +501,7 @@
                   </ul>
                 </div>
 
-                <div class="c-checkout tab-content" style="background-color:#f5f5f5; margin:0;  padding:0.2%; border-radius:10px 10px 2px 2px;">
+                <div class="c-checkout tab-content tableBody" style="background-color:#f5f5f5; margin:0;  padding:0.2%; border-radius:10px 10px 2px 2px;">
                   <!-- کالاهای لاتری -->
                   <div class="row c-checkout rounded-2 tab-pane active" id="prizeSettings" style="width:100%; margin:0 auto; padding:1% 0% 0% 0%">
                       <div class="row">
@@ -1198,6 +1196,9 @@
 
 
 <script type="text/javascript">
+
+
+
     $(document).ready(function() {
        $("#webSpecialSettingBtn").click(function() {
            $("#webSpecialSettingForm").submit();
@@ -1242,6 +1243,8 @@
 		
 	     	$("#editLotteryPrizes").modal("show");
 	})
+
+
 </script>
   
 @endsection
