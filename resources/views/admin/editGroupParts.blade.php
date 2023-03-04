@@ -86,10 +86,10 @@
                                         </table>
                                     </div>
                                     <div class="subgroup-item" style="margin-top:88px;">
-                                         <button style="background-color:transparent;" id="addGroupData" @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 ) disabled @endif>
+                                         <button style="background-color:transparent;" id="addGroupData" type="button" @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 ) disabled @endif>
                                             <i class="fa-regular fa-circle-chevron-left fa-2x"></i>
                                         </button> <br>
-                                        <button style="background-color:transparent;" id="removeGroupData" @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 ) disabled @endif>
+                                        <button style="background-color:transparent;" id="removeGroupData" type="button" @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 ) disabled @endif>
                                             <i class="fa-regular fa-circle-chevron-right fa-2x"></i>
                                         </button>
                                     </div>
@@ -103,12 +103,10 @@
                                                 <tr>
                                                     <th>ردیف</th>
                                                     <th class="position-relative"> گروه اصلی <div style="color:white!important;" class="rounded-circle d-flex position-absolute top-50 justify-content-end w-100 m-0 p-0 px-3">
-                                                        
                                                         <button class='groupPartPriority' style="background-color:transparent; margin-top:-10px;" type="button" value="down"><i class="fa-solid fa-circle-chevron-down fa-sm" style=''></i></button>
                                                         <button class='groupPartPriority' style="background-color:transparent; margin-top:-10px;" type="button" value="up"><i class="fa-solid fa-circle-chevron-up fa-sm" style=''></i></button>
-                                                        
                                                     </th>
-                                                    <th><input type="checkbox" @if(hasPermission(Session::get( 'adminId'),'homePage' ) < 1 ) disabled @endif class="selectAllFromTop form-check-input"  ></th>
+                                                    <th><input type="checkbox" @if(hasPermission(Session::get( 'adminId'),'homePage' ) < 1 ) disabled @endif class="selectAllFromTop form-check-input"></th>
                                                 </tr>
                                             </thead>
                                             <tbody class="tableBody" style="height: 300px !important" id="addedGroups">
@@ -117,7 +115,7 @@
                                                         <td>{{ $loop->index+1}}</td>
                                                         <td>{{ $group->groupTitle }}</td>
                                                         <td>
-                                                            <input class="mainGroupId  form-check-input" type="checkBox" name="groupIds[]" value="{{ $group->groupId}}" id="flexCheckChecked">
+                                                            <input class="mainGroupId  form-check-input" type="checkBox" name="groupIds[]" value="{{ $group->groupId.'_'.' '}}" id="flexCheckChecked">
                                                         </td>
                                                     </tr>
                                                 @endforeach
@@ -230,20 +228,21 @@
                 for (let i = 0; i < groupListIds.length; i++) {
                     $('#addedGroups').append(`<tr class="addedTr" onClick="checkCheckBox(this,event)">
                             <td>` + (i+1) + `</td>
-                            <td>` + groupListIds[i].split('_')[1] + `</td>
-                            <td>
-                                <input class="mainGroupId  form-check-input" type="checkBox" name="groupIds[]"
-                                    value="` + groupListIds[i].split('_')[0] + `"
-                                    id="flexCheckChecked" checked>
-                            </td>
-                        </tr>`);
+                                <td>` + groupListIds[i].split('_')[1] + `</td>
+                                <td>
+                                    <input class="mainGroupId  form-check-input" type="checkBox" name="groupIds[]"
+                                        value="` + groupListIds[i].split('_')[0] + `"
+                                        id="flexCheckChecked" checked>
+                                </td>
+                            </tr>`);
 
                 }
             });
             //used for removing groups from a part
             $(document).on('click', '#removeGroupData', (function() {
                 $('.addedTr').find('input:checkbox:checked').attr("name", "removable[]");
-                $('.addedTr').has('input:checkbox:checked').hide();
+                
+                $($('.addedTr').has('input[name="removable[]"]:checked')).css("display","none");
             }));
 
            //used for setting priority of group in a part
