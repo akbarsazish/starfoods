@@ -116,10 +116,11 @@
                                 @if(hasPermission(Session::get( 'adminId'),'kalaList' ) > 0) 
                                 <button type="button" data-toggle="modal"  onclick="openChangePriceModal()"  disabled class="kala-btn btn btn-success btn-sm text-warning"> تغییر قیمت <i class="fal fa-exchange-alt" aria-hidden="true"></i></button>
                                 @endif
-                                @if(hasPermission(Session::get( 'adminId'),'kalaList' ) > 1) 
-                                <button type="submit" id="editKalaList" disabled class="kala-btn btn btn-success btn-sm text-warning"> ارسال به اکسل  <i class="fal fa-file-excel" aria-hidden="true"></i></button>
-                                @endif
+                               
                             </form>
+                             @if(hasPermission(Session::get( 'adminId'),'kalaList' ) > 1) 
+                                <button type="#" id="editKalaList" disabled class="kala-btn btn btn-success btn-sm text-warning"> ارسال به اکسل  <i class="fal fa-file-excel" aria-hidden="true"></i></button>
+                                @endif
                             </span>
                              <!-- بتن های مربوط کلای پیش خرید -->
                             <span class="pishKaridStaff">
@@ -667,7 +668,7 @@
 <!-- modal for Editing Kala -->
       
 <div class="modal fade dragAbleModal" id="editingListKala" data-backdrop="static"  data-bs-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog modal-xl modal-dialog-scrollable">
+        <div class="modal-dialog modal-xl modal-fullscreen">
             <div class="modal-content">
             <div class="modal-header myModalHeader py-2">
                 <button type="button" class="btn-close bg-danger" data-dismiss="modal" id="closeEditModal" aria-label="Close"></button>
@@ -709,7 +710,8 @@
                         <li><a data-toggle="tab" style="color:black;"  href="#pictures">تصاویر </a></li>
                         <li><a data-toggle="tab" style="color:black;"  href="#orange">گردش قیمت</a></li>
                     </ul>
-                  <div class="c-checkout tab-content" style="background-color:#f5f5f5; margin:0; margin-bottom:1%; padding:1%; border-radius:10px 10px 2px 2px;">
+                <div class="c-checkout tab-content" style="background-color:#f5f5f5; border-radius:10px 10px 2px 2px; display:block; height:444px; overflow-y:scroll; 
+">
                      <div class="tab-pane active" id="parts">
                         <div class="c-checkout" style="border-radius:10px 10px 2px 2px;">
                             <div class="container">
