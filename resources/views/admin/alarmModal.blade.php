@@ -17,7 +17,7 @@ $(document).ready(function() {
 <div class='modal fade dragAbleModal' id='existanceWarningModal' tabindex='-1' role='dialog' aria-labelledby='exampleModalCenterTitle' aria-hidden='true'>
     <div class='modal-dialog modal-dialog-centered' >
         <div class='modal-content'>
-            <div class='modal-header'>
+            <div class='modal-header py-2 text-white bg-success'>
                 <h5 class='modal-title' id='exampleModalLongTitle'>لیست کالاهای به هشدار رسیده</h5>
                 <button type='button' class='close' data-dismiss='modal' aria-label='Close'>
                     <span aria-hidden='true'>&times;</span>

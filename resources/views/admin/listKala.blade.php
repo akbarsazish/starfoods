@@ -19,7 +19,7 @@
     $allGroups=count($mainGroups);
 @endphp
 
-    <div class="container-fluid containerDiv">
+    <div class="container-fluid containerDiv">  
     <div class="row">
             <div class="col-lg-2 col-md-2 col-sm-3 sideBar">
                 <fieldset class="border rounded mt-5 sidefieldSet">
@@ -668,7 +668,7 @@
 <!-- modal for Editing Kala -->
       
 <div class="modal fade dragAbleModal" id="editingListKala" data-backdrop="static"  data-bs-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog modal-xl modal-fullscreen">
+        <div class="modal-dialog modal-xl">
             <div class="modal-content">
             <div class="modal-header myModalHeader py-2">
                 <button type="button" class="btn-close bg-danger" data-dismiss="modal" id="closeEditModal" aria-label="Close"></button>
@@ -710,8 +710,7 @@
                         <li><a data-toggle="tab" style="color:black;"  href="#pictures">تصاویر </a></li>
                         <li><a data-toggle="tab" style="color:black;"  href="#orange">گردش قیمت</a></li>
                     </ul>
-                <div class="c-checkout tab-content" style="background-color:#f5f5f5; border-radius:10px 10px 2px 2px; display:block; height:444px; overflow-y:scroll; 
-">
+                <div class="c-checkout tab-content" style="background-color:#f5f5f5; border-radius:10px 10px 2px 2px; display:block; height:444px; overflow-y:scroll; overflow-x:hidden ! important;">
                      <div class="tab-pane active" id="parts">
                         <div class="c-checkout" style="border-radius:10px 10px 2px 2px;">
                             <div class="container">
@@ -1116,7 +1115,7 @@
                        </div>
                      </div> 
                   </div>
-                <div class="modal-footer">
+                <div class="modal-footer py-0">
                     <button class="btn btn-sm btn-success buttonHover" type="submit" id="submitSubGroup"           form="groupSubgoupCategory" disabled> ذخیره <i class="fa fa-save "></i> </Button>
                     <button class="btn btn-sm btn-success buttonHover" type="submit" id="stockSubmit"              form="submitStockToList" style="display:none"> ذخیره <i class="fa fa-save "></i> </button>
                     <button class="btn btn-sm btn-success buttonHover" type="submit" id="kalaRestictionbtn"        form="restrictFormStuff" style="display:none"> ذخیره <i class="fa fa-save "></i></button>
@@ -1362,7 +1361,7 @@
             aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
-                    <div class="modal-header bg-success text-white">
+                    <div class="modal-header bg-success text-white py-2">
                         <button type="button" class="btn-close bg-danger" data-dismiss="modal" aria-label="Close"></button>
                         <h5 class="modal-title" id="exampleModalLongTitle">ویرایش برند</h5>
                     </div>
@@ -1401,7 +1400,7 @@
             aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
-                    <div class="modal-header bg-success text-white">
+                    <div class="modal-header bg-success text-white py-2">
                         <h5 class="modal-title" id="exampleModalLongTitle"> دسته بندی جدید </h5>
                         <button type="button" class="close btn text-danger" data-dismiss="modal" aria-label="Close" style="background-color:rgb(255 255 255); padding:0; padding-left:7px;">
                             <i class="fa-solid fa-xmark fa-xl" style="background:none; button:hover{background-color:none}"></i>
@@ -1442,7 +1441,7 @@
             aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
-                    <div class="modal-header bg-success text-white">
+                    <div class="modal-header bg-success text-white py-2">
                         <h5 class="modal-title" id="exampleModalLongTitle">ویرایش دسته بندی</h5>
                         <button type="button" class="close btn bg-danger" data-dismiss="modal" aria-label="Close" style="background-color:rgb(255 255 255); padding:0; padding-left:7px;"><i class="fa-solid fa-xmark fa-xl"></i>
                         </button>
@@ -1485,7 +1484,7 @@
             aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
-                    <div class="modal-header bg-success text-white">
+                    <div class="modal-header bg-success text-white py-2">
                         <h5 class="modal-title" id="exampleModalLongTitle"> ویرایش دستبندی فرعی</h5>
                         <button type="button" class="close btn bg-danger" data-dismiss="modal" aria-label="Close" style="background-color:rgb(255 255 255); padding:0; padding-left:7px;"><i class="fa-solid fa-xmark fa-xl"></i>
                         </button>
@@ -1526,7 +1525,7 @@
             aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
-                    <div class="modal-header bg-success text-white">
+                    <div class="modal-header bg-success text-white py-2">
                         <h5 class="modal-title" id="exampleModalLongTitle">دسته بندی فرعی جدید</h5>
                         <button type="button" class="close btn bg-danger" data-dismiss="modal" aria-label="Close" style="background-color:rgb(255 255 255); padding:0; padding-left:7px;"><i class="fa-solid fa-xmark fa-xl"></i>
                         </button>

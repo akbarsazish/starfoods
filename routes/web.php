@@ -231,6 +231,8 @@ Route::post('/storeHoqoqiCustomerAdmin', [CustomerController::class, 'storeHoqoq
 Route::get('/hoqoqiCustomerList', [CustomerController::class, 'showHoqoqiCustomer'])->middleware('checkAdmin');
 Route::get('/hoqoqiCustomerAdd', [CustomerController::class, 'hoqoqiCustomerAdd'])->middleware('checkUser');
 Route::post('/storeHoqoqiCustomer', [CustomerController::class, 'storeHoqoqiCustomer'])->middleware('checkUser');
+
+
 Route::get('/aboutUs', [Home::class, 'aboutUs'])->middleware('checkUser');
 Route::get('/policy', [Home::class, 'policy'])->middleware('checkUser');
 Route::get('/contactUs', [Home::class, 'contactUs'])->middleware('checkUser');

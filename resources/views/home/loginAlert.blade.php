@@ -10,7 +10,7 @@
 <div id="myModal" class="modal fade" data-backdrop="static" role="dialog">
     <div class="modal-dialog">
       <div class="modal-content">
-        <div class="modal-header">
+        <div class="modal-header  bg-danger text-white py-2">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
           <h4 class="modal-title">شما با وسایل زیر وارد سایت شده اید</h4>
         </div>

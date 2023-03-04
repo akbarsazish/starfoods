@@ -60,7 +60,7 @@
                                  </div>
                         
 
-                                <div class="row rounded border p-1 m-1 bg-light">
+                                <div class="row bg-light rounded border m-1">
                                     <div class="col-sm-2 d-flex align-items-stretch">
                                         <div class="form-group d-flex text-nowrap align-items-center">
                                             <input class="form-control d-flex form-check-input align-items-end" @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 ) disabled @endif type="checkbox" name="showAll" id="activeAllSelection" @if($part->showAll==1) checked @else @endif>  &nbsp;  &nbsp;
@@ -79,7 +79,7 @@
                                             <label class="form-check-label align-items-end" style="font-weight: bold" for="showFirstPrice">نمایش قیمت قبلی کالا</label>
                                         </div>
                                     </div>
-                                    <div class="col-sm-1 d-flex align-items-stretch" style="width:20%">
+                                    <div class="col-sm-2 d-flex align-items-stretch">
                                         <div class="form-group d-flex text-nowrap align-items-center">
                                             <label class="col-sm-8 form-check-label pt-2" style="font-weight: bold" for="showKalaNum">نمایش تعداد کالا</label>
                                             <input type="number" name="showTedad" class="col-sm-4 form-control form-control-sm" @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 ) disabled @endif id="showKalaNum" value="{{$part->showTedad}}">
@@ -87,25 +87,24 @@
                                     </div>
                                 
                                     @if($part->partType==11)
-                                    <div id="cp9" class="col-sm-2 input-group d-flex text-nowrap p-0">
+                                    <div class="col-sm-2" id="cp9">
                                         <label class="form-label form-label col-sm-8 pt-2" style="font-weight: bold"  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 ) for="colorPicker" @endif style="font-weight: bold">انتخاب رنگ</label>
                                         <input type="color" color="red"  onchange="document.getElementById('colorDiv').style.backgroundColor=this.value;"
                                             class="form-control form-control-sm col-sm-4 rounded border-danger p-1 m-0" id="colorPicker" name="shegeftColor"  value="#ff0000">
                                     </div>
-                                    <div id="cp9" class="col-sm-3 input-group d-flex text-nowrap">
-                                        <label class="form-label rounded text-warning d-flex align-items-center justify-content-center" @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 ) for="photoPicker" @endif id="photoPickerID" style="font-weight: bold"> انتخاب عکس <i class="fa-light fa-image fa-lg"></i></label>
+                                    <div class="col-sm-2" id="cp9">
+                                        <label class="form-label btn btn-success btn-sm text-warning mt-3" for="photoPicker" @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  @endif id="photoPickerID" style="font-weight: bold"> انتخاب عکس <i class="fa-light fa-image fa-lg"></i> </label>
                                         <input type="file" onchange='document.getElementById("shegeftPicture").src = window.URL.createObjectURL(this.files[0]);' class="form-control d-none" id="photoPicker" name="shegeftPicture" value="">
                                     </div>
                                  </div>
 
                                 <div id="colorDiv" class="col-sm-12 rounded mx-auto mt-2" style=" background-color:{{$part->partColor}};">
-                                    <div class="form-group">
-                                        <img class="p-0 m-0" style="width: 80px; height:120px;" id="shegeftPicture" src="{{url('/resources/assets/images/shegeftAngesPicture/'.$part->partId.'.jpg')}}" alt="">
+                                    <div class="form-group text-center">
+                                        <img class="p-0 m-0" style="width: 20%; height:100px;" id="shegeftPicture" src="{{url('/resources/assets/images/shegeftAngesPicture/'.$part->partId.'.jpg')}}" alt="">
                                     </div>
                                 </div>
                                 @endif
-                            </div>
-
+                 
                             <div class="row rounded m-1">
                                 <div class="form-group col-sm-4">
                                     <label class="form-label">جستجو</label>

@@ -137,7 +137,7 @@
                                         <div class="col-lg-6 col-md-6 col-sm-12">
                                             <div class="mb-1 mt-2">
                                                 <label for="address" class="form-label"> آدرس :</label>
-                                                <input onKeyPress="if(this.value.length==26) return false;" type="text" class="form-control haqiqi" id="address" value="@if($exactHoqoqi){{trim($exactHoqoqi->address)}}@endif" placeholder="آدرس " name="address">
+                                                <input onKeyPress="if(this.value.length==32) return false;" type="text" class="form-control haqiqi" id="address" value="@if($exactHoqoqi){{trim($exactHoqoqi->address)}}@endif" placeholder="آدرس " name="address">
                                             </div>
                                         </div>
                                     </div>

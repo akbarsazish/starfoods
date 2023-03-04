@@ -202,7 +202,7 @@ $profit=$allMoneyFirst-$allMoneyProfit;
 <div id="myModal" class="modal fade" role="dialog">
     <div class="modal-dialog modal-dialog-sm">
         <div class="modal-content">
-            <div class="modal-header">
+            <div class="modal-header  bg-danger text-white py-2">
                 <h6 class="modal-title">کالاهای زیر تغییر قیمت دارند.</h6>
                 <button type="button" class="close" data-dismiss="modal" style="color:red">&times;</button>
             </div>

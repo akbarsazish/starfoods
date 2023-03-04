@@ -335,8 +335,8 @@ public function storeHaqiqiCustomerAdmin(Request $request){
     }
 
     public function storeHoqoqiCustomerAdmin(Request $request){
-
         $customerShopSn=$request->post("customerShopSn");
+        $id=$request->post("id");
         $checkExistance=DB::table("NewStarfood.dbo.star_Customer")->where('customerType', $request->post("customerType"))->where('customerShopSn', $id)->count('customerShopSn');
 
         // if the customer exist already then update the some fields
@@ -375,7 +375,7 @@ public function storeHaqiqiCustomerAdmin(Request $request){
                 $officialAllowed=DB::table("NewStarfood.dbo.star_customerRestriction")->where("customerId",$id)->get();
                 DB::update("UPDATE NewStarfood.dbo.star_customerRestriction set activeOfficialInfo=0 where customerId=".$id);
                 // return View('userProfile.profile', ['hoqoqiCustomers'=>$hoqoqiCustomers]);
-                return redirect('/customerList');
+                return redirect('/listCustomers');
 
 
 
@@ -486,8 +486,7 @@ public function storeHaqiqiCustomerAdmin(Request $request){
         $loginInfo=DB::table("NewStarfood.dbo.star_customerTrack")->where("customerId",$psn)->get();
         return Response::json([$exactCustomer,$factors,$GoodsDetail,$basketOrders,$returnedFactors,$loginInfo]);
     }
-    public function getFactorDetail(Request $request)
-    {
+    public function getFactorDetail(Request $request){
         $fsn=$request->get("FactorSn");
         $orders=DB::select("SELECT FactorBYS.Price AS goodPrice, *  FROM Shop.dbo.FactorHDS
                     JOIN Shop.dbo.FactorBYS ON FactorHDS.SerialNoHDS=FactorBYS.SnFact 

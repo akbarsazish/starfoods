@@ -18,7 +18,7 @@
 	}
 
 #nazaranjicontainer {
-      height:377px !important; 
+      height:400px !important; 
       overflow-y:scroll !important;
       display:block !important;
   }
@@ -61,7 +61,7 @@
                             @endif
                         </form>
                         @if(hasPermission(Session::get("adminId"),"homePage") > 1)
-                              <button class='btn btn-danger btn-sm disabled mainPageStuff' id='deletePart'>   حذف  <i class="fa fa-trash" aria-hidden="true"></i></button>
+                              <button class='btn btn-danger btn-sm disabled mainPageStuff' id='deletePart'>  حذف  <i class="fa fa-trash" aria-hidden="true"></i></button>
                         @endif
                         @if(hasPermission(Session::get("adminId"),"homePage") > 0)
                         <form action="{{ url('/changePriority') }}" style="display:inline;" method="POST" >
@@ -74,28 +74,28 @@
 
                 <div class="row mainContent">
                         <table class='table table-hover table-bordered table-sm table-light' id='myTable'>
-                        <thead class="table bg-success text-white tableHeader">
-                            <tr >
-                                <th>ردیف</th>
-                                <th>سطر</th>
-                                <th>اولویت</th>
-                                <th>فعال</th>
-                                <th>انتخاب</th>
-                            </tr>
-                        </thead>
-                        <tbody class="tableBody">
-                            @foreach ($parts as $part)
-                                <tr  id='1' >
-                                    <td  style="">{{ $loop->index+1 }}</td>
-                                    <td >{{ $part->title }}</td>
-                                    <td>@if($part->partType==3 or $part->partType==4)@else {{ $part->priority-2 }} @endif</td>
-                                    <td>@if($part->partType==3)@else <input class='form-check-input' type='checkbox' disabled value='' id='flexCheck' @if($part->activeOrNot == 1 ) checked @endif /> @endif</td>
-                                    <td><input type="radio" value="{{ $part->id . '_' . $part->priority . '_' . $part->partType. '_' . $part->title }}" class="mainGroups form-check-input" name="partId"></td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-               </form>
+                              <thead class="table bg-success text-white tableHeader">
+                                  <tr >
+                                      <th>ردیف</th>
+                                      <th>سطر</th>
+                                      <th>اولویت</th>
+                                      <th>فعال</th>
+                                      <th>انتخاب</th>
+                                  </tr>
+                              </thead>
+                              <tbody class="tableBody">
+                                  @foreach ($parts as $part)
+                                      <tr  id='1' >
+                                          <td  style="">{{ $loop->index+1 }}</td>
+                                          <td >{{ $part->title }}</td>
+                                          <td>@if($part->partType==3 or $part->partType==4)@else {{ $part->priority-2 }} @endif</td>
+                                          <td>@if($part->partType==3)@else <input class='form-check-input' type='checkbox' disabled value='' id='flexCheck' @if($part->activeOrNot == 1 ) checked @endif /> @endif</td>
+                                          <td><input type="radio" value="{{ $part->id . '_' . $part->priority . '_' . $part->partType. '_' . $part->title }}" class="mainGroups form-check-input" name="partId"></td>
+                                      </tr>
+                                  @endforeach
+                              </tbody>
+                        </table>
+                     </form>
                
 
                 <!-- تنظیمات اختصاصی  -->
@@ -111,7 +111,7 @@
                     </ul>
                    <form action="{{url('/doUpdatewebSpecialSettings')}}" method="post" enctype="multipart/form-data" id="webSpecialSettingForm">
                      @csrf
-                  <div class="c-checkout tab-content" style="background-color:#f5f5f5; margin:0; margin-bottom:1%; padding:1%; border-radius:5px 5px 2px 2px; font-size:16px; disply:block;height:400px; overflow-y:scroll; overflow-x: hidden;">
+                  <div class="c-checkout tab-content" style="background-color:#f5f5f5;  border-radius:5px 5px 2px 2px; font-size:16px; disply:block; height:400px; overflow-y:scroll; overflow-x: hidden;">
                      <div class="tab-pane active" id="webSettings">
                          <div class="row bg-white">
                             <div class="col-sm-3">
@@ -191,11 +191,10 @@
 							</select>
 						</div>
                     </div>
-					
                     <div class="row">
                         <div class="col-sm-5">
                             <input type="text" class="form-control form-control-sm" @if(hasPermission(Session::get( 'adminId'),'specialSetting' ) < 1) disabled @endif  id="serachKalaForSubGroup"  placeholder="جستجو">
-                                <table class="table table-bordered table table-hover">
+                                <table class="table table-bordered table table-hover table-sm">
                                     <thead class="tableHeader">
                                         <tr>
                                             <th>ردیف</th>
@@ -223,11 +222,11 @@
                             <div class='modal-body' style="position:relative; right: 15%; top: 30%;">
                                 <div style="">
                                     <a id="addStockToWeb">
-                                        <i class="fa-regular fa-circle-chevron-left fa-3x chevronHover"></i>
+                                        <i class="fa-regular fa-circle-chevron-left fa-2x chevronHover"></i>
                                     </a>
                                     <br />
                                     <a id="removeStocksFromWeb">
-                                        <i class="fa-regular fa-circle-chevron-right fa-3x chevronHover"></i>
+                                        <i class="fa-regular fa-circle-chevron-right fa-2x chevronHover"></i>
                                     </a>
                                 </div>
                             </div>
@@ -235,7 +234,7 @@
 
                         <div class="col-sm-5">
                             <input type="text" @if(hasPermission(Session::get( 'adminId'),'specialSetting' ) < 1)disabled @endif class="form-control form-control-sm" id="serachKalaOfSubGroup"  placeholder="جستجو">
-                                <table class="table table-bordered table table-hover" >
+                                <table class="table table-bordered table table-hover table-sm">
                                     <thead class="tableHeader">
                                         <tr>
                                             <th>ردیف</th>
@@ -370,25 +369,22 @@
                          </div>
                     </div>
 
-                   
-						
-                    <div class="tab-pane" id="customerAddress">
-                        <div class="c-checkout" style="border-radius:10px 10px 2px 2px;">
-                            <div class="row">
-                        <div class="col-sm-6 mt-3">
-							<div class="row"> 
-								<div class="col-sm-4"> 
-									<h5 style="font-style:bold; margin-right:10px;">شهر ها </h5>
-								</div>
-								<div class="col-sm-8 text-end"> 
-									<button type="button" style="margint:0" class="btn btn-success btn-sm" @if(hasPermission(Session::get( 'adminId'),'specialSetting' ) < 2) disabled @endif  id="addNewCity"> جدید <i class="fa fa-plus" aria-hidden="true"></i></button>
-                                    <button type="button" value="Reterive data" class="btn btn-info btn-sm text-white" data-toggle="modal" id="editCityButton" disabled>ویرایش <i class="fa fa-edit" aria-hidden="true"></i></button>
-                                    <button type="button" disabled id="deleteCityButton" class="btn btn-danger btn-sm">حذف <i class="fa fa-trash" aria-hidden="true"></i></button>
-                                    <input type="text" style="display:none" value="" id="CityId" style=""/>
-								</div>
-							</div>
+                        <div class="tab-pane" id="customerAddress">
+                          <div class="c-checkout" style="border-radius:10px 10px 2px 2px;">
+                                  <div class="row"> <div class="col-sm-6 mt-3">
+						          	<div class="row"> 
+                          <div class="col-sm-4"> 
+                            <h5 style="font-style:bold; margin-right:10px;">شهر ها </h5>
+                          </div>
+                          <div class="col-sm-8 text-end"> 
+                            <button type="button" style="margint:0" class="btn btn-success btn-sm" @if(hasPermission(Session::get( 'adminId'),'specialSetting' ) < 2) disabled @endif  id="addNewCity"> جدید <i class="fa fa-plus" aria-hidden="true"></i></button>
+                                <button type="button" value="Reterive data" class="btn btn-info btn-sm text-white" data-toggle="modal" id="editCityButton" disabled>ویرایش <i class="fa fa-edit" aria-hidden="true"></i></button>
+                                <button type="button" disabled id="deleteCityButton" class="btn btn-danger btn-sm">حذف <i class="fa fa-trash" aria-hidden="true"></i></button>
+                                <input type="text" style="display:none" value="" id="CityId" style=""/>
+                          </div>
+                        </div>
                              <div class="well" style="margin-top:2%;">
-                                    <table class="table table-bordered table table-hover" id="tableGroupList">
+                                    <table class="table table-bordered table table-hover table-sm" id="tableGroupList">
                                         <thead class="tableHeader">
                                             <tr>
                                                 <th>ردیف</th>
@@ -396,7 +392,7 @@
                                                 <th>فعال</th>
                                             </tr>
                                         </thead>
-                                        <tbody class="c-checkout tableBody" id="cityList" style="height:200px !important;">
+                                        <tbody class="c-checkout tableBody" id="cityList" style="height:222px !important;">
                                             @foreach ($cities as $city)
                                                 <tr  @if(hasPermission(Session::get( 'adminId'),'specialSetting' ) > 1) onclick="changeCityStuff(this)" @endif  >
                                                     <td>{{ $loop->index+1 }}</td>
@@ -412,20 +408,19 @@
                             </div>
                         </div>
                         <div class="col-sm-6">
-							<div class="row mt-3"> 
-								<div class="col-sm-4"> 
-									<h5 style="font-style:bold; margin-right:10px;"> منطقه ها  </h5>
-								</div>
-								<div class="col-sm-8 text-end"> 
-									 <button class="btn btn-success btn-sm buttonHover" type="button" disabled  id="addNewMantiqah"> جدید <i class="fa fa-plus" aria-hidden="true"></i></button>
-                                    <button  class="btn btn-info btn-sm text-white editButtonHover" type="button" disabled id="editMantiqah"  > ویرایش <i class="fa fa-edit" aria-hidden="true"></i></button>
-                                    <button id="deleteMantagheh" type="button" disabled class="btn btn-danger btn-sm buttonHoverDelete"> حذف <i class="fa fa-trash" aria-hidden="true"></i></button>
-							    </div>
-							</div>
-							
+						          	<div class="row mt-3"> 
+                          <div class="col-sm-4"> 
+                            <h5 style="font-style:bold; margin-right:10px;"> منطقه ها  </h5>
+                          </div>
+                          <div class="col-sm-8 text-end"> 
+                            <button class="btn btn-success btn-sm buttonHover" type="button" disabled  id="addNewMantiqah"> جدید <i class="fa fa-plus" aria-hidden="true"></i></button>
+                                      <button  class="btn btn-info btn-sm text-white editButtonHover" type="button" disabled id="editMantiqah"  > ویرایش <i class="fa fa-edit" aria-hidden="true"></i></button>
+                                      <button id="deleteMantagheh" type="button" disabled class="btn btn-danger btn-sm buttonHoverDelete"> حذف <i class="fa fa-trash" aria-hidden="true"></i></button>
+                            </div>
+                        </div>
                             <div class="well" style="margin-top:2%;">
                                 <div class=" c-checkout">
-                                    <table id="subGroupTable" class="table table-bordered table table-hover" id="tableGroupList">
+                                    <table id="subGroupTable" class="table table-bordered table table-hover table-sm" id="tableGroupList">
                                         <thead class="tableHeader">
                                             <tr>
                                                 <th >ردیف </th>
@@ -433,7 +428,7 @@
                                                 <th> فعال </th>
                                             </tr>
                                         </thead>
-                                        <tbody class="tableBody" id="mantiqaBody" style="height:200px !important;">
+                                        <tbody class="tableBody" id="mantiqaBody" style="height:222px !important;">
                                         </tbody>
                                     </table>
                                 </div>
@@ -445,7 +440,7 @@
                         <div class="col-sm-5">
                               <input type="text" class="form-control form-control-sm" style="margin-top:10px;" id="searchNameMNM"  placeholder="نام">
                               <input type="text" class="form-control form-control-sm" style="margin-top:10px;" id="searchAddressMNM"  placeholder="آدرس">
-                                    <table class="table table-bordered table-hover">
+                                    <table class="table table-bordered table-hover table-sm">
                                         <thead class="forMaser tableHeader">
                                             <tr>
                                                 <th>ردیف</th>
@@ -463,11 +458,11 @@
                            <div class="col-sm-2">
                                <div class='modal-body' style="position:relative; right: 15%; top: 30%;">
                                     <a id="addDataToMantiqah">
-                                        <i class="fa-regular fa-circle-chevron-left fa-3x chevronHover"></i>
+                                        <i class="fa-regular fa-circle-chevron-left fa-2x chevronHover"></i>
                                     </a>
                                     <br/>
                                     <a id="removeDataFromMantiqah">
-                                        <i class="fa-regular fa-circle-chevron-right fa-3x chevronHover"></i>
+                                        <i class="fa-regular fa-circle-chevron-right fa-2x chevronHover"></i>
                                     </a>
                               </div>
                          </div>
@@ -475,7 +470,7 @@
                               <input type="text" class="form-control form-control-sm" style="margin-top:10px;" id="searchAddedNameMNM"  placeholder="نام">
                                  <input type="text" class="form-control form-control-sm" style="margin-top:10px;" id="searchAddedAddressMNM"  placeholder="آدرس">
                                  <input type="hidden" id="mantiqahIdForSearch"/>   
-                                <table class="table table-bordered">
+                                <table class="table table-bordered table-sm">
                                     <thead class="tableHeader">
                                         <tr>
                                             <th>ردیف</th>
@@ -499,151 +494,149 @@
  </div>
 <!-- ختم تنظیمات اختصاصی  -->
 
-<!-- شروع تنظیمات امتیاز ها  -->
-<div class="c-checkout container-fluid emteyazSettingsPart" style="background: linear-gradient(#3ccc7a, #034620); border-radius:5px 5px 2px 2px;">
-      <div class="col-sm-4" style="margin: 0; padding:0;">
-        <ul class="header-list nav nav-tabs" data-tabs="tabs" style="margin: 0; padding:0;">
-          <li><a class="active"  data-toggle="tab" style="color:black;"  href="#prizeSettings">تنظیمات جوایز لاتری</a></li>
-          <li><a  data-toggle="tab" style="color:black;"  href="#askIdea">  نظر خواهی </a></li>
-        </ul>
-      </div>
-
-      <div class="c-checkout tab-content" style="background-color:#f5f5f5; margin:0;  padding:0.2%; border-radius:10px 10px 2px 2px;">
-        <!-- کالاهای لاتری -->
-        <div class="row c-checkout rounded-2 tab-pane active" id="prizeSettings" style="width:100%; margin:0 auto; padding:1% 0% 0% 0%">
-            <div class="row">
-                <div class="col-lg-12 text-end">
-                     <span class="prizeName float-start"> <i class="fa fa-bullseye 4x" style="color:green; font-size:22px;"></i>  حد اقل امتیاز لاتری : {{number_format($lotteryMinBonus)}} </span> 
-                     <button  data-toggle="modal" type="button"  class="btn btn-sm btn-success text-warning" id="editLotteryPrizeBtn" > ویرایش لاتاری  <i class="fa fa-edit"> </i> </button>
-                </div>
-            </div>
-            <div class="row p-3">
-              <div class="prizeSettingTab">
-                <div> <span class="prizeName"> جایزه اول :</span>   {{$prizes[0]->firstPrize}} </div>
-                <div> <span class="prizeName"> جایزه دوم:  </span> {{$prizes[0]->secondPrize}}</div>
-                <div> <span class="prizeName"> جایزه سوم: </span> {{$prizes[0]->thirdPrize}} </div>  
-                <div> <span class="prizeName"> جایزه چهارم : </span> {{$prizes[0]->fourthPrize}} </div>
-                <div> <span class="prizeName"> جایزه پنجم : </span> {{$prizes[0]->fifthPrize}} </div>
-                <div> <span class="prizeName"> جایزه ششم : </span> {{$prizes[0]->sixthPrize}} </div>
-                <div> <span class="prizeName"> جایزه هفتم : </span> {{$prizes[0]->seventhPrize}} </div>
-                <div> <span class="prizeName"> جایزه هشتم : </span>  {{$prizes[0]->eightthPrize}} </div>
-                <div> <span class="prizeName"> جایزه نهم :</span> {{$prizes[0]->ninethPrize}}  </div>
-                <div> <span class="prizeName"> جایزه دهم: </span>   {{$prizes[0]->teenthPrize}} </div>
-                <div> <span class="prizeName"> جایزه یازدهم :</span>  {{$prizes[0]->eleventhPrize}}  </div>
-                <div> <span class="prizeName"> جایزه دوازدهم :</span> {{$prizes[0]->twelvthPrize}}  </div>
-                <div> <span class="prizeName"> جایزه سیزدهم :</span> {{$prizes[0]->therteenthPrize}}  </div>
-                <div> <span class="prizeName"> جایزه چهاردهم: </span> {{$prizes[0]->fourteenthPrize}}  </div>
-                <div> <span class="prizeName"> جایزه پانزدهم: </span> {{$prizes[0]->fifteenthPrize}}  </div>
-                <div> <span class="prizeName"> جایزه شانزدهم: </span> {{$prizes[0]->sixteenthPrize}}  </div>
-              </div>
-            </div> <hr>
-         
-             <div class="row text-center me-2">
-                <input type="hidden" name="" id="selectTargetId">
-                <div class="row">
-                  <div class="col-lg-3 col-md-3 col-sm-3 mb-1">
-                      <select class="form-select  form-select-sm" aria-label="Default select example" id="selectTarget">
-                        @foreach($targets as $target)
-                          <option value="{{$target->id}}">{{$target->baseName}}</option>
-                        @endforeach
-                      </select>
-                  </div>
-                    <div class="col-lg-1 col-md-1 col-sm-1 mt-3">
-                      <!-- <span data-toggle="modal" data-target="#addingTargetModal"><i class="fa fa-plus-circle fa-lg" style="color:#1684db; font-size:33px"></i></span> -->
-                    </div>
-                    <div class="col-lg-8 col-md-8 col-sm-8 text-end">
-                      <button class='btn btn-sm btn-success text-warning' id="targetEditBtn" type="button" disabled  data-toggle="modal" style="margin-top:-3px;">ویرایش تارگت<i class="fa fa-edit fa-lg"></i></button> 
-                      <!-- <button class='btn btn-danger text-warning' disabled style="margin-top:-3px;" id="deleteTargetBtn"> حذف <i class="fa fa-trash fa-lg"></i></button>  -->
-                    </div>
+      <!-- شروع تنظیمات امتیاز ها  -->
+      <div class="c-checkout container-fluid emteyazSettingsPart" style="background: linear-gradient(#3ccc7a, #034620); border-radius:5px 5px 2px 2px;">
+                <div class="col-sm-4" style="margin: 0; padding:0;">
+                  <ul class="header-list nav nav-tabs" data-tabs="tabs" style="margin: 0; padding:0;">
+                      <li><a class="active"  data-toggle="tab" style="color:black;"  href="#prizeSettings">تنظیمات جوایز لاتری</a></li>
+                      <li><a  data-toggle="tab" style="color:black;"  href="#askIdea">  نظر خواهی </a></li>
+                  </ul>
                 </div>
 
-                <div class="row">
-                  <table class="table table-bordered border-secondary table-sm">
-                    <thead>
-                      <tr class="targetTableTr">
-                      <th> ردیف </th>
-                        <th> اسم تارگت </th>
-                        <th>تارگیت 1</th>
-                        <th> امتیاز 1</th>
-                        <th>تارگیت 2</th>
-                        <th> امتیاز 2</th>
-                        <th>تارگیت 3</th>
-                        <th> امتیاز 3</th>
-                        <th> انتخاب  </th>
-                      </tr>
-                    </thead>
-                    <tbody id="targetList">
-                      @foreach($targets as $target)
-                      <tr class="targetTableTr" onclick="setTargetStuff(this)">
-                      <td>{{$loop->iteration}}</td>
-                          <td>{{$target->baseName}}</td>
-                          <td> {{number_format($target->firstTarget)}}</td>
-                          <td> {{$target->firstTargetBonus}} </td>
-                          <td> {{number_format($target->secondTarget)}}</td>
-                          <td> {{$target->secondTargetBonus}} </td>
-                          <td> {{number_format($target->thirdTarget)}}</td>
-                          <td> {{$target->thirdTargetBonus}} </td>
-                          <td> <input class="form-check-input" name="targetId" type="radio" value="{{$target->id}}"></td>
-                      </tr>
-                      @endforeach
-                    </tbody>
-                  </table>
-                </div>
-            </div>
-          </div>
-		  
-        
-            <div class="row rounded-2 tab-pane" id="askIdea">
-                <div class="col-lg-12 text-end">
-                        <button type="button" class="btn btn-sm btn-success" id="insetQuestionBtn"> افزودن  <i class="fa fa-plus"></i> </button>
-                        <button type="button" class="btn btn-sm btn-success" id="editQuestionBtn" disabled> ویرایش  <i class="fa fa-edit" style="color:yellow"></i> </button>
-                        <button type="button" class="btn btn-sm btn-success" onclick="startAgainNazar()" id="startAgainNazarBtn" disabled> از سرگیری نظر خواهی <i class="fa fa-history" style="color:white"></i> </button>
-                </div>
-
-              <div class="col-lg-12" id="nazaranjicontainer">
-                @foreach($nazars as $nazar)
-                  <fieldset class="fieldsetBorder rounded mb-2">
-                    <legend  class="float-none w-auto forLegend" style="font-size:14px; margin-bottom:2px;"> {{$nazar->Name}} </legend>	
-                        <div class="idea-container">
-                                <button class="idea-item listQuestionBtn" onclick="showAnswers({{$nazar->nazarId}},1)"> 1- {{trim($nazar->question1)}} </button>
-                                <button class="idea-item listQuestionBtn" onclick="showAnswers({{$nazar->nazarId}},2)"> 2- {{trim($nazar->question2)}} </button>
-                                <button class="idea-item listQuestionBtn" onclick="showAnswers({{$nazar->nazarId}},3)"> 3- {{trim($nazar->question3)}} </button>
-                                <div class="form-check mt-1">
-                                  <input class="form-check-input nazarIdRadio p-2" onclick="editNazar(this)" type="radio" name="nazarNameRadio" value="{{$nazar->nazarId}}" id="">
-                                </div>
+                <div class="c-checkout tab-content" style="background-color:#f5f5f5; margin:0;  padding:0.2%; border-radius:10px 10px 2px 2px;">
+                  <!-- کالاهای لاتری -->
+                  <div class="row c-checkout rounded-2 tab-pane active" id="prizeSettings" style="width:100%; margin:0 auto; padding:1% 0% 0% 0%">
+                      <div class="row">
+                          <div class="col-lg-12 text-end">
+                              <span class="prizeName float-start"> <i class="fa fa-bullseye 4x" style="color:green; font-size:22px;"></i>  حد اقل امتیاز لاتری : {{number_format($lotteryMinBonus)}} </span> 
+                              <button  data-toggle="modal" type="button"  class="btn btn-sm btn-success text-warning" id="editLotteryPrizeBtn" > ویرایش لاتاری  <i class="fa fa-edit"> </i> </button>
+                          </div>
+                      </div>
+                      <div class="row p-3">
+                        <div class="prizeSettingTab">
+                          <div> <span class="prizeName"> جایزه اول :</span>   {{$prizes[0]->firstPrize}} </div>
+                          <div> <span class="prizeName"> جایزه دوم:  </span> {{$prizes[0]->secondPrize}}</div>
+                          <div> <span class="prizeName"> جایزه سوم: </span> {{$prizes[0]->thirdPrize}} </div>  
+                          <div> <span class="prizeName"> جایزه چهارم : </span> {{$prizes[0]->fourthPrize}} </div>
+                          <div> <span class="prizeName"> جایزه پنجم : </span> {{$prizes[0]->fifthPrize}} </div>
+                          <div> <span class="prizeName"> جایزه ششم : </span> {{$prizes[0]->sixthPrize}} </div>
+                          <div> <span class="prizeName"> جایزه هفتم : </span> {{$prizes[0]->seventhPrize}} </div>
+                          <div> <span class="prizeName"> جایزه هشتم : </span>  {{$prizes[0]->eightthPrize}} </div>
+                          <div> <span class="prizeName"> جایزه نهم :</span> {{$prizes[0]->ninethPrize}}  </div>
+                          <div> <span class="prizeName"> جایزه دهم: </span>   {{$prizes[0]->teenthPrize}} </div>
+                          <div> <span class="prizeName"> جایزه یازدهم :</span>  {{$prizes[0]->eleventhPrize}}  </div>
+                          <div> <span class="prizeName"> جایزه دوازدهم :</span> {{$prizes[0]->twelvthPrize}}  </div>
+                          <div> <span class="prizeName"> جایزه سیزدهم :</span> {{$prizes[0]->therteenthPrize}}  </div>
+                          <div> <span class="prizeName"> جایزه چهاردهم: </span> {{$prizes[0]->fourteenthPrize}}  </div>
+                          <div> <span class="prizeName"> جایزه پانزدهم: </span> {{$prizes[0]->fifteenthPrize}}  </div>
+                          <div> <span class="prizeName"> جایزه شانزدهم: </span> {{$prizes[0]->sixteenthPrize}}  </div>
                         </div>
-                  </fieldset>
-                @endforeach
-                <hr>
-				   <table class="table table-striped table-bordered">
-					  <thead class="tableHeader">
-                            <tr>
-                                <th> دریف </th>
-                                <th> نام مشتری </th>
-                                <th> تاریخ </th>
-                                <th> نظر سنجی </th>
-                                <th>جوابات </th>
-                                <th> <input type="checkbox"  name="" class="selectAllFromTop form-check-input"/>  </th>
+                      </div> <hr>
+              
+                  <div class="row text-center me-2">
+                      <input type="hidden" name="" id="selectTargetId">
+                      <div class="row">
+                        <div class="col-lg-3 col-md-3 col-sm-3 mb-1">
+                            <select class="form-select  form-select-sm" aria-label="Default select example" id="selectTarget">
+                              @foreach($targets as $target)
+                                <option value="{{$target->id}}">{{$target->baseName}}</option>
+                              @endforeach
+                            </select>
+                        </div>
+                          <div class="col-lg-1 col-md-1 col-sm-1 mt-3">
+                            <!-- <span data-toggle="modal" data-target="#addingTargetModal"><i class="fa fa-plus-circle fa-lg" style="color:#1684db; font-size:33px"></i></span> -->
+                          </div>
+                          <div class="col-lg-8 col-md-8 col-sm-8 text-end">
+                            <button class='btn btn-sm btn-success text-warning' id="targetEditBtn" type="button" disabled  data-toggle="modal" style="margin-top:-3px;">ویرایش تارگت<i class="fa fa-edit fa-lg"></i></button> 
+                            <!-- <button class='btn btn-danger text-warning' disabled style="margin-top:-3px;" id="deleteTargetBtn"> حذف <i class="fa fa-trash fa-lg"></i></button>  -->
+                          </div>
+                      </div>
+
+                      <div class="row">
+                        <table class="table table-bordered border-secondary table-sm">
+                          <thead>
+                            <tr class="targetTableTr">
+                            <th> ردیف </th>
+                              <th> اسم تارگت </th>
+                              <th>تارگیت 1</th>
+                              <th> امتیاز 1</th>
+                              <th>تارگیت 2</th>
+                              <th> امتیاز 2</th>
+                              <th>تارگیت 3</th>
+                              <th> امتیاز 3</th>
+                              <th> انتخاب  </th>
                             </tr>
-					  </thead>
-					  <tbody class="tableBody" style="height:200px;">
-                            <tr>
-                                <th scope="row">1</th>
-                                <td> محمود الیاسی  </td>
-                                <td>12/12/1401 </td>
-                                <td> نظر سنجی 1401  </td>
-                                <td id="viewQuestion"><i class="fa fa-eye"></td>
-                                <td id="checkToStartAgainNazar">  <input class="form-check-input" name="" type="checkbox" value=""> </td>
+                          </thead>
+                          <tbody id="targetList">
+                            @foreach($targets as $target)
+                            <tr class="targetTableTr" onclick="setTargetStuff(this)">
+                            <td>{{$loop->iteration}}</td>
+                                <td>{{$target->baseName}}</td>
+                                <td> {{number_format($target->firstTarget)}}</td>
+                                <td> {{$target->firstTargetBonus}} </td>
+                                <td> {{number_format($target->secondTarget)}}</td>
+                                <td> {{$target->secondTargetBonus}} </td>
+                                <td> {{number_format($target->thirdTarget)}}</td>
+                                <td> {{$target->thirdTargetBonus}} </td>
+                                <td> <input class="form-check-input" name="targetId" type="radio" value="{{$target->id}}"></td>
                             </tr>
-					  </tbody>
-					</table>
-			  </div>
-			  </div>
-            </div>
-          </div>
-<!-- کالاهای لاتری -->
-      </div>
-    </div>  
+                            @endforeach
+                          </tbody>
+                        </table>
+                      </div>
+                  </div>
+                </div>
+
+                   <div class="row rounded-2 tab-pane" id="askIdea">
+                            <div class="col-lg-12 text-end">
+                                    <button type="button" class="btn btn-sm btn-success" id="insetQuestionBtn"> افزودن  <i class="fa fa-plus"></i> </button>
+                                    <button type="button" class="btn btn-sm btn-success" id="editQuestionBtn" disabled> ویرایش  <i class="fa fa-edit" style="color:yellow"></i> </button>
+                                    <button type="button" class="btn btn-sm btn-success" onclick="startAgainNazar()" id="startAgainNazarBtn" disabled> از سرگیری نظر خواهی <i class="fa fa-history" style="color:white"></i> </button>
+                            </div>
+
+                            <div class="col-lg-12" id="nazaranjicontainer">
+                              @foreach($nazars as $nazar)
+                                <fieldset class="fieldsetBorder rounded mb-2">
+                                  <legend  class="float-none w-auto forLegend" style="font-size:14px; margin-bottom:2px;"> {{$nazar->Name}} </legend>	
+                                      <div class="idea-container">
+                                              <button class="idea-item listQuestionBtn" onclick="showAnswers({{$nazar->nazarId}},1)"> 1- {{trim($nazar->question1)}} </button>
+                                              <button class="idea-item listQuestionBtn" onclick="showAnswers({{$nazar->nazarId}},2)"> 2- {{trim($nazar->question2)}} </button>
+                                              <button class="idea-item listQuestionBtn" onclick="showAnswers({{$nazar->nazarId}},3)"> 3- {{trim($nazar->question3)}} </button>
+                                              <div class="form-check mt-1">
+                                                <input class="form-check-input nazarIdRadio p-2" onclick="editNazar(this)" type="radio" name="nazarNameRadio" value="{{$nazar->nazarId}}" id="">
+                                              </div>
+                                      </div>
+                                </fieldset>
+                              @endforeach
+                              <hr>
+                              <table class="table table-striped table-bordered table-sm">
+                                <thead class="tableHeader">
+                                      <tr>
+                                          <th> دریف </th>
+                                          <th> نام مشتری </th>
+                                          <th> تاریخ </th>
+                                          <th> نظر سنجی </th>
+                                          <th>جوابات </th>
+                                          <th> <input type="checkbox"  name="" class="selectAllFromTop form-check-input"/>  </th>
+                                      </tr>
+                                </thead>
+                                <tbody class="tableBody" style="height:222px;">
+                                    <tr>
+                                        <th scope="row">1</th>
+                                        <td> محمود الیاسی  </td>
+                                        <td>12/12/1401 </td>
+                                        <td> نظر سنجی 1401  </td>
+                                        <td id="viewQuestion"><i class="fa fa-eye"></td>
+                                        <td id="checkToStartAgainNazar">  <input class="form-check-input" name="" type="checkbox" value=""> </td>
+                                    </tr>
+                                </tbody>
+                              </table>
+			                   </div>
+			                 </div>
+                   </div>
+                </div>
+              <!-- کالاهای لاتری -->
+             </div>
 
             <!-- ختم تنظیمات امتیاز ها  -->
             <div class="row contentFooter"> </div>

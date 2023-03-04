@@ -165,7 +165,7 @@
             aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
-                    <div class="modal-header bg-success text-white">
+                    <div class="modal-header bg-success text-white py-2">
                         <h5 class="modal-title" id="exampleModalLongTitle"> دسته بندی جدید </h5>
                         <button type="button" class="close btn text-danger" data-dismiss="modal" aria-label="Close" style="background-color:rgb(255 255 255); padding:0; padding-left:7px;">
                             <i class="fa-solid fa-xmark fa-xl" style="background:none; button:hover{background-color:none}"></i>
@@ -206,7 +206,7 @@
             aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
-                    <div class="modal-header bg-success text-white">
+                    <div class="modal-header bg-success text-white py-2">
                         <h5 class="modal-title" id="exampleModalLongTitle">ویرایش دسته بندی</h5>
                         <button type="button" class="close btn bg-danger" data-dismiss="modal" aria-label="Close" style="background-color:rgb(255 255 255); padding:0; padding-left:7px;"><i class="fa-solid fa-xmark fa-xl"></i>
                         </button>
@@ -249,7 +249,7 @@
             aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
-                    <div class="modal-header bg-success text-white">
+                    <div class="modal-header bg-success text-white py-2">
                         <h5 class="modal-title" id="exampleModalLongTitle"> ویرایش دستبندی فرعی</h5>
                         <button type="button" class="close btn bg-danger" data-dismiss="modal" aria-label="Close" style="background-color:rgb(255 255 255); padding:0; padding-left:7px;"><i class="fa-solid fa-xmark fa-xl"></i>
                         </button>
@@ -290,7 +290,7 @@
             aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
-                    <div class="modal-header bg-success text-white">
+                    <div class="modal-header bg-success text-white py-2">
                         <h5 class="modal-title" id="exampleModalLongTitle">دسته بندی فرعی جدید</h5>
                         <button type="button" class="close btn bg-danger" data-dismiss="modal" aria-label="Close" style="background-color:rgb(255 255 255); padding:0; padding-left:7px;"><i class="fa-solid fa-xmark fa-xl"></i>
                         </button>
