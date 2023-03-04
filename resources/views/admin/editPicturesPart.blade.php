@@ -1117,7 +1117,7 @@
 
                                         <div class="grid-subgroup">
                                             <div class="subgroup-item">
-                                                <table class="table table-bordered table table-hover table-sm">
+                                                <table class="table table-bordered table table-hover table-sm ">
                                                     <thead class="tableHeader">
                                                         <tr>
                                                             <th>ردیف</th>
@@ -1125,7 +1125,7 @@
                                                             <th><input  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
                                                         </tr>
                                                     </thead>
-                                                    <tbody class="tableHeader" id="fivePicAllKala5"> </tbody>
+                                                    <tbody class="tableBody" id="fivePicAllKala5"> </tbody>
                                                 </table>
                                             </div>
 
@@ -3293,18 +3293,17 @@ let assignToType10Pic5=0;
                     data:{_token: "{{ csrf_token() }}",partPic:$('#pic5').val()},
                     success: function(arrayed_result) {
                         for (var i = 0; i <= arrayed_result.allKala.length - 1; i++) {
-
-                $('#fivePicAllKala5').append(`
-                <tr  onclick="checkCheckBox(this,event)">
-                    <td>` + (i+1) + `</td>
-                    <td>` + arrayed_result.allKala[i].GoodName + `</td>
-                    <td>
-                    <input class="form-check-input" name="fivePicAddedKalaListIds5[]" type="checkbox" value="` +
-                    arrayed_result.allKala[i].GoodSn + `_` + arrayed_result.allKala[i]
-                                .GoodName + `" id="kalaId">
-                    </td>
-                </tr>
-                `);
+                                $('#fivePicAllKala5').append(`
+                                <tr  onclick="checkCheckBox(this,event)">
+                                    <td>` + (i+1) + `</td>
+                                    <td>` + arrayed_result.allKala[i].GoodName + `</td>
+                                    <td>
+                                    <input class="form-check-input" name="fivePicAddedKalaListIds5[]" type="checkbox" value="` +
+                                    arrayed_result.allKala[i].GoodSn + `_` + arrayed_result.allKala[i]
+                                                .GoodName + `" id="kalaId">
+                                    </td>
+                                </tr>
+                                `);
                         }
  //used for displaying kala to the left side of 4 pic
                         for (var i = 0; i <= arrayed_result.addedKala.length - 1; i++) {
