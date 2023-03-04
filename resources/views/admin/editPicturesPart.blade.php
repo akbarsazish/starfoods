@@ -670,15 +670,15 @@
                                                                     <th> <input  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif type="checkbox" name=""  class="selectAllFromTop form-check-input"> </th>
                                                                 </tr>
                                                             </thead>
-                                                            <tbody cclass="tableBody" style="height:300px !important;" id="fourPicAllKala2"> </tbody>
+                                                            <tbody class="tableBody" style="height:300px !important;" id="fourPicAllKala2"> </tbody>
                                                         </table>
                                                     </div>
                                                     <div class="subgroup-item mt-5">
-                                                        <button  style="background-color:transparent;" @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif id="add4PicKalaList2">
+                                                        <button  style="background-color:transparent;" type="button" @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif id="add4PicKalaList2">
                                                             <i class="fa-regular fa-circle-chevron-left fa-2x text-success"></i>
                                                             </button>
                                                             <br />
-                                                            <button  style="background-color:transparent;" @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif id="remove4PicKalaList2">
+                                                            <button  style="background-color:transparent;" type="button" @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif id="remove4PicKalaList2">
                                                             <i class="fa-regular fa-circle-chevron-right fa-2x text-success"></i>
                                                         </button>
                                                     </div>
@@ -2228,28 +2228,29 @@ $(document).on('click', '#assignToType8Pic3', (function() {
                 $('#picturesKalaContainer4Pic1').fadeOut();
                 $('#picturesKalaContainer4Pic3').fadeOut();
                 $('#picturesKalaContainer4Pic4').fadeOut();
+                
                 assignToType9Pic2++;
                 if(assignToType9Pic2==1){
+                    
                 $.ajax({
                     method: 'get',
                     url: '{{ url('/getListKalaOnePic') }}',
                     async: true,
                     data:{_token: "{{ csrf_token() }}",partPic:$('#pic2').val()},
                     success: function(arrayed_result) {
-                        for (var i = 0; i <= arrayed_result.allKala.length - 1; i++) {
-
-                    $('#fourPicAllKala2').append(`
-                    <tr  onclick="checkCheckBox(this,event)">
-                        <td>` + (i+1) + `</td>
-                        <td>` + arrayed_result.allKala[i].GoodName + `</td>
-                        <td>
-                        <input class="form-check-input" name="fourPicAddedKalaListIds2[]" type="checkbox" value="` +
-                        arrayed_result.allKala[i].GoodSn + `_` + arrayed_result.allKala[i]
-                                    .GoodName + `" id="kalaId">
-                        </td>
-                    </tr>
-                    `);
-                        }
+                        
+                    for (var i = 0; i <= arrayed_result.allKala.length - 1; i++) {
+                        $('#fourPicAllKala2').append(`
+                        <tr  onclick="checkCheckBox(this,event)">
+                            <td>` + (i+1) + `</td>
+                            <td>` + arrayed_result.allKala[i].GoodName + `</td>
+                            <td>
+                            <input class="form-check-input" name="fourPicAddedKalaListIds2[]" type="checkbox" value="` +
+                            arrayed_result.allKala[i].GoodSn + `_` + arrayed_result.allKala[i].GoodName + `" id="kalaId">
+                            </td>
+                        </tr>`); 
+                    }
+                    
  //used for displaying kala to the left side of 3 pic
                         for (var i = 0; i <= arrayed_result.addedKala.length - 1; i++) {
                             $('#fourPicAddedKala2').append(`
@@ -2264,6 +2265,7 @@ $(document).on('click', '#assignToType8Pic3', (function() {
                             </tr>
                             `);
                                     }
+                                    
                     },
                     error: function(data) {
                         alert("not good");
@@ -2289,8 +2291,11 @@ $(document).on('click', '#assignToType8Pic3', (function() {
                     }
 
                 });
+
                 }
+                                
             }));
+            
 //used for removing data from left side(4 pic 2)
         $(document).on('click', '#remove4PicKalaList2', (function() {
             let inp=$('tr').find('input:checkbox:checked');
@@ -2353,7 +2358,6 @@ $(document).on('click', '#assignToType8Pic3', (function() {
                     success: function(arrayed_result) {
                         $('#fourPicAddedKala2').empty();
                         for (var i = 0; i <= arrayed_result.length - 1; i++) {
-                            
                             $('#fourPicAddedKala2').append(
                                 `<tr  onClick="checkCheckBox(this,event)">
                                     <td>`+(i+1)+`</td>
@@ -2368,7 +2372,6 @@ $(document).on('click', '#assignToType8Pic3', (function() {
                     error: function(data) {
                         alert("not good");
                     }
-
                 });     
             }));
 //used for dispalying kala TO pic 3(4pic edit)
@@ -3325,6 +3328,7 @@ let assignToType10Pic5=0;
 
                 });
             }
+            alert($('#pic5').val())
                 $.ajax({
                     method: 'get',
                     url: '{{ url('/getListGroup') }}',
@@ -3333,7 +3337,7 @@ let assignToType10Pic5=0;
                         for (var i = 0; i <= arrayed_result.length - 1; i++) {
 
                             $('#searchMainGroupEdit5Pic5').append(`
-                <option value=` + arrayed_result[i].id + `>` + arrayed_result[i].title + `</option>
+                <option value="` + arrayed_result[i].id + `">` + arrayed_result[i].title + `</option>
                 `);
 
                         }
@@ -3343,7 +3347,9 @@ let assignToType10Pic5=0;
                     }
 
                 });
+                
             }));
+            
 //used for removing data from left side(5 pic 5)
         $(document).on('click', '#remove5PicKalaList5', (function() {
             let inp=$('tr').find('input:checkbox:checked');
@@ -4308,7 +4314,6 @@ $(document).on('change', '#searchMainGroupEdit2Pic2', (function() {
                         searchTerm:$('#searchKalaEdit4Pic2').val()
                     },
                     success: function(arrayed_result) {
-                        
                         $('#fourPicAllKala2').empty();
                             for (let i = 0; i < arrayed_result.length; i++) {
                             $('#fourPicAllKala2').append(`

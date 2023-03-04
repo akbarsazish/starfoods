@@ -151,8 +151,8 @@
                                 </div>
 
                                 <div class="subgroup-item mt-5">
-                                    <button style="background-color:transparent;" id="addData" @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 ) disabled @endif> <i class="fa-regular fa-circle-chevron-left fa-3x text-success"></i></button>
-                                    <button style="background-color:transparent;" id="removeData" @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 ) disabled @endif> <i class="fa-regular fa-circle-chevron-right fa-3x text-success"></i></button>
+                                    <button style="background-color:transparent;" id="addData" type="button" @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 ) disabled @endif> <i class="fa-regular fa-circle-chevron-left fa-3x text-success"></i></button>
+                                    <button style="background-color:transparent;" id="removeData" type="button" @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 ) disabled @endif> <i class="fa-regular fa-circle-chevron-right fa-3x text-success"></i></button>
                                 </div>
                                 <div class="subgroup-item">
                                       <table class="table table-bordered table-sm">

@@ -620,7 +620,7 @@
                                           <th> <input type="checkbox"  name="" class="selectAllFromTop form-check-input"/>  </th>
                                       </tr>
                                 </thead>
-                                <tbody class="tableBody" style="height:222px;">
+                                <tbody class="tableBody" style="height:222px !important;">
                                     <tr>
                                         <th scope="row">1</th>
                                         <td> محمود الیاسی  </td>
