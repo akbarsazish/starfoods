@@ -138,7 +138,7 @@ document.querySelector('.fa-bars').parentElement.addEventListener('click', () =>
 // window.addEventListener('DOMContentLoaded', () => document.querySelector('.loading').classList.remove('show'));
 ///JAVAD JAVASCRIPT CODES
 
-var baseUrl = "http://192.168.10.26:8080";
+var baseUrl = "http://127.0.0.1:8000";
 var myVar;
 function loadFunction() {
     myVar = setTimeout(showPage, 1000);
@@ -9609,29 +9609,30 @@ $("#checkToStartAgainNazar").on("change", () => {
     $("#startAgainNazarBtn").prop('disabled', false);
 })
 
+$(".specialSettings, .specialSettingsBtn, .emteyazSettingsPart").hide();
 
 $("#mainPageSettings").on("change", () => {
-    $("#myTable").css("display", "table")
-    $(".mainPageStuff").css("display", "inline")
-    $(".specialSettingsBtn").css("display", "none")
-    $(".specialSettings").css("display", "none")
-    $(".emteyazSettingsPart").css("display", "none")
+    $("#myTable").show();
+    $(".mainPageStuff").show();
+    $(".specialSettingsBtn").hide();
+    $(".specialSettings").hide();
+    $(".emteyazSettingsPart").hide();
 })
 $("#specialSettings").on("change", () => {
-    $(".specialSettings").css("display", "grid")
-    $("#myTable").css("display", "none")
-    $(".mainPageStuff").css("display", "none")
-    $(".specialSettingsBtn").css("display", "block")
-    $(".emteyazSettingsPart").css("display", "none")
+    $(".specialSettings").show();
+    $("#myTable").hide();
+    $(".mainPageStuff").hide();
+    $(".specialSettingsBtn").show();
+    $(".emteyazSettingsPart").hide();
 
 })
 
 $("#emteyazSettings").on("change", () => {
-    $(".emteyazSettingsPart").css("display", "grid")
-    $("#myTable").css("display", "none")
-    $(".specialSettings").css("display", "none")
-    $(".mainPageStuff").css("display", "none")
-    $(".specialSettingsBtn").css("display", "none")
+    $(".emteyazSettingsPart").show();
+    $("#myTable").hide();
+    $(".specialSettings").hide();
+    $(".mainPageStuff").hide();
+    $(".specialSettingsBtn").hide();
 })
 
 

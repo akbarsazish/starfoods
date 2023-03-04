@@ -13,7 +13,6 @@
                         <input class="form-check-input p-2 float-start" type="radio" name="settings" id="settingAndTargetRadio">
                         <label class="form-check-label me-4" for="assesPast"> تارگت ها و امتیازات </label>
                     </div>
-                    
                 </fieldset>
                 </div>
             <div class="col-sm-10 col-md-10 col-sm-12 contentDiv">

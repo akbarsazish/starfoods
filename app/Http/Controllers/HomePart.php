@@ -127,6 +127,40 @@ class HomePart extends Controller {
             //در صورتیکه لیستی از گروه ها باشد
             $addableGroups=$request->post("groupIds");
             $removableGroups=$request->post('removable');
+            if($addableGroups){
+                //add groups to homepart
+                foreach ($addableGroups as $group) {
+                    $groupId=$group;
+                    $countGroups=DB::select("SELECT COUNT(id) AS cntGr FROM NewStarfood.dbo.star_add_homePart_stuff where homepartId=".$partId);
+                    $countGroup=0;
+                    foreach ($countGroups as $cntg) {
+                        $countGroup=$cntg->cntGr;
+                    }
+                    if($countGroup>0){
+                        $priorities=DB::select("SELECT MAX(priority) as mxp FROM NewStarfood.dbo.star_add_homePart_stuff WHERE homepartId=".$partId);
+                        $maxPriority=0;
+                        foreach ($priorities as $pr) {
+                            $maxPriority=$pr->mxp;
+                        }
+                        $maxPriority=$maxPriority+1;
+                        DB::insert("INSERT INTO  NewStarfood.dbo.star_add_homePart_stuff(homepartId,firstGroupId,priority) VALUES(".$partId.",".$groupId.",".$maxPriority.")") ;
+                    }else{
+                        DB::insert("INSERT INTO  NewStarfood.dbo.star_add_homePart_stuff(homepartId,firstGroupId,priority) VALUES(".$partId.",".$groupId.",1)") ;
+                    }
+                }
+            }
+            if($removableGroups){
+                foreach ($removableGroups as $rmGr) {
+                    list($mGrId,$title)=explode('_',$rmGr);
+                    $priorities=DB::select("SELECT priority FROM NewStarfood.dbo.star_add_homePart_stuff WHERE homepartId=".$partId." and firstGroupId=".$mGrId);
+                    $lastPriority=0;
+                    foreach ($priorities as $pr) {
+                        $lastPriority=$pr->priority;
+                    }
+                    DB::update("UPDATE NewStarfood.dbo.star_add_homePart_stuff SET priority -=1 WHERE priority>".$lastPriority);
+                    DB::delete("DELETE FROM NewStarfood.dbo.star_add_homePart_stuff WHERE firstGroupId=".$mGrId." AND homepartId=".$partId);
+                }
+            }
         }
 
         if($partType==11){
