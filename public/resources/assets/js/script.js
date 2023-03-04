@@ -138,7 +138,7 @@ document.querySelector('.fa-bars').parentElement.addEventListener('click', () =>
 // window.addEventListener('DOMContentLoaded', () => document.querySelector('.loading').classList.remove('show'));
 ///JAVAD JAVASCRIPT CODES
 
-var baseUrl = "http://192.168.10.26:8000";
+var baseUrl = "http://192.168.10.26:8080";
 var myVar;
 function loadFunction() {
     myVar = setTimeout(showPage, 1000);
@@ -9612,27 +9612,27 @@ $("#checkToStartAgainNazar").on("change", () => {
 $(".specialSettings, .specialSettingsBtn, .emteyazSettingsPart").hide();
 
 $("#mainPageSettings").on("change", () => {
-    $("#myTable").show();
-    $(".mainPageStuff").show();
-    $(".specialSettingsBtn").hide();
-    $(".specialSettings").hide();
-    $(".emteyazSettingsPart").hide();
+    $("#myTable").fadeIn("slow");
+    $(".mainPageStuff").fadeIn("slow");
+    $(".specialSettingsBtn").fadeOut("slow");
+    $(".specialSettings").fadeOut("slow");
+    $(".emteyazSettingsPart").fadeOut("slow");
 })
 $("#specialSettings").on("change", () => {
-    $(".specialSettings").show();
-    $("#myTable").hide();
-    $(".mainPageStuff").hide();
-    $(".specialSettingsBtn").show();
-    $(".emteyazSettingsPart").hide();
+    $(".specialSettings").fadeIn("slow");
+    $("#myTable").fadeOut("slow");
+    $(".mainPageStuff").fadeOut("slow");
+    $(".specialSettingsBtn").fadeIn("slow");
+    $(".emteyazSettingsPart").fadeOut("slow");
 
 })
 
 $("#emteyazSettings").on("change", () => {
-    $(".emteyazSettingsPart").show();
-    $("#myTable").hide();
-    $(".specialSettings").hide();
-    $(".mainPageStuff").hide();
-    $(".specialSettingsBtn").hide();
+    $(".emteyazSettingsPart").fadeIn("slow");
+    $("#myTable").fadeOut("slow");
+    $(".specialSettings").fadeOut("slow");
+    $(".mainPageStuff").fadeOut("slow");
+    $(".specialSettingsBtn").fadeOut("slow");
 })
 
 

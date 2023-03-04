@@ -46,9 +46,9 @@ $(document).ready(function () {
                 let addedStocks = data[4];
                 let costInfo = data[5];
                 let kalaPriceCycle = data[6];
-                $("#original").val(kala.NameGRP);
+                $("#original").text(kala.NameGRP);
                 $("#editKalaTitle").text("ویرایش :  " + "  " + kala.GoodName);
-                $("#subsidiary").val(kala.NameGRP);
+                $("#subsidiary").text(kala.NameGRP);
                 $("#mainPrice").text(kala.mainPrice);
                 $("#overLinePrice").text(kala.overLinePrice);
                 $("#costLimit").val(kala.costLimit);
@@ -61,8 +61,13 @@ $(document).ready(function () {
 
                 $("#maingroupTableBody").empty();
                 maingroupList.forEach((element, index) => {
+                    let bgColor = "";
+                    if (element.exist === 'ok') {
+                        bgColor = "red";
+                    }
+
                     $("#maingroupTableBody").append(`
-                     <tr id="grouptableRow">
+                     <tr id="grouptableRow" class="forActiveTr" style="background-color: `+ bgColor + `">
                         <td>`+ (index + 1) + `</td>
                         <td>`+ element.title + `</td>
                         <td><input type="checkBox" class="form-check-input" disabled `+ (element.exist === 'ok' ? 'checked' : 'unchecked') + ` ></td>
@@ -72,6 +77,7 @@ $(document).ready(function () {
                         </td>
                     </tr>`
                     );
+
 
                     $("#costTypeInfo").empty();
                     costInfo.forEach((element, index) => {
@@ -780,7 +786,7 @@ $(document).ready(function () {
 
 
 $("#kalaListRadio").on("change", () => {
-    $(".listkalarStaff").css("display", "table")
+    $(".listkalarStaff").css("display", "block")
     $(".requestedKalaStaff").css("display", "none")
     $(".fastKalaStaff").css("display", "none")
     $(".pishKaridStaff").css("display", "none")
