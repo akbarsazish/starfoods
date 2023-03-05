@@ -46,7 +46,6 @@ class Shipping extends Controller {
 		  "2263969",
 		  "https://starfoods.ir/sucessPay",
 		  "C:/inetpub/vhosts/starfoods.ir/httpdocs/key.xml");
-
 		$pasargad->setAmount($allMoney); 
 			$lastInvoiceNumber=DB::table("NewStarfood.dbo.star_paymentResponds")->max("InvoiceNumber");
 			if($lastInvoiceNumber){
@@ -483,9 +482,14 @@ class Shipping extends Controller {
     {
 
         $lastOrderSnStar=0;
+                // DB::beginTransaction();
+
+        // try {
         $customerSn=Session::get('psn');
+
         $lastOrdersStar=DB::select("SELECT MAX(SnOrder) as orderSn from NewStarfood.dbo.FactorStar WHERE CustomerSn=".$customerSn." and OrderStatus=0");
-        if($lastOrdersStar){//سفارش در سمت مشتری وجود داشته باشد.
+        if($lastOrdersStar){
+            //سفارش در سمت مشتری وجود داشته باشد.
         $pardakhtType=$request->post('pardakhtType');
         //تخفیف گنگ است
         list($pmOrAmSn,$orderDate)=explode(",",$request->post("recivedTime"));
@@ -560,8 +564,8 @@ class Shipping extends Controller {
                     $maxsOrderId=$lastOrder->orderSn;
                 }
             }
-            
-            if($lastOrderSnWeb<1){//اگر سفارشی در لیست سفارشات از قبل وجود ندارد.
+           
+            if($lastOrderSnWeb<1 or $orderExist[0]->OrderSnAddress != $addressSn){//اگر سفارشی در لیست سفارشات از قبل وجود ندارد.
 
                 DB::insert("INSERT INTO NewStarfood.dbo.OrderHDSS (CompanyNo,OrderNo,OrderDate,CustomerSn,OrderDesc,OrderStatus,LastDatePay,LastDateTrue,FiscalYear,BazarYab,CountPrintOrder,SnUser,OrderAddress,OtherCustName,TahvilType,TahvilDesc,RanandehName,MashinNo,BarNameNo,IsExport,SnOrderHDSRecived,OrderOrPishFactor,OtherMobile,OtherTel,DateNovbat,TimeNovbat,Takhfif,OrderNo2,SnOrder2,NextOrderDate,LastOrderCust,SaveTimeOrder,LatOrder,LonOrder,Sal_SnCust,Sal_SnBazaryab,IsFax,FaxUser,FaxDate,FaxTime,PayTypeOrder,SnHDSTablet_O,SnSellerTablet_O,EzafatOrder,KosoratOrder,NameEzafatOrder,NameKosoratOrder,OrderErsalTime,OrderSnAddress)
                 VALUES(5,".$factorNo.",'".$orderDate."',".$customerSn.",'$orderDescription',0,'','','".Session::get("FiscallYear")."',0,0,3,'".$recivedAddress."','',0,'','',0,0,0,0,0,'','','','',0,0,0,'',0,'".$sabtTime."',0,0,0,0,0,0,'','',0,0,0,0,0,'','',".$pmOrAmSn.",$addressSn)");
@@ -574,8 +578,6 @@ class Shipping extends Controller {
                         $maxsOrderIdWeb=$lastOrder->orderSn;
                     }
                 }
-
-
                 //  آیتم های سفارش را از سمت وب می خواند
                 $orederBYS=DB::select("SELECT * FROM NewStarfood.dbo.orderStar where SnHDS=".$lastOrderSnStar);
                 //
@@ -602,18 +604,16 @@ class Shipping extends Controller {
                             }
                         }
                     }    
+                    //وارد جدول زیر شاخه فاکتور های سمت دفتر حساب می شود.
+                    DB::insert("INSERT INTO Shop.dbo.OrderBYS(CompanyNo,SnHDS,SnGood,PackType,PackAmount,Amount,Fi,Price,DescRecord,StatusBys,DateOrder,SnUser,FactorFew,ExportType,SendToKarkhaneh,FiPack,IsExport,SnOrderDetailRecived,OrderTo,GoodName2,JozePack,SaleType,PriceMaliyat,PercentTakhFif,PriceTakhfif,PriceAfterTakhfif,PercentReval,PriceReval,RealFi,RealPrice,Price3PercentMaliat,PercentSood,Tedad,Tol,Arz,Zekhamat,SnOrderBys2,SnOrderHds2,OrderNo2,OrderDate2,SnBazaryab2,FewExit,TimeTasviyeInOrder,ItemNo,TakhfifDetail1,TakhfifDetail2,TakhfifDetail3,TakhfifDetail4,PriceTakhfifDetail1,PriceTakhfifDetail2,PriceTakhfifDetail3,PriceTakhfifDetail4,FiAfterTakhfifDetail1,FiAfterTakhfifDetail2,FiAfterTakhfifDetail3,FiAfterTakhfifDetail4)
 
-                //وارد جدول زیر شاخه فاکتور های سمت دفتر حساب می شود.
-                DB::insert("INSERT INTO Shop.dbo.OrderBYS(CompanyNo,SnHDS,SnGood,PackType,PackAmount,Amount,Fi,Price,DescRecord,StatusBys,DateOrder,SnUser,FactorFew,ExportType,SendToKarkhaneh,FiPack,IsExport,SnOrderDetailRecived,OrderTo,GoodName2,JozePack,SaleType,PriceMaliyat,PercentTakhFif,PriceTakhfif,PriceAfterTakhfif,PercentReval,PriceReval,RealFi,RealPrice,Price3PercentMaliat,PercentSood,Tedad,Tol,Arz,Zekhamat,SnOrderBys2,SnOrderHds2,OrderNo2,OrderDate2,SnBazaryab2,FewExit,TimeTasviyeInOrder,ItemNo,TakhfifDetail1,TakhfifDetail2,TakhfifDetail3,TakhfifDetail4,PriceTakhfifDetail1,PriceTakhfifDetail2,PriceTakhfifDetail3,PriceTakhfifDetail4,FiAfterTakhfifDetail1,FiAfterTakhfifDetail2,FiAfterTakhfifDetail3,FiAfterTakhfifDetail4)
+                    VALUES(5,".$lastOrderSn.",".$order->SnGood.",".$order->PackType.",".($order->PackAmount).",".$order->Amount.",".$order->Fi.",".$order->Price.",'',0,'".$todayDate."',12,0,0,0,".$order->FiPack.",0,0,0,'',0,0,0,0,0,".$order->PriceAfterTakhfif.",0,0,".$order->Price.",".$order->PriceAfterTakhfif.",0,0,0,0,0,0,0,0,0,'',0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0)");
+                
+                    //اگر کالاهای سفارش داده شده بود
+                    //وارد جدول زیر شاخه فاکتور های سمت استارفود می شود.
+                    DB::insert("INSERT INTO NewStarfood.dbo.OrderBYSS(CompanyNo,SnHDS,SnGood,PackType,PackAmount,Amount,Fi,Price,DescRecord,StatusBys,DateOrder,SnUser,FactorFew,ExportType,SendToKarkhaneh,FiPack,IsExport,SnOrderDetailRecived,OrderTo,GoodName2,JozePack,SaleType,PriceMaliyat,PercentTakhFif,PriceTakhfif,PriceAfterTakhfif,PercentReval,PriceReval,RealFi,RealPrice,Price3PercentMaliat,PercentSood,Tedad,Tol,Arz,Zekhamat,SnOrderBys2,SnOrderHds2,OrderNo2,OrderDate2,SnBazaryab2,FewExit,TimeTasviyeInOrder,ItemNo,TakhfifDetail1,TakhfifDetail2,TakhfifDetail3,TakhfifDetail4,PriceTakhfifDetail1,PriceTakhfifDetail2,PriceTakhfifDetail3,PriceTakhfifDetail4,FiAfterTakhfifDetail1,FiAfterTakhfifDetail2,FiAfterTakhfifDetail3,FiAfterTakhfifDetail4)
 
-                VALUES(5,".$lastOrderSn.",".$order->SnGood.",".$order->PackType.",".($order->PackAmount).",".$order->Amount.",".$order->Fi.",".$order->Price.",'',0,'".$todayDate."',12,0,0,0,".$order->FiPack.",0,0,0,'',0,0,0,0,0,".$order->PriceAfterTakhfif.",0,0,".$order->Price.",".$order->PriceAfterTakhfif.",0,0,0,0,0,0,0,0,0,'',0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0)");
-            
-                //اگر کالاهای سفارش داده شده بود
-                //وارد جدول زیر شاخه فاکتور های سمت استارفود می شود.
-                DB::insert("INSERT INTO NewStarfood.dbo.OrderBYSS(CompanyNo,SnHDS,SnGood,PackType,PackAmount,Amount,Fi,Price,DescRecord,StatusBys,DateOrder,SnUser,FactorFew,ExportType,SendToKarkhaneh,FiPack,IsExport,SnOrderDetailRecived,OrderTo,GoodName2,JozePack,SaleType,PriceMaliyat,PercentTakhFif,PriceTakhfif,PriceAfterTakhfif,PercentReval,PriceReval,RealFi,RealPrice,Price3PercentMaliat,PercentSood,Tedad,Tol,Arz,Zekhamat,SnOrderBys2,SnOrderHds2,OrderNo2,OrderDate2,SnBazaryab2,FewExit,TimeTasviyeInOrder,ItemNo,TakhfifDetail1,TakhfifDetail2,TakhfifDetail3,TakhfifDetail4,PriceTakhfifDetail1,PriceTakhfifDetail2,PriceTakhfifDetail3,PriceTakhfifDetail4,FiAfterTakhfifDetail1,FiAfterTakhfifDetail2,FiAfterTakhfifDetail3,FiAfterTakhfifDetail4)
-
-                VALUES(5,".$lastOrderSnWeb.",".$order->SnGood.",".$order->PackType.",".($order->PackAmount).",".$order->Amount.",".$order->Fi.",".$order->Price.",'',0,'".$todayDate."',12,0,0,0,".$order->FiPack.",0,0,0,'',0,0,0,0,0,".$order->Price.",0,0,".$order->Price.",".$order->Price.",0,0,0,0,0,0,0,0,0,'',0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0)");
-
+                    VALUES(5,".$lastOrderSnWeb.",".$order->SnGood.",".$order->PackType.",".($order->PackAmount).",".$order->Amount.",".$order->Fi.",".$order->Price.",'',0,'".$todayDate."',12,0,0,0,".$order->FiPack.",0,0,0,'',0,0,0,0,0,".$order->Price.",0,0,".$order->Price.",".$order->Price.",0,0,0,0,0,0,0,0,0,'',0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0)");
                 }
                 
                 if($totalCostNaql>0){
@@ -727,6 +727,13 @@ class Shipping extends Controller {
         }else{
             return redirect("/allGroups");
         }
+
+    //     DB::commit();
+    //     // all good
+    // } catch (\Exception $e) {
+    //     DB::rollback();
+    //     // something went wrong
+    // }
     }
 
 

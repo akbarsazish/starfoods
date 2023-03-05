@@ -23,6 +23,7 @@ class SalesOrder extends Controller
     }
     public function getOrderDetail(Request $request)
     {
+        $psn=0;
         $orderSn=$request->get("orderSn");
         $orderItems=DB::select("SELECT *,orderBYSS.Price as totalPrice from NewStarfood.dbo.orderBYSS join Shop.dbo.PubGoods on orderBYSS.SnGood=PubGoods.GoodSn
         join (SELECT USN,UName as firstUnit from Shop.dbo.PUBGoodUnits)a on PubGoods.DefaultUnit=a.USN
@@ -32,7 +33,7 @@ class SalesOrder extends Controller
                             JOIN (SELECT SnPeopel, STRING_AGG(PhoneStr, '-') AS PhoneStr
                             FROM Shop.dbo.PhoneDetail
                             GROUP BY SnPeopel)a on PSN=a.SnPeopel WHERE SnOrder=$orderSn");
-        
+        $psn=$order[0]->PSN;
         $notEffecientList=DB::select("SELECT * FROM(
             SELECT ViewGoodExistsInStock.Amount AS stockAmount,a.Amount AS orderAmount,
             a.SnGood,IIF(ViewGoodExistsInStock.Amount <= a.Amount, 0, 1) AS goodExist 
@@ -41,7 +42,8 @@ class SalesOrder extends Controller
             a JOIN Shop.dbo.PubGoods ON a.SnGood=PubGoods.GoodSn WHERE goodExist>1");
         $costs=DB::select("SELECT SUM(Price) AS totalPrice FROM Shop.dbo.OrderAmelBYS  WHERE SnOrder=$orderSn GROUP BY SnOrder");
         $totalAmount=DB::select("SELECT SUM(Price) AS totalMoney FROM NewStarfood.dbo.OrderBYSS WHERE SnHDS=$orderSn GROUP BY SnHDS");
-        return Response::json([$orderItems,$order,$notEffecientList,$costs,$totalAmount]);
+        $addresses=DB::select("SELECT * FROM Shop.dbo.PeopelAddress where SnPeopel=$psn");
+        return Response::json([$orderItems,$order,$notEffecientList,$costs,$totalAmount,$addresses]);
     }
 
     public function getSendItemInfo(Request $request)

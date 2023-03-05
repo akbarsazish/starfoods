@@ -1086,7 +1086,7 @@ public function searchByCity(Request $request)
     {
             $maxSale=$request->post("maxSale");
             $minSalePriceFactor=str_replace(",", "",$request->post("minSalePriceFactor"));
-            $lotteryMinBonus=str_replace(",", "",$request->post("lotteryMinBonus"));
+           // $lotteryMinBonus=str_replace(",", "",$request->post("lotteryMinBonus"));
             $moorningTimeContent=$request->post("moorningTimeContent");
             $afternoonTimeContent=$request->post("afternoonTimeContent");
             $whatsappNumber=$request->post("whatsappNumber");
@@ -1183,8 +1183,7 @@ public function searchByCity(Request $request)
             seventhPrize=$seventhPrize,
             eightPrize=$eightthPrize,
             ninthPrize=$ninthPrize,
-            teenthPrize=$teenthPrize,
-            lotteryMinBonus=$lotteryMinBonus"
+            teenthPrize=$teenthPrize"
         );
             $specialSettings=DB::select("SELECT * FROM NewStarfood.dbo.star_webSpecialSetting");
             $settings=[];

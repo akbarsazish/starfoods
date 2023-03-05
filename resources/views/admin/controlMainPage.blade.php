@@ -125,7 +125,6 @@
                                     </label>
                             </div>
                             <div class="col-sm-3">
-                                <input type="checkbox" @if($settings->buyFromHome==1) checked @endif value="" name="buyFromHome[]" @if(hasPermission(Session::get("adminId"),"specialSetting") < 1) disabled @endif  class="form-check-input float-start">
                                 <label class="form-check-label ms-2" for="flexCheckDefault">
                                         نمایش صفحه اصلی 
                                 </label>

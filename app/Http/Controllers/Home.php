@@ -451,7 +451,7 @@ class Home extends Controller{
                                         foreach ($allKalas as $kala) {
                                         $boughtKalas=DB::select("select  FactorStar.*,orderStar.* from NewStarfood.dbo.FactorStar join NewStarfood.dbo.orderStar on FactorStar.SnOrder=orderStar.SnHDS where CustomerSn=".Session::get('psn')." and SnGood=".$kala->GoodSn." and  orderStatus=0");
                                         $orderBYSsn;
-                                        $secondUnit=$kala->UNAME;
+                                        $secondUnit=$kala->UName;
                                         $amount;
                                         $packAmount;
                                         foreach ($boughtKalas as $boughtKala) {

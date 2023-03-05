@@ -138,7 +138,7 @@ document.querySelector('.fa-bars').parentElement.addEventListener('click', () =>
 // window.addEventListener('DOMContentLoaded', () => document.querySelector('.loading').classList.remove('show'));
 ///JAVAD JAVASCRIPT CODES
 
-var baseUrl = "http://192.168.10.26:8000";
+var baseUrl = "http://127.0.0.1:8000";
 var myVar;
 function loadFunction() {
     myVar = setTimeout(showPage, 1000);
@@ -7293,33 +7293,54 @@ function openMessageStuff() {
 }
 
 function chekForm(event) {
-
     let unSelectTime;
     let unslectPayment;
     unSelectTime = document.querySelector('input[name = "recivedTime"]:checked');
-
+    
     if (unSelectTime == null) {
-        alert("بدون انتخاب زمان, خرید ممکن نیست");
-        event.preventDefault();
-    } else {
-        if (event.target.id == 'bankPayment') {
-            temproryClosed();
+    alert("بدون انتخاب زمان, خرید ممکن نیست");
+    event.preventDefault();
+    }else{
+        if(event.target.id=='bankPayment'){
+        temproryClosed();
+    
+        $.ajax({
+            method: 'get',
+            url: "https://starfoods.ir/setFactorSessions",
+            async: true,
+            data: {
+                _token: "{{ csrf_token() }}",
+                recivedTime: $('input[name=recivedTime]:checked').val(),
+                takhfif:$("#discountWallet").val(),
+                receviedAddress:$('select[name="customerAddress"] option:selected').val(),
+                allMoneyToSend:$("#allMoneyToSend").val(),
+                isSent:0,
+                orderSn:0
+            },
+            success: function(respond) {
+            },
+            error:function(error){
+                alert("some error exist");
+            }
+            });
+    
         }
-        if (event.target.id == 'hozoori') {
+        if(event.target.id=='hozoori'){
             payHoozori();
         }
     }
-
+    
     if (document.querySelector('#hozoori') != null) {
-        unslectPayment = document.querySelector('#hozoori').checked | document.querySelector('#bankPayment').checked;
+    unslectPayment = document.querySelector('#hozoori').checked | document.querySelector('#bankPayment').checked;
     } else {
-        unslectPayment = document.querySelector('#bankPayment').checked;
+    unslectPayment = document.querySelector('#bankPayment').checked;
     }
     if (!(unslectPayment)) {
-        alert("نوع پرداخت انتخاب نشده است.");
-        event.preventDefault();
+    alert("نوع پرداخت انتخاب نشده است.");
+    event.preventDefault();
     }
-}
+    }
+    
 
 
 $("#hozoori").on("change", function () {
@@ -7965,8 +7986,12 @@ $("#saleToFactorSaleBtn").on("click", () => {
                 $("#sendPm").prop("selected", true);
             }
             $("#sendAddress").empty();
-            $("#sendAddress").append(`<option value="" selected>` + response[1][0].OrderAddress + `</option>`);
-
+            $("#sendAddress").append(`<option value="`+response[1][0].OrderSnAddress+`" selected>`+response[1][0].OrderAddress+`</option>`);
+            response[5].forEach((element,index)=>{
+                if(element.AddressPeopel != response[1][0].OrderAddress){
+                    $("#sendAddress").append(`<option value="`+element.SnPeopelAddress+`">`+element.AddressPeopel+`</option>`);
+                }
+            })
             //نمایش کالای سفارش داده شده
             $("#sendSalesOrdersItemsBody").empty();
 
