@@ -140,9 +140,8 @@
                             </span>
                             <!-- brand staff  -->
                             <span class="brandStaff">
-                                <button @if(hasPermission(Session::get("adminId"),"brand") < 2) disabled @endif class="btn btn-success btn-sm" id="newBrand">جدید <i class="fa fa-plus" aria-hidden="true"></i></button>
-                                <button type="button" value="Reterive data" class="btn btn-success btn-sm text-white"
-                                @if(hasPermission(Session::get("adminId"),"brand") > 0) onclick="setBrandEditStuff()" @endif data-toggle="modal" id="editGroupList1">ویرایش <i class="fa fa-edit" aria-hidden="true"></i></button>
+                                <button @if(hasPermission(Session::get("adminId"),"brand") < 2) disabled @endif class="btn btn-success btn-sm" id="newBrandBtn">جدید <i class="fa fa-plus" aria-hidden="true"></i></button>
+                                <button type="button" value="Reterive data" class="btn btn-success btn-sm text-white" id="editBrandBtn"> ویرایش  <i class="fa fa-edit" aria-hidden="true"></i></button>
 
                                 <form action='{{ url('/deleteBrand') }}' onsubmit="return confirm('میخوهید حذف کنید?');" method='post' style=" margin:0; padding:0; display: inline !important;">
                                     @csrf
@@ -279,8 +278,7 @@
 
                         <div class="col-lg-6 px-0 mx-0 fastKalaStaff">
                             
-                                    {{-- <a style="margint:0"  href="{{ url('/addGroup') }}" class="btn btn-success btn-sm" data-toggle="modal"
-                                        data-target="#newGroup">جدید <i class="fa fa-plus " aria-hidden="true"></i></a> --}}
+                            
                                     <button type="button" value="Reterive data" class="btn btn-success btn-sm text-white" style="display: none"
                                         onclick="getGroupId()" data-toggle="modal" id="editGroupList" disabled data-target="#editGroup">ویرایش <i class="fa fa-edit " aria-hidden="true"></i></button>
                                     <form action='{{ url('/deleteMainGroup') }}' onsubmit="return confirm('میخوهید حذف کنید?');" method='post' style=" margin:0; padding:0; display: inline;">
@@ -596,8 +594,87 @@
                  </div>
                 <div class="row contentFooter"> </div>
             </div>
-    </div>
+       </div>
+     </div>
+  </div>
 </div>
+
+             <!-- modal of new Brand -->
+        <div class="modal fade dragableModal" id="newBrandModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"  aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header bg-success text-white py-2">
+                        <button type="button" class="btn-close bg-danger" data-dismiss="modal" aria-label="Close"></button>
+                        <h5 class="modal-title" id="exampleModalLongTitle"> برند جدید </h5>
+                    </div>
+                    <div class="modal-body">
+                            <form action="{{url('/addBrand')}}" method="POST" id="createNewMainGroup" enctype="multipart/form-data" class="form">
+                                {{ csrf_field() }}
+                                <div class="form-group">
+                                    <label class="form-label"> اسم برند </label>
+                                    <input type="text" required class="form-control form-control-sm" autocomplete="off" name="brandName" id="mainGroupName" placeholder="">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label"> اولویت </label>
+                                    <select class="form-select form-select-sm" name="priority">
+                                            <option value="" >1</option>
+                                    </select>
+                                </div>
+                                    <div class="form-group">
+                                    <label class="form-label"> عکس </label>
+                                    <input type="file" class="form-control form-control-sm" name="brandPic" placeholder="">
+                                </div>
+                                <div class="form-group">
+                                    <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal">انصراف <i class="fa-solid fa-xmark "></i></button>
+                                    <button type="submit" id="submitNewGroup" class="btn btn-sm btn-success">ذخیره <i class="fa fa-save " aria-hidden="true"></i></button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <!-- end modal new brand -->
+
+         
+        <!-- modal of editig brand -->
+        <div class="modal fade" id="brandEditModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header bg-success text-white py-2">
+                        <button type="button" class="btn-close bg-danger" data-dismiss="modal" aria-label="Close"></button>
+                        <h5 class="modal-title" id="exampleModalLongTitle">ویرایش برند</h5>
+                    </div>
+                    <div class="modal-body">
+                            <form action="{{ url('/editBrand') }}" class="form"
+                                enctype="multipart/form-data" method="POST">
+                                @csrf
+                                <div class="form-group">
+                                    <label class="form-label">اسم برند</label>
+                                    <input type="text" size="10px" required class="form-control form-control-sm" name="brandName" id="brandName"
+                                        placeholder="">
+                                </div>
+                                <div class="form-group">
+                                    <input type="hidden" class="form-control form-control-sm" style="" id="brandId" name="brandId"
+                                         placeholder="">
+                                </div>
+                                <div class="form-group" style="margin-top:2%">
+                                    <label for="brandPicture" id="groupPicturelabel" class='btn btn-success btn-sm' class="form-label"> انتخاب عکس <i class="fa-solid fa-image "></i></label>
+                                    <input type="file" class="form-control form-control-sm" style="display:none;" name="brandPicture" id="brandPicture" placeholder="">
+                                    
+                                </div>
+                        </div>
+                        <div class="modal-footer">
+                        <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal">انصراف <i class="fa-solid fa-xmark "></i></button>
+                        <button type="submit" id="submitNewGroup" onclick="addMantiqah()"  class="btn btn-sm btn-success">ذخیره <i class="fa fa-save " aria-hidden="true"></i></button>
+                      </div>
+                    </form>
+                    </div>
+                </div>
+            </div>
+
+
+
 
 
         <!-- modal of new group -->
@@ -1193,6 +1270,7 @@
             </div>
           </div>
         </div>
+     </div>
 
 
         
@@ -1361,79 +1439,7 @@
         </div>
 
 
-                <!-- modal of new Brand -->
-        <div class="modal fade dragableModal" id="newGroup" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-            aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header bg-success text-white py-2">
-                        <h5 class="modal-title" id="exampleModalLongTitle"> برند جدید </h5>
-                        <button type="button" class="btn-close bg-danger" data-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                            <form action="{{url('/addBrand')}}" method="POST" id="createNewMainGroup" enctype="multipart/form-data" class="form">
-                                {{ csrf_field() }}
-                                <div class="form-group">
-                                    <label class="form-label"> اسم برند </label>
-                                    <input type="text" required class="form-control form-control-sm" autocomplete="off" name="brandName" id="mainGroupName" placeholder="">
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-label"> اولویت </label>
-                                    <select class="form-select form-select-sm" name="priority">
-                                            <option value="" >1</option>
-                                    </select>
-                                </div>
-                                    <div class="form-group">
-                                    <label class="form-label"> عکس </label>
-                                    <input type="file" class="form-control form-control-sm" name="brandPic" placeholder="">
-                                </div>
-                                <div class="form-group">
-                                    <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal">انصراف <i class="fa-solid fa-xmark "></i></button>
-                                    <button type="submit" id="submitNewGroup" class="btn btn-sm btn-success">ذخیره <i class="fa fa-save " aria-hidden="true"></i></button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        <!-- end modal new brand -->
-        <!-- modal of editig brand -->
-        <div class="modal fade" id="editGroup" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-            aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header bg-success text-white py-2">
-                        <button type="button" class="btn-close bg-danger" data-dismiss="modal" aria-label="Close"></button>
-                        <h5 class="modal-title" id="exampleModalLongTitle">ویرایش برند</h5>
-                    </div>
-                    <div class="modal-body">
-                            <form action="{{ url('/editBrand') }}" class="form"
-                                enctype="multipart/form-data" method="POST">
-                                @csrf
-                                <div class="form-group">
-                                    <label class="form-label">اسم برند</label>
-                                    <input type="text" size="10px" required class="form-control form-control-sm" name="brandName" id="brandName"
-                                        placeholder="">
-                                </div>
-                                <div class="form-group">
-                                    <input type="hidden" class="form-control form-control-sm" style="" id="brandId" name="brandId"
-                                         placeholder="">
-                                </div>
-                                <div class="form-group" style="margin-top:2%">
-                                    <label for="brandPicture" id="groupPicturelabel" class='btn btn-success btn-sm' class="form-label"> انتخاب عکس <i class="fa-solid fa-image "></i></label>
-                                    <input type="file" class="form-control form-control-sm" style="display:none;" name="brandPicture" id="brandPicture" placeholder="">
-                                    
-                                </div>
-                        </div>
-                        <div class="modal-footer">
-                        <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal">انصراف <i class="fa-solid fa-xmark "></i></button>
-                        <button type="submit" id="submitNewGroup" onclick="addMantiqah()"  class="btn btn-sm btn-success">ذخیره <i class="fa fa-save " aria-hidden="true"></i></button>
-                      </div>
-                </form>
-                    </div>
-                </div>
-            </div>
-
+  
 
 
 
@@ -1581,14 +1587,14 @@
  
 <script>
 	
-   $("#newBrand").on("click", ()=>{
+   $("#newBrandBtn").on("click", ()=>{
 	      if (!($('.modal.in').length)) {
                 $('.modal-dialog').css({
                   top: 0,
                   left: 0
                 });
               }
-              $('#newGroup').modal({
+              $('#newBrandModal').modal({
                 backdrop: false,
                 show: true
               });
@@ -1596,9 +1602,29 @@
               $('.modal-dialog').draggable({
                   handle: ".modal-header"
                 });
-   		$("#newGroup").modal("show")
+   		$("#newBrandModal").modal("show")
+   })
+
+   $("#editBrandBtn").on("click", ()=>{
+	      if (!($('.modal.in').length)) {
+                $('.modal-dialog').css({
+                  top: 0,
+                  left: 0
+                });
+              }
+              $('#brandEditModal').modal({
+                backdrop: false,
+                show: true
+              });
+              
+              $('.modal-dialog').draggable({
+                  handle: ".modal-header"
+                });
+   		$("#brandEditModal").modal("show")
    })
 	
+
+
 	 $("#editGroupList").on("click", ()=>{
 	      if (!($('.modal.in').length)) {
                 $('.modal-dialog').css({

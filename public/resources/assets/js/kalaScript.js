@@ -257,7 +257,8 @@ $(document).ready(function () {
                             <input class="form-check-input" style="" name="" type="checkbox" value="`+ element.GoodSn + '_' + element.GoodName + `" id="kalaIds">
                             </td>
                       </tr>
-                  `)});
+                  `)
+                    });
 
                     $("#priceCycle").empty();
                     kalaPriceCycle.forEach((element, index) => {
@@ -340,7 +341,7 @@ $(document).ready(function () {
 
                 // while onclick on radio button adding subgroup to left table 
                 $(".mainGroupId").on("click", () => {
-                    
+
                     $.ajax({
                         type: 'get',
                         async: true,
@@ -354,11 +355,11 @@ $(document).ready(function () {
                         success: function (answer) {
                             data = $.parseJSON(answer);
                             $('#subGroup1').empty();
-                           data.forEach((element,index)=>{
-                                
+                            data.forEach((element, index) => {
+
                                 $('#subGroup1').append(
                                     `<tr id="subgroupTableRow" onClick="addOrDeleteKala(this)">
-                                <td>` + (index+1) + `</td>
+                                <td>` + (index + 1) + `</td>
                                 <td>` + element.title + `</td>
                                 <td>
                                    <input class="subGroupId form-check-input" name="subGroupId[]" value="` + element.id + `_` + element.selfGroupId + `" type="checkBox" id="flexCheckChecked` + index + `">
@@ -370,9 +371,9 @@ $(document).ready(function () {
                                     $('#flexCheckChecked' + index).prop('checked', false);
                                 }
                             }
-                           );
+                            );
                         },
-                        error:function (erorr) {
+                        error: function (erorr) {
                             alert("data server side error")
                         }
                     });
