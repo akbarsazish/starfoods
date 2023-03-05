@@ -109,7 +109,7 @@
                     </ul>
                    <form action="{{url('/doUpdatewebSpecialSettings')}}" method="post" enctype="multipart/form-data" id="webSpecialSettingForm">
                      @csrf
-                  <div class="c-checkout tab-content tableBody" style="background-color:#f5f5f5;  border-radius:5px 5px 2px 2px; font-size:16px;">
+                  <div class="c-checkout tab-content tableBody p-2" style="background-color:#f5f5f5;  border-radius:5px 5px 2px 2px; font-size:16px;">
                      <div class="tab-pane active" id="webSettings">
                          <div class="row bg-white">
                             <div class="col-sm-3">
@@ -125,7 +125,6 @@
                                     </label>
                             </div>
                             <div class="col-sm-3">
-                                <input type="checkbox" @if($settings->buyFromHome==1) checked @endif value="" name="buyFromHome[]" @if(hasPermission(Session::get("adminId"),"specialSetting") < 1) disabled @endif  class="form-check-input float-start">
                                 <label class="form-check-label ms-2" for="flexCheckDefault">
                                         نمایش صفحه اصلی 
                                 </label>

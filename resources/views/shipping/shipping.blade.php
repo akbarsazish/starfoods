@@ -244,27 +244,6 @@ function clearFaveDate(element) {
 	}
     $("#favDate").val("");
 }
-	$("#showPaymentForm").on("click",()=>{
-		$.ajax({
-        method: 'get',
-        url: "https://starfoods.ir/setFactorSessions",
-        async: true,
-        data: {
-            _token: "{{ csrf_token() }}",
-            recivedTime: $('input[name=recivedTime]:checked').val(),
-            takhfif:$("#discountWallet").val(),
-            receviedAddress:$('select[name="customerAddress"] option:selected').val(),
-            allMoneyToSend:$("#allMoneyToSend").val(),
-            isSent:0,
-            orderSn:0
-        },
-        success: function(respond) {
-        },
-        error:function(error){
-            alert("some error exist");
-        }
-        });
-    });
 
 </script>
 

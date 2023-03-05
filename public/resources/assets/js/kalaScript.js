@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    var baseUrl = "http://192.168.10.26:8080";
+    var baseUrl = "http://127.0.0.1:8000";
     $('#listKala tr').on('click', function () {
         $(this).find('input:radio').prop('checked', true);
         let inp = $(this).find('input:radio:checked');
@@ -49,8 +49,8 @@ $(document).ready(function () {
                 $("#original").text(kala.NameGRP);
                 $("#editKalaTitle").text("ویرایش :  " + "  " + kala.GoodName);
                 $("#subsidiary").text(kala.NameGRP);
-                $("#mainPrice").text(kala.mainPrice);
-                $("#overLinePrice").text(kala.overLinePrice);
+                $("#mainPrice").text(parseInt(kala.mainPrice).toLocaleString("en-us"));
+                $("#overLinePrice").text(parseInt(kala.overLinePrice).toLocaleString("en-us"));
                 $("#costLimit").val(kala.costLimit);
                 $("#costContent").val(kala.costError);
                 $("#costAmount").val(kala.costAmount);
@@ -257,32 +257,28 @@ $(document).ready(function () {
                             <input class="form-check-input" style="" name="" type="checkbox" value="`+ element.GoodSn + '_' + element.GoodName + `" id="kalaIds">
                             </td>
                       </tr>
-                  `)
-                    });
-
+                  `)});
 
                     $("#priceCycle").empty();
                     kalaPriceCycle.forEach((element, index) => {
                         $("#priceCycle").append(`
-                     <tr class="tableRow">
-                        <td>`+ (index + 1) + `</td>
-                        <td>`+ element.name + ' ' + element.lastName + `</td>
-                        <td>`+ element.application + `</td>
-                        <td>`+ moment(element.changedate, 'YYYY/M/D HH:mm:ss').locale('fa').format('YYYY/M/D') + `</td>
-                        <td>`+ element.firstPrice + `</td>
-                        <td>`+ element.changedFirstPrice + `</td>
-                        <td>`+ element.secondPrice + `</td>
-                        <td>`+ element.changedSecondPrice + `</td>
-                        <td>
-                            <input class="mainGroupId  form-check-input" type="radio"
-                                value="`+ maingroupList.id + '_' + kala.GoodSn + `" name="IDs[]" id="flexCheckChecked">
-                            <input class="mainGroupId" type="text" value="`+ kala.GoodSn + `"
-                                name="ProductId" id="GoodSn" style="display: none">
-                        </td>
-                    </tr>
-                `)
+                            <tr class="tableRow">
+                                <td>`+ (index + 1) + `</td>
+                                <td>`+ element.name + ' ' + element.lastName + `</td>
+                                <td>`+ element.application + `</td>
+                                <td>`+ element.changedate + `</td>
+                                <td>`+ element.firstPrice + `</td>
+                                <td>`+ element.changedFirstPrice + `</td>
+                                <td>`+ element.secondPrice + `</td>
+                                <td>`+ element.changedSecondPrice + `</td>
+                                <td>
+                                    <input class="mainGroupId  form-check-input" type="radio"
+                                        value="`+ maingroupList.id + '_' + kala.GoodSn + `" name="IDs[]" id="flexCheckChecked">
+                                    <input class="mainGroupId" type="text" value="`+ kala.GoodSn + `"
+                                        name="ProductId" id="GoodSn" style="display: none">
+                                </td>
+                            </tr>`)
                     });
-
 
                     $(".kalaEditbtn").on("click", () => {
                         $("#submitChangePic").css("display", "block");
@@ -344,6 +340,7 @@ $(document).ready(function () {
 
                 // while onclick on radio button adding subgroup to left table 
                 $(".mainGroupId").on("click", () => {
+                    
                     $.ajax({
                         type: 'get',
                         async: true,
@@ -357,21 +354,26 @@ $(document).ready(function () {
                         success: function (answer) {
                             data = $.parseJSON(answer);
                             $('#subGroup1').empty();
-                            for (var i = 0; i <= data.length - 1; i++) {
+                           data.forEach((element,index)=>{
+                                
                                 $('#subGroup1').append(
                                     `<tr id="subgroupTableRow" onClick="addOrDeleteKala(this)">
-                                <td>` + (i + 1) + `</td>
-                                <td>` + data[i].title + `</td>
+                                <td>` + (index+1) + `</td>
+                                <td>` + element.title + `</td>
                                 <td>
-                                   <input class="subGroupId form-check-input" name="subGroupId[]" value="` + data[i].id + `_` + data[i].selfGroupId + `" type="checkBox" id="flexCheckChecked` + i + `">
+                                   <input class="subGroupId form-check-input" name="subGroupId[]" value="` + element.id + `_` + element.selfGroupId + `" type="checkBox" id="flexCheckChecked` + index + `">
                                </td>
                         </tr>`);
-                                if (data[i].exist == 'ok') {
-                                    $('#flexCheckChecked' + i).prop('checked', true);
+                                if (element.exist == 'ok') {
+                                    $('#flexCheckChecked' + index).prop('checked', true);
                                 } else {
-                                    $('#flexCheckChecked' + i).prop('checked', false);
+                                    $('#flexCheckChecked' + index).prop('checked', false);
                                 }
                             }
+                           );
+                        },
+                        error:function (erorr) {
+                            alert("data server side error")
                         }
                     });
                 });

@@ -124,28 +124,24 @@ class SubGroup extends Controller {
     public function getFilteredSecondSubGroup($groupId,$subGroupId)
     {
         // without Stocks
-        $listKala= DB::select("SELECT  GoodSn,GoodName,UName,Price3,Price4,SnGoodPriceSale,IIF(csn>0,'YES','NO') favorite,productId,IIF(ISNULL(productId,0)=0,0,1) as requested,IIF(zeroExistance=1,0,IIF(ISNULL(SnOrderBYS,0)=0,SumAmount,BoughtAmount)) Amount,IIF(ISNULL(SnOrderBYS,0)=0,'No','Yes') bought,callOnSale,SnOrderBYS,BoughtAmount,PackAmount,overLine,secondUnit,freeExistance,activeTakhfifPercent,activePishKharid FROM(
-
-                            SELECT  PubGoods.GoodSn,PubGoods.GoodName,PUBGoodUnits.UName,csn,D.productId,GoodPriceSale.Price3,GoodPriceSale.Price4,GoodPriceSale.SnGoodPriceSale
-                                                    ,SumAmount,E.zeroExistance,E.callOnSale,SnOrderBYS,BoughtAmount,PackAmount,E.overLine,secondUnit,star_GoodsSaleRestriction.freeExistance,star_GoodsSaleRestriction.activeTakhfifPercent,star_GoodsSaleRestriction.activePishKharid FROM Shop.dbo.PubGoods
-                                                    JOIN NewStarfood.dbo.star_GoodsSaleRestriction ON PubGoods.GoodSn=NewStarfood.dbo.star_GoodsSaleRestriction.productId
-                                                    JOIN NewStarfood.dbo.star_add_prod_group ON PubGoods.GoodSn=product_id
-                                                    JOIN NewStarfood.dbo.Star_Group_DEF ON Star_Group_DEF.id=star_add_prod_group.firstGroupId
-                                                    JOIN Shop.dbo.PUBGoodUnits ON PubGoods.DefaultUnit=PUBGoodUnits.USN
-                                                    join(select SUM(Amount) as SumAmount,SnGood from Shop.dbo.ViewGoodExistsInStock
-                                                    where  ViewGoodExistsInStock.FiscalYear=1399 and ViewGoodExistsInStock.CompanyNo=5 and SnStock=23 group by SnGood )B on PubGoods.GoodSn=B.SnGood 
-                                                    left JOIN (select  SnOrderBYS,SnGood,Amount as BoughtAmount,PackAmount from NewStarfood.dbo.FactorStar join NewStarfood.dbo.orderStar on FactorStar.SnOrder=orderStar.SnHDS where CustomerSn=".Session::get('psn')." and orderStatus=0)f on f.SnGood=PubGoods.GoodSn
-                                                    left join (select goodSn as csn from NewStarfood.dbo.star_Favorite WHERE star_Favorite.customerSn=".Session::get('psn').")C on PubGoods.GoodSn=C.csn
-                                                    LEFT JOIN (select productId from NewStarfood.dbo.star_requestedProduct where customerId=".Session::get('psn').")D on PubGoods.GoodSn=D.productId
-                                                    left join (select zeroExistance,callOnSale,overLine,productId from NewStarfood.dbo.star_GoodsSaleRestriction)E on E.productId=PubGoods.GoodSn
-                                                    JOIN (SELECT * from Shop.dbo.ViewGoodExists) A ON PubGoods.GoodSn=A.SnGood
-                                                    LEFT JOIN Shop.dbo.GoodPriceSale ON GoodPriceSale.SnGood=PubGoods.GoodSn
-                                                    left join (select GoodUnitSecond.AmountUnit,SnGood,UName as secondUnit from Shop.dbo.GoodUnitSecond
-                                                    join Shop.dbo.PUBGoodUnits on PUBGoodUnits.USN=GoodUnitSecond.SnGoodUnit WHERE GoodUnitSecond.CompanyNo=5)G on G.SnGood=PUbGoods.GoodSn
-                                                    WHERE secondGroupId=$subGroupId and firstGroupId=$groupId and PubGoods.GoodSn not in(select productId from NewStarfood.dbo.star_GoodsSaleRestriction where hideKala=1 ) and A.FiscalYear=1399 and A.CompanyNo=5
-                                                    GROUP BY PubGoods.GoodSn,E.zeroExistance,E.callOnSale,E.overLine,BoughtAmount,PackAmount,SnOrderBYS,secondUnit,D.productId,PubGoods.GoodName,SumAmount,GoodPriceSale.Price3,GoodPriceSale.Price4,GoodPriceSale.SnGoodPriceSale,PUBGoodUnits.UName,star_GoodsSaleRestriction.activeTakhfifPercent,
-                                                    star_GoodsSaleRestriction.freeExistance,star_GoodsSaleRestriction.activePishKharid,csn 
-                                                    ) A order by SumAmount desc");   
+        $listKala= DB::select("SELECT  GoodSn,GoodName,UName,Price3,Price4,SnGoodPriceSale,IIF(csn>0,'YES','NO') favorite,productId,IIF(ISNULL(productId,0)=0,0,1) as requested,IIF(zeroExistance=1,0,IIF(ISNULL(SnOrderBYS,0)=0,NewStarfood.dbo.getProductExistance(GoodSn),BoughtAmount)) Amount,IIF(ISNULL(SnOrderBYS,0)=0,'No','Yes') bought,callOnSale,SnOrderBYS,BoughtAmount,PackAmount,overLine,secondUnit,freeExistance,activeTakhfifPercent,activePishKharid FROM(
+            SELECT  PubGoods.GoodSn,PubGoods.GoodName,PUBGoodUnits.UName,csn,D.productId,GoodPriceSale.Price3,GoodPriceSale.Price4,GoodPriceSale.SnGoodPriceSale
+            ,E.zeroExistance,E.callOnSale,SnOrderBYS,BoughtAmount,PackAmount,E.overLine,secondUnit,star_GoodsSaleRestriction.freeExistance,star_GoodsSaleRestriction.activeTakhfifPercent,star_GoodsSaleRestriction.activePishKharid FROM Shop.dbo.PubGoods
+            JOIN NewStarfood.dbo.star_GoodsSaleRestriction ON PubGoods.GoodSn=NewStarfood.dbo.star_GoodsSaleRestriction.productId
+            JOIN NewStarfood.dbo.star_add_prod_group ON PubGoods.GoodSn=product_id
+            JOIN NewStarfood.dbo.Star_Group_DEF ON Star_Group_DEF.id=star_add_prod_group.firstGroupId
+            JOIN Shop.dbo.PUBGoodUnits ON PubGoods.DefaultUnit=PUBGoodUnits.USN
+            left JOIN (select  SnOrderBYS,SnGood,Amount as BoughtAmount,PackAmount from NewStarfood.dbo.FactorStar join NewStarfood.dbo.orderStar on FactorStar.SnOrder=orderStar.SnHDS where CustomerSn=".Session::get('psn')." and orderStatus=0)f on f.SnGood=PubGoods.GoodSn
+            left join (select goodSn as csn from NewStarfood.dbo.star_Favorite WHERE star_Favorite.customerSn=".Session::get('psn').")C on PubGoods.GoodSn=C.csn
+            LEFT JOIN (select productId from NewStarfood.dbo.star_requestedProduct where customerId=".Session::get('psn').")D on PubGoods.GoodSn=D.productId
+            left join (select zeroExistance,callOnSale,overLine,productId from NewStarfood.dbo.star_GoodsSaleRestriction)E on E.productId=PubGoods.GoodSn
+            LEFT JOIN Shop.dbo.GoodPriceSale ON GoodPriceSale.SnGood=PubGoods.GoodSn
+            left join (select GoodUnitSecond.AmountUnit,SnGood,UName as secondUnit from Shop.dbo.GoodUnitSecond
+            join Shop.dbo.PUBGoodUnits on PUBGoodUnits.USN=GoodUnitSecond.SnGoodUnit WHERE GoodUnitSecond.CompanyNo=5)G on G.SnGood=PUbGoods.GoodSn
+            WHERE secondGroupId=$subGroupId and firstGroupId=$groupId and PubGoods.GoodSn not in(select productId from NewStarfood.dbo.star_GoodsSaleRestriction where hideKala=1 )
+            GROUP BY PubGoods.GoodSn,E.zeroExistance,E.callOnSale,E.overLine,BoughtAmount,PackAmount,SnOrderBYS,secondUnit,D.productId,PubGoods.GoodName,GoodPriceSale.Price3,GoodPriceSale.Price4,GoodPriceSale.SnGoodPriceSale,PUBGoodUnits.UName,star_GoodsSaleRestriction.activeTakhfifPercent,
+            star_GoodsSaleRestriction.freeExistance,star_GoodsSaleRestriction.activePishKharid,csn 
+            ) A order by Amount desc");   
 
         $currency=1;
 
@@ -156,13 +152,11 @@ class SubGroup extends Controller {
             $currency=$currencyExistance[0]->currency;
 
         if($currency==10){
-
             $currencyName="تومان";
-
         }
         $listSubGroups=DB::select('SELECT * FROM NewStarfood.dbo.Star_Group_DEF where selfGroupId='.$groupId.'order by subGroupPriority desc');
 		$logoPos=DB::select("SELECT logoPosition FROM NewStarfood.dbo.star_webSpecialSetting")[0]->logoPosition;
-        return view('groupPart.groupPart',['listKala'=>$listKala,'listGroups'=>$listSubGroups,'mainGrId'=>$groupId,'currency'=>$currency,'currencyName'=>$currencyName,'logoPos'=>$logoPos]);
+        return view('groupPart.groupPart',['listKala'=>$listKala,'listGroups'=>$listSubGroups,'subGroupId'=>$subGroupId,'mainGrId'=>$groupId,'currency'=>$currency,'currencyName'=>$currencyName,'logoPos'=>$logoPos]);
     }
     public function addKalaToSubGroups(Request $request)
     {
@@ -173,7 +167,6 @@ class SubGroup extends Controller {
             DB::insert("INSERT INTO NewStarfood.dbo.star_add_prod_group(firstGroupId,product_id,secondGroupId,thirdGroupId,fourthGroupId) values(".$mainGrId.",".$kalaId.",".$id.",0,0)");
          }
         return Response::json('good');
-        
     }
     public function deleteKalaFromSubGroups(Request $request)
     {

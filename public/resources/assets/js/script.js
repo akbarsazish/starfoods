@@ -138,7 +138,7 @@ document.querySelector('.fa-bars').parentElement.addEventListener('click', () =>
 // window.addEventListener('DOMContentLoaded', () => document.querySelector('.loading').classList.remove('show'));
 ///JAVAD JAVASCRIPT CODES
 
-var baseUrl = "http://192.168.10.26:8080";
+var baseUrl = "http://127.0.0.1:8000";
 var myVar;
 function loadFunction() {
     myVar = setTimeout(showPage, 1000);
@@ -3542,6 +3542,21 @@ $('#secondPrice').on('keyup', () => {
     }
 });
 
+$("#firstPrice").on('keyup', function () {
+    if (!$("#firstPrice").val()) {
+        $("#firstPrice").val(0);
+    }
+    $("#firstPrice").val(parseInt($('#firstPrice').val().replace(/\,/g, '')).toLocaleString("en-US"));
+    if (parseInt($('#firstPrice').val().replace(/\,/g, '')) > parseInt($('#secondPrice').val().replace(/\,/g, ''))) {
+        $("#submitChangePrice").removeAttr('disabled');
+        $('#moreAlert').css("display", 'none');
+    } else {
+        $("#submitChangePrice").prop("disabled", true);
+        $('#moreAlert').css("display", 'flex');
+        $('#moreAlert').css("color", 'red');
+    }
+});
+
 $('#mainGroupForKalaSearch').on('change', () => {
     var input = $('#mainGroupForKalaSearch').val();
     $.ajax({
@@ -3766,12 +3781,7 @@ function editAdmins(element) {
     $('#editAdminId').val(inp.val());
 }
 
-$("#firstPrice").on('keyup', function () {
-    if (!$("#firstPrice").val()) {
-        $("#firstPrice").val(0);
-    }
-    $("#firstPrice").val(parseInt($('#firstPrice').val().replace(/\,/g, '')).toLocaleString("en-US"));
-});
+
 
 
 $("#changePriceForm").on("submit", function (e) {
@@ -5788,10 +5798,10 @@ function changePicture(element) {
             } else {
                 document.querySelector("#deleteGroupList").disabled = true;
             }
-            $('#subGroup1').empty();
+            $('#subGroup2').empty();
             $('.subGroupCount').empty();
             for (var i = 0; i <= data.length - 1; i++) {
-                $('#subGroup1').append(
+                $('#subGroup2').append(
                     `<tr class="subGroupList1" onClick="changeId(this)">
         <td>` + (i + 1) + `</td>
         <td>` + data[i].title + `</td>
@@ -7115,21 +7125,19 @@ function displayRequestedKala(gsn) {
         },
         async: true,
         success: function (arrayed_result) {
-            moment.locale('en');
             let data = arrayed_result;
             $("#modalContent").empty();
             $("#GoodName").text(data[0].GoodName);
-            for (let index = 0; index < data.length; index++) {
+            data.forEach((element,index)=>{
                 $("#modalContent").append(`<tr>
-<td>` + (index + 1) + `</td>
-<td>` + data[index].peopeladdress + `</td>
-
-<td>` + data[index].Name + `</td>
-<td style="width:120px">` + data[index].TimeStamp + `</td>
-<td>` + data[index].PhoneStr + `</td>
-<td>` + data[index].PCode + `</td>
-</tr>`);
-            }
+                <td>` + (index + 1) + `</td>
+                <td>` + element.peopeladdress + `</td>
+                <td>` + element.Name + `</td>
+                <td style="width:120px">` + element.TimeStamp + `</td>
+                <td>` + element.PhoneStr + `</td>
+                <td>` + element.PCode + `</td>
+                </tr>`);
+            });
             if (!($('.modal.in').length)) {
                 $('.modal-dialog').css({
                     top: 0,
@@ -7145,10 +7153,9 @@ function displayRequestedKala(gsn) {
                 handle: ".modal-header"
             });
 
-
             $("#requestModal").modal("show");
         },
-        error: function (data) { }
+        error: function (data) {alert("server side error") }
 
     });
 }
@@ -7353,33 +7360,54 @@ function openMessageStuff() {
 }
 
 function chekForm(event) {
-
     let unSelectTime;
     let unslectPayment;
     unSelectTime = document.querySelector('input[name = "recivedTime"]:checked');
-
+    
     if (unSelectTime == null) {
-        alert("بدون انتخاب زمان, خرید ممکن نیست");
-        event.preventDefault();
-    } else {
-        if (event.target.id == 'bankPayment') {
-            temproryClosed();
+    alert("بدون انتخاب زمان, خرید ممکن نیست");
+    event.preventDefault();
+    }else{
+        if(event.target.id=='bankPayment'){
+        temproryClosed();
+    
+        $.ajax({
+            method: 'get',
+            url: "https://starfoods.ir/setFactorSessions",
+            async: true,
+            data: {
+                _token: "{{ csrf_token() }}",
+                recivedTime: $('input[name=recivedTime]:checked').val(),
+                takhfif:$("#discountWallet").val(),
+                receviedAddress:$('select[name="customerAddress"] option:selected').val(),
+                allMoneyToSend:$("#allMoneyToSend").val(),
+                isSent:0,
+                orderSn:0
+            },
+            success: function(respond) {
+            },
+            error:function(error){
+                alert("some error exist");
+            }
+            });
+    
         }
-        if (event.target.id == 'hozoori') {
+        if(event.target.id=='hozoori'){
             payHoozori();
         }
     }
-
+    
     if (document.querySelector('#hozoori') != null) {
-        unslectPayment = document.querySelector('#hozoori').checked | document.querySelector('#bankPayment').checked;
+    unslectPayment = document.querySelector('#hozoori').checked | document.querySelector('#bankPayment').checked;
     } else {
-        unslectPayment = document.querySelector('#bankPayment').checked;
+    unslectPayment = document.querySelector('#bankPayment').checked;
     }
     if (!(unslectPayment)) {
-        alert("نوع پرداخت انتخاب نشده است.");
-        event.preventDefault();
+    alert("نوع پرداخت انتخاب نشده است.");
+    event.preventDefault();
     }
-}
+    }
+    
 
 
 $("#hozoori").on("change", function () {
@@ -8025,8 +8053,12 @@ $("#saleToFactorSaleBtn").on("click", () => {
                 $("#sendPm").prop("selected", true);
             }
             $("#sendAddress").empty();
-            $("#sendAddress").append(`<option value="" selected>` + response[1][0].OrderAddress + `</option>`);
-
+            $("#sendAddress").append(`<option value="`+response[1][0].OrderSnAddress+`" selected>`+response[1][0].OrderAddress+`</option>`);
+            response[5].forEach((element,index)=>{
+                if(element.AddressPeopel != response[1][0].OrderAddress){
+                    $("#sendAddress").append(`<option value="`+element.SnPeopelAddress+`">`+element.AddressPeopel+`</option>`);
+                }
+            })
             //نمایش کالای سفارش داده شده
             $("#sendSalesOrdersItemsBody").empty();
 

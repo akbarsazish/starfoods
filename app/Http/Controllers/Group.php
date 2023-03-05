@@ -138,9 +138,9 @@ class Group extends Controller {
     public function getListOfSubGroup(Request $request)
     {
         $subGroupId=$request->get('id');
-        $kalas=DB::select("SELECT Shop.dbo.PubGoods.GoodName,Shop.dbo.PubGoods.GoodSn from Shop.dbo.PubGoods join NewStarfood.dbo.star_add_prod_group on PubGoods.GoodSn=star_add_prod_group.product_id
-        where companyNo=5 and Shop.dbo.PubGoods.GoodSn not in (select Shop.dbo.PubGoods.GoodSn from Shop.dbo.PubGoods join NewStarfood.dbo.star_add_prod_group on PubGoods.GoodSn=star_add_prod_group.product_id
-        where star_add_prod_group.secondGroupId=".$subGroupId.")"
+        $kalas=DB::select("SELECT Shop.dbo.PubGoods.GoodName,Shop.dbo.PubGoods.GoodSn from Shop.dbo.PubGoods 
+        where companyNo=5 and not exists (select * from NewStarfood.dbo.star_add_prod_group where star_add_prod_group.product_id=GoodSn and
+         star_add_prod_group.secondGroupId=$subGroupId) and CompanyNo=5 and GoodName !=''"
         );
         return Response::json($kalas);
 

@@ -174,20 +174,20 @@
 
                     @empty  
 
+                    @if(isset($kalaName))
                     <div class="col-lg-12 text-center divResult">
-                         <div class="searchResult">
-                               <img src="{{url('/resources/assets/images/search.webp')}}" alt="" class="searchImage">
-                                <span class="result"> محصول یافت نگردید! </span>
-                                <p class="youmean">
-                                    منظور شما <span class="searched"> {{$kalaName}} </span> با هیچ محصول مطابقت نداشت.
-                                </p>
-                                <p class="resultDesc">
-                                    از عبارت‌های متداول‌تر استفاده کنید و یا املای عبارت وارد‌شده را بررسی کنید.
-                                </p>
-                         </div>
+                        <div class="searchResult">
+                            <img src="{{url('/resources/assets/images/search.webp')}}" alt="" class="searchImage">
+                            <span class="result"> محصول یافت نگردید! </span>
+                            <p class="youmean">
+                                منظور شما <span class="searched"> {{$kalaName}} </span> با هیچ محصول مطابقت نداشت.
+                            </p>
+                            <p class="resultDesc">
+                                از عبارت‌های متداول‌تر استفاده کنید و یا املای عبارت وارد‌شده را بررسی کنید.
+                            </p>
+                        </div>
                     </div>
-
-
+                    @endif
                     @endforelse
                 </div>
             </div>

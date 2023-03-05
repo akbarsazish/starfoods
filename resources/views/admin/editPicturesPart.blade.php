@@ -91,7 +91,7 @@
                                                                         <i class="fa-light fa-pen-to-square fa-lg text-success p-1 inheritHover" style="font-size: 25px"></i>
                                                                     </button>
                                                                     <input type="file" style="display:none;" onchange='document.getElementById("PicId{{$loop->iteration}}").src = window.URL.createObjectURL(this.files[0])' id="file{{$loop->iteration}}" name="editPic{{$loop->iteration}}"/>
-                                                                     <button id="assignToType{{$part->partType}}Pic{{ $loop->iteration }}" class="takhsisKala1_5Pic" value="{{$pic->picId}}" type="button" onclick="this.querySelector('i.inheritHover').style.setProperty('color', 'red', 'important');" style="display: inline; padding:0; border:none; background:none">
+                                                                    <button type="button" id="assignToType{{$part->partType}}Pic{{ $loop->iteration }}" class="takhsisKala1_5Pic" value="{{$pic->picId}}" type="button" onclick="this.querySelector('i.inheritHover').style.setProperty('color', 'red', 'important');" style="display: inline; padding:0; border:none; background:none">
                                                                          <i class="fa-light fa-circle-plus fa-lg text-success p-0 inheritHover" style="font-size: 27px; padding:0;"></i>
                                                                     </button>
                                                                 </div>
@@ -128,11 +128,11 @@
                                                         </table>
                                                     </div>
                                                     <div class="subgroup-item text-center mt-5">
-                                                        <button style="background-color:transparent;" type="button" id="addBrandKalaList" onclick="addAllKalaToBrand(this)" value=""
+                                                        <button type="button"  style="background-color:transparent;" type="button" id="addBrandKalaList" onclick="addAllKalaToBrand(this)" value=""
                                                                         class="brandBetweenButton"  style="display: inline; padding:0; border:none; background:none">
                                                             <i class="fa-regular fa-circle-chevron-left fa-2x text-success"></i></button>
                                                                 <br/>
-                                                        <button style="background-color:transparent;"  type="button" id="removeBrandKalaList" onclick="removeAddedKalaFromBrand(this)" value=""
+                                                                <button type="button"  style="background-color:transparent;"  type="button" id="removeBrandKalaList" onclick="removeAddedKalaFromBrand(this)" value=""
                                                                         class="brandBetweenButton"style="display: inline; padding:0; border:none; background:none">
                                                              <i class="fa-regular fa-circle-chevron-right fa-2x text-success"></i></button>
                                                     </div>
@@ -207,10 +207,10 @@
                                                 </table>
                                             </div>
                                             <div class="subgroup-item mt-5">
-                                                <button style="background-color:transparent;" @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif id="addOnePicKalaList1" style="display: inline; padding:0; border:none; background:none">
+                                                <button type="button" style="background-color:transparent;" @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif id="addOnePicKalaList1" style="display: inline; padding:0; border:none; background:none">
                                                         <i class="fa-regular fa-circle-chevron-left fa-2x text-success"></i> </button>
                                                     <br />
-                                                <button style="background-color:transparent;" @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif id="removeOnePicKalaList1" style="display: inline; padding:0; border:none; background:none">
+                                                <button type="button" style="background-color:transparent;" @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif id="removeOnePicKalaList1" style="display: inline; padding:0; border:none; background:none">
                                                             <i class="fa-regular fa-circle-chevron-right fa-2x text-success"></i> </button>
                                             </div>
                                             <div class="subgroup-item">
@@ -275,11 +275,11 @@
                                                 </table>
                                             </div>
                                             <div class="subgroup-item mt-5">
-                                                    <button style="background-color:transparent;" id="add2PicKalaList1" @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif>
+                                                <button type="button"  style="background-color:transparent;" id="add2PicKalaList1" @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif>
                                                         <i class="fa-regular fa-circle-chevron-left fa-2x text-success"></i>
                                                     </button>
                                                     <br />
-                                                    <button style="background-color:transparent;" id="remove2PicKalaList1"  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif>
+                                                <button type="button"  style="background-color:transparent;" id="remove2PicKalaList1"  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif>
                                                         <i class="fa-regular fa-circle-chevron-right fa-2x text-success"></i>
                                                     </button>
                                             </div>
@@ -342,11 +342,11 @@
                                                 </table>
                                             </div>
                                             <div class="subgroup-item mt-5">
-                                                <button  style="background-color:transparent;" @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif id="add2PicKalaList2">
+                                                <button type="button"   style="background-color:transparent;" @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif id="add2PicKalaList2">
                                                         <i class="fa-regular fa-circle-chevron-left fa-2x text-success"></i>
                                                      </button>
                                                         <br />
-                                                <button  style="background-color:transparent;" @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif id="remove2PicKalaList2">
+                                                <button type="button"   style="background-color:transparent;" @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif id="remove2PicKalaList2">
                                                 <i class="fa-regular fa-circle-chevron-right fa-2x text-success"></i>
                                                 </button>
                                             </div>
@@ -408,11 +408,11 @@
                                                     </table>
                                                 </div>
                                                 <div class="subgroup-item mt-5">
-                                                       <button style="background-color:transparent;" @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif id="add3PicKalaList1">
+                                                    <button type="button"  style="background-color:transparent;" @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif id="add3PicKalaList1">
                                                         <i class="fa-regular fa-circle-chevron-left fa-2x text-success"></i>
                                                         </button>
                                                         <br />
-                                                        <button style="background-color:transparent;" @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif id="remove3PicKalaList1">
+                                                    <button type="button"  style="background-color:transparent;" @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif id="remove3PicKalaList1">
                                                         <i class="fa-regular fa-circle-chevron-right fa-2x text-success"></i>
                                                         </button>
                                                 </div>
@@ -476,11 +476,11 @@
                                                 </div>
 
                                                 <div class="subgroup-item mt-5">
-                                                     <button style="background-color:transparent;" @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif id="add3PicKalaList2">
+                                                    <button type="button"   style="background-color:transparent;" @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif id="add3PicKalaList2">
                                                         <i class="fa-regular fa-circle-chevron-left fa-2x text-success"></i>
                                                     </button>
                                                         <br />
-                                                        <button style="background-color:transparent;" @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif id="remove3PicKalaList2">
+                                                        <button type="button"  style="background-color:transparent;" @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif id="remove3PicKalaList2">
                                                         <i class="fa-regular fa-circle-chevron-right fa-2x text-success"></i>
                                                     </button>
                                                 </div>
@@ -542,11 +542,11 @@
                                                     </table>
                                                 </div>
                                                 <div class="subgroup-item mt-5">
-                                                    <button style="background-color:transparent;"  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif id="add3PicKalaList3">
+                                                    <button type="button" style="background-color:transparent;"  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif id="add3PicKalaList3">
                                                         <i class="fa-regular fa-circle-chevron-left fa-2x text-success"></i>
                                                         </button>
                                                         <br />
-                                                        <button style="background-color:transparent;"  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif id="remove3PicKalaList3">
+                                                        <button type="button" style="background-color:transparent;"  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif id="remove3PicKalaList3">
                                                         <i class="fa-regular fa-circle-chevron-right fa-2x text-success"></i>
                                                     </button>
                                                 </div>
@@ -607,11 +607,11 @@
                                                         </table>
                                                     </div>
                                                     <div class="subgroup-item mt-5">
-                                                            <button  style="background-color:transparent;" @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif id="add4PicKalaList1">
+                                                            <button  type="button" style="background-color:transparent;" @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif id="add4PicKalaList1">
                                                             <i class="fa-regular fa-circle-chevron-left fa-2x text-success"></i>
                                                             </button>
                                                             <br />
-                                                            <button  style="background-color:transparent;" @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif id="remove4PicKalaList1">
+                                                            <button  type="button" style="background-color:transparent;" @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif id="remove4PicKalaList1">
                                                             <i class="fa-regular fa-circle-chevron-right fa-2x text-success"></i>
                                                             </button>
                                                     </div>
@@ -739,11 +739,11 @@
                                                         </table>
                                                     </div>
                                                     <div class="subgroup-item mt-5">
-                                                           <button style="background-color:transparent;"  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif id="add4PicKalaList3">
+                                                           <button  type="button" style="background-color:transparent;"  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif id="add4PicKalaList3">
                                                           <i class="fa-regular fa-circle-chevron-left fa-2x text-success"></i>
                                                             </button>
                                                                 <br />
-                                                                <button style="background-color:transparent;"  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif id="remove4PicKalaList3">
+                                                                <button  type="button" style="background-color:transparent;"  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif id="remove4PicKalaList3">
                                                                 <i class="fa-regular fa-circle-chevron-right fa-2x text-success"></i>
                                                             </button>
                                                     </div>
@@ -804,11 +804,11 @@
                                                     </table>
                                                 </div>
                                                 <div class="subgroup-item mt-5">
-                                                    <button style="background-color:transparent;" @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif id="add4PicKalaList4">
+                                                    <button  type="button" style="background-color:transparent;" @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif id="add4PicKalaList4">
                                                         <i class="fa-regular fa-circle-chevron-left fa-2x text-success"></i>
                                                     </button>
                                                         <br />
-                                                        <button style="background-color:transparent;" @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif id="remove4PicKalaList4">
+                                                        <button  type="button" style="background-color:transparent;" @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif id="remove4PicKalaList4">
                                                         <i class="fa-regular fa-circle-chevron-right fa-2x text-success"></i>
                                                     </button>
                                                 </div>
@@ -869,11 +869,11 @@
                                                 </table>
                                             </div>
                                             <div class="subgroup-item mt-5">
-                                                <button style="background-color:transparent;"  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif id="add5PicKalaList1">
+                                                <button  type="button" style="background-color:transparent;"  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif id="add5PicKalaList1">
                                                         <i class="fa-regular fa-circle-chevron-left fa-2x text-success"></i>
                                                 </button>
                                                     <br />
-                                                    <button style="background-color:transparent;"  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif id="remove5PicKalaList1">
+                                                    <button  type="button"  style="background-color:transparent;"  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif id="remove5PicKalaList1">
                                                     <i class="fa-regular fa-circle-chevron-right fa-2x text-success"></i>
                                                 </button>
                                             </div>
@@ -934,11 +934,11 @@
                                                     </table>
                                                 </div>
                                                 <div class="subgroup-item mt-5">
-                                                    <button style="background-color:transparent;"  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif id="add5PicKalaList2">
+                                                    <button  type="button" style="background-color:transparent;"  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif id="add5PicKalaList2">
                                                         <i class="fa-regular fa-circle-chevron-left fa-2x text-success"></i>
                                                     </button>
                                                         <br />
-                                                        <button style="background-color:transparent;"  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif id="remove5PicKalaList2">
+                                                        <button  type="button" style="background-color:transparent;"  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif id="remove5PicKalaList2">
                                                         <i class="fa-regular fa-circle-chevron-right fa-2x text-success"></i>
                                                     </button>
                                                 </div>
@@ -1000,11 +1000,11 @@
                                                 </div>
 
                                                 <div class="subgroup-item mt-5">
-                                                     <button style="background-color:transparent;"  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif id="add5PicKalaList3">
+                                                     <button  type="button" style="background-color:transparent;"  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif id="add5PicKalaList3">
                                                         <i class="fa-regular fa-circle-chevron-left fa-2x text-success"></i>
                                                         </button>
                                                         <br />
-                                                        <button style="background-color:transparent;"  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif id="remove5PicKalaList3">
+                                                        <button  type="button" style="background-color:transparent;"  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif id="remove5PicKalaList3">
                                                         <i class="fa-regular fa-circle-chevron-right fa-2x text-success"></i>
                                                     </button>
                                                 </div>
@@ -1064,11 +1064,11 @@
                                                 </table>
                                             </div>
                                             <div class="subgroup-item mt-5">
-                                                 <button  style="background-color:transparent;" @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif id="add5PicKalaList4">
+                                                 <button  type="button" style="background-color:transparent;" @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif id="add5PicKalaList4">
                                                     <i class="fa-regular fa-circle-chevron-left fa-2x text-success"></i>
                                                     </button>
                                                     <br />
-                                                    <button  style="background-color:transparent;" @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif id="remove5PicKalaList4">
+                                                    <button  type="button" style="background-color:transparent;" @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif id="remove5PicKalaList4">
                                                     <i class="fa-regular fa-circle-chevron-right fa-2x text-success"></i>
                                                     </button>
                                             </div>
@@ -1130,11 +1130,11 @@
                                             </div>
 
                                             <div class="subgroup-item mt-5">
-                                                 <button style="background-color:transparent;"  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif id="add5PicKalaList5">
+                                                 <button  type="button" style="background-color:transparent;"  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif id="add5PicKalaList5">
                                                 <i class="fa-regular fa-circle-chevron-left fa-2x text-success"></i>
                                                 </button>
                                                 <br />
-                                                <button style="background-color:transparent;"  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif id="remove5PicKalaList5">
+                                                <button  type="button" style="background-color:transparent;"  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif id="remove5PicKalaList5">
                                                 <i class="fa-regular fa-circle-chevron-right fa-2x text-success"></i>
                                                 </button>
                                             </div>
@@ -3326,18 +3326,13 @@ let assignToType10Pic5=0;
 
                 });
             }
-            alert($('#pic5').val())
                 $.ajax({
                     method: 'get',
                     url: '{{ url('/getListGroup') }}',
                     async: true,
                     success: function(arrayed_result) {
                         for (var i = 0; i <= arrayed_result.length - 1; i++) {
-
-                            $('#searchMainGroupEdit5Pic5').append(`
-                <option value="` + arrayed_result[i].id + `">` + arrayed_result[i].title + `</option>
-                `);
-
+                            $('#searchMainGroupEdit5Pic5').append(`<option value="` + arrayed_result[i].id + `">` + arrayed_result[i].title + `</option>`);
                         }
                     },
                     error: function(data) {
