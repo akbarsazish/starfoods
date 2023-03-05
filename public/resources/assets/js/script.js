@@ -371,2426 +371,2486 @@ function showFactorDetails(element) {
 }
 //used for creating acces level and user 
 
-$(".webPageN").on("change", () => {
-    if ($(".webPageN").is(':checked')) {
-        $(".webN").prop("checked", true);
-        $("#homeSeeN").prop("checked", true);
-        $("#karbaranSeeN").prop("checked", true);
-        $("#specialSeeN").prop("checked", true);
+
+
+$("#baseInfoN").on("change", () => {
+    if ($("#baseInfoN").is(":checked")) {
+        $("#settingsN").prop("checked", true);
+        $(".allSettingsN").prop("checked", true);
+        $("#seeMainPageSettingN").prop("checked", true);
+        $("#seeSpecialSettingN").prop("checked", true);
+        $("#seeEmtyazSettingN").prop("checked", true);
+
     } else {
-        $(".webN").prop("checked", false);
-        $("#homeSeeN").prop("checked", false);
-        $("#karbaranSeeN").prop("checked", false);
-        $("#specialSeeN").prop("checked", false);
-        $("#homeChangeN").prop("checked", false);
-        $("#karbaranChangeN").prop("checked", false);
-        $("#specialChangeN").prop("checked", false);
-        $("#homeDeleteN").prop("checked", false);
-        $("#karbaranDeleteN").prop("checked", false);
-        $("#specialDeleteN").prop("checked", false);
+        $("#settingsN").prop("checked", false);
+        $(".allSettingsN").prop("checked", false);
+        $("#seeMainPageSettingN").prop("checked", false);
+        $("#seeSpecialSettingN").prop("checked", false);
+        $("#seeEmtyazSettingN").prop("checked", false);
     }
 });
 
+$("#seeMainPageSettingN").on("change", () => {
+    if ($("#seeMainPageSettingN").is(":checked")) {
+        $("#namiPageSettingN").prop("checked", true);
+        $("#settingsN").prop("checked", true);
+        $("#baseInfoN").prop("checked", true);
+    } else {
+        $("#seeMainPageSettingN").prop("checked", false);
+        $("#namiPageSettingN").prop("checked", false);
+    }
+})
 
-$("#homePageN").on("change", () => {
+$("#editManiPageSettingN").on("change", () => {
+    if ($("#editManiPageSettingN").is(":checked")) {
+        $("#seeMainPageSettingN").prop("checked", true);
+        $("#namiPageSettingN").prop("checked", true);
+        $("#settingsN").prop("checked", true);
+        $("#baseInfoN").prop("checked", true);
 
-    if ($("#homePageN").is(":checked")) {
+    } else {
+        $("#editManiPageSettingN").prop("checked", false);
+    }
+})
 
-        $("#homeSeeN").prop("checked", true);
+$("#deletMainPageSettingN").on("change", () => {
+    if ($("#deletMainPageSettingN").is(":checked")) {
+        $("#seeMainPageSettingN").prop("checked", true);
+        $("#editManiPageSettingN").prop("checked", true);
+        $("#namiPageSettingN").prop("checked", true);
+        $("#settingsN").prop("checked", true);
+        $("#baseInfoN").prop("checked", true);
+    } else {
+        $("#deletMainPageSettingN").prob("checked", false);
+    }
+})
 
-        $(".webPageN").prop("checked", true);
 
-    } else {
-        if ($(".webN").filter(":checked").length > 0) {
 
-        } else {
 
-            $(".webPageN").prop("checked", false);
 
-        }
-        $("#homeSeeN").prop("checked", false);
 
-        $("#homeChangeN").prop("checked", false);
 
-        $("#homeDeleteN").prop("checked", false);
+// $(".webPageN").on("change", () => {
+//     if ($(".webPageN").is(':checked')) {
+//         $(".webN").prop("checked", true);
+//         $("#homeSeeN").prop("checked", true);
+//         $("#karbaranSeeN").prop("checked", true);
+//         $("#specialSeeN").prop("checked", true);
+//     } else {
+//         $(".webN").prop("checked", false);
+//         $("#homeSeeN").prop("checked", false);
+//         $("#karbaranSeeN").prop("checked", false);
+//         $("#specialSeeN").prop("checked", false);
+//         $("#homeChangeN").prop("checked", false);
+//         $("#karbaranChangeN").prop("checked", false);
+//         $("#specialChangeN").prop("checked", false);
+//         $("#homeDeleteN").prop("checked", false);
+//         $("#karbaranDeleteN").prop("checked", false);
+//         $("#specialDeleteN").prop("checked", false);
+//     }
+// });
 
-    }
 
-});
+// $("#homePageN").on("change", () => {
 
-$("#homeChangeN").on("change", () => {
+//     if ($("#homePageN").is(":checked")) {
 
-    if ($("#homeChangeN").is(":checked")) {
+//         $("#homeSeeN").prop("checked", true);
 
-        $(".webPageN").prop("checked", true);
+//         $(".webPageN").prop("checked", true);
 
-        $("#homeSeeN").prop("checked", true);
+//     } else {
+//         if ($(".webN").filter(":checked").length > 0) {
 
-        $("#homePageN").prop("checked", true);
+//         } else {
 
-    } else {
+//             $(".webPageN").prop("checked", false);
 
-        $("#homeDeleteN").prop("checked", false);
+//         }
+//         $("#homeSeeN").prop("checked", false);
 
-    }
-});
+//         $("#homeChangeN").prop("checked", false);
 
-$("#homeDeleteN").on("change", () => {
+//         $("#homeDeleteN").prop("checked", false);
 
-    if ($("#homeDeleteN").is(":checked")) {
+//     }
 
-        $(".webPageN").prop("checked", true);
+// });
 
-        $("#homeSeeN").prop("checked", true);
+// $("#homeChangeN").on("change", () => {
 
-        $("#homeChangeN").prop("checked", true);
+//     if ($("#homeChangeN").is(":checked")) {
 
-        $("#homeDeleteN").prop("checked", true);
+//         $(".webPageN").prop("checked", true);
 
-        $("#homePageN").prop("checked", true);
+//         $("#homeSeeN").prop("checked", true);
 
-    }
-});
+//         $("#homePageN").prop("checked", true);
 
-$("#homeSeeN").on("change", () => {
+//     } else {
 
-    if (!$("#homeSeeN").is(":checked")) {
+//         $("#homeDeleteN").prop("checked", false);
 
-        if ($(".webN").filter(":checked").length > 1) {
+//     }
+// });
 
-        } else {
+// $("#homeDeleteN").on("change", () => {
 
-            $(".webPageN").prop("checked", false);
+//     if ($("#homeDeleteN").is(":checked")) {
 
-        }
+//         $(".webPageN").prop("checked", true);
 
-        $("#homePageN").prop("checked", false);
+//         $("#homeSeeN").prop("checked", true);
 
-        $("#homeChangeN").prop("checked", false);
+//         $("#homeChangeN").prop("checked", true);
 
-        $("#homeDeleteN").prop("checked", false);
+//         $("#homeDeleteN").prop("checked", true);
 
-    } else {
+//         $("#homePageN").prop("checked", true);
 
-        $(".webPageN").prop("checked", true);
+//     }
+// });
 
-        $("#homePageN").prop("checked", true);
+// $("#homeSeeN").on("change", () => {
 
-    }
+//     if (!$("#homeSeeN").is(":checked")) {
 
-});
+//         if ($(".webN").filter(":checked").length > 1) {
 
-$("#karbaranN").on("change", () => {
+//         } else {
 
-    if ($("#karbaranN").is(":checked")) {
+//             $(".webPageN").prop("checked", false);
 
-        $("#karbaranSeeN").prop("checked", true);
+//         }
 
-        $(".webPageN").prop("checked", true);
+//         $("#homePageN").prop("checked", false);
 
-    } else {
-        if ($(".webN").filter(":checked").length > 0) {
+//         $("#homeChangeN").prop("checked", false);
 
-        } else {
+//         $("#homeDeleteN").prop("checked", false);
 
-            $(".webPageN").prop("checked", false);
+//     } else {
 
-        }
-        $("#karbaranSeeN").prop("checked", false);
+//         $(".webPageN").prop("checked", true);
 
-        $("#karbaranChangeN").prop("checked", false);
+//         $("#homePageN").prop("checked", true);
 
-        $("#karbaranDeleteN").prop("checked", false);
+//     }
 
-    }
+// });
 
-});
+// $("#karbaranN").on("change", () => {
 
-$("#karbaranDeleteN").on("change", () => {
+//     if ($("#karbaranN").is(":checked")) {
 
-    if ($("#karbaranDeleteN").is(":checked")) {
+//         $("#karbaranSeeN").prop("checked", true);
 
-        $(".webPageN").prop("checked", true);
+//         $(".webPageN").prop("checked", true);
 
-        $("#karbaranSeeN").prop("checked", true);
+//     } else {
+//         if ($(".webN").filter(":checked").length > 0) {
 
-        $("#karbaranChangeN").prop("checked", true);
+//         } else {
 
-        $("#karbaranDeleteN").prop("checked", true);
+//             $(".webPageN").prop("checked", false);
 
-        $("#karbaranN").prop("checked", true);
+//         }
+//         $("#karbaranSeeN").prop("checked", false);
 
-    }
-});
+//         $("#karbaranChangeN").prop("checked", false);
 
-$("#karbaranChangeN").on("change", () => {
+//         $("#karbaranDeleteN").prop("checked", false);
 
-    if ($("#karbaranChangeN").is(":checked")) {
+//     }
 
-        $(".webPageN").prop("checked", true);
+// });
 
-        $("#karbaranSeeN").prop("checked", true);
+// $("#karbaranDeleteN").on("change", () => {
 
-        $("#karbaranN").prop("checked", true);
+//     if ($("#karbaranDeleteN").is(":checked")) {
 
-    } else {
+//         $(".webPageN").prop("checked", true);
 
-        $("#karbaranDeleteN").prop("checked", false);
+//         $("#karbaranSeeN").prop("checked", true);
 
-    }
-});
+//         $("#karbaranChangeN").prop("checked", true);
 
-$("#karbaranSeeN").on("change", () => {
+//         $("#karbaranDeleteN").prop("checked", true);
 
-    if (!$("#karbaranSeeN").is(":checked")) {
+//         $("#karbaranN").prop("checked", true);
 
-        if ($(".webN").filter(":checked").length > 1) {
+//     }
+// });
 
-        } else {
+// $("#karbaranChangeN").on("change", () => {
 
-            $(".webPageN").prop("checked", false);
+//     if ($("#karbaranChangeN").is(":checked")) {
 
-        }
+//         $(".webPageN").prop("checked", true);
 
-        $("#karbaranN").prop("checked", false);
+//         $("#karbaranSeeN").prop("checked", true);
 
-        $("#karbaranChangeN").prop("checked", false);
+//         $("#karbaranN").prop("checked", true);
 
-        $("#karbaranDeleteN").prop("checked", false);
+//     } else {
 
-    } else {
+//         $("#karbaranDeleteN").prop("checked", false);
 
-        $(".webPageN").prop("checked", true);
+//     }
+// });
 
-        $("#karbaranN").prop("checked", true);
+// $("#karbaranSeeN").on("change", () => {
 
-    }
+//     if (!$("#karbaranSeeN").is(":checked")) {
 
-});
+//         if ($(".webN").filter(":checked").length > 1) {
 
-$("#specialSettingN").on("change", () => {
+//         } else {
 
-    if ($("#specialSettingN").is(":checked")) {
+//             $(".webPageN").prop("checked", false);
 
-        $(".webPageN").prop("checked", true);
+//         }
 
-        $("#specialSeeN").prop("checked", true);
+//         $("#karbaranN").prop("checked", false);
 
-    } else {
-        if ($(".webN").filter(":checked").length > 0) {
+//         $("#karbaranChangeN").prop("checked", false);
 
-        } else {
+//         $("#karbaranDeleteN").prop("checked", false);
 
-            $(".webPageN").prop("checked", false);
+//     } else {
 
-        }
-        $("#specialSeeN").prop("checked", false);
+//         $(".webPageN").prop("checked", true);
 
-        $("#specialChangeN").prop("checked", false);
+//         $("#karbaranN").prop("checked", true);
 
-        $("#specialDeleteN").prop("checked", false);
+//     }
 
-    }
+// });
 
-});
+// $("#specialSettingN").on("change", () => {
 
-$("#specialDeleteN").on("change", () => {
+//     if ($("#specialSettingN").is(":checked")) {
 
-    if ($("#specialDeleteN").is(":checked")) {
+//         $(".webPageN").prop("checked", true);
 
-        $(".webPageN").prop("checked", true);
+//         $("#specialSeeN").prop("checked", true);
 
-        $("#specialSeeN").prop("checked", true);
+//     } else {
+//         if ($(".webN").filter(":checked").length > 0) {
 
-        $("#specialChangeN").prop("checked", true);
+//         } else {
 
-        $("#specialDeleteN").prop("checked", true);
+//             $(".webPageN").prop("checked", false);
 
-        $("#specialSettingN").prop("checked", true);
+//         }
+//         $("#specialSeeN").prop("checked", false);
 
-    }
-});
+//         $("#specialChangeN").prop("checked", false);
 
-$("#specialChangeN").on("change", () => {
+//         $("#specialDeleteN").prop("checked", false);
 
-    if ($("#specialChangeN").is(":checked")) {
+//     }
 
-        $(".webPageN").prop("checked", true);
+// });
 
-        $("#specialSeeN").prop("checked", true);
+// $("#specialDeleteN").on("change", () => {
 
-        $("#specialSettingN").prop("checked", true);
+//     if ($("#specialDeleteN").is(":checked")) {
 
-    } else {
+//         $(".webPageN").prop("checked", true);
 
-        $("#specialDeleteN").prop("checked", false);
+//         $("#specialSeeN").prop("checked", true);
 
-    }
-});
+//         $("#specialChangeN").prop("checked", true);
 
-$("#specialSeeN").on("change", () => {
+//         $("#specialDeleteN").prop("checked", true);
 
-    if (!$("#specialSeeN").is(":checked")) {
+//         $("#specialSettingN").prop("checked", true);
 
-        if ($(".webN").filter(":checked").length > 1) {
+//     }
+// });
 
-        } else {
+// $("#specialChangeN").on("change", () => {
 
-            $(".webPageN").prop("checked", false);
+//     if ($("#specialChangeN").is(":checked")) {
 
-        }
+//         $(".webPageN").prop("checked", true);
 
-        $("#specialChangeN").prop("checked", false);
+//         $("#specialSeeN").prop("checked", true);
 
-        $("#specialSettingN").prop("checked", false);
+//         $("#specialSettingN").prop("checked", true);
 
-        $("#specialDeleteN").prop("checked", false);
+//     } else {
 
-    } else {
+//         $("#specialDeleteN").prop("checked", false);
 
-        $(".webPageN").prop("checked", true);
+//     }
+// });
 
-        $("#specialSettingN").prop("checked", true);
+// $("#specialSeeN").on("change", () => {
 
-    }
+//     if (!$("#specialSeeN").is(":checked")) {
 
-});
+//         if ($(".webN").filter(":checked").length > 1) {
 
-$(".kalasN").on("change", () => {
-
-    if ($(".kalasN").is(':checked')) {
-        $(".kalaN").prop("checked", true);
-        $("#seeKalaListN").prop("checked", true);
-        $("#seeRequestedKalaN").prop("checked", true);
-        $("#seeAlertedN").prop("checked", true);
-        $("#seeFastKalaN").prop("checked", true);
-        $("#seePishKharidN").prop("checked", true);
-        $("#seeBrandsN").prop("checked", true);
-        $("#seeGroupListN").prop("checked", true);
-        $("#changeRequestedN").prop("checked", true);
-    } else {
+//         } else {
 
-        $(".kalaN").prop("checked", false);
-        $("#seeKalaListN").prop("checked", false);
-        $("#seeRequestedN").prop("checked", false);
-        $("#seeAlertedN").prop("checked", false);
-        $("#seeFastKalaN").prop("checked", false);
-        $("#seePishKharidN").prop("checked", false);
-        $("#seeBrandsN").prop("checked", false);
-        $("#seeGroupListN").prop("checked", false);
-        $("#seeRequestedKalaN").prop("checked", false);
-
-        $("#changeKalaListN").prop("checked", false);
-        $("#changeRequestedN").prop("checked", false);
-        $("#changeAlertedN").prop("checked", false);
-        $("#changeFastKalaN").prop("checked", false);
-        $("#changePishKharidN").prop("checked", false);
-        $("#changeBrandsN").prop("checked", false);
-        $("#changeGroupListN").prop("checked", false);
-        $("#changeRequestedKalaN").prop("checked", false);
-
-        $("#deleteKalaListN").prop("checked", false);
-        $("#deleteRequestedN").prop("checked", false);
-        $("#deleteAlertedN").prop("checked", false);
-        $("#deleteFastKalaN").prop("checked", false);
-        $("#deletePishKharidN").prop("checked", false);
-        $("#deleteBrandsN").prop("checked", false);
-        $("#deleteGroupListN").prop("checked", false);
-        $("#deleteRequestedKalaN").prop("checked", false);
+//             $(".webPageN").prop("checked", false);
 
-    }
+//         }
 
-});
+//         $("#specialChangeN").prop("checked", false);
 
-$("#kalaListN").on("change", () => {
+//         $("#specialSettingN").prop("checked", false);
 
-    if ($("#kalaListN").is(":checked")) {
+//         $("#specialDeleteN").prop("checked", false);
 
-        $(".kalasN").prop("checked", true);
-        $("#seeKalaListN").prop("checked", true);
+//     } else {
 
-    } else {
-        if ($(".kalaN").filter(":checked").length > 0) {
+//         $(".webPageN").prop("checked", true);
 
-        } else {
+//         $("#specialSettingN").prop("checked", true);
 
-            $(".kalasN").prop("checked", false);
+//     }
 
-        }
-        $("#seeKalaListN").prop("checked", false);
+// });
 
-        $("#changeKalaListN").prop("checked", false);
+// $(".kalasN").on("change", () => {
 
-        $("#deleteKalaListN").prop("checked", false);
+//     if ($(".kalasN").is(':checked')) {
+//         $(".kalaN").prop("checked", true);
+//         $("#seeKalaListN").prop("checked", true);
+//         $("#seeRequestedKalaN").prop("checked", true);
+//         $("#seeAlertedN").prop("checked", true);
+//         $("#seeFastKalaN").prop("checked", true);
+//         $("#seePishKharidN").prop("checked", true);
+//         $("#seeBrandsN").prop("checked", true);
+//         $("#seeGroupListN").prop("checked", true);
+//         $("#changeRequestedN").prop("checked", true);
+//     } else {
 
-    }
-});
+//         $(".kalaN").prop("checked", false);
+//         $("#seeKalaListN").prop("checked", false);
+//         $("#seeRequestedN").prop("checked", false);
+//         $("#seeAlertedN").prop("checked", false);
+//         $("#seeFastKalaN").prop("checked", false);
+//         $("#seePishKharidN").prop("checked", false);
+//         $("#seeBrandsN").prop("checked", false);
+//         $("#seeGroupListN").prop("checked", false);
+//         $("#seeRequestedKalaN").prop("checked", false);
 
-$("#changeKalaListN").on("change", () => {
+//         $("#changeKalaListN").prop("checked", false);
+//         $("#changeRequestedN").prop("checked", false);
+//         $("#changeAlertedN").prop("checked", false);
+//         $("#changeFastKalaN").prop("checked", false);
+//         $("#changePishKharidN").prop("checked", false);
+//         $("#changeBrandsN").prop("checked", false);
+//         $("#changeGroupListN").prop("checked", false);
+//         $("#changeRequestedKalaN").prop("checked", false);
 
-    if ($("#changeKalaListN").is(":checked")) {
+//         $("#deleteKalaListN").prop("checked", false);
+//         $("#deleteRequestedN").prop("checked", false);
+//         $("#deleteAlertedN").prop("checked", false);
+//         $("#deleteFastKalaN").prop("checked", false);
+//         $("#deletePishKharidN").prop("checked", false);
+//         $("#deleteBrandsN").prop("checked", false);
+//         $("#deleteGroupListN").prop("checked", false);
+//         $("#deleteRequestedKalaN").prop("checked", false);
 
-        $(".kalasN").prop("checked", true);
+//     }
 
-        $("#seeKalaListN").prop("checked", true);
+// });
 
-        $("#kalaListN").prop("checked", true);
+// $("#kalaListN").on("change", () => {
 
-    } else {
+//     if ($("#kalaListN").is(":checked")) {
 
-        $("#deleteKalaListN").prop("checked", false);
+//         $(".kalasN").prop("checked", true);
+//         $("#seeKalaListN").prop("checked", true);
 
-    }
-});
+//     } else {
+//         if ($(".kalaN").filter(":checked").length > 0) {
 
-$("#deleteKalaListN").on("change", () => {
+//         } else {
 
-    if ($("#deleteKalaListN").is(":checked")) {
+//             $(".kalasN").prop("checked", false);
 
-        $("#seeKalaListN").prop("checked", true);
+//         }
+//         $("#seeKalaListN").prop("checked", false);
 
-        $("#changeKalaListN").prop("checked", true);
+//         $("#changeKalaListN").prop("checked", false);
 
-        $("#deleteKalaListN").prop("checked", true);
+//         $("#deleteKalaListN").prop("checked", false);
 
-        $("#kalaListN").prop("checked", true);
+//     }
+// });
 
-        $(".kalasN").prop("checked", true);
+// $("#changeKalaListN").on("change", () => {
 
-    }
-});
+//     if ($("#changeKalaListN").is(":checked")) {
 
-$("#seeKalaListN").on("change", () => {
+//         $(".kalasN").prop("checked", true);
 
-    if (!$("#seeKalaListN").is(":checked")) {
+//         $("#seeKalaListN").prop("checked", true);
 
-        if ($(".kalaN").filter(":checked").length > 1) {
+//         $("#kalaListN").prop("checked", true);
 
-        } else {
+//     } else {
 
-            $(".kalasN").prop("checked", false);
+//         $("#deleteKalaListN").prop("checked", false);
 
-        }
+//     }
+// });
 
-        $("#kalaListN").prop("checked", false);
+// $("#deleteKalaListN").on("change", () => {
 
-        $("#changeKalaListN").prop("checked", false);
+//     if ($("#deleteKalaListN").is(":checked")) {
 
-        $("#deleteKalaListN").prop("checked", false);
+//         $("#seeKalaListN").prop("checked", true);
 
-    } else {
+//         $("#changeKalaListN").prop("checked", true);
 
-        $(".kalasN").prop("checked", true);
+//         $("#deleteKalaListN").prop("checked", true);
 
-        $("#kalaListN").prop("checked", true);
+//         $("#kalaListN").prop("checked", true);
 
-    }
+//         $(".kalasN").prop("checked", true);
 
-});
+//     }
+// });
 
+// $("#seeKalaListN").on("change", () => {
 
+//     if (!$("#seeKalaListN").is(":checked")) {
 
+//         if ($(".kalaN").filter(":checked").length > 1) {
 
-$("#requestedKalaN").on("change", () => {
+//         } else {
 
-    if ($("#requestedKalaN").is(":checked")) {
+//             $(".kalasN").prop("checked", false);
 
-        $(".kalasN").prop("checked", true);
+//         }
 
-        $("#seeRequestedKalaN").prop("checked", true);
+//         $("#kalaListN").prop("checked", false);
 
-    } else {
-        if ($(".kalaN").filter(":checked").length > 0) {
+//         $("#changeKalaListN").prop("checked", false);
 
-        } else {
+//         $("#deleteKalaListN").prop("checked", false);
 
-            $(".kalasN").prop("checked", false);
+//     } else {
 
-        }
-        $("#seeRequestedKalaN").prop("checked", false);
+//         $(".kalasN").prop("checked", true);
 
-        $("#changeRequestedKalaN").prop("checked", false);
+//         $("#kalaListN").prop("checked", true);
 
-        $("#deleteRequestedKalaN").prop("checked", false);
+//     }
 
-    }
+// });
 
-});
 
-$("#changeRequestedKalaN").on("change", () => {
 
-    if ($("#changeRequestedKalaN").is(":checked")) {
 
-        $("#seeRequestedKalaN").prop("checked", true);
+// $("#requestedKalaN").on("change", () => {
 
-        $(".kalasN").prop("checked", true);
+//     if ($("#requestedKalaN").is(":checked")) {
 
-        $("#requestedKalaN").prop("checked", true);
+//         $(".kalasN").prop("checked", true);
 
-    } else {
-        $("#deleteRequestedKalaN").prop("checked", false);
-    }
-});
+//         $("#seeRequestedKalaN").prop("checked", true);
 
+//     } else {
+//         if ($(".kalaN").filter(":checked").length > 0) {
 
-$("#deleteRequestedKalaN").on("change", () => {
+//         } else {
 
-    if ($("#deleteRequestedKalaN").is(":checked")) {
+//             $(".kalasN").prop("checked", false);
 
-        $("#seeRequestedKalaN").prop("checked", true);
+//         }
+//         $("#seeRequestedKalaN").prop("checked", false);
 
-        $("#changeRequestedKalaN").prop("checked", true);
+//         $("#changeRequestedKalaN").prop("checked", false);
 
-        $("#requestedKalaN").prop("checked", true);
+//         $("#deleteRequestedKalaN").prop("checked", false);
 
-        $(".kalasN").prop("checked", true);
+//     }
 
-    }
-});
+// });
 
-$("#seeRequestedKalaN").on("change", () => {
+// $("#changeRequestedKalaN").on("change", () => {
 
-    if (!$("#seeRequestedKalaN").is(":checked")) {
+//     if ($("#changeRequestedKalaN").is(":checked")) {
 
-        if ($(".kalaN").filter(":checked").length > 1) {
+//         $("#seeRequestedKalaN").prop("checked", true);
 
-        } else {
+//         $(".kalasN").prop("checked", true);
 
-            $(".kalasN").prop("checked", false);
+//         $("#requestedKalaN").prop("checked", true);
 
-        }
+//     } else {
+//         $("#deleteRequestedKalaN").prop("checked", false);
+//     }
+// });
 
-        $("#requestedKalaN").prop("checked", false);
 
-        $("#changeRequestedKalaN").prop("checked", false);
-        $("#deleteRequestedKalaN").prop("checked", false);
+// $("#deleteRequestedKalaN").on("change", () => {
 
-    } else {
+//     if ($("#deleteRequestedKalaN").is(":checked")) {
 
-        $(".kalasN").prop("checked", true);
+//         $("#seeRequestedKalaN").prop("checked", true);
 
-        $("#requestedKalaN").prop("checked", true);
+//         $("#changeRequestedKalaN").prop("checked", true);
 
-    }
+//         $("#requestedKalaN").prop("checked", true);
 
-});
+//         $(".kalasN").prop("checked", true);
 
+//     }
+// });
 
-$("#fastKalaN").on("change", () => {
+// $("#seeRequestedKalaN").on("change", () => {
 
-    if ($("#fastKalaN").is(":checked")) {
+//     if (!$("#seeRequestedKalaN").is(":checked")) {
 
-        $(".kalasN").prop("checked", true);
+//         if ($(".kalaN").filter(":checked").length > 1) {
 
-        $("#seeFastKalaN").prop("checked", true);
+//         } else {
 
-    } else {
-        if ($(".kalaN").filter(":checked").length > 0) {
+//             $(".kalasN").prop("checked", false);
 
-        } else {
+//         }
 
-            $(".kalasN").prop("checked", false);
+//         $("#requestedKalaN").prop("checked", false);
 
-        }
-        $("#seeFastKalaN").prop("checked", false);
+//         $("#changeRequestedKalaN").prop("checked", false);
+//         $("#deleteRequestedKalaN").prop("checked", false);
 
-        $("#changeFastKalaN").prop("checked", false);
+//     } else {
 
-        $("#deleteFastKalaN").prop("checked", false);
+//         $(".kalasN").prop("checked", true);
 
-    }
+//         $("#requestedKalaN").prop("checked", true);
 
-});
+//     }
 
-$("#changeFastKalaN").on("change", () => {
+// });
 
-    if ($("#changeFastKalaN").is(":checked")) {
 
-        $(".kalasN").prop("checked", true);
+// $("#fastKalaN").on("change", () => {
 
-        $("#seeFastKalaN").prop("checked", true);
+//     if ($("#fastKalaN").is(":checked")) {
 
-        $("#fastKalaN").prop("checked", true);
+//         $(".kalasN").prop("checked", true);
 
-    } else {
+//         $("#seeFastKalaN").prop("checked", true);
 
-        $("#deleteFastKalaN").prop("checked", false);
+//     } else {
+//         if ($(".kalaN").filter(":checked").length > 0) {
 
-    }
-});
+//         } else {
 
-$("#deleteFastKalaN").on("change", () => {
+//             $(".kalasN").prop("checked", false);
 
-    if ($("#deleteFastKalaN").is(":checked")) {
+//         }
+//         $("#seeFastKalaN").prop("checked", false);
 
-        $("#seeFastKalaN").prop("checked", true);
+//         $("#changeFastKalaN").prop("checked", false);
 
-        $("#changeFastKalaN").prop("checked", true);
+//         $("#deleteFastKalaN").prop("checked", false);
 
-        $("#deleteFastKalaN").prop("checked", true);
+//     }
 
-        $("#fastKalaN").prop("checked", true);
+// });
 
-        $(".kalasN").prop("checked", true);
+// $("#changeFastKalaN").on("change", () => {
 
-    }
-});
+//     if ($("#changeFastKalaN").is(":checked")) {
 
-$("#seeFastKalaN").on("change", () => {
+//         $(".kalasN").prop("checked", true);
 
-    if (!$("#seeFastKalaN").is(":checked")) {
+//         $("#seeFastKalaN").prop("checked", true);
 
-        if ($(".kalaN").filter(":checked").length > 1) {
+//         $("#fastKalaN").prop("checked", true);
 
-        } else {
+//     } else {
 
-            $(".kalasN").prop("checked", false);
+//         $("#deleteFastKalaN").prop("checked", false);
 
-        }
+//     }
+// });
 
-        $("#fastKalaN").prop("checked", false);
+// $("#deleteFastKalaN").on("change", () => {
 
-        $("#changeFastKalaN").prop("checked", false);
+//     if ($("#deleteFastKalaN").is(":checked")) {
 
-        $("#deleteFastKalaN").prop("checked", false);
+//         $("#seeFastKalaN").prop("checked", true);
 
-    } else {
+//         $("#changeFastKalaN").prop("checked", true);
 
-        $(".kalasN").prop("checked", true);
+//         $("#deleteFastKalaN").prop("checked", true);
 
-        $("#fastKalaN").prop("checked", true);
+//         $("#fastKalaN").prop("checked", true);
 
-    }
+//         $(".kalasN").prop("checked", true);
 
-});
+//     }
+// });
 
+// $("#seeFastKalaN").on("change", () => {
 
-$("#pishKharidN").on("change", () => {
+//     if (!$("#seeFastKalaN").is(":checked")) {
 
-    if ($("#pishKharidN").is(":checked")) {
+//         if ($(".kalaN").filter(":checked").length > 1) {
 
-        $(".kalasN").prop("checked", true);
+//         } else {
 
-        $("#seePishKharidN").prop("checked", true);
+//             $(".kalasN").prop("checked", false);
 
-    } else {
-        if ($(".kalaN").filter(":checked").length > 0) {
+//         }
 
-        } else {
+//         $("#fastKalaN").prop("checked", false);
 
-            $(".kalasN").prop("checked", false);
+//         $("#changeFastKalaN").prop("checked", false);
 
-        }
-        $("#seePishKharidN").prop("checked", false);
+//         $("#deleteFastKalaN").prop("checked", false);
 
-        $("#deletePishKharidN").prop("checked", false);
+//     } else {
 
-        $("#changePishKharidN").prop("checked", false);
+//         $(".kalasN").prop("checked", true);
 
-    }
+//         $("#fastKalaN").prop("checked", true);
 
-});
+//     }
 
-$("#changePishKharidN").on("change", () => {
+// });
 
-    if ($("#changePishKharidN").is(":checked")) {
 
-        $(".kalasN").prop("checked", true);
+// $("#pishKharidN").on("change", () => {
 
-        $("#seePishKharidN").prop("checked", true);
+//     if ($("#pishKharidN").is(":checked")) {
 
-        $("#pishKharidN").prop("checked", true);
+//         $(".kalasN").prop("checked", true);
 
-    } else {
-        $("#deletePishKharidN").prop("checked", false);
-    }
-});
+//         $("#seePishKharidN").prop("checked", true);
 
-$("#deletePishKharidN").on("change", () => {
+//     } else {
+//         if ($(".kalaN").filter(":checked").length > 0) {
 
-    if ($("#deletePishKharidN").is(":checked")) {
+//         } else {
 
-        $("#seePishKharidN").prop("checked", true);
+//             $(".kalasN").prop("checked", false);
 
-        $("#changePishKharidN").prop("checked", true);
+//         }
+//         $("#seePishKharidN").prop("checked", false);
 
-        $("#deletePishKharidN").prop("checked", true);
+//         $("#deletePishKharidN").prop("checked", false);
 
-        $("#pishKharidN").prop("checked", true);
+//         $("#changePishKharidN").prop("checked", false);
 
-        $(".kalasN").prop("checked", true);
+//     }
 
-    }
-});
+// });
 
-$("#seePishKharidN").on("change", () => {
+// $("#changePishKharidN").on("change", () => {
 
-    if (!$("#seePishKharidN").is(":checked")) {
+//     if ($("#changePishKharidN").is(":checked")) {
 
-        if ($(".kalaN").filter(":checked").length > 1) {
+//         $(".kalasN").prop("checked", true);
 
-        } else {
+//         $("#seePishKharidN").prop("checked", true);
 
-            $(".kalasN").prop("checked", false);
+//         $("#pishKharidN").prop("checked", true);
 
-        }
+//     } else {
+//         $("#deletePishKharidN").prop("checked", false);
+//     }
+// });
 
-        $("#pishKharidN").prop("checked", false);
+// $("#deletePishKharidN").on("change", () => {
 
-        $("#changePishKharidN").prop("checked", false);
+//     if ($("#deletePishKharidN").is(":checked")) {
 
-        $("#deletePishKharidN").prop("checked", false);
+//         $("#seePishKharidN").prop("checked", true);
 
-    } else {
+//         $("#changePishKharidN").prop("checked", true);
 
-        $(".kalasN").prop("checked", true);
+//         $("#deletePishKharidN").prop("checked", true);
 
-        $("#pishKharidN").prop("checked", true);
+//         $("#pishKharidN").prop("checked", true);
 
-    }
+//         $(".kalasN").prop("checked", true);
 
-});
+//     }
+// });
 
-$("#brandsN").on("change", () => {
+// $("#seePishKharidN").on("change", () => {
 
-    if ($("#brandsN").is(":checked")) {
+//     if (!$("#seePishKharidN").is(":checked")) {
 
-        $(".kalasN").prop("checked", true);
+//         if ($(".kalaN").filter(":checked").length > 1) {
 
-        $("#seeBrandsN").prop("checked", true);
+//         } else {
 
-    } else {
-        if ($(".kalaN").filter(":checked").length > 0) {
+//             $(".kalasN").prop("checked", false);
 
-        } else {
+//         }
 
-            $(".kalasN").prop("checked", false);
+//         $("#pishKharidN").prop("checked", false);
 
-        }
-        $("#seeBrandsN").prop("checked", false);
+//         $("#changePishKharidN").prop("checked", false);
 
-        $("#deleteBrandsN").prop("checked", false);
+//         $("#deletePishKharidN").prop("checked", false);
 
-        $("#changeBrandsN").prop("checked", false);
+//     } else {
 
-    }
+//         $(".kalasN").prop("checked", true);
 
-});
+//         $("#pishKharidN").prop("checked", true);
 
-$("#changeBrandsN").on("change", () => {
+//     }
 
-    if ($("#changeBrandsN").is(":checked")) {
+// });
 
-        $("#seeBrandsN").prop("checked", true);
+// $("#brandsN").on("change", () => {
 
-        $(".kalasN").prop("checked", true);
+//     if ($("#brandsN").is(":checked")) {
 
-        $("#brandsN").prop("checked", true);
+//         $(".kalasN").prop("checked", true);
 
-    } else {
-        $("#deleteBrandsN").prop("checked", false);
-    }
-});
+//         $("#seeBrandsN").prop("checked", true);
 
-$("#deleteBrandsN").on("change", () => {
+//     } else {
+//         if ($(".kalaN").filter(":checked").length > 0) {
 
-    if ($("#deleteBrandsN").is(":checked")) {
+//         } else {
 
-        $("#seeBrandsN").prop("checked", true);
+//             $(".kalasN").prop("checked", false);
 
-        $("#changeBrandsN").prop("checked", true);
+//         }
+//         $("#seeBrandsN").prop("checked", false);
 
-        $("#deleteBrandsN").prop("checked", true);
+//         $("#deleteBrandsN").prop("checked", false);
 
-        $("#brandsN").prop("checked", true);
+//         $("#changeBrandsN").prop("checked", false);
 
-        $(".kalasN").prop("checked", true);
+//     }
 
-    }
-});
+// });
 
-$("#seeBrandsN").on("change", () => {
+// $("#changeBrandsN").on("change", () => {
 
-    if (!$("#seeBrandsN").is(":checked")) {
-        if ($(".kalaN").filter(":checked").length > 1) {
+//     if ($("#changeBrandsN").is(":checked")) {
 
-        } else {
+//         $("#seeBrandsN").prop("checked", true);
 
-            $(".kalasN").prop("checked", false);
+//         $(".kalasN").prop("checked", true);
 
-        }
-        $("#brandsN").prop("checked", false);
+//         $("#brandsN").prop("checked", true);
 
-        $("#changeBrandsN").prop("checked", false);
-        $("#deleteBrandsN").prop("checked", false);
+//     } else {
+//         $("#deleteBrandsN").prop("checked", false);
+//     }
+// });
 
-    } else {
+// $("#deleteBrandsN").on("change", () => {
 
-        $(".kalasN").prop("checked", true);
+//     if ($("#deleteBrandsN").is(":checked")) {
 
-        $("#brandsN").prop("checked", true);
+//         $("#seeBrandsN").prop("checked", true);
 
-    }
+//         $("#changeBrandsN").prop("checked", true);
 
-});
+//         $("#deleteBrandsN").prop("checked", true);
 
+//         $("#brandsN").prop("checked", true);
 
-$("#alertedN").on("change", () => {
+//         $(".kalasN").prop("checked", true);
 
-    if ($("#alertedN").is(":checked")) {
+//     }
+// });
 
-        $(".kalasN").prop("checked", true);
+// $("#seeBrandsN").on("change", () => {
 
-        $("#seeAlertedN").prop("checked", true);
+//     if (!$("#seeBrandsN").is(":checked")) {
+//         if ($(".kalaN").filter(":checked").length > 1) {
 
-    } else {
-        if ($(".kalaN").filter(":checked").length > 0) {
+//         } else {
 
-        } else {
+//             $(".kalasN").prop("checked", false);
 
-            $(".kalasN").prop("checked", false);
+//         }
+//         $("#brandsN").prop("checked", false);
 
-        }
-        $("#seeAlertedN").prop("checked", false);
+//         $("#changeBrandsN").prop("checked", false);
+//         $("#deleteBrandsN").prop("checked", false);
 
-        $("#deleteAlertedN").prop("checked", false);
+//     } else {
 
-        $("#changeAlertedN").prop("checked", false);
+//         $(".kalasN").prop("checked", true);
 
-    }
+//         $("#brandsN").prop("checked", true);
 
-});
+//     }
 
-$("#changeAlertedN").on("change", () => {
+// });
 
-    if ($("#changeAlertedN").is(":checked")) {
 
-        $(".kalasN").prop("checked", true);
+// $("#alertedN").on("change", () => {
 
-        $("#seeAlertedN").prop("checked", true);
+//     if ($("#alertedN").is(":checked")) {
 
-        $("#alertedN").prop("checked", true);
+//         $(".kalasN").prop("checked", true);
 
-    } else {
-        $("#deleteAlertedN").prop("checked", false);
-    }
-});
+//         $("#seeAlertedN").prop("checked", true);
 
-$("#deleteAlertedN").on("change", () => {
+//     } else {
+//         if ($(".kalaN").filter(":checked").length > 0) {
 
-    if ($("#deleteAlertedN").is(":checked")) {
+//         } else {
 
-        $("#seeAlertedN").prop("checked", true);
+//             $(".kalasN").prop("checked", false);
 
-        $("#changeAlertedN").prop("checked", true);
+//         }
+//         $("#seeAlertedN").prop("checked", false);
 
-        $("#deleteAlertedN").prop("checked", true);
+//         $("#deleteAlertedN").prop("checked", false);
 
-        $("#alertedN").prop("checked", true);
+//         $("#changeAlertedN").prop("checked", false);
 
-        $(".kalasN").prop("checked", true);
+//     }
 
-    }
-});
+// });
 
-$("#seeAlertedN").on("change", () => {
+// $("#changeAlertedN").on("change", () => {
 
-    if (!$("#seeAlertedN").is(":checked")) {
-        if ($(".kalaN").filter(":checked").length > 1) {
+//     if ($("#changeAlertedN").is(":checked")) {
 
-        } else {
+//         $(".kalasN").prop("checked", true);
 
-            $(".kalasN").prop("checked", false);
+//         $("#seeAlertedN").prop("checked", true);
 
-        }
-        $("#alertedN").prop("checked", false);
+//         $("#alertedN").prop("checked", true);
 
-        $("#changeAlertedN").prop("checked", false);
+//     } else {
+//         $("#deleteAlertedN").prop("checked", false);
+//     }
+// });
 
-        $("#deleteAlertedN").prop("checked", false);
+// $("#deleteAlertedN").on("change", () => {
 
-    } else {
+//     if ($("#deleteAlertedN").is(":checked")) {
 
-        $(".kalasN").prop("checked", true);
+//         $("#seeAlertedN").prop("checked", true);
 
-        $("#alertedN").prop("checked", true);
+//         $("#changeAlertedN").prop("checked", true);
 
-    }
+//         $("#deleteAlertedN").prop("checked", true);
 
-});
+//         $("#alertedN").prop("checked", true);
 
+//         $(".kalasN").prop("checked", true);
 
-$("#groupListN").on("change", () => {
+//     }
+// });
 
-    if ($("#groupListN").is(":checked")) {
+// $("#seeAlertedN").on("change", () => {
 
-        $(".kalasN").prop("checked", true);
+//     if (!$("#seeAlertedN").is(":checked")) {
+//         if ($(".kalaN").filter(":checked").length > 1) {
 
-        $("#seeGroupListN").prop("checked", true);
+//         } else {
 
-        $(".kalasN").prop("checked", true);
+//             $(".kalasN").prop("checked", false);
 
-    } else {
-        if ($(".kalaN").filter(":checked").length > 0) {
+//         }
+//         $("#alertedN").prop("checked", false);
 
-        } else {
+//         $("#changeAlertedN").prop("checked", false);
 
-            $(".kalasN").prop("checked", false);
+//         $("#deleteAlertedN").prop("checked", false);
 
-        }
-        $("#seeGroupListN").prop("checked", false);
+//     } else {
 
-        $("#deleteGroupListN").prop("checked", false);
+//         $(".kalasN").prop("checked", true);
 
-        $("#changeGroupListN").prop("checked", false);
+//         $("#alertedN").prop("checked", true);
 
-    }
+//     }
 
-});
+// });
 
-$("#changeGroupListN").on("change", () => {
 
-    if ($("#changeGroupListN").is(":checked")) {
+// $("#groupListN").on("change", () => {
 
-        $("#seeGroupListN").prop("checked", true);
+//     if ($("#groupListN").is(":checked")) {
 
-        $(".kalasN").prop("checked", true);
+//         $(".kalasN").prop("checked", true);
 
-        $("#groupListN").prop("checked", true);
+//         $("#seeGroupListN").prop("checked", true);
 
-    } else {
+//         $(".kalasN").prop("checked", true);
 
-        $("#deleteGroupListN").prop("checked", false);
+//     } else {
+//         if ($(".kalaN").filter(":checked").length > 0) {
 
-    }
-});
+//         } else {
 
-$("#deleteGroupListN").on("change", () => {
+//             $(".kalasN").prop("checked", false);
 
-    if ($("#deleteGroupListN").is(":checked")) {
+//         }
+//         $("#seeGroupListN").prop("checked", false);
 
-        $("#seeGroupListN").prop("checked", true);
+//         $("#deleteGroupListN").prop("checked", false);
 
-        $("#changeGroupListN").prop("checked", true);
+//         $("#changeGroupListN").prop("checked", false);
 
-        $("#deleteGroupListN").prop("checked", true);
+//     }
 
-        $("#groupListN").prop("checked", true);
+// });
 
-        $(".kalasN").prop("checked", true);
+// $("#changeGroupListN").on("change", () => {
 
-    }
-});
+//     if ($("#changeGroupListN").is(":checked")) {
 
-$("#seeGroupListN").on("change", () => {
+//         $("#seeGroupListN").prop("checked", true);
 
-    if (!$("#seeGroupListN").is(":checked")) {
-        if ($(".kalaN").filter(":checked").length > 1) {
+//         $(".kalasN").prop("checked", true);
 
-        } else {
+//         $("#groupListN").prop("checked", true);
 
-            $(".kalasN").prop("checked", false);
+//     } else {
 
-        }
-        $("#groupListN").prop("checked", false);
+//         $("#deleteGroupListN").prop("checked", false);
 
-        $("#changeGroupListN").prop("checked", false);
+//     }
+// });
 
-        $("#deleteGroupListN").prop("checked", false);
+// $("#deleteGroupListN").on("change", () => {
 
-    } else {
+//     if ($("#deleteGroupListN").is(":checked")) {
 
-        $(".kalasN").prop("checked", true);
+//         $("#seeGroupListN").prop("checked", true);
 
-        $("#groupListN").prop("checked", true);
+//         $("#changeGroupListN").prop("checked", true);
 
-    }
+//         $("#deleteGroupListN").prop("checked", true);
 
-});
+//         $("#groupListN").prop("checked", true);
 
-$(".personsN").on("change", () => {
+//         $(".kalasN").prop("checked", true);
 
-    if ($(".personsN").is(":checked")) {
-        $(".personN").prop("checked", true);
-        $("#seeCustomersN").prop("checked", true);
-        $("#seeOfficialsN").prop("checked", true);
-    } else {
-        $(".personN").prop("checked", false);
-        $("#seeCustomersN").prop("checked", false);
-        $("#seeOfficialsN").prop("checked", false);
-        $("#changeCustomersN").prop("checked", false);
-        $("#changeOfficialsN").prop("checked", false);
-        $("#deleteCustomersN").prop("checked", false);
-        $("#deleteOfficialsN").prop("checked", false);
-    }
-});
+//     }
+// });
 
-$("#customersN").on("change", () => {
+// $("#seeGroupListN").on("change", () => {
 
-    if ($("#customersN").is(":checked")) {
+//     if (!$("#seeGroupListN").is(":checked")) {
+//         if ($(".kalaN").filter(":checked").length > 1) {
 
-        $(".personsN").prop("checked", true);
+//         } else {
 
-        $("#seeCustomersN").prop("checked", true);
+//             $(".kalasN").prop("checked", false);
 
-    } else {
-        if ($(".personN").filter(":checked").length > 0) {
+//         }
+//         $("#groupListN").prop("checked", false);
 
-        } else {
+//         $("#changeGroupListN").prop("checked", false);
 
-            $(".personsN").prop("checked", false);
+//         $("#deleteGroupListN").prop("checked", false);
 
-        }
-        $("#seeCustomersN").prop("checked", false);
+//     } else {
 
-        $("#changeCustomersN").prop("checked", false);
+//         $(".kalasN").prop("checked", true);
 
-        $("#deleteCustomersN").prop("checked", false);
+//         $("#groupListN").prop("checked", true);
 
-    }
+//     }
 
-});
+// });
 
-$("#changeCustomersN").on("change", () => {
+// $(".personsN").on("change", () => {
 
-    if ($("#changeCustomersN").is(":checked")) {
+//     if ($(".personsN").is(":checked")) {
+//         $(".personN").prop("checked", true);
+//         $("#seeCustomersN").prop("checked", true);
+//         $("#seeOfficialsN").prop("checked", true);
+//     } else {
+//         $(".personN").prop("checked", false);
+//         $("#seeCustomersN").prop("checked", false);
+//         $("#seeOfficialsN").prop("checked", false);
+//         $("#changeCustomersN").prop("checked", false);
+//         $("#changeOfficialsN").prop("checked", false);
+//         $("#deleteCustomersN").prop("checked", false);
+//         $("#deleteOfficialsN").prop("checked", false);
+//     }
+// });
 
-        $(".personsN").prop("checked", true);
+// $("#customersN").on("change", () => {
 
-        $("#seeCustomersN").prop("checked", true);
+//     if ($("#customersN").is(":checked")) {
 
-        $("#customersN").prop("checked", true);
+//         $(".personsN").prop("checked", true);
 
-    } else {
+//         $("#seeCustomersN").prop("checked", true);
 
-        $("#deleteCustomersN").prop("checked", false);
+//     } else {
+//         if ($(".personN").filter(":checked").length > 0) {
 
-    }
-});
+//         } else {
 
-$("#deleteCustomersN").on("change", () => {
+//             $(".personsN").prop("checked", false);
 
-    if ($("#deleteCustomersN").is(":checked")) {
+//         }
+//         $("#seeCustomersN").prop("checked", false);
 
-        $("#seeCustomersN").prop("checked", true);
+//         $("#changeCustomersN").prop("checked", false);
 
-        $("#changeCustomersN").prop("checked", true);
+//         $("#deleteCustomersN").prop("checked", false);
 
-        $("#deleteCustomersN").prop("checked", true);
+//     }
 
-        $("#customersN").prop("checked", true);
+// });
 
-        $(".personsN").prop("checked", true);
+// $("#changeCustomersN").on("change", () => {
 
-    }
-});
+//     if ($("#changeCustomersN").is(":checked")) {
 
-$("#seeCustomersN").on("change", () => {
+//         $(".personsN").prop("checked", true);
 
-    if (!$("#seeCustomersN").is(":checked")) {
+//         $("#seeCustomersN").prop("checked", true);
 
-        if ($(".personN").filter(":checked").length > 1) {
+//         $("#customersN").prop("checked", true);
 
-        } else {
+//     } else {
 
-            $(".personsN").prop("checked", false);
+//         $("#deleteCustomersN").prop("checked", false);
 
-        }
+//     }
+// });
 
-        $("#customersN").prop("checked", false);
+// $("#deleteCustomersN").on("change", () => {
 
-        $("#changeCustomersN").prop("checked", false);
+//     if ($("#deleteCustomersN").is(":checked")) {
 
-        $("#deleteCustomersN").prop("checked", false);
+//         $("#seeCustomersN").prop("checked", true);
 
-    } else {
+//         $("#changeCustomersN").prop("checked", true);
 
-        $(".personsN").prop("checked", true);
+//         $("#deleteCustomersN").prop("checked", true);
 
-        $("#customersN").prop("checked", true);
+//         $("#customersN").prop("checked", true);
 
-    }
+//         $(".personsN").prop("checked", true);
 
-});
+//     }
+// });
 
-$("#officialsN").on("change", () => {
+// $("#seeCustomersN").on("change", () => {
 
-    if ($("#officialsN").is(":checked")) {
+//     if (!$("#seeCustomersN").is(":checked")) {
 
-        $(".personsN").prop("checked", true);
+//         if ($(".personN").filter(":checked").length > 1) {
 
-        $("#seeOfficialsN").prop("checked", true);
+//         } else {
 
-    } else {
-        if ($(".personN").filter(":checked").length > 0) {
+//             $(".personsN").prop("checked", false);
 
-        } else {
+//         }
 
-            $(".personsN").prop("checked", false);
+//         $("#customersN").prop("checked", false);
 
-        }
-        $("#seeOfficialsN").prop("checked", false);
+//         $("#changeCustomersN").prop("checked", false);
 
-        $("#changeOfficialsN").prop("checked", false);
+//         $("#deleteCustomersN").prop("checked", false);
 
-        $("#deleteOfficialsN").prop("checked", false);
+//     } else {
 
-    }
+//         $(".personsN").prop("checked", true);
 
-});
+//         $("#customersN").prop("checked", true);
 
-$("#changeOfficialsN").on("change", () => {
+//     }
 
-    if ($("#changeOfficialsN").is(":checked")) {
+// });
 
-        $(".personsN").prop("checked", true);
+// $("#officialsN").on("change", () => {
 
-        $("#seeOfficialsN").prop("checked", true);
+//     if ($("#officialsN").is(":checked")) {
 
-        $("#officialsN").prop("checked", true);
+//         $(".personsN").prop("checked", true);
 
-    } else {
-        $("#deleteOfficialsN").prop("checked", false);
-    }
-});
+//         $("#seeOfficialsN").prop("checked", true);
 
-$("#deleteOfficialsN").on("change", () => {
+//     } else {
+//         if ($(".personN").filter(":checked").length > 0) {
 
-    if ($("#deleteOfficialsN").is(":checked")) {
+//         } else {
 
-        $("#seeOfficialsN").prop("checked", true);
+//             $(".personsN").prop("checked", false);
 
-        $("#changeOfficialsN").prop("checked", true);
+//         }
+//         $("#seeOfficialsN").prop("checked", false);
 
-        $("#deleteOfficialsN").prop("checked", true);
+//         $("#changeOfficialsN").prop("checked", false);
 
-        $("#officialsN").prop("checked", true);
+//         $("#deleteOfficialsN").prop("checked", false);
 
-        $(".personsN").prop("checked", true);
+//     }
 
-    }
-});
+// });
 
-$("#seeOfficialsN").on("change", () => {
+// $("#changeOfficialsN").on("change", () => {
 
-    if (!$("#seeOfficialsN").is(":checked")) {
+//     if ($("#changeOfficialsN").is(":checked")) {
 
-        if ($(".personN").filter(":checked").length > 1) {
+//         $(".personsN").prop("checked", true);
 
-        } else {
+//         $("#seeOfficialsN").prop("checked", true);
 
-            $(".personsN").prop("checked", false);
+//         $("#officialsN").prop("checked", true);
 
-        }
+//     } else {
+//         $("#deleteOfficialsN").prop("checked", false);
+//     }
+// });
 
-        $("#officialsN").prop("checked", false);
+// $("#deleteOfficialsN").on("change", () => {
 
-        $("#changeOfficialsN").prop("checked", false);
+//     if ($("#deleteOfficialsN").is(":checked")) {
 
-        $("#deleteOfficialsN").prop("checked", false);
+//         $("#seeOfficialsN").prop("checked", true);
 
-    } else {
+//         $("#changeOfficialsN").prop("checked", true);
 
-        $(".personsN").prop("checked", true);
+//         $("#deleteOfficialsN").prop("checked", true);
 
-        $("#officialsN").prop("checked", true);
+//         $("#officialsN").prop("checked", true);
 
-    }
+//         $(".personsN").prop("checked", true);
 
-});
+//     }
+// });
 
-$(".messagesN").on("change", () => {
-    if ($(".messagesN").is(":checked")) {
-        $("#seeMessagesN").prop("checked", true);
-    } else {
-        $("#seeMessagesN").prop("checked", false);
-        $("#changeMessagesN").prop("checked", false);
-        $("#deleteMessagesN").prop("checked", false);
-    }
-});
+// $("#seeOfficialsN").on("change", () => {
 
+//     if (!$("#seeOfficialsN").is(":checked")) {
 
-$("#changeMessagesN").on("change", () => {
+//         if ($(".personN").filter(":checked").length > 1) {
 
-    if ($("#changeMessagesN").is(":checked")) {
+//         } else {
 
-        $("#seeMessagesN").prop("checked", true);
+//             $(".personsN").prop("checked", false);
 
-        $(".messagesN").prop("checked", true);
+//         }
 
-    } else {
-        $("#deleteMessagesN").prop("checked", false);
-    }
-});
+//         $("#officialsN").prop("checked", false);
 
-$("#deleteMessagesN").on("change", () => {
+//         $("#changeOfficialsN").prop("checked", false);
 
-    if ($("#deleteMessagesN").is(":checked")) {
+//         $("#deleteOfficialsN").prop("checked", false);
 
-        $("#seeMessagesN").prop("checked", true);
+//     } else {
 
-        $("#changeMessagesN").prop("checked", true);
+//         $(".personsN").prop("checked", true);
 
-        $("#deleteMessagesN").prop("checked", true);
+//         $("#officialsN").prop("checked", true);
 
-        $(".messagesN").prop("checked", true);
+//     }
 
-    }
-});
+// });
 
-$("#seeMessagesN").on("change", () => {
+// $(".messagesN").on("change", () => {
+//     if ($(".messagesN").is(":checked")) {
+//         $("#seeMessagesN").prop("checked", true);
+//     } else {
+//         $("#seeMessagesN").prop("checked", false);
+//         $("#changeMessagesN").prop("checked", false);
+//         $("#deleteMessagesN").prop("checked", false);
+//     }
+// });
 
-    if (!$("#seeMessagesN").is(":checked")) {
 
-        $(".messagesN").prop("checked", false);
+// $("#changeMessagesN").on("change", () => {
 
-        $("#changeMessagesN").prop("checked", false);
+//     if ($("#changeMessagesN").is(":checked")) {
 
-        $("#deleteMessagesN").prop("checked", false);
+//         $("#seeMessagesN").prop("checked", true);
 
-    } else {
+//         $(".messagesN").prop("checked", true);
 
-        $(".messagesN").prop("checked", true);
+//     } else {
+//         $("#deleteMessagesN").prop("checked", false);
+//     }
+// });
 
-    }
+// $("#deleteMessagesN").on("change", () => {
 
-});
-//used for editting access level
+//     if ($("#deleteMessagesN").is(":checked")) {
 
-$(".webPage").on("change", () => {
+//         $("#seeMessagesN").prop("checked", true);
 
-    if ($(".webPage").is(':checked')) {
+//         $("#changeMessagesN").prop("checked", true);
 
-        $(".web").prop("checked", true);
-        $("#homeSee").prop("checked", true);
-        $("#karbaranSee").prop("checked", true);
-        $("#specialSee").prop("checked", true);
+//         $("#deleteMessagesN").prop("checked", true);
 
-    } else {
+//         $(".messagesN").prop("checked", true);
 
-        $(".web").prop("checked", false);
-        $("#homeSee").prop("checked", false);
-        $("#karbaranSee").prop("checked", false);
-        $("#specialSee").prop("checked", false);
-        $("#homeChange").prop("checked", false);
-        $("#karbaranChange").prop("checked", false);
-        $("#specialChange").prop("checked", false);
-        $("#homeDelete").prop("checked", false);
-        $("#karbaranDelete").prop("checked", false);
-        $("#specialDelete").prop("checked", false);
-    }
+//     }
+// });
 
-});
+// $("#seeMessagesN").on("change", () => {
 
-$("#homePage").on("change", () => {
+//     if (!$("#seeMessagesN").is(":checked")) {
 
-    if ($("#homePage").is(":checked")) {
+//         $(".messagesN").prop("checked", false);
 
-        $("#homeSee").prop("checked", true);
+//         $("#changeMessagesN").prop("checked", false);
 
-        $(".webPage").prop("checked", true);
+//         $("#deleteMessagesN").prop("checked", false);
 
-    } else {
-        if ($(".web").filter(":checked").length > 0) {
+//     } else {
 
-        } else {
+//         $(".messagesN").prop("checked", true);
 
-            $(".webPage").prop("checked", false);
+//     }
 
-        }
-        $("#homeSee").prop("checked", false);
+// });
+// //used for editting access level
 
-        $("#homeChange").prop("checked", false);
+// $(".webPage").on("change", () => {
 
-        $("#homeDelete").prop("checked", false);
+//     if ($(".webPage").is(':checked')) {
 
-    }
+//         $(".web").prop("checked", true);
+//         $("#homeSee").prop("checked", true);
+//         $("#karbaranSee").prop("checked", true);
+//         $("#specialSee").prop("checked", true);
 
-});
+//     } else {
 
-$("#homeChange").on("change", () => {
+//         $(".web").prop("checked", false);
+//         $("#homeSee").prop("checked", false);
+//         $("#karbaranSee").prop("checked", false);
+//         $("#specialSee").prop("checked", false);
+//         $("#homeChange").prop("checked", false);
+//         $("#karbaranChange").prop("checked", false);
+//         $("#specialChange").prop("checked", false);
+//         $("#homeDelete").prop("checked", false);
+//         $("#karbaranDelete").prop("checked", false);
+//         $("#specialDelete").prop("checked", false);
+//     }
 
-    if ($("#homeChange").is(":checked")) {
+// });
 
-        $(".webPage").prop("checked", true);
+// $("#homePage").on("change", () => {
 
-        $("#homeSee").prop("checked", true);
+//     if ($("#homePage").is(":checked")) {
 
-        $("#homePage").prop("checked", true);
+//         $("#homeSee").prop("checked", true);
 
-    } else {
-        $("#homeDelete").prop("checked", false);
-    }
-});
+//         $(".webPage").prop("checked", true);
 
-$("#homeDelete").on("change", () => {
+//     } else {
+//         if ($(".web").filter(":checked").length > 0) {
 
-    if ($("#homeDelete").is(":checked")) {
+//         } else {
 
-        $(".webPage").prop("checked", true);
+//             $(".webPage").prop("checked", false);
 
-        $("#homeSee").prop("checked", true);
+//         }
+//         $("#homeSee").prop("checked", false);
 
-        $("#homeChange").prop("checked", true);
+//         $("#homeChange").prop("checked", false);
 
-        $("#homeDelete").prop("checked", true);
+//         $("#homeDelete").prop("checked", false);
 
-        $("#homePage").prop("checked", true);
+//     }
 
-    }
-});
+// });
 
-$("#homeSee").on("change", () => {
+// $("#homeChange").on("change", () => {
 
-    if (!$("#homeSee").is(":checked")) {
+//     if ($("#homeChange").is(":checked")) {
 
-        if ($(".web").filter(":checked").length > 1) {
+//         $(".webPage").prop("checked", true);
 
-        } else {
+//         $("#homeSee").prop("checked", true);
 
-            $(".webPage").prop("checked", false);
+//         $("#homePage").prop("checked", true);
 
-        }
+//     } else {
+//         $("#homeDelete").prop("checked", false);
+//     }
+// });
 
-        $("#homePage").prop("checked", false);
+// $("#homeDelete").on("change", () => {
 
-        $("#homeChange").prop("checked", false);
+//     if ($("#homeDelete").is(":checked")) {
 
-        $("#homeDelete").prop("checked", false);
+//         $(".webPage").prop("checked", true);
 
-    } else {
+//         $("#homeSee").prop("checked", true);
 
-        $(".webPage").prop("checked", true);
+//         $("#homeChange").prop("checked", true);
 
-        $("#homePage").prop("checked", true);
+//         $("#homeDelete").prop("checked", true);
 
-    }
+//         $("#homePage").prop("checked", true);
 
-});
+//     }
+// });
 
-$("#karbaran").on("change", () => {
+// $("#homeSee").on("change", () => {
 
-    if ($("#karbaran").is(":checked")) {
+//     if (!$("#homeSee").is(":checked")) {
 
-        $("#karbaranSee").prop("checked", true);
+//         if ($(".web").filter(":checked").length > 1) {
 
-        $(".webPage").prop("checked", true);
+//         } else {
 
-    } else {
-        if ($(".web").filter(":checked").length > 0) {
+//             $(".webPage").prop("checked", false);
 
-        } else {
+//         }
 
-            $(".webPage").prop("checked", false);
+//         $("#homePage").prop("checked", false);
 
-        }
-        $("#karbaranSee").prop("checked", false);
+//         $("#homeChange").prop("checked", false);
 
-        $("#karbaranChange").prop("checked", false);
-        $("#karbaranDelete").prop("checked", false);
+//         $("#homeDelete").prop("checked", false);
 
-    }
+//     } else {
 
-});
+//         $(".webPage").prop("checked", true);
 
-$("#karbaranDelete").on("change", () => {
+//         $("#homePage").prop("checked", true);
 
-    if ($("#karbaranDelete").is(":checked")) {
+//     }
 
-        $(".webPage").prop("checked", true);
+// });
 
-        $("#karbaranSee").prop("checked", true);
+// $("#karbaran").on("change", () => {
 
-        $("#karbaranChange").prop("checked", true);
+//     if ($("#karbaran").is(":checked")) {
 
-        $("#karbaranDelete").prop("checked", true);
+//         $("#karbaranSee").prop("checked", true);
 
-        $("#karbaran").prop("checked", true);
+//         $(".webPage").prop("checked", true);
 
-    }
-});
+//     } else {
+//         if ($(".web").filter(":checked").length > 0) {
 
-$("#karbaranChange").on("change", () => {
+//         } else {
 
-    if ($("#karbaranChange").is(":checked")) {
+//             $(".webPage").prop("checked", false);
 
-        $(".webPage").prop("checked", true);
+//         }
+//         $("#karbaranSee").prop("checked", false);
 
-        $("#karbaranSee").prop("checked", true);
+//         $("#karbaranChange").prop("checked", false);
+//         $("#karbaranDelete").prop("checked", false);
 
-        $("#karbaran").prop("checked", true);
+//     }
 
-    } else {
-        $("#karbaranDelete").prop("checked", false);
-    }
-});
+// });
 
-$("#karbaranSee").on("change", () => {
+// $("#karbaranDelete").on("change", () => {
 
-    if (!$("#karbaranSee").is(":checked")) {
+//     if ($("#karbaranDelete").is(":checked")) {
 
-        if ($(".web").filter(":checked").length > 1) {
+//         $(".webPage").prop("checked", true);
 
-        } else {
+//         $("#karbaranSee").prop("checked", true);
 
-            $(".webPage").prop("checked", false);
+//         $("#karbaranChange").prop("checked", true);
 
-        }
+//         $("#karbaranDelete").prop("checked", true);
 
-        $("#karbaran").prop("checked", false);
+//         $("#karbaran").prop("checked", true);
 
-        $("#karbaranChange").prop("checked", false);
+//     }
+// });
 
-        $("#karbaranDelete").prop("checked", false);
+// $("#karbaranChange").on("change", () => {
 
-    } else {
+//     if ($("#karbaranChange").is(":checked")) {
 
-        $(".webPage").prop("checked", true);
+//         $(".webPage").prop("checked", true);
 
-        $("#karbaran").prop("checked", true);
+//         $("#karbaranSee").prop("checked", true);
 
-    }
+//         $("#karbaran").prop("checked", true);
 
-});
+//     } else {
+//         $("#karbaranDelete").prop("checked", false);
+//     }
+// });
 
-$("#specialSetting").on("change", () => {
+// $("#karbaranSee").on("change", () => {
 
-    if ($("#specialSetting").is(":checked")) {
+//     if (!$("#karbaranSee").is(":checked")) {
 
-        $(".webPage").prop("checked", true);
+//         if ($(".web").filter(":checked").length > 1) {
 
-        $("#specialSee").prop("checked", true);
+//         } else {
 
-    } else {
-        if ($(".web").filter(":checked").length > 0) {
+//             $(".webPage").prop("checked", false);
 
-        } else {
+//         }
 
-            $(".webPage").prop("checked", false);
+//         $("#karbaran").prop("checked", false);
 
-        }
-        $("#specialSee").prop("checked", false);
+//         $("#karbaranChange").prop("checked", false);
 
-        $("#specialChange").prop("checked", false);
+//         $("#karbaranDelete").prop("checked", false);
 
-        $("#specialDelete").prop("checked", false);
+//     } else {
 
-    }
+//         $(".webPage").prop("checked", true);
 
-});
+//         $("#karbaran").prop("checked", true);
 
-$("#specialDelete").on("change", () => {
+//     }
 
-    if ($("#specialDelete").is(":checked")) {
+// });
 
-        $(".webPage").prop("checked", true);
+// $("#specialSetting").on("change", () => {
 
-        $("#specialSee").prop("checked", true);
+//     if ($("#specialSetting").is(":checked")) {
 
-        $("#specialChange").prop("checked", true);
+//         $(".webPage").prop("checked", true);
 
-        $("#specialDelete").prop("checked", true);
+//         $("#specialSee").prop("checked", true);
 
-        $("#specialSetting").prop("checked", true);
+//     } else {
+//         if ($(".web").filter(":checked").length > 0) {
 
-    }
-});
+//         } else {
 
-$("#specialChange").on("change", () => {
+//             $(".webPage").prop("checked", false);
 
-    if ($("#specialChange").is(":checked")) {
+//         }
+//         $("#specialSee").prop("checked", false);
 
-        $(".webPage").prop("checked", true);
+//         $("#specialChange").prop("checked", false);
 
-        $("#specialSee").prop("checked", true);
+//         $("#specialDelete").prop("checked", false);
 
-        $("#specialSetting").prop("checked", true);
+//     }
 
-    } else {
-        $("#specialDelete").prop("checked", false);
-    }
-});
+// });
 
-$("#specialSee").on("change", () => {
+// $("#specialDelete").on("change", () => {
 
-    if (!$("#specialSee").is(":checked")) {
+//     if ($("#specialDelete").is(":checked")) {
 
-        if ($(".web").filter(":checked").length > 1) {
+//         $(".webPage").prop("checked", true);
 
-        } else {
+//         $("#specialSee").prop("checked", true);
 
-            $(".webPage").prop("checked", false);
+//         $("#specialChange").prop("checked", true);
 
-        }
+//         $("#specialDelete").prop("checked", true);
 
-        $("#specialChange").prop("checked", false);
+//         $("#specialSetting").prop("checked", true);
 
-        $("#specialSetting").prop("checked", false);
+//     }
+// });
 
-        $("#specialDelete").prop("checked", false);
+// $("#specialChange").on("change", () => {
 
-    } else {
+//     if ($("#specialChange").is(":checked")) {
 
-        $(".webPage").prop("checked", true);
+//         $(".webPage").prop("checked", true);
 
-        $("#specialSetting").prop("checked", true);
+//         $("#specialSee").prop("checked", true);
 
-    }
+//         $("#specialSetting").prop("checked", true);
 
-});
+//     } else {
+//         $("#specialDelete").prop("checked", false);
+//     }
+// });
 
-$(".kalas").on("change", () => {
-
-    if ($(".kalas").is(':checked')) {
-        $(".kala").prop("checked", true);
-        $("#seeKalaList").prop("checked", true);
-        $("#seeRequestedKala").prop("checked", true);
-        $("#seeAlerted").prop("checked", true);
-        $("#seeFastKala").prop("checked", true);
-        $("#seePishKharid").prop("checked", true);
-        $("#seeBrands").prop("checked", true);
-        $("#seeGroupList").prop("checked", true);
-        $("#changeRequested").prop("checked", true);
-    } else {
-        $(".kala").prop("checked", false);
-        $("#seeKalaList").prop("checked", false);
-        $("#seeRequested").prop("checked", false);
-        $("#seeAlerted").prop("checked", false);
-        $("#seeFastKala").prop("checked", false);
-        $("#seePishKharid").prop("checked", false);
-        $("#seeBrands").prop("checked", false);
-        $("#seeGroupList").prop("checked", false);
-        $("#seeRequestedKala").prop("checked", false);
-
-        $("#changeKalaList").prop("checked", false);
-        $("#changeRequested").prop("checked", false);
-        $("#changeAlerted").prop("checked", false);
-        $("#changeFastKala").prop("checked", false);
-        $("#changePishKharid").prop("checked", false);
-        $("#changeBrands").prop("checked", false);
-        $("#changeGroupList").prop("checked", false);
-        $("#changeRequestedKala").prop("checked", false);
-
-        $("#deleteKalaList").prop("checked", false);
-        $("#deleteRequested").prop("checked", false);
-        $("#deleteAlerted").prop("checked", false);
-        $("#deleteFastKala").prop("checked", false);
-        $("#deletePishKharid").prop("checked", false);
-        $("#deleteBrands").prop("checked", false);
-        $("#deleteGroupList").prop("checked", false);
-        $("#deleteRequestedKala").prop("checked", false);
-    }
+// $("#specialSee").on("change", () => {
 
-});
+//     if (!$("#specialSee").is(":checked")) {
 
-$("#kalaList").on("change", () => {
+//         if ($(".web").filter(":checked").length > 1) {
 
-    if ($("#kalaList").is(":checked")) {
+//         } else {
 
-        $(".kalas").prop("checked", true);
+//             $(".webPage").prop("checked", false);
 
-        $("#seeKalaList").prop("checked", true);
+//         }
 
-    } else {
-        if ($(".kala").filter(":checked").length > 0) {
+//         $("#specialChange").prop("checked", false);
 
-        } else {
+//         $("#specialSetting").prop("checked", false);
 
-            $(".kalas").prop("checked", false);
+//         $("#specialDelete").prop("checked", false);
 
-        }
-        $("#seeKalaList").prop("checked", false);
+//     } else {
 
-        $("#changeKalaList").prop("checked", false);
+//         $(".webPage").prop("checked", true);
 
-        $("#deleteKalaList").prop("checked", false);
+//         $("#specialSetting").prop("checked", true);
 
-    }
+//     }
 
-});
+// });
 
-$("#changeKalaList").on("change", () => {
+// $(".kalas").on("change", () => {
 
-    if ($("#changeKalaList").is(":checked")) {
+//     if ($(".kalas").is(':checked')) {
+//         $(".kala").prop("checked", true);
+//         $("#seeKalaList").prop("checked", true);
+//         $("#seeRequestedKala").prop("checked", true);
+//         $("#seeAlerted").prop("checked", true);
+//         $("#seeFastKala").prop("checked", true);
+//         $("#seePishKharid").prop("checked", true);
+//         $("#seeBrands").prop("checked", true);
+//         $("#seeGroupList").prop("checked", true);
+//         $("#changeRequested").prop("checked", true);
+//     } else {
+//         $(".kala").prop("checked", false);
+//         $("#seeKalaList").prop("checked", false);
+//         $("#seeRequested").prop("checked", false);
+//         $("#seeAlerted").prop("checked", false);
+//         $("#seeFastKala").prop("checked", false);
+//         $("#seePishKharid").prop("checked", false);
+//         $("#seeBrands").prop("checked", false);
+//         $("#seeGroupList").prop("checked", false);
+//         $("#seeRequestedKala").prop("checked", false);
 
-        $(".kalas").prop("checked", true);
+//         $("#changeKalaList").prop("checked", false);
+//         $("#changeRequested").prop("checked", false);
+//         $("#changeAlerted").prop("checked", false);
+//         $("#changeFastKala").prop("checked", false);
+//         $("#changePishKharid").prop("checked", false);
+//         $("#changeBrands").prop("checked", false);
+//         $("#changeGroupList").prop("checked", false);
+//         $("#changeRequestedKala").prop("checked", false);
 
-        $("#seeKalaList").prop("checked", true);
+//         $("#deleteKalaList").prop("checked", false);
+//         $("#deleteRequested").prop("checked", false);
+//         $("#deleteAlerted").prop("checked", false);
+//         $("#deleteFastKala").prop("checked", false);
+//         $("#deletePishKharid").prop("checked", false);
+//         $("#deleteBrands").prop("checked", false);
+//         $("#deleteGroupList").prop("checked", false);
+//         $("#deleteRequestedKala").prop("checked", false);
+//     }
 
-        $("#kalaList").prop("checked", true);
+// });
 
-    } else {
-        $("#deleteKalaList").prop("checked", false);
-    }
-});
+// $("#kalaList").on("change", () => {
 
-$("#deleteKalaList").on("change", () => {
+//     if ($("#kalaList").is(":checked")) {
 
-    if ($("#deleteKalaList").is(":checked")) {
+//         $(".kalas").prop("checked", true);
 
-        $("#seeKalaList").prop("checked", true);
+//         $("#seeKalaList").prop("checked", true);
 
-        $("#changeKalaList").prop("checked", true);
+//     } else {
+//         if ($(".kala").filter(":checked").length > 0) {
 
-        $("#deleteKalaList").prop("checked", true);
+//         } else {
 
-        $("#kalaList").prop("checked", true);
+//             $(".kalas").prop("checked", false);
 
-        $(".kalas").prop("checked", true);
+//         }
+//         $("#seeKalaList").prop("checked", false);
 
-    }
-});
+//         $("#changeKalaList").prop("checked", false);
 
-$("#seeKalaList").on("change", () => {
+//         $("#deleteKalaList").prop("checked", false);
 
-    if (!$("#seeKalaList").is(":checked")) {
+//     }
 
-        if ($(".kala").filter(":checked").length > 1) {
+// });
 
-        } else {
+// $("#changeKalaList").on("change", () => {
 
-            $(".kalas").prop("checked", false);
+//     if ($("#changeKalaList").is(":checked")) {
 
-        }
+//         $(".kalas").prop("checked", true);
 
-        $("#kalaList").prop("checked", false);
+//         $("#seeKalaList").prop("checked", true);
 
-        $("#changeKalaList").prop("checked", false);
+//         $("#kalaList").prop("checked", true);
 
-        $("#deleteKalaList").prop("checked", false);
+//     } else {
+//         $("#deleteKalaList").prop("checked", false);
+//     }
+// });
 
-    } else {
+// $("#deleteKalaList").on("change", () => {
 
-        $(".kalas").prop("checked", true);
+//     if ($("#deleteKalaList").is(":checked")) {
 
-        $("#kalaList").prop("checked", true);
+//         $("#seeKalaList").prop("checked", true);
 
-    }
+//         $("#changeKalaList").prop("checked", true);
 
-});
+//         $("#deleteKalaList").prop("checked", true);
 
+//         $("#kalaList").prop("checked", true);
 
+//         $(".kalas").prop("checked", true);
 
+//     }
+// });
 
-$("#requestedKala").on("change", () => {
+// $("#seeKalaList").on("change", () => {
 
-    if ($("#requestedKala").is(":checked")) {
+//     if (!$("#seeKalaList").is(":checked")) {
 
-        $(".kalas").prop("checked", true);
+//         if ($(".kala").filter(":checked").length > 1) {
 
-        $("#seeRequestedKala").prop("checked", true);
+//         } else {
 
-    } else {
-        if ($(".kala").filter(":checked").length > 0) {
+//             $(".kalas").prop("checked", false);
 
-        } else {
+//         }
 
-            $(".kalas").prop("checked", false);
+//         $("#kalaList").prop("checked", false);
 
-        }
-        $("#seeRequestedKala").prop("checked", false);
+//         $("#changeKalaList").prop("checked", false);
 
-        $("#changeRequestedKala").prop("checked", false);
+//         $("#deleteKalaList").prop("checked", false);
 
-        $("#deleteRequestedKala").prop("checked", false);
+//     } else {
 
-    }
+//         $(".kalas").prop("checked", true);
 
-});
+//         $("#kalaList").prop("checked", true);
 
-$("#changeRequestedKala").on("change", () => {
+//     }
 
-    if ($("#changeRequestedKala").is(":checked")) {
+// });
 
-        $("#seeRequestedKala").prop("checked", true);
 
-        $(".kalas").prop("checked", true);
 
-        $("#requestedKala").prop("checked", true);
 
-    } else {
-        $("#deleteRequestedKala").prop("checked", false);
-    }
-});
+// $("#requestedKala").on("change", () => {
 
+//     if ($("#requestedKala").is(":checked")) {
 
+//         $(".kalas").prop("checked", true);
 
-$("#deleteRequestedKala").on("change", () => {
+//         $("#seeRequestedKala").prop("checked", true);
 
-    if ($("#deleteRequestedKala").is(":checked")) {
+//     } else {
+//         if ($(".kala").filter(":checked").length > 0) {
 
-        $("#seeRequestedKala").prop("checked", true);
+//         } else {
 
-        $("#changeRequestedKala").prop("checked", true);
+//             $(".kalas").prop("checked", false);
 
-        $("#requestedKala").prop("checked", true);
+//         }
+//         $("#seeRequestedKala").prop("checked", false);
 
-        $(".kalas").prop("checked", true);
+//         $("#changeRequestedKala").prop("checked", false);
 
-    }
-});
+//         $("#deleteRequestedKala").prop("checked", false);
 
-$("#seeRequestedKala").on("change", () => {
+//     }
 
-    if (!$("#seeRequestedKala").is(":checked")) {
+// });
 
-        if ($(".kala").filter(":checked").length > 1) {
+// $("#changeRequestedKala").on("change", () => {
 
-        } else {
+//     if ($("#changeRequestedKala").is(":checked")) {
 
-            $(".kalas").prop("checked", false);
+//         $("#seeRequestedKala").prop("checked", true);
 
-        }
+//         $(".kalas").prop("checked", true);
 
-        $("#requestedKala").prop("checked", false);
+//         $("#requestedKala").prop("checked", true);
 
-        $("#changeRequestedKala").prop("checked", false);
-        $("#deleteRequestedKala").prop("checked", false);
+//     } else {
+//         $("#deleteRequestedKala").prop("checked", false);
+//     }
+// });
 
-    } else {
 
-        $(".kalas").prop("checked", true);
 
-        $("#requestedKala").prop("checked", true);
+// $("#deleteRequestedKala").on("change", () => {
 
-    }
+//     if ($("#deleteRequestedKala").is(":checked")) {
 
-});
+//         $("#seeRequestedKala").prop("checked", true);
 
+//         $("#changeRequestedKala").prop("checked", true);
 
+//         $("#requestedKala").prop("checked", true);
 
-$("#fastKala").on("change", () => {
+//         $(".kalas").prop("checked", true);
 
-    if ($("#fastKala").is(":checked")) {
+//     }
+// });
 
-        $(".kalas").prop("checked", true);
+// $("#seeRequestedKala").on("change", () => {
 
-        $("#seeFastKala").prop("checked", true);
+//     if (!$("#seeRequestedKala").is(":checked")) {
 
-    } else {
-        if ($(".kala").filter(":checked").length > 0) {
+//         if ($(".kala").filter(":checked").length > 1) {
 
-        } else {
+//         } else {
 
-            $(".kalas").prop("checked", false);
+//             $(".kalas").prop("checked", false);
 
-        }
-        $("#seeFastKala").prop("checked", false);
+//         }
 
-        $("#changeFastKala").prop("checked", false);
+//         $("#requestedKala").prop("checked", false);
 
-        $("#deleteFastKala").prop("checked", false);
+//         $("#changeRequestedKala").prop("checked", false);
+//         $("#deleteRequestedKala").prop("checked", false);
 
-    }
+//     } else {
 
-});
+//         $(".kalas").prop("checked", true);
 
-$("#changeFastKala").on("change", () => {
+//         $("#requestedKala").prop("checked", true);
 
-    if ($("#changeFastKala").is(":checked")) {
+//     }
 
-        $(".kalas").prop("checked", true);
+// });
 
-        $("#seeFastKala").prop("checked", true);
 
-        $("#fastKala").prop("checked", true);
 
-    } else {
-        $("#deleteFastKala").prop("checked", false);
-    }
-});
+// $("#fastKala").on("change", () => {
 
-$("#deleteFastKala").on("change", () => {
+//     if ($("#fastKala").is(":checked")) {
 
-    if ($("#deleteFastKala").is(":checked")) {
+//         $(".kalas").prop("checked", true);
 
-        $("#seeFastKala").prop("checked", true);
+//         $("#seeFastKala").prop("checked", true);
 
-        $("#changeFastKala").prop("checked", true);
+//     } else {
+//         if ($(".kala").filter(":checked").length > 0) {
 
-        $("#deleteFastKala").prop("checked", true);
+//         } else {
 
-        $("#fastKala").prop("checked", true);
+//             $(".kalas").prop("checked", false);
 
-        $(".kalas").prop("checked", true);
+//         }
+//         $("#seeFastKala").prop("checked", false);
 
-    }
-});
+//         $("#changeFastKala").prop("checked", false);
 
-$("#seeFastKala").on("change", () => {
+//         $("#deleteFastKala").prop("checked", false);
 
-    if (!$("#seeFastKala").is(":checked")) {
+//     }
 
-        if ($(".kala").filter(":checked").length > 1) {
+// });
 
-        } else {
+// $("#changeFastKala").on("change", () => {
 
-            $(".kalas").prop("checked", false);
+//     if ($("#changeFastKala").is(":checked")) {
 
-        }
+//         $(".kalas").prop("checked", true);
 
-        $("#fastKala").prop("checked", false);
+//         $("#seeFastKala").prop("checked", true);
 
-        $("#changeFastKala").prop("checked", false);
+//         $("#fastKala").prop("checked", true);
 
-        $("#deleteFastKala").prop("checked", false);
+//     } else {
+//         $("#deleteFastKala").prop("checked", false);
+//     }
+// });
 
-    } else {
+// $("#deleteFastKala").on("change", () => {
 
-        $(".kalas").prop("checked", true);
+//     if ($("#deleteFastKala").is(":checked")) {
 
-        $("#fastKala").prop("checked", true);
+//         $("#seeFastKala").prop("checked", true);
 
-    }
+//         $("#changeFastKala").prop("checked", true);
 
-});
+//         $("#deleteFastKala").prop("checked", true);
 
+//         $("#fastKala").prop("checked", true);
 
-$("#pishKharid").on("change", () => {
+//         $(".kalas").prop("checked", true);
 
-    if ($("#pishKharid").is(":checked")) {
+//     }
+// });
 
-        $(".kalas").prop("checked", true);
+// $("#seeFastKala").on("change", () => {
 
-        $("#seePishKharid").prop("checked", true);
+//     if (!$("#seeFastKala").is(":checked")) {
 
-    } else {
-        if ($(".kala").filter(":checked").length > 0) {
+//         if ($(".kala").filter(":checked").length > 1) {
 
-        } else {
+//         } else {
 
-            $(".kalas").prop("checked", false);
+//             $(".kalas").prop("checked", false);
 
-        }
-        $("#seePishKharid").prop("checked", false);
+//         }
 
-        $("#deletePishKharid").prop("checked", false);
+//         $("#fastKala").prop("checked", false);
 
-        $("#changePishKharid").prop("checked", false);
+//         $("#changeFastKala").prop("checked", false);
 
-    }
+//         $("#deleteFastKala").prop("checked", false);
 
-});
+//     } else {
 
-$("#changePishKharid").on("change", () => {
+//         $(".kalas").prop("checked", true);
 
-    if ($("#changePishKharid").is(":checked")) {
+//         $("#fastKala").prop("checked", true);
 
-        $(".kalas").prop("checked", true);
+//     }
 
-        $("#seePishKharid").prop("checked", true);
+// });
 
-        $("#pishKharid").prop("checked", true);
 
-    } else {
+// $("#pishKharid").on("change", () => {
 
-        $("#deletePishKharid").prop("checked", false);
+//     if ($("#pishKharid").is(":checked")) {
 
-    }
-});
+//         $(".kalas").prop("checked", true);
 
-$("#deletePishKharid").on("change", () => {
+//         $("#seePishKharid").prop("checked", true);
 
-    if ($("#deletePishKharid").is(":checked")) {
+//     } else {
+//         if ($(".kala").filter(":checked").length > 0) {
 
-        $("#seePishKharid").prop("checked", true);
+//         } else {
 
-        $("#changePishKharid").prop("checked", true);
+//             $(".kalas").prop("checked", false);
 
-        $("#deletePishKharid").prop("checked", true);
+//         }
+//         $("#seePishKharid").prop("checked", false);
 
-        $("#pishKharid").prop("checked", true);
+//         $("#deletePishKharid").prop("checked", false);
 
-        $(".kalas").prop("checked", true);
+//         $("#changePishKharid").prop("checked", false);
 
-    }
-});
+//     }
 
-$("#seePishKharid").on("change", () => {
+// });
 
-    if (!$("#seePishKharid").is(":checked")) {
+// $("#changePishKharid").on("change", () => {
 
-        if ($(".kala").filter(":checked").length > 1) {
+//     if ($("#changePishKharid").is(":checked")) {
 
-        } else {
+//         $(".kalas").prop("checked", true);
 
-            $(".kalas").prop("checked", false);
+//         $("#seePishKharid").prop("checked", true);
 
-        }
+//         $("#pishKharid").prop("checked", true);
 
-        $("#pishKharid").prop("checked", false);
+//     } else {
 
-        $("#changePishKharid").prop("checked", false);
+//         $("#deletePishKharid").prop("checked", false);
 
-        $("#deletePishKharid").prop("checked", false);
+//     }
+// });
 
-    } else {
+// $("#deletePishKharid").on("change", () => {
 
-        $(".kalas").prop("checked", true);
+//     if ($("#deletePishKharid").is(":checked")) {
 
-        $("#pishKharid").prop("checked", true);
+//         $("#seePishKharid").prop("checked", true);
 
-    }
+//         $("#changePishKharid").prop("checked", true);
 
-});
+//         $("#deletePishKharid").prop("checked", true);
 
-$("#brands").on("change", () => {
+//         $("#pishKharid").prop("checked", true);
 
-    if ($("#brands").is(":checked")) {
+//         $(".kalas").prop("checked", true);
 
-        $(".kalas").prop("checked", true);
+//     }
+// });
 
-        $("#seeBrands").prop("checked", true);
+// $("#seePishKharid").on("change", () => {
 
-    } else {
-        if ($(".kala").filter(":checked").length > 0) {
+//     if (!$("#seePishKharid").is(":checked")) {
 
-        } else {
+//         if ($(".kala").filter(":checked").length > 1) {
 
-            $(".kalas").prop("checked", false);
+//         } else {
 
-        }
-        $("#seeBrands").prop("checked", false);
+//             $(".kalas").prop("checked", false);
 
-        $("#deleteBrands").prop("checked", false);
+//         }
 
-        $("#changeBrands").prop("checked", false);
+//         $("#pishKharid").prop("checked", false);
 
-    }
+//         $("#changePishKharid").prop("checked", false);
 
-});
+//         $("#deletePishKharid").prop("checked", false);
 
-$("#changeBrands").on("change", () => {
+//     } else {
 
-    if ($("#changeBrands").is(":checked")) {
+//         $(".kalas").prop("checked", true);
 
-        $("#seeBrands").prop("checked", true);
+//         $("#pishKharid").prop("checked", true);
 
-        $(".kalas").prop("checked", true);
+//     }
 
-        $("#brands").prop("checked", true);
+// });
 
-    } else {
-        $("#deleteBrands").prop("checked", false);
-    }
-});
+// $("#brands").on("change", () => {
 
-$("#deleteBrands").on("change", () => {
+//     if ($("#brands").is(":checked")) {
 
-    if ($("#deleteBrands").is(":checked")) {
+//         $(".kalas").prop("checked", true);
 
-        $("#seeBrands").prop("checked", true);
+//         $("#seeBrands").prop("checked", true);
 
-        $("#changeBrands").prop("checked", true);
+//     } else {
+//         if ($(".kala").filter(":checked").length > 0) {
 
-        $("#deleteBrands").prop("checked", true);
+//         } else {
 
-        $("#brands").prop("checked", true);
+//             $(".kalas").prop("checked", false);
 
-        $(".kalas").prop("checked", true);
+//         }
+//         $("#seeBrands").prop("checked", false);
 
-    }
-});
+//         $("#deleteBrands").prop("checked", false);
 
-$("#seeBrands").on("change", () => {
+//         $("#changeBrands").prop("checked", false);
 
-    if (!$("#seeBrands").is(":checked")) {
-        if ($(".kala").filter(":checked").length > 1) {
+//     }
 
-        } else {
+// });
 
-            $(".kalas").prop("checked", false);
+// $("#changeBrands").on("change", () => {
 
-        }
-        $("#brands").prop("checked", false);
+//     if ($("#changeBrands").is(":checked")) {
 
-        $("#changeBrands").prop("checked", false);
-        $("#deleteBrands").prop("checked", false);
+//         $("#seeBrands").prop("checked", true);
 
-    } else {
+//         $(".kalas").prop("checked", true);
 
-        $(".kalas").prop("checked", true);
+//         $("#brands").prop("checked", true);
 
-        $("#brands").prop("checked", true);
+//     } else {
+//         $("#deleteBrands").prop("checked", false);
+//     }
+// });
 
-    }
+// $("#deleteBrands").on("change", () => {
 
-});
+//     if ($("#deleteBrands").is(":checked")) {
 
+//         $("#seeBrands").prop("checked", true);
 
-$("#alerted").on("change", () => {
+//         $("#changeBrands").prop("checked", true);
 
-    if ($("#alerted").is(":checked")) {
+//         $("#deleteBrands").prop("checked", true);
 
-        $(".kalas").prop("checked", true);
+//         $("#brands").prop("checked", true);
 
-        $("#seeAlerted").prop("checked", true);
+//         $(".kalas").prop("checked", true);
 
-    } else {
-        if ($(".kala").filter(":checked").length > 0) {
+//     }
+// });
 
-        } else {
+// $("#seeBrands").on("change", () => {
 
-            $(".kalas").prop("checked", false);
+//     if (!$("#seeBrands").is(":checked")) {
+//         if ($(".kala").filter(":checked").length > 1) {
 
-        }
-        $("#seeAlerted").prop("checked", false);
+//         } else {
 
-        $("#deleteAlerted").prop("checked", false);
+//             $(".kalas").prop("checked", false);
 
-        $("#changeAlerted").prop("checked", false);
+//         }
+//         $("#brands").prop("checked", false);
 
-    }
+//         $("#changeBrands").prop("checked", false);
+//         $("#deleteBrands").prop("checked", false);
 
-});
+//     } else {
 
-$("#changeAlerted").on("change", () => {
+//         $(".kalas").prop("checked", true);
 
-    if ($("#changeAlerted").is(":checked")) {
+//         $("#brands").prop("checked", true);
 
-        $(".kalas").prop("checked", true);
+//     }
 
-        $("#seeAlerted").prop("checked", true);
+// });
 
-        $("#alerted").prop("checked", true);
 
-    } else {
-        $("#deleteAlerted").prop("checked", false);
-    }
-});
+// $("#alerted").on("change", () => {
 
-$("#deleteAlerted").on("change", () => {
+//     if ($("#alerted").is(":checked")) {
 
-    if ($("#deleteAlerted").is(":checked")) {
+//         $(".kalas").prop("checked", true);
 
-        $("#seeAlerted").prop("checked", true);
+//         $("#seeAlerted").prop("checked", true);
 
-        $("#changeAlerted").prop("checked", true);
+//     } else {
+//         if ($(".kala").filter(":checked").length > 0) {
 
-        $("#deleteAlerted").prop("checked", true);
+//         } else {
 
-        $("#alerted").prop("checked", true);
+//             $(".kalas").prop("checked", false);
 
-        $(".kalas").prop("checked", true);
+//         }
+//         $("#seeAlerted").prop("checked", false);
 
-    }
-});
+//         $("#deleteAlerted").prop("checked", false);
 
-$("#seeAlerted").on("change", () => {
+//         $("#changeAlerted").prop("checked", false);
 
-    if (!$("#seeAlerted").is(":checked")) {
-        if ($(".kala").filter(":checked").length > 1) {
+//     }
 
-        } else {
+// });
 
-            $(".kalas").prop("checked", false);
+// $("#changeAlerted").on("change", () => {
 
-        }
-        $("#alerted").prop("checked", false);
+//     if ($("#changeAlerted").is(":checked")) {
 
-        $("#changeAlerted").prop("checked", false);
+//         $(".kalas").prop("checked", true);
 
-        $("#deleteAlerted").prop("checked", false);
+//         $("#seeAlerted").prop("checked", true);
 
-    } else {
+//         $("#alerted").prop("checked", true);
 
-        $(".kalas").prop("checked", true);
+//     } else {
+//         $("#deleteAlerted").prop("checked", false);
+//     }
+// });
 
-        $("#alerted").prop("checked", true);
+// $("#deleteAlerted").on("change", () => {
 
-    }
+//     if ($("#deleteAlerted").is(":checked")) {
 
-});
+//         $("#seeAlerted").prop("checked", true);
 
+//         $("#changeAlerted").prop("checked", true);
 
-$("#groupList").on("change", () => {
+//         $("#deleteAlerted").prop("checked", true);
 
-    if ($("#groupList").is(":checked")) {
+//         $("#alerted").prop("checked", true);
 
-        $(".kalas").prop("checked", true);
+//         $(".kalas").prop("checked", true);
 
-        $("#seeGroupList").prop("checked", true);
+//     }
+// });
 
-        $(".kalas").prop("checked", true);
+// $("#seeAlerted").on("change", () => {
 
-    } else {
-        if ($(".kala").filter(":checked").length > 0) {
+//     if (!$("#seeAlerted").is(":checked")) {
+//         if ($(".kala").filter(":checked").length > 1) {
 
-        } else {
+//         } else {
 
-            $(".kalas").prop("checked", false);
+//             $(".kalas").prop("checked", false);
 
-        }
-        $("#seeGroupList").prop("checked", false);
+//         }
+//         $("#alerted").prop("checked", false);
 
-        $("#deleteGroupList").prop("checked", false);
+//         $("#changeAlerted").prop("checked", false);
 
-        $("#changeGroupList").prop("checked", false);
+//         $("#deleteAlerted").prop("checked", false);
 
-    }
+//     } else {
 
-});
+//         $(".kalas").prop("checked", true);
 
-$("#changeGroupList").on("change", () => {
+//         $("#alerted").prop("checked", true);
 
-    if ($("#changeGroupList").is(":checked")) {
+//     }
 
-        $("#seeGroupList").prop("checked", true);
+// });
 
-        $(".kalas").prop("checked", true);
 
-        $("#groupList").prop("checked", true);
+// $("#groupList").on("change", () => {
 
-    } else {
-        $("#deleteGroupList").prop("checked", false);
-    }
-});
+//     if ($("#groupList").is(":checked")) {
 
-$("#deleteGroupList").on("change", () => {
+//         $(".kalas").prop("checked", true);
 
-    if ($("#deleteGroupList").is(":checked")) {
+//         $("#seeGroupList").prop("checked", true);
 
-        $("#seeGroupList").prop("checked", true);
+//         $(".kalas").prop("checked", true);
 
-        $("#changeGroupList").prop("checked", true);
+//     } else {
+//         if ($(".kala").filter(":checked").length > 0) {
 
-        $("#deleteGroupList").prop("checked", true);
+//         } else {
 
-        $("#groupList").prop("checked", true);
+//             $(".kalas").prop("checked", false);
 
-        $(".kalas").prop("checked", true);
+//         }
+//         $("#seeGroupList").prop("checked", false);
 
-    }
-});
+//         $("#deleteGroupList").prop("checked", false);
 
-$("#seeGroupList").on("change", () => {
+//         $("#changeGroupList").prop("checked", false);
 
-    if (!$("#seeGroupList").is(":checked")) {
-        if ($(".kala").filter(":checked").length > 1) {
+//     }
 
-        } else {
+// });
 
-            $(".kalas").prop("checked", false);
+// $("#changeGroupList").on("change", () => {
 
-        }
-        $("#groupList").prop("checked", false);
+//     if ($("#changeGroupList").is(":checked")) {
 
-        $("#changeGroupList").prop("checked", false);
+//         $("#seeGroupList").prop("checked", true);
 
-        $("#deleteGroupList").prop("checked", false);
+//         $(".kalas").prop("checked", true);
 
-    } else {
+//         $("#groupList").prop("checked", true);
 
-        $(".kalas").prop("checked", true);
+//     } else {
+//         $("#deleteGroupList").prop("checked", false);
+//     }
+// });
 
-        $("#groupList").prop("checked", true);
+// $("#deleteGroupList").on("change", () => {
 
-    }
+//     if ($("#deleteGroupList").is(":checked")) {
 
-});
+//         $("#seeGroupList").prop("checked", true);
 
-$(".persons").on("change", () => {
+//         $("#changeGroupList").prop("checked", true);
 
-    if ($(".persons").is(":checked")) {
-        $(".person").prop("checked", true);
-        $("#seeCustomers").prop("checked", true);
-        $("#seeOfficials").prop("checked", true);
-    } else {
-        $(".person").prop("checked", false);
-        $("#seeCustomers").prop("checked", false);
-        $("#seeOfficials").prop("checked", false);
-        $("#changeCustomers").prop("checked", false);
-        $("#changeOfficials").prop("checked", false);
-        $("#deleteCustomers").prop("checked", false);
-        $("#deleteOfficials").prop("checked", false);
-    }
-});
+//         $("#deleteGroupList").prop("checked", true);
 
-$("#customers").on("change", () => {
+//         $("#groupList").prop("checked", true);
 
-    if ($("#customers").is(":checked")) {
+//         $(".kalas").prop("checked", true);
 
-        $(".persons").prop("checked", true);
+//     }
+// });
 
-        $("#seeCustomers").prop("checked", true);
+// $("#seeGroupList").on("change", () => {
 
-    } else {
-        if ($(".person").filter(":checked").length > 0) {
+//     if (!$("#seeGroupList").is(":checked")) {
+//         if ($(".kala").filter(":checked").length > 1) {
 
-        } else {
+//         } else {
 
-            $(".persons").prop("checked", false);
+//             $(".kalas").prop("checked", false);
 
-        }
-        $("#seeCustomers").prop("checked", false);
+//         }
+//         $("#groupList").prop("checked", false);
 
-        $("#changeCustomers").prop("checked", false);
+//         $("#changeGroupList").prop("checked", false);
 
-        $("#deleteCustomers").prop("checked", false);
+//         $("#deleteGroupList").prop("checked", false);
 
-    }
+//     } else {
 
-});
+//         $(".kalas").prop("checked", true);
 
-$("#changeCustomers").on("change", () => {
+//         $("#groupList").prop("checked", true);
 
-    if ($("#changeCustomers").is(":checked")) {
+//     }
 
-        $(".persons").prop("checked", true);
+// });
 
-        $("#seeCustomers").prop("checked", true);
+// $(".persons").on("change", () => {
 
-        $("#customers").prop("checked", true);
+//     if ($(".persons").is(":checked")) {
+//         $(".person").prop("checked", true);
+//         $("#seeCustomers").prop("checked", true);
+//         $("#seeOfficials").prop("checked", true);
+//     } else {
+//         $(".person").prop("checked", false);
+//         $("#seeCustomers").prop("checked", false);
+//         $("#seeOfficials").prop("checked", false);
+//         $("#changeCustomers").prop("checked", false);
+//         $("#changeOfficials").prop("checked", false);
+//         $("#deleteCustomers").prop("checked", false);
+//         $("#deleteOfficials").prop("checked", false);
+//     }
+// });
 
-    } else {
-        $("#deleteCustomers").prop("checked", false);
-    }
-});
+// $("#customers").on("change", () => {
 
-$("#deleteCustomers").on("change", () => {
+//     if ($("#customers").is(":checked")) {
 
-    if ($("#deleteCustomers").is(":checked")) {
+//         $(".persons").prop("checked", true);
 
-        $("#seeCustomers").prop("checked", true);
+//         $("#seeCustomers").prop("checked", true);
 
-        $("#changeCustomers").prop("checked", true);
+//     } else {
+//         if ($(".person").filter(":checked").length > 0) {
 
-        $("#deleteCustomers").prop("checked", true);
+//         } else {
 
-        $("#customers").prop("checked", true);
+//             $(".persons").prop("checked", false);
 
-        $(".persons").prop("checked", true);
+//         }
+//         $("#seeCustomers").prop("checked", false);
 
-    }
-});
+//         $("#changeCustomers").prop("checked", false);
 
-$("#seeCustomers").on("change", () => {
+//         $("#deleteCustomers").prop("checked", false);
 
-    if (!$("#seeCustomers").is(":checked")) {
+//     }
 
-        if ($(".person").filter(":checked").length > 1) {
+// });
 
-        } else {
+// $("#changeCustomers").on("change", () => {
 
-            $(".persons").prop("checked", false);
+//     if ($("#changeCustomers").is(":checked")) {
 
-        }
+//         $(".persons").prop("checked", true);
 
-        $("#customers").prop("checked", false);
+//         $("#seeCustomers").prop("checked", true);
 
-        $("#changeCustomers").prop("checked", false);
+//         $("#customers").prop("checked", true);
 
-        $("#deleteCustomers").prop("checked", false);
+//     } else {
+//         $("#deleteCustomers").prop("checked", false);
+//     }
+// });
 
-    } else {
+// $("#deleteCustomers").on("change", () => {
 
-        $(".persons").prop("checked", true);
+//     if ($("#deleteCustomers").is(":checked")) {
 
-        $("#customers").prop("checked", true);
+//         $("#seeCustomers").prop("checked", true);
 
-    }
+//         $("#changeCustomers").prop("checked", true);
 
-});
+//         $("#deleteCustomers").prop("checked", true);
 
-$("#officials").on("change", () => {
+//         $("#customers").prop("checked", true);
 
-    if ($("#officials").is(":checked")) {
+//         $(".persons").prop("checked", true);
 
-        $(".persons").prop("checked", true);
+//     }
+// });
 
-        $("#seeOfficials").prop("checked", true);
+// $("#seeCustomers").on("change", () => {
 
-    } else {
-        if ($(".person").filter(":checked").length > 0) {
+//     if (!$("#seeCustomers").is(":checked")) {
 
-        } else {
+//         if ($(".person").filter(":checked").length > 1) {
 
-            $(".persons").prop("checked", false);
+//         } else {
 
-        }
-        $("#seeOfficials").prop("checked", false);
+//             $(".persons").prop("checked", false);
 
-        $("#changeOfficials").prop("checked", false);
+//         }
 
-        $("#deleteOfficials").prop("checked", false);
+//         $("#customers").prop("checked", false);
 
-    }
+//         $("#changeCustomers").prop("checked", false);
 
-});
+//         $("#deleteCustomers").prop("checked", false);
 
-$("#changeOfficials").on("change", () => {
+//     } else {
 
-    if ($("#changeOfficials").is(":checked")) {
+//         $(".persons").prop("checked", true);
 
-        $(".persons").prop("checked", true);
+//         $("#customers").prop("checked", true);
 
-        $("#seeOfficials").prop("checked", true);
+//     }
 
-        $("#officials").prop("checked", true);
+// });
 
-    } else {
-        $("#deleteOfficials").prop("checked", false);
-    }
-});
+// $("#officials").on("change", () => {
 
-$("#deleteOfficials").on("change", () => {
+//     if ($("#officials").is(":checked")) {
 
-    if ($("#deleteOfficials").is(":checked")) {
+//         $(".persons").prop("checked", true);
 
-        $("#seeOfficials").prop("checked", true);
+//         $("#seeOfficials").prop("checked", true);
 
-        $("#changeOfficials").prop("checked", true);
+//     } else {
+//         if ($(".person").filter(":checked").length > 0) {
 
-        $("#deleteOfficials").prop("checked", true);
+//         } else {
 
-        $("#officials").prop("checked", true);
+//             $(".persons").prop("checked", false);
 
-        $(".persons").prop("checked", true);
+//         }
+//         $("#seeOfficials").prop("checked", false);
 
-    }
-});
+//         $("#changeOfficials").prop("checked", false);
 
-$("#seeOfficials").on("change", () => {
+//         $("#deleteOfficials").prop("checked", false);
 
-    if (!$("#seeOfficials").is(":checked")) {
+//     }
 
-        if ($(".person").filter(":checked").length > 1) {
+// });
 
-        } else {
+// $("#changeOfficials").on("change", () => {
 
-            $(".persons").prop("checked", false);
+//     if ($("#changeOfficials").is(":checked")) {
 
-        }
+//         $(".persons").prop("checked", true);
 
-        $("#officials").prop("checked", false);
+//         $("#seeOfficials").prop("checked", true);
 
-        $("#changeOfficials").prop("checked", false);
+//         $("#officials").prop("checked", true);
 
-        $("#deleteOfficials").prop("checked", false);
+//     } else {
+//         $("#deleteOfficials").prop("checked", false);
+//     }
+// });
 
-    } else {
+// $("#deleteOfficials").on("change", () => {
 
-        $(".persons").prop("checked", true);
+//     if ($("#deleteOfficials").is(":checked")) {
 
-        $("#officials").prop("checked", true);
+//         $("#seeOfficials").prop("checked", true);
 
-    }
+//         $("#changeOfficials").prop("checked", true);
 
-});
+//         $("#deleteOfficials").prop("checked", true);
 
-$(".messages").on("change", () => {
-    if ($(".messages").is(":checked")) {
-        $("#seeMessages").prop("checked", true);
-    } else {
-        $("#seeMessages").prop("checked", false);
-        $("#changeMessages").prop("checked", false);
-        $("#deleteMessages").prop("checked", false);
-    }
-});
+//         $("#officials").prop("checked", true);
 
+//         $(".persons").prop("checked", true);
 
+//     }
+// });
 
-$("#changeMessages").on("change", () => {
+// $("#seeOfficials").on("change", () => {
 
-    if ($("#changeMessages").is(":checked")) {
+//     if (!$("#seeOfficials").is(":checked")) {
 
-        $("#seeMessages").prop("checked", true);
+//         if ($(".person").filter(":checked").length > 1) {
 
-        $(".messages").prop("checked", true);
+//         } else {
 
-    } else {
-        $("#deleteMessages").prop("checked", false);
-    }
-});
+//             $(".persons").prop("checked", false);
 
-$("#deleteMessages").on("change", () => {
+//         }
 
-    if ($("#deleteMessages").is(":checked")) {
+//         $("#officials").prop("checked", false);
 
-        $("#seeMessages").prop("checked", true);
+//         $("#changeOfficials").prop("checked", false);
 
-        $("#changeMessages").prop("checked", true);
+//         $("#deleteOfficials").prop("checked", false);
 
-        $("#deleteMessages").prop("checked", true);
+//     } else {
 
-        $(".messages").prop("checked", true);
+//         $(".persons").prop("checked", true);
 
-    }
-});
+//         $("#officials").prop("checked", true);
 
-$("#seeMessages").on("change", () => {
+//     }
 
-    if (!$("#seeMessages").is(":checked")) {
+// });
 
-        $(".messages").prop("checked", false);
+// $(".messages").on("change", () => {
+//     if ($(".messages").is(":checked")) {
+//         $("#seeMessages").prop("checked", true);
+//     } else {
+//         $("#seeMessages").prop("checked", false);
+//         $("#changeMessages").prop("checked", false);
+//         $("#deleteMessages").prop("checked", false);
+//     }
+// });
 
-        $("#changeMessages").prop("checked", false);
 
-        $("#deleteMessages").prop("checked", false);
 
-    } else {
+// $("#changeMessages").on("change", () => {
 
-        $(".messages").prop("checked", true);
+//     if ($("#changeMessages").is(":checked")) {
 
-    }
+//         $("#seeMessages").prop("checked", true);
 
-});
+//         $(".messages").prop("checked", true);
 
-$("#adminTypeN").on("change", () => {
+//     } else {
+//         $("#deleteMessages").prop("checked", false);
+//     }
+// });
 
-    if ($("#adminTypeN").val() == "super") {
+// $("#deleteMessages").on("change", () => {
 
-        $(".superN").prop("checked", true).change();
+//     if ($("#deleteMessages").is(":checked")) {
 
-    }
+//         $("#seeMessages").prop("checked", true);
 
-    if ($("#adminTypeN").val() === "admin") {
+//         $("#changeMessages").prop("checked", true);
 
-        $(".superN").prop("checked", false).change();
+//         $("#deleteMessages").prop("checked", true);
 
-        $(".adminN").prop("checked", true).change();
+//         $(".messages").prop("checked", true);
 
-    }
+//     }
+// });
 
-    if ($("#adminTypeN").val() == "poshtiban") {
+// $("#seeMessages").on("change", () => {
 
-        $(".superN").prop("checked", false).change();
+//     if (!$("#seeMessages").is(":checked")) {
 
-        $(".adminN").prop("checked", false).change();
+//         $(".messages").prop("checked", false);
 
-        $(".poshtibanN").prop("checked", true).change();
+//         $("#changeMessages").prop("checked", false);
 
-    }
+//         $("#deleteMessages").prop("checked", false);
 
-});
+//     } else {
 
-$("#adminType").on("change", () => {
+//         $(".messages").prop("checked", true);
 
-    if ($("#adminType").val() == "super") {
+//     }
 
-        $(".super").prop("checked", true).change();
+// });
 
-    }
+// $("#adminTypeN").on("change", () => {
 
-    if ($("#adminType").val() === "admin") {
+//     if ($("#adminTypeN").val() == "super") {
 
-        $(".super").prop("checked", false).change();
+//         $(".superN").prop("checked", true).change();
 
-        $(".admin").prop("checked", true).change();
+//     }
 
-    }
+//     if ($("#adminTypeN").val() === "admin") {
 
-    if ($("#adminType").val() == "poshtiban") {
+//         $(".superN").prop("checked", false).change();
 
-        $(".super").prop("checked", false).change();
+//         $(".adminN").prop("checked", true).change();
 
-        $(".admin").prop("checked", false).change();
+//     }
 
-        $(".poshtibanN").prop("checked", true).change();
+//     if ($("#adminTypeN").val() == "poshtiban") {
 
-    }
+//         $(".superN").prop("checked", false).change();
 
-});
+//         $(".adminN").prop("checked", false).change();
+
+//         $(".poshtibanN").prop("checked", true).change();
+
+//     }
+
+// });
+
+// $("#adminType").on("change", () => {
+
+//     if ($("#adminType").val() == "super") {
+
+//         $(".super").prop("checked", true).change();
+
+//     }
+
+//     if ($("#adminType").val() === "admin") {
+
+//         $(".super").prop("checked", false).change();
+
+//         $(".admin").prop("checked", true).change();
+
+//     }
+
+//     if ($("#adminType").val() == "poshtiban") {
+
+//         $(".super").prop("checked", false).change();
+
+//         $(".admin").prop("checked", false).change();
+
+//         $(".poshtibanN").prop("checked", true).change();
+
+//     }
+
+// });
 
 $("#openViewTenSalesModal").on("click", () => {
     const kalaId = $("#kalaIdForEdit").val();
