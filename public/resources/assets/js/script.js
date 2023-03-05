@@ -6605,9 +6605,9 @@ function changeMainGroupPriority(element) {
         },
         dataType: "json",
         success: function (arrayed_result) {
-            $('#mainGroupList').empty();
+            $('#mainGroupList2').empty();
             for (var i = 0; i <= arrayed_result.length - 1; i++) {
-                $('#mainGroupList').append(
+                $('#mainGroupList2').append(
                     `<tr onclick="changeMainGroupStuff(this)" >
         <td> ` + (i + 1) + ` </td> <td> ` + arrayed_result[i].title + ` </td> <td>
         <input class="mainGroupId" type ="radio" name="mainGroupId[]" value="` + arrayed_result[i].id + '_' + arrayed_result[i].title + `" id="flexCheckChecked" >
@@ -6797,9 +6797,9 @@ function changeSubGroupPriority(element) {
             } else {
                 document.querySelector("#deleteGroupList").disabled = true;
             }
-            $('#subGroup1').empty();
+            $('#subGroup01').empty();
             for (var i = 0; i <= data.length - 1; i++) {
-                $('#subGroup1').append(
+                $('#subGroup01').append(
                     ` <tr class ="subGroupList1"
             onClick ="changeId(this)" >
                 <td> ` + (i + 1) + ` </td> <td > ` + data[i].title + ` </td> <td> <input class="subGroupId" name ="subGroupId[]"

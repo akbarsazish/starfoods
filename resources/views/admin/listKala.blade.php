@@ -513,7 +513,7 @@
                                                 <th>فعال</th>
                                             </tr>
                                         </thead>
-                                        <tbody class="c-checkout tableBody" id="mainGroupList" style="max-height: 200px;">
+                                        <tbody class="c-checkout tableBody" id="mainGroupList2" style="max-height: 200px;">
                                             @foreach ($mainGroups as $group)
                                                 <tr  onclick="changeMainGroupStuff(this)">
                                                     <td>{{ $loop->index+1 }}</td>

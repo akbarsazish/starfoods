@@ -33,7 +33,7 @@ class Group extends Controller {
         $filename=($maxGroupId).'.'.'jpg';
         $picture->move("resources/assets/images/mainGroups/",$filename);
         }
-        return redirect('/listGroup');
+        return redirect('/listKala');
    }
    public function deleteMainGroup(Request $request)
    {
