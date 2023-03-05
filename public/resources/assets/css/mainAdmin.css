@@ -1361,10 +1361,9 @@ c-product__variants li {
 
 .btn-add-to-cart {
     font-size: 1.0rem;
-    line-height: 1.222;
-    padding: 6px 6px 6px 14px;
+    padding: 5px 5px 5px 10px;
     border-radius: 8px;
-    background-color: #ef394e;
+    background-color: #008857;
     color: #fff;
     overflow: hidden;
     letter-spacing: -.7px;

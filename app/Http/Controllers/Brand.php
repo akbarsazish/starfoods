@@ -28,7 +28,7 @@ class Brand extends Controller
             $fileName=$lastBrandId.'.jpg';
             $picture->move("resources/assets/images/brands/",$fileName);
         }
-        return redirect("/brands");
+        return redirect("/listKala");
 
     }
 
@@ -46,7 +46,7 @@ class Brand extends Controller
             DB::update("UPDATE NewStarfood.dbo.star_brands SET name='".$title."' where id=".$brandId);
         }
 
-        return redirect("/brands");
+        return redirect("/listKala");
     }
     public function deleteBrand(Request $request)
     {
@@ -55,7 +55,7 @@ class Brand extends Controller
         if(file_exists("resources/assets/images/brands/".$id.".jpg")){
             unlink("resources/assets/images/brands/".$id.".jpg");
         }
-        return redirect("/brands");
+        return redirect("/listKala");
     }
     public function getBrandKala(Request $request)
     {
@@ -104,7 +104,7 @@ class Brand extends Controller
                 DB::update("UPDATE NewStarfood.dbo.star_add_prod_brands SET priority-=1 where priority>=".$priority);
             }
         }
-        return redirect("/brands");
+        return redirect("/listKala");
     }
     public function getListBrand(Request $request)
     {

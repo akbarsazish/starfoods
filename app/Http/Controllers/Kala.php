@@ -542,7 +542,8 @@ class Kala extends Controller {
                 $group->exist=$exist;
             }
         }
-        $kalaPriceHistory=DB::table("NewStarfood.dbo.star_KalaPriceHistory")->join("NewStarfood.dbo.admin",'admin.id','=','star_KalaPriceHistory.userId')->where('productId',$kalaId)->select("admin.*","star_KalaPriceHistory.*")->get();
+        // $kalaPriceHistory=DB::table("NewStarfood.dbo.star_KalaPriceHistory")->join("NewStarfood.dbo.admin",'admin.id','=','star_KalaPriceHistory.userId')->where('productId',$kalaId)->select("admin.*","star_KalaPriceHistory.*")->get();
+        $kalaPriceHistory=DB::select("SELECT application,userId,FORMAT(changedate,'yyyy/MM/dd','fa-ir') as changedate,name,lastName,firstPrice,changedFirstPrice,changedSecondPrice,secondPrice FROM NewStarfood.dbo.star_KalaPriceHistory JOIN NewStarfood.dbo.admin ON admin.id=star_KalaPriceHistory.userId where productId=$kalaId");
         $infors=DB::select("select * from Shop.dbo.infors where CompanyNo=5 and TypeInfor=5");
         $assameKalas=DB::table("NewStarfood.dbo.star_assameKala")->where("mainId",$kalaId)->leftjoin("Shop.dbo.PubGoods","assameId","=","GoodSn")->select("*")->get();
         $stocks=DB::select("SELECT SnStock,CompanyNo,CodeStock,NameStock from Shop.dbo.Stocks where SnStock not in(select stockId from NewStarfood.dbo.star_addedStock where productId=".$kalaId.") and SnStock!=0 and NameStock!='' and CompanyNo=5");
@@ -1035,10 +1036,7 @@ $minSubGroupId=DB::table("NewStarfood.dbo.star_add_prod_group")->where("firstGro
         $amountExist=0;
         $kalas=DB::select("SELECT PubGoods.GoodName,PubGoods.GoodSn,PUBGoodUnits.UName,V.Amount FROM Shop.dbo.PubGoods
                 JOIN Shop.dbo.PUBGoodUnits ON PubGoods.DefaultUnit=PUBGoodUnits.USN
-                JOIN (SELECT * FROM Shop.dbo.ViewGoodExists WHERE ViewGoodExists.FiscalYear=".Session::get("FiscallYear").") V on PubGoods.GoodSn=V.SnGood WHERE PubGoods.CompanyNo=5 AND PubGoods.GoodSn=".$kalaId);
-        foreach ($kalas as $kala) {
-            $kala->Amount+=DB::select("select SUM(Amount) as SumAmount from Shop.dbo.ViewGoodExistsInStock where ViewGoodExistsInStock.SnStock in(select stockId from NewStarfood.dbo.star_addedStock where productId=".$kala->GoodSn.") and SnGood=".$kala->GoodSn)[0]->SumAmount;
-        }         
+                JOIN (SELECT * FROM Shop.dbo.ViewGoodExists WHERE ViewGoodExists.FiscalYear=1399) V on PubGoods.GoodSn=V.SnGood WHERE PubGoods.CompanyNo=5 AND PubGoods.GoodSn=".$kalaId);         
         foreach ($kalas as $k) {
             $defaultUnit=$k->UName;
             $amountExist=$k->Amount;
@@ -1088,12 +1086,7 @@ $minSubGroupId=DB::table("NewStarfood.dbo.star_add_prod_group")->where("firstGro
         $amountExist=0;
         $kalas=DB::select("SELECT PubGoods.GoodName,PubGoods.GoodSn,PUBGoodUnits.UName,V.Amount FROM Shop.dbo.PubGoods
                     JOIN Shop.dbo.PUBGoodUnits ON PubGoods.DefaultUnit=PUBGoodUnits.USN
-                    JOIN (SELECT * FROM Shop.dbo.ViewGoodExists WHERE ViewGoodExists.FiscalYear=".Session::get("FiscallYear").") V on PubGoods.GoodSn=V.SnGood WHERE PubGoods.CompanyNo=5 AND PubGoods.GoodSn=".$kalaId);
-        
-        foreach ($kalas as $kala) {
-            $kala->Amount+=DB::select("select SUM(Amount) as SumAmount from Shop.dbo.ViewGoodExistsInStock where ViewGoodExistsInStock.SnStock in(select stockId from NewStarfood.dbo.star_addedStock where productId=".$kala->GoodSn.") and SnGood=".$kala->GoodSn)[0]->SumAmount;
-        }
-        
+                    JOIN (SELECT * FROM Shop.dbo.ViewGoodExists WHERE ViewGoodExists.FiscalYear=1399) V on PubGoods.GoodSn=V.SnGood WHERE PubGoods.CompanyNo=5 AND PubGoods.GoodSn=".$kalaId);
         foreach ($kalas as $k) {
             $defaultUnit=$k->UName;
             $amountExist=$k->Amount;
@@ -2315,13 +2308,13 @@ $minSubGroupId=DB::table("NewStarfood.dbo.star_add_prod_group")->where("firstGro
                 DB::delete("DELETE FROM NewStarfood.dbo.star_add_prod_group WHERE product_id=".$kalaId);
             }
         }
-        return redirect('/listGroup');
+        return redirect('/listKala');
     }
     public function getSubGroupKala(Request $request)
     {
         $subGroupId=$request->get('id');
         $kalas=DB::select("select Shop.dbo.PubGoods.GoodName,Shop.dbo.PubGoods.GoodSn from Shop.dbo.PubGoods join NewStarfood.dbo.star_add_prod_group on PubGoods.GoodSn=star_add_prod_group.product_id
-        where star_add_prod_group.secondGroupId=".$subGroupId." and PubGoods.GoodSn not in(select productId from NewStarfood.dbo.star_GoodsSaleRestriction where hideKala=1 )");
+        where star_add_prod_group.secondGroupId=".$subGroupId." and PubGoods.GoodSn not in(select productId from NewStarfood.dbo.star_GoodsSaleRestriction where hideKala=1 ) and CompanyNo=5");
         return Response::json($kalas);
     }
     public function getAllKalas(Request $request)
@@ -2451,7 +2444,7 @@ $minSubGroupId=DB::table("NewStarfood.dbo.star_add_prod_group")->where("firstGro
     public function changePriceKala(Request $request)
     {
         $kalaId=$request->get("kalaId");
-        $kalaPrice=DB::table("Shop.dbo.GoodPriceSale")->where('SnGood',$kalaId)->where("CompanyNo",5)->where('FiscalYear',Session::get("FiscallYear"))->select("*")->get();
+        $kalaPrice=DB::table("Shop.dbo.GoodPriceSale")->where('SnGood',$kalaId)->where("CompanyNo",5)->where('FiscalYear',1399)->select("*")->get();
         $changedFirstPrice=str_replace(",", "",$request->get("firstPrice"));
         $changedSecondPrice=str_replace(",", "",$request->get("secondPrice"));
 

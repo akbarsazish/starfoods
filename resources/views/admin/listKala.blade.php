@@ -8,8 +8,15 @@
     #addKalaToBrand, #addKalaToGroup{
         display:none;
     }
-
-
+.checkBoxStyle {
+    background-color:#00895a;
+    border:1px solid black;
+    padding:10px;
+    border-radius:100% !important;
+}
+.styleForLabel {
+    font-size:12px;
+}
 </style>
    <div class="modalBackdrop">
         <div id='unitStuffContainer' class="alert alert-danger" style="max-width: 200px; background-color: #ffffff66; padding: 5px; width: 100%; max-height: 85vh; overflow: auto;">
@@ -306,7 +313,6 @@
                                     </table>
                                 </form>
 
-                                
                          </div>
                         <div class="col-lg-6 px-0 mx-0 fastKalaStaff">
                                     <button class="btn btn-success btn-sm"  style="display: none"
@@ -331,7 +337,7 @@
                                                 <th>تصویر</th>
                                             </tr>
                                         </thead>
-                                        <tbody class="tableBody" id="subGroup1"></tbody>
+                                        <tbody class="tableBody" id="subGroup2"></tbody>
                                     </table>
                          </div>
                         <!-- <div class="row" id="addKalaToGroup" style="display: none">
@@ -595,6 +601,35 @@
 
 
 
+<div class="modal fade dragAbleModal" id="requestModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+        <div class="modal-header bg-success text-white py-2">
+            <button type="button" class="btn-close bg-danger" data-dismiss="modal" aria-label="Close"></button>
+            <h5 class="modal-title">درخواست دهنده های <span style="font-size:14px;color:blue;" id="GoodName"></span> </h5>
+        </div>
+        <div class="modal-body py-0 px-0">
+            <table class="table table-bordered table-sm">
+                <thead class="tableHeader">
+                <tr>
+                    <th class="for-mobil">ردیف</th>
+                    <th>آدرس</th>
+                    <th>مشتری</th>
+                    <th width="120px">تاریخ</th>
+                    <th>شماره تماس</th>
+                    <th>کد </th>
+                </tr>
+                </thead >
+                <tbody id="modalContent" class="tableBody">
+                </tbody>
+            </table> 
+        </div>
+    </div>
+</div>
+</div>
+
+
+
 <!-- modal of new group -->
 <div class="modal dragAbleModal" id="changePriceModal" data-backdrop="static" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -675,29 +710,19 @@
                 <h5 class="modal-title" id="editKalaTitle"> </h5>
             </div>
             <div class="modal-body p-0 m-0">
-              <div class='container p-0 m-0'>
-                   <div class="row descForall">
+              <div class='container'>
+                   <div class="row rounded border bg-success text-white mx-1" style="font-size:12px;">
                         <div class="col-sm-3">
-                                <div class="input-group input-group-sm">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text" id="inputGroup-sizing-sm"> گروه اصلی </span>
-                                </div>
-                                    <input type="text" disabled class="form-control form-control-sm" value="" id="original">
-                                </div>
+                                گروه اصلی : <span id="original"> </span> 
                             </div>
                             <div class="col-sm-3">
-                                <div class="input-group input-group-sm">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text" id="inputGroup-sizing-sm"> گروه فرعی </span>
-                                </div>
-                                    <input type="email" disabled class="form-control form-control-sm" value="فرعی " id="subsidiary">
-                                </div>
+                                گروه فرعی : <span id="subsidiary"> </span>
                             </div>
                             <div class="col-sm-3"> 
-                                قیمت اصلی  : <span style="color:red" id="mainPrice">ریال</span>
+                                قیمت اصلی  : <span style="color:black" id="mainPrice">ریال</span>
                             </div>
                             <div class="col-sm-3"> 
-                                قیمت خط خورده   : <span style="color:red;text-decoration: line-through;" id="overLinePrice">  ریال   </span> 
+                                قیمت خط خورده   : <span style="color:black;text-decoration: line-through;" id="overLinePrice">  ریال   </span> 
                             </div>
                      </div>
        
@@ -871,31 +896,27 @@
                     </div>
                     <div class="c-checkout tab-pane" id="yellow" style="border-radius:10px 10px 2px 2px;">
                         <div class="container ">
-                            <div class="row">
+                            <div class="row mt-1">
                                 <div class="col-sm-4">
                                     <div class="form-group">
                                         <span>
-                                            <input class="form-check-input" disabled type="checkbox" value="" id="defaultCheck1">
+                                            <input class="form-check-input checkBoxStyle" disabled type="checkbox" value="" id="defaultCheck1">
                                             <label>علامت گذاری کالای جدید</label>
                                         </span>
                                     </div>
                                     <div class="form-group mb-3">
                                         <span>
-                                            <input class="form-check-input"  type="checkbox" value="" id="stockTakhsis">
+                                            <input class="form-check-input checkBoxStyle"  type="checkbox" value="" id="stockTakhsis">
                                             <label for="whereHouse">تخصیص انبار</label>
                                         </span>
                                     </div>
                                     <div class="form-group">
-                                        <span>
                                             <button id="minimamSale" onclick="SetMinQty()" class="btn-add-to-cart">حد اقل فروش<i class="far fa-shopping-cart text-white ps-2"></i></button>
-                                        </span>
                                         <span id="minSaleValue"> </span>
                                     </div>
                                     <br>
                                     <div class="form-group">
-                                        <span>
                                             <button id="maximamSale" onclick="SetMaxQty()" class="btn-add-to-cart">حد اکثر فروش<i class="far fa-shopping-cart text-white ps-2"></i></button>
-                                        </span>
                                         <span id="maxSaleValue"> </span>
                                     </div>
                                 </div>
@@ -904,40 +925,39 @@
                                     <form action="{{url('/restrictSale')}}" id="restrictFormStuff" method="get">
                                           @csrf
                                         <input type="text" style="display: none" name="kalaId" id="kalaIdSpecialRest" value="">
-                                        <div class="form-group input-group-sm">
-                                            <span>
-                                                حد ایرور هزینه
-                                            </span>
-                                            <input type="number" onchange="activeSubmitButton(this)" value="" name="costLimit" class="form-control keyRestriction" id="costLimit">
+
+                                        <div class="input-group input-group-sm mb-1">
+                                             <span class="input-group-text" id="inputGroup-sizing-sm"> حد ایرور هزینه </span>
+                                             <input type="number" onchange="activeSubmitButton(this)" value="" name="costLimit" class="form-control keyRestriction" id="costLimit">
                                         </div>
-                                        <div class="form-group input-group-sm">
-                                            <span>
-                                                نوع هزینه
-                                            </span>
-                                            <select id="costTypeInfo"  onchange="activeSubmitButton(this)" class="form-select form-select-sm keyRestriction" name="infors">
-                                            </select>
+
+                                        <div class="input-group input-group-sm  mb-1">
+                                        <label class="input-group-text" for="inputGroupSelect01">  نوع هزینه </label>
+                                                <select id="costTypeInfo"  onchange="activeSubmitButton(this)" class="form-select form-select-sm keyRestriction" name="infors"> </select>
                                         </div>
-                                        <div class="form-group input-group-sm">
-                                            <span>
-                                                متن ایرور هزینه
-                                            </span>
-                                            <textarea id="costContent"  class="form-control keyRestriction" onchange="activeSubmitButton(this)" name="costErrorContent" rows="2" cols="24"></textarea>
+
+                                         <div class="input-group input-group-sm mb-1">
+                                             <span class="input-group-text" id="inputGroup-sizing-sm"> مقدار هزینه </span>
+                                             <input type="number" onchange="activeSubmitButton(this)" value="" name="costAmount" class="form-control keyRestriction" id="costAmount">
                                         </div>
-                                        <div class="form-group input-group-sm">
-                                            <span>
-                                            مقدار هزینه
-                                            </span>
-                                            <input type="number" onchange="activeSubmitButton(this)" value="" name="costAmount" class="form-control keyRestriction" id="costAmount">
+
+                                         <div class="input-group input-group-sm mb-1">
+                                             <span class="input-group-text" id="inputGroup-sizing-sm">  نقطه هشدار کالا  </span>
+                                              <input type="number" class="form-control keyRestriction" value="" required onclick="activeSubmitButton(this)" id="existanceAlarm" name='alarmAmount' style="width:50%">
                                         </div>
+
+
+                                        <div class="input-group input-group-sm  mb-1">
+                                           <label class="input-group-text" for="inputGroupSelect01">  متن ایرور هزینه </label>
+                                           <textarea id="costContent"  class="form-control keyRestriction" onchange="activeSubmitButton(this)" name="costErrorContent" rows="2" cols="24"></textarea>
+                                        </div>
+
+                                       
                                     </div>
                                     <div class="col-sm-4">
-                                        <span>
-                                            <label >نقطه هشدار کالا</label>
-                                            <input type="number" class="form-control keyRestriction" value="" required onclick="activeSubmitButton(this)" id="existanceAlarm" name='alarmAmount' style="width:50%">
-                                        </span>
                                         <div class="form-group input-group-sm">
                                             <span>
-                                                <input class="form-check-input restriction" type="checkbox" onchange="activeSubmitButton(this)" value="" id="callOnSale" name="callOnSale[]"/>
+                                                <input class="form-check-input restriction checkBoxStyle" type="checkbox" onchange="activeSubmitButton(this)" value="" id="callOnSale" name="callOnSale[]"/>
                                                 <label class="form-check-label">
                                                     تماس جهت خرید کالا
                                                 </label>
@@ -946,7 +966,7 @@
 
                                         <div class="form-group input-group-sm">
                                             <span>
-                                                <input class="form-check-input restriction" type="checkbox"  onchange="activeSubmitButton(this)" value="" id="zeroExistance" name="zeroExistance[]" />
+                                                <input class="form-check-input restriction checkBoxStyle" type="checkbox"  onchange="activeSubmitButton(this)" value="" id="zeroExistance" name="zeroExistance[]" />
                                                 <label class="form-check-label">
                                                     صفر کردن موجودی کالا
                                                 </label>
@@ -955,7 +975,7 @@
 
                                         <div class="form-group input-group-sm">
                                             <span>
-                                                <input class="form-check-input restriction" type="checkbox"  onchange="activeSubmitButton(this)" value="" id="showTakhfifPercent" name="activeTakhfifPercent[]" />
+                                                <input class="form-check-input restriction checkBoxStyle" type="checkbox"  onchange="activeSubmitButton(this)" value="" id="showTakhfifPercent" name="activeTakhfifPercent[]" />
                                                 <label class="form-check-label" for="showTakhfifPercent">
                                                     نمایش درصد تخفیف
                                                 </label>
@@ -964,7 +984,7 @@
 
                                         <div class="form-group input-group-sm">
                                             <span>
-                                                <input class="form-check-input restriction" type="checkbox"  onchange="activeSubmitButton(this)" value="" id="showFirstPrice" name="overLine[]" />
+                                                <input class="form-check-input restriction checkBoxStyle" type="checkbox"  onchange="activeSubmitButton(this)" value="" id="showFirstPrice" name="overLine[]" />
                                                 <label class="form-check-label" for="showFirstPrice">
                                                     نمایش قیمت خط خورده
                                                 </label>
@@ -972,19 +992,19 @@
                                         </div>
                                     <div class="form-group input-group-sm">
                                         <span>
-                                            <input class="form-check-input restiction"  onchange="activeSubmitButton(this)" type="checkbox" value="" id="inactiveAll" name="hideKala[]">
+                                            <input class="form-check-input restiction checkBoxStyle"  onchange="activeSubmitButton(this)" type="checkbox" value="" id="inactiveAll" name="hideKala[]">
                                             <label class="form-check-label"> غیر فعال </label>
                                         </span>
                                     </div>
                                     <div class="form-group input-group-sm">
                                         <span>
-                                            <input class="form-check-input restriction"  onchange="activeSubmitButton(this)" type="checkbox" value="" name="freeExistance[]" id="freeExistance"  >
+                                            <input class="form-check-input restriction checkBoxStyle"  onchange="activeSubmitButton(this)" type="checkbox" value="" name="freeExistance[]" id="freeExistance"  >
                                             <label class="form-check-label"> آزادگذاری فروش </label>
                                         </span>
                                     </div>
                                     <div class="form-group input-group-sm">
                                         <span>
-                                            <input class="form-check-input restriction"  onchange="activeSubmitButton(this)" type="checkbox" value="" name="activePishKharid[]" id="activePreBuy"  >
+                                            <input class="form-check-input restriction checkBoxStyle"  onchange="activeSubmitButton(this)" type="checkbox" value="" name="activePishKharid[]" id="activePreBuy"  >
                                             <label class="form-check-label"> فعالسازی پیش خرید </label>
                                         </span>
                                     </div>
@@ -995,7 +1015,7 @@
                             <div class="grid-subgroup" id="displayTakhisAnbarTables" style="display:none;">
                                 <div class="subgroup-item" id="allStock">
                                   <div class='modal-body'>
-                                        <input type="text" class="form-control form-control" id=""  placeholder="جستجو">
+                                        <input type="text" class="form-control form-control-sm" id=""  placeholder="جستجو">
                                         <table class="table table-bordered table-sm">
                                             <thead class="tableHeader">
                                                 <tr>
@@ -1044,27 +1064,35 @@
                     </div>
 
                     <div class="c-checkout tab-pane" id="green" style="border-radius:10px 10px 2px 2px;">
-                        <div class="row">
-                             <div class=" col-sm-3"  style="margin-top: 1%">
-                                  <iframe name="votar" style="display:none;"></iframe>
+                        <div class="row mt-1">
+                                <div class="col-sm-3 ">
+                                    <input type="checkbox" class="form-check-input checkBoxStyle" style="padding:12px; margin:5px;"  id="sameKalaList" />
+                                    <label  class="styleForLabel"  for="exampleFormControlTextarea1" style="margin-top:8px; font-size:14px">لیست کالاهای مشابه</label>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="input-group input-group-sm mt-1">
+                                        <span class="input-group-text styleForLabel" id="inputGroup-sizing-sm"> تگ کالای مترادف  </span>
+                                        <input type="email" disabled class="form-control" id="kalaTags" placeholder="">
+                                    </div>
+                                </div>
+                                
+                               <div class="col-sm-6"> 
+                                    <div class="input-group mb-1">
+                                        <span class="input-group-text styleForLabel"> توضیحات مختصر </span>
+                                        <textarea disabled class="form-control" id="shortExpain" rows="1"></textarea>
+                                    </div>
+                                </div>
+                                 
+                                
+                                <div class=" col-sm-12 m-1">
                                     <form action="{{url('/addDescKala')}}" target="votar" id="completDescription" method="post">
                                         @csrf
                                         <input type="text" style="display:none" name="kalaId" id="kalaIdDescription" value=""/>
-                                        <label class="fs-6" for="description">توضیحات کامل کالا</label>
-                                        <textarea class="form-control" name="discription" id="descriptionKala" rows="2"></textarea>
+                                        <div class="input-group">
+                                            <span class="input-group-text styleForLabel" for="description">توضیحات کامل </span>
+                                            <textarea class="form-control" name="discription" id="descriptionKala" rows="1"></textarea>
+                                        </div>
                                     </form>
-                                </div>
-                                <div class="col-sm-3 form-group" style="margin-top: 1%">
-                                    <label  class="fs-6"  for="shortExpain">توضیحات مختصر کالا</label>
-                                    <textarea disabled class="form-control" id="shortExpain" rows="2"></textarea>
-                                </div>
-                                <div class="col-sm-3 form-group" style="margin-top: 1%">
-                                    <label  class="fs-6"  for="kalaTags"> تگ کردن کالای مترادف </label>
-                                    <input type="email" disabled class="form-control" id="kalaTags" placeholder="">
-                                </div>
-                                <div class="col-sm-3 form-group" style="margin-top: 2%">
-                                    <input type="checkbox" class="form-check-input p-2" id="sameKalaList" />
-                                    <label  class="fs-6"  for="exampleFormControlTextarea1">لیست کالاهای مشابه</label>
                                 </div>
                          </div>
 
@@ -1129,32 +1157,7 @@
         </div>
 
 
-    <div class="modal fade dragAbleModal"  id="requestModal" tabindex="-1" data-backdrop="static" role="dialog">
-    <div class="modal-dialog modal-xl modal-dialog-scrollable" role="document">
-      <div class="modal-content rounded-4">
-        <div class="modal-header bg-success text-white py-2">
-            <button type="button" class="btn-close bg-danger" data-dismiss="modal" aria-label="Close"></button>
-			<h5 class="modal-title">درخواست دهنده های <span style="font-size:14px;color:blue;" id="GoodName"></span> </h5>
-        </div>
-        <div class="modal-body py-0 px-0">
-            <table class="table table-bordered table-sm">
-                <thead class="tableHeader">
-                <tr>
-                    <th class="for-mobil">ردیف</th>
-                     <th>آدرس</th>
-                    <th>مشتری</th>
-					<th width="120px">تاریخ</th>
-                    <th>شماره تماس</th>
-					<th>کد </th>
-                </tr>
-                </thead >
-                 <tbody id="modalContent" class="tableBody">
-                </tbody>
-            </table> 
-        </div>
-      </div>
-    </div>
-  </div>
+        
 
 
    
@@ -1395,50 +1398,10 @@
 
 
 
-             <!-- modal of new group -->
-        <div class="modal fade dragAbleModal" id="newGroup" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-            aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header bg-success text-white py-2">
-                        <h5 class="modal-title" id="exampleModalLongTitle"> دسته بندی جدید </h5>
-                        <button type="button" class="close btn text-danger" data-dismiss="modal" aria-label="Close" style="background-color:rgb(255 255 255); padding:0; padding-left:7px;">
-                            <i class="fa-solid fa-xmark fa-xl" style="background:none; button:hover{background-color:none}"></i>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                            <form action="{{url('/addMainGroup')}}" method="POST" id="createNewMainGroup" enctype="multipart/form-data" class="form">
-                                {{ csrf_field() }}
-                                <div class="form-group">
-                                    <label class="form-label"> اسم دسته بندی </label>
-                                    <input type="text" required class="form-control" autocomplete="off" name="mainGroupName" id="mainGroupName"
-                                        placeholder="">
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-label"> اولویت </label>
-                                    <select class="form-select" name="priority">
-                                        @for ($i = 1; $i <= ($allGroups+1); $i++)
-                                            <option value="{{$i}}" >{{$i}}</option>
-                                        @endfor
-                                    </select>
-                                </div>
-                                    <div class="form-group">
-                                    <label class="form-label"> عکس </label>
-                                    <input type="file" class="form-control" name="mainGroupPicture" placeholder="">
-                                </div>
-                                <div class="form-group" style="margin-top:4%">
-                                    <button type="button" class="btn btn-danger btn-sm buttonHover" data-dismiss="modal">انصراف <i class="fa-solid fa-xmark fa-lg"></i></button>
-                                    <button type="submit" id="submitNewGroup" class="btn btn-success btn-sm buttonHover">ذخیره <i class="fa fa-save fa-lg" aria-hidden="true"></i></button>
-                                </div>
-                            </form>
-                    </div>
-                </div>
-            </div>
-        </div>
+
         <!-- end modal new group -->
         <!-- modal of editig groups -->
-        <div class="modal fade dragAbleModal" id="editGroup" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-            aria-hidden="true">
+        <div class="modal fade dragAbleModal" id="editGroup" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header bg-success text-white py-2">
@@ -1447,37 +1410,29 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                            <form action="{{ url('/editMainGroup') }}" class="form"
-                                enctype="multipart/form-data" method="POST">
-                                @csrf
-                                <div class="form-group">
-                                    <label class="form-label">اسم دستبندی</label>
-                                    <input type="text" size="10px" required class="form-control" name="groupName" id="groupName"
-                                        placeholder="">
-                                </div>
-                                {{-- <div class="form-group">
-                                    <label class="form-label">اولویت</label>
-                                    <select class="form-select" name="priority">
-                                            @for ($i = 1; $i <= ($allGroups); $i++)
-                                                <option @if($i==4) selected @endif value="{{$i}}" >{{$i}}</option>
-                                            @endfor
-                                    </select>
-                                </div> --}}
-                                <div class="form-group">
-                                    <input type="text" class="form-control" style="display:none;" name="groupId"
-                                        id="groupId" placeholder="">
-                                </div>
-                                <div class="form-group" style="margin-top:4%">
-                                    <label for="groupPicture" id="groupPicturelabel" class='btn btn-success btn-sm' class="form-label"> انتخاب عکس <i class="fa-solid fa-image fa-lg"></i></label>
-                                    <input type="file" class="form-control" style="display:none;" name="groupPicture" id="groupPicture" placeholder="">
-                                     &nbsp;&nbsp;&nbsp;
-                                    <button class="btn btn-success btn-sm buttonHover"> ذخیره  <i class="fa fa-save fa-lg" aria-hidden="true"></i></button>
-                                </div>
-                            </form>
+                        <form action="{{ url('/editMainGroup') }}" class="form"
+                            enctype="multipart/form-data" method="POST">
+                            @csrf
+                            <div class="form-group">
+                                <label class="form-label">اسم دستبندی</label>
+                                <input type="text" size="10px" required class="form-control" name="groupName" id="groupName"
+                                    placeholder="">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" style="display:none;" name="groupId" id="groupId" placeholder="">
+                            </div>
+                            <div class="form-group" style="margin-top:4%">
+                                <label for="groupPicture" id="groupPicturelabel" class='btn btn-success btn-sm' class="form-label"> انتخاب عکس <i class="fa-solid fa-image fa-lg"></i></label>
+                                <input type="file" class="form-control" style="display:none;" name="groupPicture" id="groupPicture" placeholder="">
+                                    &nbsp;&nbsp;&nbsp;
+                                <button class="btn btn-success btn-sm buttonHover"> ذخیره  <i class="fa fa-save fa-lg" aria-hidden="true"></i></button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
+
         <!-- end modal editing -->
         <!-- modal of editig subgroups -->
         <div class="modal fade dragAbleModal" id="editSubGroup" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
@@ -1520,9 +1475,47 @@
             </div>
         </div>
         <!-- end modal editing -->
+        <!-- modal of new group -->
+        <div class="modal fade dragAbleModal" id="newMainGroup" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header bg-success text-white py-2">
+                        <h5 class="modal-title" id="exampleModalLongTitle"> دسته بندی جدید </h5>
+                        <button type="button" class="close btn text-danger" data-dismiss="modal" aria-label="Close" style="background-color:rgb(255 255 255); padding:0; padding-left:7px;">
+                            <i class="fa-solid fa-xmark fa-xl" style="background:none; button:hover{background-color:none}"></i>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="{{url('/addMainGroup')}}" method="POST" id="createNewMainGroup" enctype="multipart/form-data" class="form">
+                            {{ csrf_field() }}
+                            <div class="form-group">
+                                <label class="form-label"> اسم دسته بندی </label>
+                                <input type="text" required class="form-control" autocomplete="off" name="mainGroupName" id="mainGroupName"
+                                    placeholder="">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label"> اولویت </label>
+                                <select class="form-select" name="priority">
+                                    @for ($i = 1; $i <= ($allGroups+1); $i++)
+                                        <option value="{{$i}}" >{{$i}}</option>
+                                    @endfor
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label"> عکس </label>
+                                <input type="file" class="form-control" name="mainGroupPicture" placeholder="">
+                            </div>
+                            <div class="form-group" style="margin-top:4%">
+                                <button type="button" class="btn btn-danger btn-sm buttonHover" data-dismiss="modal">انصراف <i class="fa-solid fa-xmark fa-lg"></i></button>
+                                <button type="submit" id="submitNewGroup" class="btn btn-success btn-sm buttonHover">ذخیره <i class="fa fa-save fa-lg" aria-hidden="true"></i></button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
         <!-- modal of new subgroup -->
-        <div class="modal fade dragAbleModal" id="newSubGroup" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-            aria-hidden="true">
+        <div class="modal fade dragAbleModal" id="newSubGroup" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header bg-success text-white py-2">
@@ -1531,35 +1524,32 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                            <form action="{{ url('/addSubGroup') }}" class="form" enctype="multipart/form-data" method="POST">
-                                @csrf
-                                <div class="form-group">
-                                    <label class="form-label fs-6">اسم دستبندی</label>
-                                    <input type="text" required class="form-control" autocomplete="off" name="groupTitle" placeholder="">
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-label fs-6"> عکس </label>
-                                    <input type="file" class="form-control" name="subGroupPicture" placeholder="">
-                                </div>
-                                <input type="text" value="" style="display: none" name="fatherMainGroupId" id="fatherMainGroupId">
-                                <input type="text" value="" style="display: none" id="selfGroupId">
-                                <div class="form-group">
-                                    <label class="form-label fs-6"> اولویت </label>
-                                    <select class="subGroupCount form-select" name="priority" >
-                                    </select>
-                                </div>
-                                <div class="form-group" style="margin-top:4%">
-                                    <button type="button" class="btn btn-danger btn-sm buttonHover" data-dismiss="modal">انصراف <i class="fa-solid fa-xmark fa-lg"></i></button>
-                                    <button type="submit" class="btn btn-success btn-sm buttonHover">ذخیره <i class="fa fa-save fa-lg" aria-hidden="true"></i></button>
-                                </div>
-                            </form>
+                        <form action="{{ url('/addSubGroup') }}" class="form" enctype="multipart/form-data" method="POST">
+                            @csrf
+                            <div class="form-group">
+                                <label class="form-label fs-6">اسم دستبندی</label>
+                                <input type="text" required class="form-control" autocomplete="off" name="groupTitle" placeholder="">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label fs-6"> عکس </label>
+                                <input type="file" class="form-control" name="subGroupPicture" placeholder="">
+                            </div>
+                            <input type="text" value="" style="display: none" name="fatherMainGroupId" id="fatherMainGroupId">
+                            <input type="text" value="" style="display: none" id="selfGroupId">
+                            <div class="form-group">
+                                <label class="form-label fs-6"> اولویت</label>
+                                <select class="subGroupCount form-select" name="priority">
+                                </select>
+                            </div>
+                            <div class="form-group" style="margin-top:4%">
+                                <button type="button" class="btn btn-danger btn-sm buttonHover" data-dismiss="modal">انصراف<i class="fa-solid fa-xmark fa-lg"></i></button>
+                                <button type="submit" class="btn btn-success btn-sm buttonHover">ذخیره <i class="fa fa-save fa-lg" aria-hidden="true"></i></button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
-
-        
-
- <meta name="csrf-token" content="{{ csrf_token() }}" />
+        </div>
     <script>
         function getGroupId() {
             var checkedValue = document.querySelector('.mainGroupId:checked').value;
@@ -1624,12 +1614,7 @@
                 });
    		$("#editGroup").modal("show")
    })
-</script>
 
-<!-- kala catergory script -->
-
- <meta name="csrf-token" content="{{ csrf_token() }}" />
-    <script>
         function getGroupId() {
             var checkedValue = document.querySelector('.mainGroupId:checked').value;
             var groupProperties = checkedValue.split("_");
@@ -1659,7 +1644,7 @@
                   left: 350
                 });
               }
-              $('#newGroup').modal({
+              $('#newMainGroup').modal({
                 backdrop: false,
                 show: true
               });
@@ -1667,8 +1652,8 @@
               $('.modal-dialog').draggable({
                   handle: ".modal-header"
                 });
-	    	$("#newGroup").modal("show");
-	})
+	    	$("#newMainGroup").modal("show");
+	});
 
 	$("#editGroupList").on("click", ()=>{
 	     if (!($('.modal.in').length)) {
@@ -1689,6 +1674,7 @@
 	})
 		
 	$("#addNewSubGroupButton").on("click", ()=>{
+
 	     if (!($('.modal.in').length)) {
                 $('.modal-dialog').css({
                   top: 0,
@@ -1706,22 +1692,21 @@
 	    	$("#newSubGroup").modal("show");
 	})
 	
-		$("#editSubGroupButton").on("click", ()=>{
-	     if (!($('.modal.in').length)) {
-                $('.modal-dialog').css({
-                  top: 0,
-                  left: 300
-                });
-              }
-              $('#editSubGroup').modal({
-                backdrop: false,
-                show: true
-              });
-              
-              $('.modal-dialog').draggable({
-                  handle: ".modal-header"
-                });
-	    	$("#editSubGroup").modal("show");
+    $("#editSubGroupButton").on("click", ()=>{
+        if (!($('.modal.in').length)) {
+            $('.modal-dialog').css({
+                top: 0,
+                left: 300
+            });
+            }
+            $('#editSubGroup').modal({
+            backdrop: false,
+            show: true
+            });
+            $('.modal-dialog').draggable({
+                handle: ".modal-header"
+            });
+        $("#editSubGroup").modal("show");
 	})
 		
 		

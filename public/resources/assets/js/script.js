@@ -3482,6 +3482,21 @@ $('#secondPrice').on('keyup', () => {
     }
 });
 
+$("#firstPrice").on('keyup', function () {
+    if (!$("#firstPrice").val()) {
+        $("#firstPrice").val(0);
+    }
+    $("#firstPrice").val(parseInt($('#firstPrice').val().replace(/\,/g, '')).toLocaleString("en-US"));
+    if (parseInt($('#firstPrice').val().replace(/\,/g, '')) > parseInt($('#secondPrice').val().replace(/\,/g, ''))) {
+        $("#submitChangePrice").removeAttr('disabled');
+        $('#moreAlert').css("display", 'none');
+    } else {
+        $("#submitChangePrice").prop("disabled", true);
+        $('#moreAlert').css("display", 'flex');
+        $('#moreAlert').css("color", 'red');
+    }
+});
+
 $('#mainGroupForKalaSearch').on('change', () => {
     var input = $('#mainGroupForKalaSearch').val();
     $.ajax({
@@ -3706,12 +3721,7 @@ function editAdmins(element) {
     $('#editAdminId').val(inp.val());
 }
 
-$("#firstPrice").on('keyup', function () {
-    if (!$("#firstPrice").val()) {
-        $("#firstPrice").val(0);
-    }
-    $("#firstPrice").val(parseInt($('#firstPrice').val().replace(/\,/g, '')).toLocaleString("en-US"));
-});
+
 
 
 $("#changePriceForm").on("submit", function (e) {
@@ -5728,10 +5738,10 @@ function changePicture(element) {
             } else {
                 document.querySelector("#deleteGroupList").disabled = true;
             }
-            $('#subGroup1').empty();
+            $('#subGroup2').empty();
             $('.subGroupCount').empty();
             for (var i = 0; i <= data.length - 1; i++) {
-                $('#subGroup1').append(
+                $('#subGroup2').append(
                     `<tr class="subGroupList1" onClick="changeId(this)">
         <td>` + (i + 1) + `</td>
         <td>` + data[i].title + `</td>
@@ -7055,21 +7065,19 @@ function displayRequestedKala(gsn) {
         },
         async: true,
         success: function (arrayed_result) {
-            moment.locale('en');
             let data = arrayed_result;
             $("#modalContent").empty();
             $("#GoodName").text(data[0].GoodName);
-            for (let index = 0; index < data.length; index++) {
+            data.forEach((element,index)=>{
                 $("#modalContent").append(`<tr>
-<td>` + (index + 1) + `</td>
-<td>` + data[index].peopeladdress + `</td>
-
-<td>` + data[index].Name + `</td>
-<td style="width:120px">` + data[index].TimeStamp + `</td>
-<td>` + data[index].PhoneStr + `</td>
-<td>` + data[index].PCode + `</td>
-</tr>`);
-            }
+                <td>` + (index + 1) + `</td>
+                <td>` + element.peopeladdress + `</td>
+                <td>` + element.Name + `</td>
+                <td style="width:120px">` + element.TimeStamp + `</td>
+                <td>` + element.PhoneStr + `</td>
+                <td>` + element.PCode + `</td>
+                </tr>`);
+            });
             if (!($('.modal.in').length)) {
                 $('.modal-dialog').css({
                     top: 0,
@@ -7085,10 +7093,9 @@ function displayRequestedKala(gsn) {
                 handle: ".modal-header"
             });
 
-
             $("#requestModal").modal("show");
         },
-        error: function (data) { }
+        error: function (data) {alert("server side error") }
 
     });
 }
@@ -9637,27 +9644,27 @@ $("#checkToStartAgainNazar").on("change", () => {
 $(".specialSettings, .specialSettingsBtn, .emteyazSettingsPart").hide();
 
 $("#mainPageSettings").on("change", () => {
-    $("#myTable").show();
-    $(".mainPageStuff").show();
-    $(".specialSettingsBtn").hide();
-    $(".specialSettings").hide();
-    $(".emteyazSettingsPart").hide();
+    $("#myTable").fadeIn("slow");
+    $(".mainPageStuff").fadeIn("slow");
+    $(".specialSettingsBtn").fadeOut("slow");
+    $(".specialSettings").fadeOut("slow");
+    $(".emteyazSettingsPart").fadeOut("slow");
 })
 $("#specialSettings").on("change", () => {
-    $(".specialSettings").show();
-    $("#myTable").hide();
-    $(".mainPageStuff").hide();
-    $(".specialSettingsBtn").show();
-    $(".emteyazSettingsPart").hide();
+    $(".specialSettings").fadeIn("slow");
+    $("#myTable").fadeOut("slow");
+    $(".mainPageStuff").fadeOut("slow");
+    $(".specialSettingsBtn").fadeIn("slow");
+    $(".emteyazSettingsPart").fadeOut("slow");
 
 })
 
 $("#emteyazSettings").on("change", () => {
-    $(".emteyazSettingsPart").show();
-    $("#myTable").hide();
-    $(".specialSettings").hide();
-    $(".mainPageStuff").hide();
-    $(".specialSettingsBtn").hide();
+    $(".emteyazSettingsPart").fadeIn("slow");
+    $("#myTable").fadeOut("slow");
+    $(".specialSettings").fadeOut("slow");
+    $(".mainPageStuff").fadeOut("slow");
+    $(".specialSettingsBtn").fadeOut("slow");
 })
 
 
