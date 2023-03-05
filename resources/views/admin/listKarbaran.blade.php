@@ -518,6 +518,8 @@
 
 
 
+
+
 <!-- modal for adding new karbar and new roles for karbar -->
      
 <div class="modal fade dragAbleModal" id="addingKarbar" data-backdrop="static"  data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -595,53 +597,53 @@
                                 <div class="container">
                                 <div class="row">
                                      <fieldset class="border rounded-3" style="display: justify-content:flex-start; float: right;">
-                                            <legend  class="float-none w-auto forLegend"> <input type="checkbox" name="manageWeb" class="webPageN form-check-input"/>  اطلاعات پایه   </legend>
+                                            <legend  class="float-none w-auto forLegend"> <input type="checkbox" name="baseInfoN" id="baseInfoN" class="form-check-input"/>  اطلاعات پایه   </legend>
                                             <fieldset class="border rounded-3" style="display: justify-content:flex-start; float: right;">
-                                                <legend  class="float-none w-auto forLegend firstLevel"> <input type="checkbox" name="manageWeb" class="webPageN form-check-input"/>  تظیمات  </legend>
+                                                <legend  class="float-none w-auto forLegend firstLevel"> <input type="checkbox" name="settingsN" id="settingsN" class="form-check-input"/>  تظیمات  </legend>
                                                 <fieldset class="border rounded-3" style="display: justify-content:flex-start; float: right;">
-                                                    <legend  class="float-none w-auto fs-6 secondLevel"> <input type="checkbox" name="homePageN" id="homePageN" class="webN form-check-input"/> تنظیمات صفحه اصلی </legend>
+                                                    <legend  class="float-none w-auto fs-6 secondLevel"> <input type="checkbox" name="namiPageSettingN" id="namiPageSettingN" class="allSettingsN webN form-check-input"/> تنظیمات صفحه اصلی </legend>
                                                         
                                                     <div class="form-check admin-accesss-level">
-                                                        <input class="superN form-check-input box-check" id="homeDeleteN" type="checkbox" name="homeDeleteN">
+                                                        <input class="mainPageSettingBoxN form-check-input box-check" id="deletMainPageSettingN" type="checkbox" name="deletMainPageSettingN">
                                                         <label class="form-check-label">حذف</label>
                                                     </div>
                                                     <div class="form-check admin-accesss-level">
-                                                        <input class="adminN form-check-input box-check" id="homeChangeN" type="checkbox" name="changeHomePageN">
+                                                        <input class="mainPageSettingBoxN form-check-input box-check" id="editManiPageSettingN" type="checkbox" name="editManiPageSettingN">
                                                         <label class="form-check-label">تغییر</label>
                                                     </div>
                                                     <div class="form-check admin-accesss-level">
-                                                        <input class="poshtibanN form-check-input box-check" id="homeSeeN" type="checkbox" name="seeHomePageN">
+                                                        <input class="mainPageSettingBoxN form-check-input box-check" id="seeMainPageSettingN" type="checkbox" name="seeMainPageSettingN">
                                                         <label class="form-check-label">مشاهده</label>
                                                     </div>
                                                 </fieldset>
 
                                                 <fieldset class="border rounded-3" style="display: justify-content:flex-start; float: right;">
-                                                    <legend  class="float-none w-auto secondLevel fs-6"> <input type="checkbox" name="karbaranN" id="karbaranN" class="webN form-check-input"/> تنظیمات اختصاصی  &nbsp;</legend>
+                                                    <legend  class="float-none w-auto secondLevel fs-6"> <input type="checkbox" name="specialSettingN" id="specialSettingN" class="allSettingsN form-check-input"/> تنظیمات اختصاصی  &nbsp;</legend>
                                                     <div class="form-check admin-accesss-level">
-                                                        <input class="superN form-check-input box-check" id="karbaranDeleteN" type="checkbox" name="karbaranDeleteN">
+                                                        <input class="specialSettingBoxN form-check-input box-check" id="deleteSpecialSettingN" type="checkbox" name="deleteSpecialSettingN">
                                                         <label class="form-check-label">حذف</label>
                                                     </div>
                                                     <div class="form-check admin-accesss-level">
-                                                        <input class="adminN form-check-input box-check" id="karbaranChangeN" type="checkbox" name="changeKarbaranN">
+                                                        <input class="specialSettingBoxN form-check-input box-check" id="editSpecialSettingN" type="checkbox" name="editSpecialSettingN">
                                                         <label class="form-check-label">تغییر</label>
                                                     </div>
                                                     <div class="form-check admin-accesss-level">
-                                                        <input class="poshtibanN form-check-input box-check" id="karbaranSeeN" type="checkbox"  name="seeKarbaranN">
+                                                        <input class="specialSettingBoxN form-check-input box-check" id="seeSpecialSettingN" type="checkbox"  name="seeSpecialSettingN">
                                                         <label class="form-check-label">مشاهده</label>
                                                     </div>
                                                 </fieldset>
                                                 <fieldset class="border rounded-3" style="display: justify-content:flex-start; float: right;">
-                                                    <legend  class="float-none w-auto secondLevel fs-6"> <input type="checkbox" id="specialSettingN" class="webN form-check-input" name="specialSettingN" />تنظمیات امتیاز </legend>
+                                                    <legend  class="float-none w-auto secondLevel fs-6"> <input type="checkbox" id="emptyazSettingN" class="allSettingsN form-check-input" name="emptyazSettingN" />تنظمیات امتیاز </legend>
                                                     <div class="form-check admin-accesss-level">
-                                                        <input class="superN form-check-input" id="specialDeleteN" type="checkbox" name="specialDeleteN"> 
+                                                        <input class="emtyazSettingBox form-check-input" id="deleteEmtyazSettingN" type="checkbox" name="deleteEmtyazSettingN"> 
                                                         <label class="form-check-label box-check">حذف</label>
                                                     </div>
                                                     <div class="form-check admin-accesss-level">
-                                                        <input class="adminN form-check-input" type="checkbox" id="specialChangeN" name="changeSpecialSettingN">
+                                                        <input class="emtyazSettingBox form-check-input" type="checkbox" id="editEmptyazSettingN" name="editEmptyazSettingN">
                                                         <label class="form-check-label box-check">تغییر</label>
                                                     </div>
                                                     <div class="form-check admin-accesss-level">
-                                                        <input class="poshtibanN web form-check-input" id="specialSeeN" type="checkbox" name="seeSpecialSettingN">
+                                                        <input class="emtyazSettingBox form-check-input" id="seeEmtyazSettingN" type="checkbox" name="seeEmtyazSettingN">
                                                         <label class="form-check-label box-check">مشاهده</label>
                                                     </div>
                                                 </fieldset>
