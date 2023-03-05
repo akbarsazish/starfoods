@@ -142,7 +142,7 @@
                             <span class="brandStaff">
                                 <button @if(hasPermission(Session::get("adminId"),"brand") < 2) disabled @endif class="btn btn-success btn-sm" id="newBrand">جدید <i class="fa fa-plus" aria-hidden="true"></i></button>
                                 <button type="button" value="Reterive data" class="btn btn-success btn-sm text-white"
-                                @if(hasPermission(Session::get("adminId"),"brand") > 0) onclick="setBrandEditStuff()" @endif data-toggle="modal" id="editGroupList">ویرایش <i class="fa fa-edit" aria-hidden="true"></i></button>
+                                @if(hasPermission(Session::get("adminId"),"brand") > 0) onclick="setBrandEditStuff()" @endif data-toggle="modal" id="editGroupList1">ویرایش <i class="fa fa-edit" aria-hidden="true"></i></button>
 
                                 <form action='{{ url('/deleteBrand') }}' onsubmit="return confirm('میخوهید حذف کنید?');" method='post' style=" margin:0; padding:0; display: inline !important;">
                                     @csrf
@@ -166,7 +166,7 @@
                                     <button style="margint:0"  @if(hasPermission(Session::get("adminId"),"listGroups") < 2) disabled @endif class="btn btn-success btn-sm buttonHover" id="addNewMainGroupBtn"> جدید <i class="fa fa-plus " aria-hidden="true"></i></button> &nbsp;
                                     @if(hasPermission(Session::get("adminId"),"listGroups") > 0)
                                         <button type="button" value="Reterive data" class="btn btn-success btn-sm text-white editButtonHover"
-                                    onclick="getGroupId()" data-toggle="modal" id="editGroupList">ویرایش <i class="fa fa-edit " aria-hidden="true"></i></button> &nbsp;
+                                    onclick="getGroupId()" data-toggle="modal" id="editGroupList">ویرایش 1 <i class="fa fa-edit " aria-hidden="true"></i></button> &nbsp;
                                     @endif
 
                                     @if(hasPermission(Session::get("adminId"),"listGroups") > 1)
@@ -599,6 +599,44 @@
     </div>
 </div>
 
+
+        <!-- modal of new group -->
+        <div class="modal fade dragAbleModal" id="newMainGroup" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header bg-success text-white py-2">
+                        <button type="button" class="btn-close bg-danger" data-dismiss="modal" aria-label="Close"></button>
+                        <h5 class="modal-title" id="exampleModalLongTitle"> دسته بندی جدید </h5>
+                    </div>
+                    <div class="modal-body">
+                        <form action="{{url('/addMainGroup')}}" method="POST" id="createNewMainGroup" enctype="multipart/form-data" class="form">
+                            {{ csrf_field() }}
+                            <div class="form-group">
+                                <label class="form-label"> اسم دسته بندی </label>
+                                <input type="text" required class="form-control" autocomplete="off" name="mainGroupName" id="mainGroupName"
+                                    placeholder="">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label"> اولویت </label>
+                                <select class="form-select" name="priority">
+                                    @for ($i = 1; $i <= ($allGroups+1); $i++)
+                                        <option value="{{$i}}" >{{$i}}</option>
+                                    @endfor
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label"> عکس </label>
+                                <input type="file" class="form-control" name="mainGroupPicture" placeholder="">
+                            </div>
+                            <div class="form-group" style="margin-top:4%">
+                                <button type="button" class="btn btn-danger btn-sm buttonHover" data-dismiss="modal">انصراف <i class="fa-solid fa-xmark fa-lg"></i></button>
+                                <button type="submit" id="submitNewGroup" class="btn btn-success btn-sm buttonHover">ذخیره <i class="fa fa-save fa-lg" aria-hidden="true"></i></button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
 
 
 <div class="modal fade dragAbleModal" id="requestModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -1475,45 +1513,7 @@
             </div>
         </div>
         <!-- end modal editing -->
-        <!-- modal of new group -->
-        <div class="modal fade dragAbleModal" id="newMainGroup" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header bg-success text-white py-2">
-                        <h5 class="modal-title" id="exampleModalLongTitle"> دسته بندی جدید </h5>
-                        <button type="button" class="close btn text-danger" data-dismiss="modal" aria-label="Close" style="background-color:rgb(255 255 255); padding:0; padding-left:7px;">
-                            <i class="fa-solid fa-xmark fa-xl" style="background:none; button:hover{background-color:none}"></i>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form action="{{url('/addMainGroup')}}" method="POST" id="createNewMainGroup" enctype="multipart/form-data" class="form">
-                            {{ csrf_field() }}
-                            <div class="form-group">
-                                <label class="form-label"> اسم دسته بندی </label>
-                                <input type="text" required class="form-control" autocomplete="off" name="mainGroupName" id="mainGroupName"
-                                    placeholder="">
-                            </div>
-                            <div class="form-group">
-                                <label class="form-label"> اولویت </label>
-                                <select class="form-select" name="priority">
-                                    @for ($i = 1; $i <= ($allGroups+1); $i++)
-                                        <option value="{{$i}}" >{{$i}}</option>
-                                    @endfor
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label class="form-label"> عکس </label>
-                                <input type="file" class="form-control" name="mainGroupPicture" placeholder="">
-                            </div>
-                            <div class="form-group" style="margin-top:4%">
-                                <button type="button" class="btn btn-danger btn-sm buttonHover" data-dismiss="modal">انصراف <i class="fa-solid fa-xmark fa-lg"></i></button>
-                                <button type="submit" id="submitNewGroup" class="btn btn-success btn-sm buttonHover">ذخیره <i class="fa fa-save fa-lg" aria-hidden="true"></i></button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
+
         <!-- modal of new subgroup -->
         <div class="modal fade dragAbleModal" id="newSubGroup" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
@@ -1550,6 +1550,8 @@
                 </div>
             </div>
         </div>
+
+        
     <script>
         function getGroupId() {
             var checkedValue = document.querySelector('.mainGroupId:checked').value;
