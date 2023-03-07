@@ -17,6 +17,9 @@
 .styleForLabel {
     font-size:12px;
 }
+.modalTitle{
+    font-size: 12px;
+}
 </style>
    <div class="modalBackdrop">
         <div id='unitStuffContainer' class="alert alert-danger" style="max-width: 200px; background-color: #ffffff66; padding: 5px; width: 100%; max-height: 85vh; overflow: auto;">
@@ -60,41 +63,90 @@
                             <label class="form-check-label me-4" for="assesPast"> دسته بندی کالا </label>
                         </div>
 
+
+
+
+
+
                         <div class="col-sm-12 listkalarStaff">
-                            <input type="text"  id="kalaNameId" class="form-control form-control-sm" autocomplete="off"  placeholder="اسم">
+                            <div class="form-group">
+                                <div class="input-group  input-group-sm">
+                                    <span class="input-group-text">اسم یا کد کالا</span>
+                                    <input type="text" id="searchKalaNameCode"  class="form-control form-control-sm" autocomplete="off"  placeholder="اسم یا کد کالا" id="searchKalaNameCode">
+                                </div>
+                            </div>
                         </div>
                         <div class="col-sm-12 listkalarStaff">
-                            <select class="form-select form-select-sm" id="selectStock">
-                            <option value="0" hidden>انبار</option>
-                                @foreach ($stocks as $stock)
-                                   <option value="{{$stock->SnStock }}" @if($stock->SnStock==23) selected @endif>{{$stock->NameStock }}</option>
-                                @endforeach
-                            </select>
+                            <div class="form-group">
+                                <div class="input-group input-group-sm mt-2">
+                                    <span class="input-group-text" id="inputGroup-sizing-sm">گروه اصلی</span>
+                                    <select name="original" class="form-select" id="superGroup"></select>
+                                </div>
+                            </div>
                         </div>
                         <div class="col-sm-12 listkalarStaff">
-                            <select class="form-select form-select-sm" id="kalaCodeId">
-                                <option value="10" hidden> عکس </option>
-                                <option value="0"> عکس دار </option>
-                                <option value="1"> بدون عکس </option>
-                            </select>
+                            <div class="form-group">
+                                <div class="input-group input-group-sm mt-2">
+                                    <span class="input-group-text" id="inputGroup-sizing-sm">گروه فرعی</span>
+                                    <select name="subGroups" class="form-select" id="subGroup">
+                                    <option value="">همه</option>
+                                    </select>
+                                </div>
+                            </div>
                         </div>
                         <div class="col-sm-12 listkalarStaff">
-                            <select class="form-select form-select-sm" id="selectStockExist">
-                                <option value="10" hidden> موجودی </option>
-                                <option value="0"> موجودی صفر </option>
-                                <option value="1"> موجودی عدم صفر </option>
-                            </select>
+                            <div class="input-group input-group-sm mt-2">
+                                <span class="input-group-text" id="inputGroup-sizing-sm">انبار</span>
+                                <select class="form-select form-select-sm" id="searchKalaStock">
+                                    <option value="0" selected>همه</option>
+                                    @foreach ($stocks as $stock)
+                                    <option value="{{$stock->SnStock}}">{{trim($stock->NameStock)}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
                         </div>
                         <div class="col-sm-12 listkalarStaff">
-                            <select class="form-select form-select-sm" id="mainGroupForKalaListSearch">
-                                <option value="0" hidden>گروه بندی</option>
-                            </select>
+                            <div class="input-group input-group-sm mt-2">
+                                <span class="input-group-text" id="inputGroup-sizing-sm">فعال</span>
+                                <select class="form-select form-select-sm" id="searchKalaActiveOrNot">
+                                    <option value="" > همه </option>
+                                    <option value="0"> فعال </option>
+                                    <option value="1"> غیر فعال </option>
+                                </select>
+                            </div>
                         </div>
                         <div class="col-sm-12 listkalarStaff">
-                            <select class="form-select form-select-sm" id="subGroupForKalaListSearch">
-                                <option value="0" hidden>گروه های فرعی</option>
-                            </select>
+                            <div class="input-group input-group-sm mt-2">
+                                <span class="input-group-text" id="inputGroup-sizing-sm">موجودی</span>
+                                <select class="form-select form-select-sm" id="searchKalaExistInStock">
+                                    <option value="-1">همه</option>
+                                    <option value="0"> موجودی صفر </option>
+                                    <option value="1"> موجودی عدم صفر </option>
+                                </select>
+                            </div>
                         </div>
+                        <div class="col-sm-12 listkalarStaff">
+                            <div class="input-group input-group-sm mt-2">
+                                <span class="input-group-text" id="inputGroup-sizing-sm"> از تاریخ خرید </span>
+                                <input type="text" class="form-control" id="assesFirstDate">
+                            </div>
+                        </div>
+                        <div class="col-sm-12 listkalarStaff">                        
+                            <div class="input-group input-group-sm mt-2">
+                                <span class="input-group-text" id="inputGroup-sizing-sm"> تا تاریخ  خرید</span>
+                                <input type="text" class="form-control" id="assesSecondDate">
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-12 mb-1 listkalarStaff">
+                            <button type="button" class="btn btn-success btn-sm topButton"  onclick="filterAllKala()" > بازخوانی &nbsp; <i class="fa fa-refresh"></i> </button>
+                        </div>
+
+
+
+
+
+
+
 
                          <div class="col-sm-12 requestedKalaStaff">
                             <input type="text" onkeyup="searchRequestedKala(this)" class="form-control form-control-sm" id="allKalaFirst" placeholder="جستجو">
@@ -148,10 +200,6 @@
                                     @if(hasPermission(Session::get("adminId"),"brand") > 1)
                                     <button type="submit" disabled id="deleteBrand" onclick="swal();" class="btn btn-danger btn-sm"> حذف <i class="fa fa-trash" aria-hidden="true"></i></button>
                                     @endif
-                                    @if(hasPermission(Session::get("adminId"),"brand") > 0)
-                                    <button id="topGroup"  type="button" value="top" onclick="changeMainGroupPriority(this)" style="background-color:transparent; margin-top:5px;" ><i class="fa-solid fa-circle-chevron-up fa-xl chevronHover"></i></Button>
-                                    <button id="downGroup"  type="button" value="down" onclick="changeMainGroupPriority(this)" style="background-color:transparent; margin-top:5px;" ><i class="fa-solid fa-circle-chevron-down fa-xl chevronHover"></i></Button>
-                                    @endif
                                     <input type="text" value="" id="deleteBrandId" name="brandId" style="display:none"/>
                                 </form>
                                  @if(hasPermission(Session::get("adminId"),"brand") > 1)
@@ -165,11 +213,11 @@
                                     <button style="margint:0"  @if(hasPermission(Session::get("adminId"),"listGroups") < 2) disabled @endif class="btn btn-success btn-sm buttonHover" id="addNewMainGroupBtn"> جدید <i class="fa fa-plus " aria-hidden="true"></i></button> &nbsp;
                                     @if(hasPermission(Session::get("adminId"),"listGroups") > 0)
                                         <button type="button" value="Reterive data" class="btn btn-success btn-sm text-white editButtonHover"
-                                    onclick="getGroupId()" data-toggle="modal" id="editGroupList">ویرایش 1 <i class="fa fa-edit " aria-hidden="true"></i></button> &nbsp;
+                                    onclick="getGroupId()" data-toggle="modal" id="editGroupList">ویرایش<i class="fa fa-edit " aria-hidden="true"></i></button> &nbsp;
                                     @endif
 
                                     @if(hasPermission(Session::get("adminId"),"listGroups") > 1)
-                                    <button type="submit" disabled id="deleteGroupList" class="btn btn-danger btn-sm buttonHoverDelete">حذف <i class="fa fa-trash " aria-hidden="true"></i></button> 
+                                    <button type="submit" disabled id="deleteGroupList" form="deleteAMainGroup" class="btn btn-danger btn-sm buttonHoverDelete">حذف <i class="fa fa-trash " aria-hidden="true"></i></button> 
                                     @endif
                                     @if(hasPermission(Session::get("adminId"),"listGroups") > 0)
                                     <Button  id="topGroup"  type="button" value="top" onclick="changeMainGroupPriority(this)" style="background-color:transparent;" ><i class="fa-solid fa-circle-chevron-up fa-xl chevronHover"></i></Button>
@@ -220,13 +268,12 @@
                                         <th>انتخاب </th>
                                     </tr>
                             </thead>
-                            <tbody id='kalaContainer' class="select-highlightKala tableBody">
+                            <tbody id='kalaContainer' class="tableBody">
                                         @foreach ($listKala as $kala)
-                                    <tr>
+                                    <tr onclick="setListKalaStuff(this,'{{$kala->GoodName}}')">
                                         <td>{{$loop->index+1}}</td>
                                         <td style="width: 222px">{{$kala->GoodName}}</td>
                                         <td>{{$kala->GoodCde}}</td>
-                                       
                                         <td>{{$kala->NameGRP}}</td>
                                         <td>{{\Morilog\Jalali\Jalalian::fromCarbon(\Carbon\Carbon::parse($kala->lastDate))->format('Y/m/d')}}</td>
                                         <td>1401.2.21</td>
@@ -277,18 +324,15 @@
                             @endphp
 
                         <div class="col-lg-6 px-0 mx-0 fastKalaStaff">
-                            
-                            
                                     <button type="button" value="Reterive data" class="btn btn-success btn-sm text-white" style="display: none"
                                         onclick="getGroupId()" data-toggle="modal" id="editGroupList" disabled data-target="#editGroup">ویرایش <i class="fa fa-edit " aria-hidden="true"></i></button>
-                                    <form action='{{ url('/deleteMainGroup') }}' onsubmit="return confirm('میخوهید حذف کنید?');" method='post' style=" margin:0; padding:0; display: inline;">
+                                    <form action='{{ url('#') }}' onsubmit="return confirm('میخوهید حذف کنید?');" method='post' style=" margin:0; padding:0; display: inline;">
                                         @csrf
-                                        <button type="submit" style="display: none" disabled id="deleteGroupList" class="btn btn-danger btn-sm">حذف <i class="fa fa-trash " aria-hidden="true"></i></button>
+                                        <button type="submit" style="display: none" disabled class="btn btn-danger btn-sm">حذف <i class="fa fa-trash " aria-hidden="true"></i></button>
                                         <Button  id="topGroup"  style="display: none"  type="button" value="top" onclick="changeMainGroupPriority(this)" style="background-color:rgb(255 255 255); padding:0;" ><i class="fa-solid fa-circle-chevron-up fa-2x" style=''></i></i></Button>
                                         <Button  id="downGroup"  style="display: none"  type="button" value="down" onclick="changeMainGroupPriority(this)" style="background-color:rgb(255 255 255); padding:0;" ><i class="fa-solid fa-circle-chevron-down fa-2x" style=''></i></i></Button>
                                         <input type="text" value="" id="mianGroupId" style="display: none"/>
-                                       
-                                     <input type="text" class="form-control form-control-sm col-lg-6" id="mainGroupSearch" autocomplete="off"  name="search_mainPart" placeholder="جستجو" style="margin: 5px 5px; 0px 0px">
+                                     <input type="text" class="form-control form-control-sm col-lg-6" id="mainGroupSearchFast" autocomplete="off"  name="search_mainPart" placeholder="جستجو" style="margin: 5px 5px; 0px 0px">
                                     <table class="table table-bordered table-sm" id="tableGroupList">
                                         <thead class="tableHeader">
                                             <tr>
@@ -297,7 +341,7 @@
                                                 <th>فعال</th>
                                             </tr>
                                         </thead>
-                                        <tbody class="tableBody"id="mainGroupList">
+                                        <tbody class="tableBody"id="mainGroupListfast">
                                             @foreach ($mainGroups as $group)
                                                 <tr onclick="changePicture(this)">
                                                     <td>{{ $loop->index+1 }}</td>
@@ -313,10 +357,8 @@
 
                          </div>
                         <div class="col-lg-6 px-0 mx-0 fastKalaStaff">
-                                    <button class="btn btn-success btn-sm"  style="display: none"
-                                        onclick="addNewSubGroup()"  style="display: none" disabled  id="addNewSubGroupButton"  data-toggle="modal" data-target="#newSubGroup"> جدید <i class="fa fa-plus " aria-hidden="true"></i></button>
-                                    <button  class="btn btn-success btn-sm text-white" disabled id="editSubGroupButton"  style="display: none"  data-toggle="modal"
-                                        data-target="#editSubGroup"> ویرایش <i class="fa fa-edit " aria-hidden="true"></i></button>
+                                    <button class="btn btn-success btn-sm" onclick="addNewSubGroup()"  style="display: none" disabled  id="addNewSubGroupButton"  data-toggle="modal" data-target="#newSubGroup"> جدید <i class="fa fa-plus " aria-hidden="true"></i></button>
+                                    <button  class="btn btn-success btn-sm text-white" disabled id="editSubGroupButton"  style="display: none"  data-toggle="modal" data-target="#editSubGroup"> ویرایش <i class="fa fa-edit " aria-hidden="true"></i></button>
                                         <form action='{{ url('/deleteSubGroup') }}' method='post' onsubmit="return confirm('میخوهید حذف کنید?');" style=" margin:0; padding:0; display: inline;">
                                             @csrf
                                             <button id="deleteSubGroup"  style="display: none" disabled class="btn btn-danger btn-sm"> حذف <i class="fa fa-trash " aria-hidden="true"></i></button>
@@ -325,13 +367,11 @@
                                             <button onclick="changeSubGroupPriority(this)"  style="display: none" value="down"  type="button" style="background-color:rgb(255 255 255); padding:0;"><i class="fa-solid fa-circle-chevron-down fa-2x" style=''></i></button>
                                     
                                         </form>
-                                        <input type="text" class="form-control form-control-sm col-lg-6" id="serachSubGroupId"  placeholder="جستجو" style="margin: 5px 5px; 0px 0px">
-                    
-                                    <table id="subGroupTable" class="table-bordered table-sm" id="tableGroupList">
+                                    <table id="subGroupTable" class="table-bordered table-sm mt-5" id="tableGroupList">
                                         <thead class="tableHeader">
                                             <tr>
-                                                <th >ردیف </th>
-                                                <th> گروه فرعی </th>
+                                                <th >ردیف</th>
+                                                <th>گروه فرعی</th>
                                                 <th>تصویر</th>
                                             </tr>
                                         </thead>
@@ -499,7 +539,7 @@
                         <!-- دسته بندی  -->
                      <div class="row px-0 mx-0 mt-1 kalaCategoryStaff">
                            <div class="col-sm-6">
-                                 <form action='{{ url('/deleteMainGroup') }}' onsubmit="return confirm('میخوهید حذف کنید?');" method='post' style=" margin:0; padding:0; display: inline;">
+                                 <form action='{{ url('/deleteMainGroup') }}' onsubmit="return confirm('میخوهید حذف کنید?');" method='post' id="deleteAMainGroup" style=" margin:0; padding:0; display: inline;">
                                         @csrf
                                     <input type="text" value="" id="mianGroupId" style="display: none"/>
                                     <input type="text" class="form-control form-control-sm" id="mainGroupSearch" autocomplete="off" name="search_mainPart" placeholder="جستجو">
@@ -511,7 +551,7 @@
                                                 <th>فعال</th>
                                             </tr>
                                         </thead>
-                                        <tbody class="c-checkout tableBody" id="mainGroupList" style="max-height: 200px;">
+                                        <tbody class="c-checkout tableBody" id="mainGroupList2" style="max-height: 200px;">
                                             @foreach ($mainGroups as $group)
                                                 <tr  onclick="changeMainGroupStuff(this)">
                                                     <td>{{ $loop->index+1 }}</td>
@@ -598,8 +638,7 @@
      </div>
   </div>
 </div>
-
-             <!-- modal of new Brand -->
+ <!-- modal of new Brand -->
         <div class="modal fade dragableModal" id="newBrandModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"  aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
@@ -612,17 +651,11 @@
                                 {{ csrf_field() }}
                                 <div class="form-group">
                                     <label class="form-label"> اسم برند </label>
-                                    <input type="text" required class="form-control form-control-sm" autocomplete="off" name="brandName" id="mainGroupName" placeholder="">
+                                    <input type="text" required class="form-control form-control-sm" autocomplete="off" name="brandName" id="mainGroupName" placeholder="" required>
                                 </div>
                                 <div class="form-group">
-                                    <label class="form-label"> اولویت </label>
-                                    <select class="form-select form-select-sm" name="priority">
-                                            <option value="" >1</option>
-                                    </select>
-                                </div>
-                                    <div class="form-group">
                                     <label class="form-label"> عکس </label>
-                                    <input type="file" class="form-control form-control-sm" name="brandPic" placeholder="">
+                                    <input type="file" class="form-control form-control-sm" name="brandPic" placeholder="" required>
                                 </div>
                                 <div class="form-group">
                                     <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal">انصراف <i class="fa-solid fa-xmark "></i></button>
@@ -751,7 +784,7 @@
         <div class="modal-content">
             <div class="modal-header bg-success text-white py-2">
                 <button type="button" class="btn-close bg-danger" data-dismiss="modal" aria-label="Close"></button>
-                <h5 class="modal-title" id="exampleModalLongTitle"> تغییر قیمت  </h5>
+                <h5 class="modal-title" id="exampleModalLongTitle">  تغییر قیمت <span id="changePriceTitle" class="modalTitle"></span> </h5>
                 </button>
             </div>
             <div class="modal-body">
@@ -782,7 +815,7 @@
         <div class="modal-content">
                 <div class="modal-header bg-success text-white py-2">
                     <button type="button" class="btn-close bg-danger" data-dismiss="modal" aria-label="Close"></button>
-                    <h5 class="modal-title">ده فروش آخر</h5>
+                    <h5 class="modal-title"> ده فروش آخر <span id="lasTenSaleName" class="modalTitle"></span></h5>
                     </button>
                 </div>
                 <div class="modal-body">
@@ -1271,96 +1304,10 @@
           </div>
         </div>
      </div>
+    </div>
 
 
-        
 
-
-   
-        <!-- modal of new group -->
-        <div class="modal fade" id="newGroup" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-            aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header bg-success text-white py-2">
-                        <button type="button" class="btn-close bg-danger" data-dismiss="modal" aria-label="Close"></button>
-                        <h5 class="modal-title" id="exampleModalLongTitle"> دسته بندی جدید </h5>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        
-                            <form action="{{url('/addMainGroup')}}" method="POST" id="createNewMainGroup" enctype="multipart/form-data" class="form">
-                                {{ csrf_field() }}
-                                <div class="form-group">
-                                    <label class="form-label"> اسم دسته بندی </label>
-                                    <input type="text" required class="form-control form-control-sm" autocomplete="off" name="mainGroupName" id="mainGroupName"
-                                        placeholder="">
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-label"> اولویت </label>
-                                    <select class="form-select form-select-sm" name="priority">
-                                        @for ($i = 1; $i <= ($allGroups+1); $i++)
-                                            <option value="{{$i}}" >{{$i}}</option>
-                                        @endfor
-                                    </select>
-                                </div>
-                                    <div class="form-group">
-                                    <label class="form-label"> عکس </label>
-                                    <input type="file" class="form-control form-control-sm" name="mainGroupPicture" placeholder="">
-                                </div>
-                                <div class="form-group" style="margin-top:2%">
-                                    <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal">انصراف <i class="fa-solid fa-xmark"></i></button>
-                                    <button type="submit" id="submitNewGroup" class="btn btn-sm btn-success">ذخیره <i class="fa fa-save" aria-hidden="true"></i></button>
-                                </div>
-                            </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- end modal new group -->
-
-        <!-- modal of editig groups -->
-        <div class="modal fade" id="editGroup" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-            aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header text-white bg-success py-2" style="margin:0; border:none">
-                        <button type="button" class="btn-close bg-danger" data-dismiss="modal" aria-label="Close"></button>
-                        <h5 class="modal-title" id="exampleModalLongTitle">ویرایش دسته بندی</h5>
-                    </div>
-                    <div class="modal-body">
-                            <form action="{{ url('/editMainGroup') }}" class="form"
-                                enctype="multipart/form-data" method="POST">
-                                @csrf
-                                <div class="form-group">
-                                    <label class="form-label">اسم دسته بندی</label>
-                                    <input type="text" size="10px" required class="form-control form-control-sm" name="groupName" id="groupName"
-                                        placeholder="">
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-label form-select-sm">اولویت</label>
-                                    <select class="form-select form-select-sm" name="priority">
-                                            @for ($i = 1; $i <= ($allGroups); $i++)
-                                                <option @if($i==4) selected @endif value="{{$i}}" >{{$i}}</option>
-                                            @endfor
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <input type="text" class="form-control" style="display:none;" name="groupId"
-                                        id="groupId" placeholder="">
-                                </div>
-                                <div class="form-group mt-2">
-                                    <label for="groupPicture" id="groupPicturelabel" class='btn btn-success btn-sm' class="form-label"> انتخاب عکس <i class="fa-solid fa-image"></i></label>
-                                    <input type="file" class="form-control" style="display:none;" name="groupPicture" id="groupPicture" placeholder="">
-                                    
-                                    <button class="btn btn-success btn-sm"> ذخیره  <i class="fa fa-save" aria-hidden="true"></i></button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
         <!-- end modal editing -->
         <!-- modal of editig subgroups -->
         <div class="modal fade" id="editSubGroup" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
@@ -1445,42 +1392,11 @@
 
         <!-- end modal new group -->
         <!-- modal of editig groups -->
-        <div class="modal fade dragAbleModal" id="editGroup" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header bg-success text-white py-2">
-                        <h5 class="modal-title" id="exampleModalLongTitle">ویرایش دسته بندی</h5>
-                        <button type="button" class="close btn bg-danger" data-dismiss="modal" aria-label="Close" style="background-color:rgb(255 255 255); padding:0; padding-left:7px;"><i class="fa-solid fa-xmark fa-xl"></i>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form action="{{ url('/editMainGroup') }}" class="form"
-                            enctype="multipart/form-data" method="POST">
-                            @csrf
-                            <div class="form-group">
-                                <label class="form-label">اسم دستبندی</label>
-                                <input type="text" size="10px" required class="form-control" name="groupName" id="groupName"
-                                    placeholder="">
-                            </div>
-                            <div class="form-group">
-                                <input type="text" class="form-control" style="display:none;" name="groupId" id="groupId" placeholder="">
-                            </div>
-                            <div class="form-group" style="margin-top:4%">
-                                <label for="groupPicture" id="groupPicturelabel" class='btn btn-success btn-sm' class="form-label"> انتخاب عکس <i class="fa-solid fa-image fa-lg"></i></label>
-                                <input type="file" class="form-control" style="display:none;" name="groupPicture" id="groupPicture" placeholder="">
-                                    &nbsp;&nbsp;&nbsp;
-                                <button class="btn btn-success btn-sm buttonHover"> ذخیره  <i class="fa fa-save fa-lg" aria-hidden="true"></i></button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
+
 
         <!-- end modal editing -->
         <!-- modal of editig subgroups -->
-        <div class="modal fade dragAbleModal" id="editSubGroup" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-            aria-hidden="true">
+        <div class="modal fade dragAbleModal" id="editSubGroup" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header bg-success text-white py-2">
@@ -1489,37 +1405,68 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                            <form action="{{ url('/editSubgroup') }}" class="form"
-                                enctype="multipart/form-data" method="POST">
-                                @csrf
-                                <div class="form-group">
-                                    <label class="form-label"> اسم دستبندی </label>
-                                    <input type="text" required class="form-control" name="subGroupNameEdit" id="subGroupNameEdit"
-                                        placeholder="">
-                                </div>
-                                {{-- <div class="form-group">
-                                    <label class="form-label"> اولویت </label>
-                                    <select class="subGroupCount form-select" name="priority">
+                        <form action="{{ url('/editSubgroup') }}" class="form"
+                            enctype="multipart/form-data" method="POST">
+                            @csrf
+                            <div class="form-group">
+                                <label class="form-label"> اسم دستبندی </label>
+                                <input type="text" required class="form-control" name="subGroupNameEdit" id="subGroupNameEdit"
+                                    placeholder="">
+                            </div>
+                            {{-- <div class="form-group">
+                                <label class="form-label"> اولویت </label>
+                                <select class="subGroupCount form-select" name="priority">
 
-                                    </select>
-                                </div> --}}
-                                <input type="text" class="form-control" name="fatherMainGroupId"
-                                    id="fatherMainGroupIdEdit" style="display: none">
-                                <input type="text" class="form-control" name="subGroupId" id="subGroupIdEdit"
-                                    style="display: none">
-                                <div class="form-group" style="margin-top:4%">
-                                    <label for="subGroupPictureEdit" id="subGroupPictureEditlabel" class='btn btn-success btn-sm' class="form-label"> انتخاب عکس <i class="fa-solid fa-image fa-lg"></i></label>
-                                    <input type="file"  class="form-control" style="display:none" name="subGroupPictureEdit" id="subGroupPictureEdit" placeholder="">
-                                        &nbsp;&nbsp;&nbsp;
-                                    <button class="btn btn-success btn-sm buttonHover"> ذخیره <i class="fa fa-save fa-lg" aria-hidden="true"></i></button>
-                                </div>
-                            </form>
+                                </select>
+                            </div> --}}
+                            <input type="text" class="form-control" name="fatherMainGroupId"
+                                id="fatherMainGroupIdEdit" style="display: none">
+                            <input type="text" class="form-control" name="subGroupId" id="subGroupIdEdit"
+                                style="display: none">
+                            <div class="form-group" style="margin-top:4%">
+                                <label for="subGroupPictureEdit" id="subGroupPictureEditlabel" class='btn btn-success btn-sm' class="form-label"> انتخاب عکس <i class="fa-solid fa-image fa-lg"></i></label>
+                                <input type="file"  class="form-control" style="display:none" name="subGroupPictureEdit" id="subGroupPictureEdit" placeholder="">
+                                    &nbsp;&nbsp;&nbsp;
+                                <button class="btn btn-success btn-sm buttonHover"> ذخیره <i class="fa fa-save fa-lg" aria-hidden="true"></i></button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- end modal editing -->
+        </div>
+        </div>
+    </div>
 
+
+        <!-- end modal editing -->
+        <div class="modal fade dragAbleModal" id="editGroup"  tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header bg-success text-white py-2">
+                        <h5 class="modal-title" id="exampleModalLongTitle">ویرایش دسته بندی</h5>
+                        <button type="button" class="close btn bg-danger" data-dismiss="modal" aria-label="Close" style="background-color:rgb(255 255 255); padding:0; padding-left:7px;"><i class="fa-solid fa-xmark fa-xl"></i>
+                    </div>
+                    <div class="modal-body">
+                        <form action="{{ url('/editMainGroup') }}" class="form" enctype="multipart/form-data" method="POST">
+                            @csrf
+                            <div class="form-group">
+                                <label class="form-label">اسم دستبندی</label>
+                                <input type="text" size="10px" required class="form-control" name="groupName" id="groupName" placeholder="">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" style="display:none;" name="groupId" id="groupId" placeholder="">
+                            </div>
+                            <div class="form-group" style="margin-top:4%">
+                                <label for="groupPicture" id="groupPicturelabel" class='btn btn-success btn-sm' class="form-label"> انتخاب عکس <i class="fa-solid fa-image fa-lg"></i></label>
+                                <input type="file" class="form-control" style="display:none;" name="groupPicture" id="groupPicture" placeholder="">&nbsp;&nbsp;&nbsp;
+                                <button class="btn btn-success btn-sm buttonHover"> ذخیره  <i class="fa fa-save fa-lg" aria-hidden="true"></i></button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
         <!-- modal of new subgroup -->
         <div class="modal fade dragAbleModal" id="newSubGroup" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
@@ -1558,35 +1505,8 @@
         </div>
 
         
-    <script>
-        function getGroupId() {
-            var checkedValue = document.querySelector('.mainGroupId:checked').value;
-            var groupProperties = checkedValue.split("_");
-            document.querySelector('#groupName').value = groupProperties[1].trim();
-            document.querySelector('#groupPercent').value = groupProperties[0];
-            document.querySelector('#groupId').value = groupProperties[0];
-        }
-        function addNewSubGroup() {
-            document.querySelector('#fatherMainGroupId').value = document.querySelector('.mainGroupId:checked').value.split(
-                '_')[0];
-                document.querySelector(".countGroups").append("<option>good</option>");
-        }
-        window.onload = function() {
-            $(document).on('change', '#groupPicture', (function() {
-                $('#groupPicturelabel').css('background-color','#6c757d');
-            }));
-            $(document).on('change', '#subGroupPictureEdit', (function() {
-                 $('#subGroupPictureEditlabel').css('background-color','#6c757d');
-            }));
-        }
-    </script>
-
-
-<!-- script for brnads -->
-   <meta name="csrf-token" content="{{ csrf_token() }}" />
- 
-<script>
-	
+    <script src="{{ url('/resources/assets/js/KalaScript.js')}}">  </script>
+    <script type="text/javascript">
    $("#newBrandBtn").on("click", ()=>{
 	      if (!($('.modal.in').length)) {
                 $('.modal-dialog').css({
@@ -1647,7 +1567,6 @@
             var checkedValue = document.querySelector('.mainGroupId:checked').value;
             var groupProperties = checkedValue.split("_");
             document.querySelector('#groupName').value = groupProperties[1].trim();
-            document.querySelector('#groupPercent').value = groupProperties[0];
             document.querySelector('#groupId').value = groupProperties[0];
         }
         function addNewSubGroup() {
@@ -1683,23 +1602,23 @@
 	    	$("#newMainGroup").modal("show");
 	});
 
-	$("#editGroupList").on("click", ()=>{
-	     if (!($('.modal.in').length)) {
-                $('.modal-dialog').css({
-                  top: 0,
-                  left: 350
-                });
-              }
-              $('#editGroup').modal({
-                backdrop: false,
-                show: true
-              });
+	// $("#editGroupList").on("click", ()=>{
+	//      if (!($('.modal.in').length)) {
+    //             $('.modal-dialog').css({
+    //               top: 0,
+    //               left: 350
+    //             });
+    //           }
+    //           $('#editGroup').modal({
+    //             backdrop: false,
+    //             show: true
+    //           });
               
-              $('.modal-dialog').draggable({
-                  handle: ".modal-header"
-                });
-	    	$("#editGroup").modal("show");
-	})
+    //           $('.modal-dialog').draggable({
+    //               handle: ".modal-header"
+    //             });
+	//     	$("#editGroup").modal("show");
+	// })
 		
 	$("#addNewSubGroupButton").on("click", ()=>{
 
@@ -1736,13 +1655,7 @@
             });
         $("#editSubGroup").modal("show");
 	})
-		
-		
-    </script>
 
-
-<script src="{{ url('/resources/assets/js/KalaScript.js')}}">  </script>
-<script type="text/javascript">
     $(document).ready(function() {
        $("#submitFactorToAppButton, #submitDeleteFactorButton").click(function() {
            $("#pishKharidFormId").submit();

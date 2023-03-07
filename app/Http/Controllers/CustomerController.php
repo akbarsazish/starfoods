@@ -512,5 +512,22 @@ public function storeHaqiqiCustomerAdmin(Request $request){
         return Response::json($orders);
     }
 
+    public function filterCustomers(Request $request)
+    {
+        $nameOrCodeOrPhone=$request->get("nameOrCodeOrPhone");
+        $recName=$request->get("recName");
+        $lcationState=$request->get("locationState");
+        $activationState=$request->get("activationState");
+        $baseName=$request->get("baseName");
+        $customers=DB::select("SELECT * FROM (SELECT PSN,CompanyNo,IsActive,PCode,Name,GroupCode
+                ,FORMAT(TimeStamp,'yyyy/MM/dd','fa-ir') as TimeStamp,
+                peopeladdress,CRM.dbo.getCustomerPhoneNumbers(PSN) as PhoneStr,
+                CRm.dbo.getCustomerMantagheh(SnMantagheh) as NameRec
+                ,CRM.dbo.checkUserLocation(PSN,$lcationState) as hasLocation
+                ,CRM.dbo.checkCustomerActivationState(PSN,$activationState) as activationState
+                FROM Shop.dbo.Peopels)a
+WHERE CompanyNo=5 AND Name !='' and (Name Like N'%$nameOrCodeOrPhone%' OR PCode Like N'%$nameOrCodeOrPhone%' or PhoneStr Like N'%$nameOrCodeOrPhone%') and NameRec like N'%$recName%' and hasLocation=$lcationState and activationState=$activationState AND GroupCode in(291,1297,1297 ,299 ,312 ,313 ,314) ORDER BY $baseName ASC");
+    return Response::json($customers);
+    }
 
     }

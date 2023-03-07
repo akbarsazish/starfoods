@@ -33,7 +33,7 @@ class Group extends Controller {
         $filename=($maxGroupId).'.'.'jpg';
         $picture->move("resources/assets/images/mainGroups/",$filename);
         }
-        return redirect('/listGroup');
+        return redirect('/listKala');
    }
    public function deleteMainGroup(Request $request)
    {
@@ -60,7 +60,7 @@ class Group extends Controller {
         if(file_exists("resources/assets/images/mainGroups/".$mainGroupId.".jpg")){
             unlink("resources/assets/images/mainGroups/".$mainGroupId.".jpg");
         }
-       return redirect('/listGroup');
+       return redirect('/listKala');
    }
 
    public function editMainGroup(Request $request)

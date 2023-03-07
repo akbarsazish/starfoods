@@ -113,26 +113,6 @@ class Kala extends Controller {
         return Response::json($kala_list);
     }
 
-    public function searchKalaByCode(Request $request)
-    {
-        $code=$request->get('code');
-
-        $kala_list=DB::select("SELECT PubGoods.GoodName,PubGoods.GoodGroupSn,PubGoods.GoodSn,GoodPriceSale.Price3,GoodPriceSale.Price4,V.Amount,
-                            GoodCde,GoodGroups.NameGRP FROM Shop.dbo.PubGoods JOIN Shop.dbo.GoodGroups
-                            ON PubGoods.GoodGroupSn=GoodGroups.GoodGroupSn
-                            JOIN Shop.dbo.GoodPriceSale ON PubGoods.GoodSn=GoodPriceSale.SnGood
-                            JOIN (SELECT * FROM Shop.dbo.ViewGoodExists where ViewGoodExists.FiscalYear=".Session::get("FiscallYear").") V ON PubGoods.GoodSn=V.SnGood
-                            where GoodName!='' AND NameGRP!='' AND GoodSn!=0
-                            AND PubGoods.CompanyNo=5 AND PubGoods.GoodGroupSn >49 AND (GoodName like '%".$code."%' or GoodCde like '%".$code."%')") ;
-        
-        foreach ($kala_list as $kala) {
-
-            $kala->Amount+=DB::select("select SUM(Amount) as SumAmount from Shop.dbo.ViewGoodExistsInStock where ViewGoodExistsInStock.SnStock in(select stockId from NewStarfood.dbo.star_addedStock where productId=".$kala->GoodSn.") and SnGood=".$kala->GoodSn)[0]->SumAmount;
-        
-        }
-
-        return Response::json($kala_list);
-    }
     public function getStocks(Request $request)
     {
         $stocks=DB::select("SELECT SnStock,CompanyNo,CodeStock,NameStock from Shop.dbo.Stocks where SnStock!=0 and NameStock!='' and CompanyNo=5");
@@ -151,54 +131,6 @@ class Kala extends Controller {
 
         
         return Response::json($kalas);
-    }
-    public function searchKalaByExisanceOnStock(Request $request)
-    {
-        $exitsance=$request->get('stockExistance');
-        $stockId=$request->get('stockId');
-        if($exitsance==10){
-            //all
-            $kalas=DB::select("SELECT PubGoods.GoodName,PubGoods.GoodSn,GoodPriceSale.Price3,GoodPriceSale.Price4,ViewGoodExistsInStock.Amount,
-                        PubGoods.GoodCde,GoodGroups.NameGRP,PubGoods.GoodGroupSn from Shop.dbo.PubGoods
-                        join Shop.dbo.GoodGroups on PubGoods.GoodGroupSn=GoodGroups.GoodGroupSn
-                        join Shop.dbo.GoodPriceSale on PubGoods.GoodSn=GoodPriceSale.SnGood
-                        join Shop.dbo.ViewGoodExistsInStock ON PubGoods.GoodSn=ViewGoodExistsInStock.SnGood
-                        where GoodName!='' and NameGRP!='' and GoodSn!=0 and PubGoods.GoodGroupSn >49
-                        and PubGoods.CompanyNo=5 and ViewGoodExistsInStock.FiscalYear=".Session::get("FiscallYear")." and ViewGoodExistsInStock.SnStock=
-                        ".$stockId);
-
-            return Response::json($kalas);
-
-        }
-        
-        if($exitsance==1){
-            //NO ZERO
-            $kalas=DB::select("SELECT PubGoods.GoodName,PubGoods.GoodSn,GoodPriceSale.Price3,GoodPriceSale.Price4,ViewGoodExistsInStock.Amount,
-                            PubGoods.GoodCde,GoodGroups.NameGRP,PubGoods.GoodGroupSn from Shop.dbo.PubGoods
-                            join Shop.dbo.GoodGroups on PubGoods.GoodGroupSn=GoodGroups.GoodGroupSn
-                            join Shop.dbo.GoodPriceSale on PubGoods.GoodSn=GoodPriceSale.SnGood
-                            join Shop.dbo.ViewGoodExistsInStock ON PubGoods.GoodSn=ViewGoodExistsInStock.SnGood
-                            where GoodName!='' and NameGRP!='' and GoodSn!=0 and PubGoods.GoodGroupSn >49
-                            and PubGoods.CompanyNo=5 and ViewGoodExistsInStock.FiscalYear=".Session::get("FiscallYear")." and ViewGoodExistsInStock.Amount>0 and ViewGoodExistsInStock.SnStock=
-                            ".$stockId);
-
-            return Response::json($kalas);
-
-        }
-        if($exitsance==0){
-            //ZERO
-            $kalas=DB::select("SELECT PubGoods.GoodName,PubGoods.GoodSn,GoodPriceSale.Price3,GoodPriceSale.Price4,ViewGoodExistsInStock.Amount,
-                            PubGoods.GoodCde,GoodGroups.NameGRP,PubGoods.GoodGroupSn from Shop.dbo.PubGoods
-                            join Shop.dbo.GoodGroups on PubGoods.GoodGroupSn=GoodGroups.GoodGroupSn
-                            join Shop.dbo.GoodPriceSale on PubGoods.GoodSn=GoodPriceSale.SnGood
-                            join Shop.dbo.ViewGoodExistsInStock ON PubGoods.GoodSn=ViewGoodExistsInStock.SnGood
-                            where GoodName!='' and NameGRP!='' and GoodSn!=0 and PubGoods.GoodGroupSn >49
-                            and PubGoods.CompanyNo=5 and ViewGoodExistsInStock.FiscalYear=".Session::get("FiscallYear")." and ViewGoodExistsInStock.Amount=0 and ViewGoodExistsInStock.SnStock=
-                            ".$stockId);
-
-            return Response::json($kalas);
-        }
-
     }
 
     public function listKalaFromPart($id,$picId)
@@ -2205,29 +2137,22 @@ $minSubGroupId=DB::table("NewStarfood.dbo.star_add_prod_group")->where("firstGro
             
         }
         //without stocks-----------------------------------------------------
-        $kalaList=DB::select("SELECT  GoodSn,GoodName,UName,Price3,Price4,SnGoodPriceSale,IIF(csn>0,'YES','NO') favorite,productId,IIF(ISNULL(productId,0)=0,0,1) as requested,IIF(zeroExistance=1,0,IIF(ISNULL(SnOrderBYS,0)=0,SumAmount,BoughtAmount)) Amount,CompanyNo,IIF(ISNULL(SnOrderBYS,0)=0,'No','Yes') bought,callOnSale,SnOrderBYS,BoughtAmount,PackAmount,overLine,secondUnit,freeExistance,activeTakhfifPercent,activePishKharid,GoodGroupSn,firstGroupId FROM(
-            SELECT  PubGoods.GoodSn,PubGoods.GoodName,PUBGoodUnits.UName,csn,D.productId,GoodPriceSale.Price3,GoodPriceSale.Price4,GoodPriceSale.SnGoodPriceSale,GoodGroupSn,PubGoods.CompanyNo
-            ,SumAmount,E.zeroExistance,E.callOnSale,SnOrderBYS,BoughtAmount,PackAmount,E.overLine,secondUnit,star_GoodsSaleRestriction.freeExistance,star_GoodsSaleRestriction.activeTakhfifPercent,star_GoodsSaleRestriction.activePishKharid FROM Shop.dbo.PubGoods
+        $kalaList=DB::select("SELECT  GoodSn,GoodName,UName,CRM.dbo.getGoodFirstGroupId(GoodSn) as firstGroupId,CRM.dbo.getGoodSecondGroupId(GoodSn) as secondGroupId,Price3,Price4,SnGoodPriceSale,IIF(csn>0,'YES','NO') favorite,productId,IIF(ISNULL(productId,0)=0,0,1) as requested,IIF(zeroExistance=1,0,IIF(ISNULL(SnOrderBYS,0)=0,NewStarfood.dbo.getProductExistance(GoodSn),BoughtAmount)) Amount,IIF(ISNULL(SnOrderBYS,0)=0,'No','Yes') bought,callOnSale,SnOrderBYS,BoughtAmount,PackAmount,overLine,secondUnit,freeExistance,activeTakhfifPercent,activePishKharid FROM(
+            SELECT  PubGoods.GoodSn,PubGoods.GoodName,PUBGoodUnits.UName,csn,D.productId,GoodPriceSale.Price3,GoodPriceSale.Price4,GoodPriceSale.SnGoodPriceSale
+            ,E.zeroExistance,E.callOnSale,SnOrderBYS,BoughtAmount,PackAmount,E.overLine,secondUnit,star_GoodsSaleRestriction.freeExistance,star_GoodsSaleRestriction.activeTakhfifPercent,star_GoodsSaleRestriction.activePishKharid FROM Shop.dbo.PubGoods
             JOIN NewStarfood.dbo.star_GoodsSaleRestriction ON PubGoods.GoodSn=NewStarfood.dbo.star_GoodsSaleRestriction.productId
             JOIN Shop.dbo.PUBGoodUnits ON PubGoods.DefaultUnit=PUBGoodUnits.USN
-            join(select SUM(Amount) as SumAmount,SnGood from Shop.dbo.ViewGoodExistsInStock
-            where  ViewGoodExistsInStock.FiscalYear=1399 and ViewGoodExistsInStock.CompanyNo=5 group by SnGood )B on PubGoods.GoodSn=B.SnGood 
-            left JOIN (select  SnOrderBYS,SnGood,Amount as BoughtAmount,PackAmount from NewStarfood.dbo.FactorStar join NewStarfood.dbo.orderStar on FactorStar.SnOrder=orderStar.SnHDS where CustomerSn=2571 and orderStatus=0)f on f.SnGood=PubGoods.GoodSn
-            left join (select goodSn as csn from NewStarfood.dbo.star_Favorite WHERE star_Favorite.customerSn=3609)C on PubGoods.GoodSn=C.csn
-            LEFT JOIN (select productId from NewStarfood.dbo.star_requestedProduct where customerId=3609)D on PubGoods.GoodSn=D.productId
+            left JOIN (select  SnOrderBYS,SnGood,Amount as BoughtAmount,PackAmount from NewStarfood.dbo.FactorStar join NewStarfood.dbo.orderStar on FactorStar.SnOrder=orderStar.SnHDS where CustomerSn=".Session::get('psn')." and orderStatus=0)f on f.SnGood=PubGoods.GoodSn
+            left join (select goodSn as csn from NewStarfood.dbo.star_Favorite WHERE star_Favorite.customerSn=".Session::get('psn').")C on PubGoods.GoodSn=C.csn
+            LEFT JOIN (select productId from NewStarfood.dbo.star_requestedProduct where customerId=".Session::get('psn').")D on PubGoods.GoodSn=D.productId
             left join (select zeroExistance,callOnSale,overLine,productId from NewStarfood.dbo.star_GoodsSaleRestriction)E on E.productId=PubGoods.GoodSn
-            JOIN (SELECT * from Shop.dbo.ViewGoodExists) A ON PubGoods.GoodSn=A.SnGood
             LEFT JOIN Shop.dbo.GoodPriceSale ON GoodPriceSale.SnGood=PubGoods.GoodSn
             left join (select GoodUnitSecond.AmountUnit,SnGood,UName as secondUnit from Shop.dbo.GoodUnitSecond
             join Shop.dbo.PUBGoodUnits on PUBGoodUnits.USN=GoodUnitSecond.SnGoodUnit WHERE GoodUnitSecond.CompanyNo=5)G on G.SnGood=PUbGoods.GoodSn
-            
-            GROUP BY  PubGoods.CompanyNo,GoodGroupSn,PubGoods.GoodSn,E.zeroExistance,E.callOnSale,E.overLine,BoughtAmount,PackAmount,SnOrderBYS,secondUnit,D.productId,PubGoods.GoodName,SumAmount,GoodPriceSale.Price3,GoodPriceSale.Price4,GoodPriceSale.SnGoodPriceSale,PUBGoodUnits.UName,star_GoodsSaleRestriction.activeTakhfifPercent,
+            WHERE  PubGoods.GoodSn not in(select productId from NewStarfood.dbo.star_GoodsSaleRestriction where hideKala=1 ) 
+            GROUP BY PubGoods.GoodSn,E.zeroExistance,E.callOnSale,E.overLine,BoughtAmount,PackAmount,SnOrderBYS,secondUnit,D.productId,PubGoods.GoodName,GoodPriceSale.Price3,GoodPriceSale.Price4,GoodPriceSale.SnGoodPriceSale,PUBGoodUnits.UName,star_GoodsSaleRestriction.activeTakhfifPercent,
             star_GoodsSaleRestriction.freeExistance,star_GoodsSaleRestriction.activePishKharid,csn 
-            ) A 
-            JOIN (select min(firstGroupId) as firstGroupId,product_id from NewStarfood.dbo.star_add_prod_group group by product_id)b on A.GoodSn=b.product_id 
-            WHERE  GoodSn not in(select productId from NewStarfood.dbo.star_GoodsSaleRestriction where hideKala=1 ) and CompanyNo=5
-            and $queryPart
-            order by SumAmount desc");   
+            ) A where $queryPart order by Amount desc");   
         $currency=1;
         $currencyName="ریال";
         $currencyExistance=DB::table("NewStarfood.dbo.star_webSpecialSetting")->get('currency');
@@ -2534,6 +2459,17 @@ $minSubGroupId=DB::table("NewStarfood.dbo.star_add_prod_group")->where("firstGro
         }
         return Response::json($kalas);
     }
+    public function getProductMainGroups(Request $request)
+    {
+        $maingGroups=DB::select("SELECT title,id FROM NewStarfood.dbo.Star_Group_Def WHERE selfGroupId=0");
+        return Response::json($maingGroups);
+    }
+    public function getSubGroups(Request $request)
+    {
+        $superGroupId=$request->get("mainGroupId");
+        $suBGroups=DB::select("SELECT * FROM NewStarfood.dbo.Star_Group_Def WHERE selfGroupId=$superGroupId");
+        return Response::json($suBGroups);
+    }
     public function getKalaBybrandItem($code)
     {
         $brandId=$code;
@@ -2645,6 +2581,46 @@ $minSubGroupId=DB::table("NewStarfood.dbo.star_add_prod_group")->where("firstGro
         }
 		$logoPos=DB::select("SELECT logoPosition FROM NewStarfood.dbo.star_webSpecialSetting")[0]->logoPosition;
             return view('kala.kalaFromPart',['kala'=>$kalaList,'currency'=>$currency,'currencyName'=>$currencyName,'logoPos'=>$logoPos]);
+    }
+
+    public function filterAllKala(Request $request)
+    {
+        $kalaNameCode= $request->get("kalaNameCode");
+        $mainGroup  = $request->get("mainGroup");
+        $subGroup  = $request->get("subGroup");
+        $searchKalaStock  = $request->get("searchKalaStock");
+        $searchKalaActiveOrNot  = $request->get("searchKalaActiveOrNot");
+        $searchKalaExistInStock  = $request->get("searchKalaExistInStock");
+        $assesFirstDate  = $request->get("assesFirstDate");
+        $assesSecondDate='1490/01/01';
+        if(strlen($request->get("assesSecondDate"))>3){
+        $assesSecondDate  = $request->get("assesSecondDate");
+        }
+        $existanceQuery="";
+        if($searchKalaExistInStock==1){
+            $existanceQuery=">=1";
+        }
+        if($searchKalaExistInStock==0){
+            $existanceQuery="=0";
+        }
+
+        if($searchKalaExistInStock==-1){
+            $existanceQuery=">=-2000";
+        }
+
+
+
+        $listKala=DB::select("SELECT * FROM(
+            SELECT PubGoods.GoodName,PubGoods.GoodSn,CRM.dbo.getGoodPrice(GoodSn,'Price3') AS Price3,
+            CRM.dbo.getGoodPrice(GoodSn,'Price4') AS Price4,CRM.dbo.getGoodExistance(GoodSn,1399,$searchKalaStock) AS Amount
+            ,GoodCde,PubGoods.GoodGroupSn,PubGoods.CompanyNo,
+            FORMAT(CONVERT(DATE,CRM.dbo.getLastDateGoodSale(GoodSn)),'yyyy/MM/dd','fa-IR') AS lastDate,
+            CRM.dbo.getGoodHiddenState(GoodSn) AS hideKala,CRM.dbo.getGoodMainGroupStarfood(GoodSn) AS firstGroupName,CRM.dbo.getGoodSubGroupStarfood(GoodSn) AS secondGroupName FROM Shop.dbo.PubGoods 
+            )a
+            WHERE GoodName!='' AND a.GoodSn!=0 AND GoodGroupSn >49 AND CompanyNo=5 AND (GoodName LIKE '%$kalaNameCode%' OR GoodCde LIKE '%$kalaNameCode%')
+            AND lastDate >='$assesFirstDate' AND lastDate <='$assesSecondDate' AND hideKala LIKE '%$searchKalaActiveOrNot%' AND Amount $existanceQuery AND firstGroupName LIKE N'%$mainGroup%' AND secondGroupName LIKE N'%$subGroup%'
+            ORDER BY Amount desc");
+        return Response::json($listKala);
     }
     public function listPictureName(Request $request)
     {
@@ -2890,7 +2866,8 @@ public function getTenLastSales(Request $request)
                             SELECT TOP 10 SnGood,Amount,PackType,Fi,Price,SnFact FROM Shop.dbo.FactorBYS WHERE SnGood=".$kalaId." order by FactorBYS.TimeStamp desc)a
                             JOIN (SELECT SerialNoHDS,CustomerSn,FactDate FROM Shop.dbo.FactorHDS)b on a.SnFact=b.SerialNoHDS)c
                             JOIN (SELECT Name,PCode,PSN FROM Shop.dbo.Peopels )d on c.CustomerSn=d.PSN");
-    return Response::json($lastTenSales);
+    $productInfo=DB::select("SELECT GoodName,GoodSn FROM Shop.dbo.PubGoods WHERE GoodSn=$kalaId");
+    return Response::json([$lastTenSales,$productInfo]);
 }
 
 

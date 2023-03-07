@@ -24,7 +24,6 @@
                 <div class="row contentHeader">
                      <div class="col-sm-4">
                         <div class="form-group mt-2">
-                            <input type="text" name="" class="form-control form-control-sm" id="allKalaFirst" placeholder="جستجو">
                         </div>
                      </div>
                  </div>

@@ -33,7 +33,7 @@ class SubGroup extends Controller {
         DB::update("UPDATE NewStarfood.dbo.Star_Group_DEF
         SET title = '".$title."' 
         WHERE id=".$subGruopId);
-        return redirect('/listGroup');
+        return redirect('/listKala');
     }
     public function addSubGroup(Request $request)
     {
@@ -51,7 +51,7 @@ class SubGroup extends Controller {
         $filename=$maxSubGroup.'.'.'jpg';
         $picture->move("resources/assets/images/subgroup/",$filename);
         }
-        return redirect('/listGroup');
+        return redirect('/listKala');
     }
     public function deleteSubGroup(Request $request)
     {
@@ -72,7 +72,7 @@ class SubGroup extends Controller {
         if(file_exists("resources/assets/images/subgroup/".$subGroupId.".jpg")){
             unlink("resources/assets/images/subgroup/".$subGroupId.".jpg");
         }
-    return redirect("/listGroup");
+    return redirect("/listKala");
     }
     public function subGroups(Request $request)
     {
@@ -235,16 +235,6 @@ class SubGroup extends Controller {
         JOIN NewStarfood.dbo.star_add_prod_group ON PubGoods.GoodSn=star_add_prod_group.product_id 
         where PubGoods.GoodName like'%".$searchTerm."%' and secondGroupId=".$subGroupId." and PubGoods.GoodSn not in(select productId from NewStarfood.dbo.star_GoodsSaleRestriction where hideKala=1 )");
         return Response::json($kalas);
-    }
-    public function getSubGroups(Request $request)
-    {
-        $mainGrId=$request->get("mainGrId");
-        if($mainGrId!=0){
-            $subGroups=DB::table("NewStarfood.dbo.Star_Group_Def")->where("selfGroupId",$mainGrId)->select("id","title")->get();
-        }else{
-            $subGroups=DB::table("NewStarfood.dbo.Star_Group_Def")->where("selfGroupId","!=",0)->select("id","title")->get();
-        }
-        return Response::json($subGroups);
     }
     
 }
