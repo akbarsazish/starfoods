@@ -4169,7 +4169,6 @@ $("#adminTypeED").on("change",()=>{
         $("#seeKalaGroupED").prop("checked", true);
         $("#editOrderSalesED").prop("checked", false);
         $("#deleteOrderSalesED").prop("checked", false);
-
         $("#reportED").prop("checked", true);
         $("#reportCustomerED").prop("checked", true);
         $("#cutomerListED").prop("checked", true);
