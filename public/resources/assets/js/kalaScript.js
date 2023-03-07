@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    var baseUrl = "http://127.0.0.1:8000";
+    var baseUrl = "http://192.168.10.26:8080";
     $('#listKala tr').on('click', function () {
         $(this).find('input:radio').prop('checked', true);
         let inp = $(this).find('input:radio:checked');
