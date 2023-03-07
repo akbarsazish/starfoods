@@ -853,7 +853,6 @@
                                 </div>
                             </div>
 
-
                             <div class="c-checkout tab-pane" id="messages" style="border-radius:10px 10px 2px 2px;">
                                 <div class="container">
                                     <div class="row">

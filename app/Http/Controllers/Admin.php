@@ -18,8 +18,7 @@ class Admin extends Controller{
         Session::put('countMessage');
         return view('admin.dashboard');
     }
-    public function listKarbaran(Request $request)
-    {
+    public function listKarbaran(Request $request){
         $admins=DB::select("SELECT * FROM NewStarfood.dbo.admin");
         return view('admin.listKarbaran',['admins'=>$admins]);
     }
@@ -493,9 +492,7 @@ public function searchByCity(Request $request)
 
 
 
-    public function doAddAdmin(Request $request)
-    {
-
+    public function doAddAdmin(Request $request){
 
         $username=$request->post('userName');
 
@@ -511,213 +508,44 @@ public function searchByCity(Request $request)
 
 
         
-        $homePageDelete=$request->post("homeDeleteN");
-        $homePageEdit=$request->post("changeHomePageN");
-        $homePageSee=$request->post("seeHomePageN");
+        // اگر اطلاعات پایه روشن بود
+        $baseInfoN = $request->post("baseInfoN");
 
-        $homePage=0;
+        $settingsN;
+        $mainPageSetting;
+        $specialSettingN;
+        $emptyazSettingN;
 
-        if($homePageDelete=="on"){
-            $homePage=2;
-        }elseif($homePageEdit=="on" and $homePageDelete!="on"){
-            $homePage=1;
-        }elseif($homePageEdit !="on" and $homePageSee =="on"){
-            $homePage=0;
-        }else{
-            $homePage=-1;
-        }
+         if($baseInfoN=="on"){
+            $baseInfoN = 1;
 
-        $karbaranDelete=$request->post("karbaranDeleteN");
-        $karbaranEdit=$request->post("changeKarbaranN");
-        $karbaranSee=$request->post("seeKarbaranN");
+            $settingsN = $request->post("settingsN");
+            if($settingsN = "on"){
+                $settingsN = 1;
 
-        $karbaran=0;
+                    $mainPageSetting = $request->post("mainPageSetting");
+                    $deletMainPageSettingN = $request->post("deletMainPageSettingN");
+                    $editManiPageSettingN = $request->post("editManiPageSettingN");
+                    $seeMainPageSettingN = $request->post("seeMainPageSettingN");
 
-        if($karbaranDelete=="on"){
-            $karbaran=2;
-        }elseif($karbaranEdit=="on" and $karbaranDelete!="on"){
-            $karbaran=1;
-        }elseif($karbaranEdit !="on" and $karbaranSee =="on"){
-            $karbaran=0;
-        }else{
-            $karbaran=-1;
-        }
+                        if($mainPageSetting=="on"){
+                        if($deletMainPageSettingN=="on"){
+                            $mainPageSetting=2;
+                        }elseif($editManiPageSettingN=="on" and $deletMainPageSettingN!="on"){
+                            $mainPageSetting=1;
+                        }elseif($editManiPageSettingN !="on" and $seeMainPageSettingN =="on"){
+                            $mainPageSetting=0;
+                        }else{
+                            $mainPageSetting=-1;
+                        }
+                    }else{
+                        $mainPageSetting=-1;
+                    }
+                }
+                }
 
-        $specialSettingDelete=$request->post("specialDeleteN");
-        $specialSettingEdit=$request->post("changeSpecialSettingN");
-        $specialSettingSee=$request->post("seeSpecialSettingN");
 
-        $specialSetting=0;
-
-        if($specialSettingDelete=="on"){
-            $specialSetting=2;
-        }elseif($specialSettingEdit=="on" and $specialSettingDelete!="on"){
-            $specialSetting=1;
-        }elseif($specialSettingEdit !="on" and $specialSettingSee =="on"){
-            $specialSetting=0;
-        }else{
-            $specialSetting=-1;
-        }
-
-        $kalaListDelete=$request->post("deleteCustomersN");
-        $kalaListEdit=$request->post("changeCustomersN");
-        $kalaListSee=$request->post("seeCustomersN");
-
-        $kalaList=0;
-
-        if($kalaListDelete=="on"){
-            $kalaList=2;
-        }elseif($kalaListEdit=="on" and $kalaListDelete!="on"){
-            $kalaList=1;
-        }elseif($kalaListEdit !="on" and $kalaListSee =="on"){
-            $kalaList=0;
-        }else{
-            $kalaList=-1;
-        }
-
-        $kalaRequestsDelete=$request->post("deleteOfficialsN");
-        $kalaRequestsEdit=$request->post("changeOfficialsN");
-        $kalaRequestsSee=$request->post("seeOfficialsN");
-
-        $kalaRequests=0;
-
-        if($kalaRequestsDelete=="on"){
-            $kalaRequests=2;
-        }elseif($kalaRequestsEdit=="on" and $kalaRequestsDelete!="on"){
-            $kalaRequests=1;
-        }elseif($kalaRequestsEdit !="on" and $kalaRequestsSee =="on"){
-            $kalaRequests=0;
-        }else{
-            $kalaRequests=-1;
-        }
-
-        $fastKalaDelete=$request->post("deleteKalaListN");
-        $fastKalaEdit=$request->post("changeKalaListN");
-        $fastKalaSee=$request->post("seeKalaListN");
-
-        $fastKala=0;
-
-        if($fastKalaDelete=="on"){
-            $fastKala=2;
-        }elseif($fastKalaEdit=="on" and $fastKalaDelete!="on"){
-            $fastKala=1;
-        }elseif($fastKalaEdit !="on" and $fastKalaSee =="on"){
-            $fastKala=0;
-        }else{
-            $fastKala=-1;
-        }
-
-        $pishKharidDelete=$request->post("deleteRequestedKalaN");
-        $pishKharidEdit=$request->post("changeRequestedKalaN");
-        $pishKharidSee=$request->post("seeRequestedKalaN");
-
-        $pishKharid=0;
-
-        if($pishKharidDelete=="on"){
-            $pishKharid=2;
-        }elseif($pishKharidEdit=="on" and $pishKharidDelete!="on"){
-            $pishKharid=1;
-        }elseif($pishKharidEdit !="on" and $pishKharidSee =="on"){
-            $pishKharid=0;
-        }else{
-            $pishKharid=-1;
-        }
-
-        $brandDelete=$request->post("deleteBrandsN");
-        $brandEdit=$request->post("changeBrandsN");
-        $brandSee=$request->post("seeBrandsN");
-
-        $brand=0;
-
-        if($brandDelete=="on"){
-            $brand=2;
-        }elseif($brandEdit=="on" and $brandDelete!="on"){
-            $brand=1;
-        }elseif($brandEdit !="on" and $brandSee =="on"){
-            $brand=0;
-        }else{
-            $brand=-1;
-        }
-
-        $alertedKalaDelete=$request->post("deleteAlertedN");
-        $alertedKalaEdit=$request->post("changeAlertedN");
-        $alertedKalaSee=$request->post("seeAlertedN");
-
-        $alerted=0;
-
-        if($alertedKalaDelete=="on"){
-            $alerted=2;
-        }elseif($alertedKalaEdit=="on" and $alertedKalaDelete!="on"){
-            $alerted=1;
-        }elseif($alertedKalaEdit !="on" and $alertedKalaSee =="on"){
-            $alerted=0;
-        }else{
-            $alerted=-1;
-        }
-
-        $listGroupsDelete=$request->post("deleteGroupListN");
-        $listGroupsEdit=$request->post("changeGroupListN");
-        $listGroupsSee=$request->post("seeGroupListN");
-
-        $listGroups=0;
-
-        if($listGroupsDelete=="on"){
-            $listGroups=2;
-        }elseif($listGroupsEdit=="on" and $listGroupsDelete!="on"){
-            $listGroups=1;
-        }elseif($listGroupsEdit !="on" and $listGroupsSee =="on"){
-            $listGroups=0;
-        }else{
-            $listGroups=-1;
-        }
-
-        $customersDelete=$request->post("deleteCustomersN");
-        $customersEdit=$request->post("changeCustomersN");
-        $customersSee=$request->post("seeCustomersN");
-
-        $customers=0;
-
-        if($customersDelete=="on"){
-            $customers=2;
-        }elseif($customersEdit=="on" and $customersDelete!="on"){
-            $customers=1;
-        }elseif($customersEdit !="on" and $customersSee =="on"){
-            $customers=0;
-        }else{
-            $customers=-1;
-        }
-
-        $officialsDelete=$request->post("deleteOfficialsN");
-        $officialsEdit=$request->post("changeOfficialsN");
-        $officialsSee=$request->post("seeOfficialsN");
-
-        $officials=0;
-
-        if($officialsDelete=="on"){
-            $officials=2;
-        }elseif($officialsEdit=="on" and $officialsDelete!="on"){
-            $officials=1;
-        }elseif($officialsEdit !="on" and $officialsSee =="on"){
-            $officials=0;
-        }else{
-            $officials=-1;
-        }
-
-        $messagesDelete=$request->post("deleteMessagesN");
-        $messagesEdit=$request->post("changeMessagesN");
-        $messagesSee=$request->post("seeMessagesN");
-
-        $messages=0;
-
-        if($messagesDelete=="on"){
-            $messages=2;
-        }elseif($messagesEdit=="on" and $messagesDelete!="on"){
-            $messages=1;
-        }elseif($messagesEdit !="on" and $messagesSee =="on"){
-            $messages=0;
-        }else{
-            $messages=-1;
-        }
+   
 
         DB::insert("INSERT INTO NewStarfood.dbo.admin (name,lastName,userName,password,activeState,sex,address,adminType)
 
