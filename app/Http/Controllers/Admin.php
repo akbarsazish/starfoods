@@ -461,11 +461,10 @@ public function searchByCity(Request $request)
 
         // اگر اطلاعات پایه روشن بود
         $baseInfoN = $request->post("baseInfoN");
-
         $settingsN;
-          $mainPageSetting;
-          $specialSettingN;
-          $emptyazSettingN;
+        $mainPageSetting;
+        $specialSettingN;
+        $emptyazSettingN;
 
          if($baseInfoN=="on"){
             $baseInfoN = 1;
@@ -553,9 +552,9 @@ public function searchByCity(Request $request)
 
         // اگر تعریف عناصر روشن بود 
         $defineElementN = $request->post("defineElementN");
-         $defineElementN;
-            $karbaranN;
-            $customersN;
+        $defineElementN;
+        $karbaranN;
+        $customersN;
         if($defineElementN = "on"){
 
              $karbaranN = $request->post("karbaranN");
@@ -812,6 +811,7 @@ public function searchByCity(Request $request)
                 }
 
         }else{
+            $operationN =-1;
             $operationN=-1;
             $kalasN=-1;
             $kalaListsN=-1;
@@ -820,6 +820,7 @@ public function searchByCity(Request $request)
             $pishKharidN=-1;
             $brandsN=-1;
             $alertedN=-1;
+            $kalaGroupN=-1;
             $orderSalesN=-1;
             $messageN=-1;
         }
@@ -827,7 +828,6 @@ public function searchByCity(Request $request)
 
         // اگر گزارشات روشن بود 
         $reportN = $request->post("reportN");
-       
         $reportCustomerN;
         $cutomerListN;
         $officialCustomerN;
@@ -925,7 +925,6 @@ public function searchByCity(Request $request)
                             }else{
                                 $gamerListN=-1;
                             }
-
                     }else{
                         $gamerListN=-1;
                     }
@@ -955,14 +954,15 @@ public function searchByCity(Request $request)
                 }
 
         }else{
-            $reportN=-1;
-            $reportCustomerN=-1;
-            $gameAndLotteryN=-1;
-            $onlinePaymentN=-1;
+            $reportN = -1;
+            $reportCustomerN= -1;
+            $cutomerListN= -1;
+            $officialCustomerN= -1;
+            $gameAndLotteryN= -1;
+            $lotteryResultN= -1;
+            $gamerListN= -1;
+            $onlinePaymentN= -1;
         }
-
-
-
 
    
 
