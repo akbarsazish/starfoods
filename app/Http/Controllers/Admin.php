@@ -506,15 +506,13 @@ public function searchByCity(Request $request)
 
         $sex=$request->post("gender");
 
-
-        
         // اگر اطلاعات پایه روشن بود
         $baseInfoN = $request->post("baseInfoN");
 
         $settingsN;
-        $mainPageSetting;
-        $specialSettingN;
-        $emptyazSettingN;
+          $mainPageSetting;
+          $specialSettingN;
+          $emptyazSettingN;
 
          if($baseInfoN=="on"){
             $baseInfoN = 1;
@@ -522,13 +520,14 @@ public function searchByCity(Request $request)
             $settingsN = $request->post("settingsN");
             if($settingsN = "on"){
                 $settingsN = 1;
-
+                    
+                //تنظیمات صفحه اصلی با سه عنصر اش چک گردد
                     $mainPageSetting = $request->post("mainPageSetting");
                     $deletMainPageSettingN = $request->post("deletMainPageSettingN");
                     $editManiPageSettingN = $request->post("editManiPageSettingN");
                     $seeMainPageSettingN = $request->post("seeMainPageSettingN");
 
-                        if($mainPageSetting=="on"){
+                    if($mainPageSetting=="on"){
                         if($deletMainPageSettingN=="on"){
                             $mainPageSetting=2;
                         }elseif($editManiPageSettingN=="on" and $deletMainPageSettingN!="on"){
@@ -541,8 +540,475 @@ public function searchByCity(Request $request)
                     }else{
                         $mainPageSetting=-1;
                     }
+
+                //تنظیمات اختصاصی با سه عنصر اش چک گردد
+                    $specialSettingN = $request->post("specialSettingN");
+                    $deleteSpecialSettingN = $request->post("deleteSpecialSettingN");
+                    $editSpecialSettingN = $request->post("editSpecialSettingN");
+                    $seeSpecialSettingN = $request->post("seeSpecialSettingN");
+
+                    if($specialSettingN=="on"){
+                        if($deleteSpecialSettingN=="on"){
+                            $specialSettingN=2;
+                        }elseif($editSpecialSettingN=="on" and $deleteSpecialSettingN!="on"){
+                            $specialSettingN=1;
+                        }elseif($editSpecialSettingN !="on" and $seeSpecialSettingN =="on"){
+                            $specialSettingN=0;
+                        }else{
+                            $specialSettingN=-1;
+                        }
+                    }else{
+                        $specialSettingN=-1;
+                    }
+
+                //تنظیمات امتیاز با سه عنصر اش چک گردد
+                    $emptyazSettingN = $request->post("emptyazSettingN");
+                    $deleteEmtyazSettingN = $request->post("deleteEmtyazSettingN");
+                    $editEmptyazSettingN = $request->post("editEmptyazSettingN");
+                    $seeEmtyazSettingN = $request->post("seeEmtyazSettingN");
+
+                    if($emptyazSettingN=="on"){
+                        if($deleteEmtyazSettingN=="on"){
+                            $emptyazSettingN=2;
+                        }elseif($editEmptyazSettingN=="on" and $deleteEmtyazSettingN!="on"){
+                            $emptyazSettingN=1;
+                        }elseif($editEmptyazSettingN !="on" and $seeEmtyazSettingN =="on"){
+                            $emptyazSettingN=0;
+                        }else{
+                            $emptyazSettingN=-1;
+                        }
+                    }else{
+                        $emptyazSettingN=-1;
+                    }
+
+                }else{
+                    $settingsN = -1;
+                    $mainPageSetting = -1;
+                    $specialSettingN = -1;
+                    $emptyazSettingN = -1;
                 }
+
+            }else{
+                $baseInfoN = -1;
+                $settingsN = -1;
+                $mainPageSetting = -1;
+                $specialSettingN = -1;
+                $emptyazSettingN = -1;
+            } 
+            // ختم اطلاعات پایه 
+
+
+        // اگر تعریف عناصر روشن بود 
+        $defineElementN = $request->post("defineElementN");
+         $defineElementN;
+            $karbaranN;
+            $customersN;
+        if($defineElementN = "on"){
+
+             $karbaranN = $request->post("karbaranN");
+                if($karbaranN="on"){
+                    
+                    $customersN = $request->post("customersN");
+                    $deleteCustomersN = $request->post("deleteCustomersN");
+                    $editCustomerN = $request->post("editCustomerN");
+                    $seeCustomersN = $request->post("seeCustomersN");
+
+                        if($customersN=="on"){
+                                if($deleteCustomersN="on"){
+                                    $customersN=2;
+                                }elseif($editCustomerN="on" &&  $deleteCustomersN!="on"){
+                                    $customersN=1;    
+                                }elseif($seeCustomersN="on" && $editCustomerN!="on"){
+                                    $customersN=0;
+                                }else{
+                                    $customersN=-1;
+                                }
+                        }else {
+                            $customersN=-1;
+                        }
+                   
+                }else{
+                  $karbaranN = -1;
+                  $customersN=-1;
                 }
+        }else{
+            $defineElementN = -1;
+            $karbaranN = -1;
+            $customersN=-1;
+        }
+
+
+
+        // اگر عملیات روشن بود 
+        $operationN = $request->post("operationN");
+        $operationN;
+        $kalasN;
+        $kalaListsN;
+        $requestedKalaN;
+        $fastKalaN;
+        $pishKharidN;
+        $brandsN;
+        $alertedN;
+        $kalaGroupN;
+        $orderSalesN;
+        $messageN;
+
+        if($operationN="on"){
+                $kalasN = $request->port("kalasN");
+                if($kalasN="on"){
+                    // چک کردن لیست کالا ها با سه تا عناصر اش
+                        $kalaListsN=$request->post("kalaListsN");
+                        $deleteKalaListN=$request->post("deleteKalaListN");
+                        $editKalaListN=$request->post("editKalaListN");
+                        $seeKalaListN=$request->post("seeKalaListN");
+
+                        if($kalaListsN=="on"){
+                                if($deleteKalaListN="on"){
+                                    $kalaListsN=2;
+                                }elseif($editKalaListN=="on" && $deleteKalaListN!="on"){
+                                    $kalaListsN=1;
+                                }elseif($seeKalaListN="on" && $editKalaListN!="on"){
+                                    $kalaListsN=0;
+                                }else{
+                                    $kalaListsN=-1;
+                                }
+
+                        }else{
+                            $kalaListsN=-1;
+                        }
+
+                        // چک کردن کالا های درخواستی با سه تا عناصر اش
+                        $requestedKalaN=$request->post("requestedKalaN");
+                        $deleteRequestedKalaN=$request->post("deleteRequestedKalaN");
+                        $editRequestedKalaN=$request->post("editRequestedKalaN");
+                        $seeRequestedKalaN=$request->post("seeRequestedKalaN");
+
+                        if($requestedKalaN=="on"){
+                                if($deleteRequestedKalaN="on"){
+                                    $requestedKalaN=2;
+                                }elseif($editRequestedKalaN=="on" && $deleteRequestedKalaN!="on"){
+                                    $requestedKalaN=1;
+                                }elseif($seeRequestedKalaN="on" && $editRequestedKalaN!="on"){
+                                    $requestedKalaN=0;
+                                }else{
+                                    $requestedKalaN=-1;
+                                }
+
+                        }else{
+                            $requestedKalaN=-1;
+                        }
+
+                     // چک کردن فست کالا با سه تا عناصر اش
+                        $fastKalaN=$request->post("fastKalaN");
+                        $deleteFastKalaN=$request->post("deleteFastKalaN");
+                        $editFastKalaN=$request->post("editFastKalaN");
+                        $seeFastKalaN=$request->post("seeFastKalaN");
+
+                        if($fastKalaN=="on"){
+                                if($deleteFastKalaN="on"){
+                                    $fastKalaN=2;
+                                }elseif($editFastKalaN=="on" && $deleteFastKalaN!="on"){
+                                    $fastKalaN=1;
+                                }elseif($seeFastKalaN="on" && $editFastKalaN!="on"){
+                                    $fastKalaN=0;
+                                }else{
+                                    $fastKalaN=-1;
+                                }
+
+                        }else{
+                            $fastKalaN=-1;
+                        }
+
+
+                    // چک کردن پیش خرید با سه تا عناصر اش
+                        $pishKharidN=$request->post("fastKalaN");
+                        $deletePishKharidN=$request->post("deletePishKharidN");
+                        $editPishkharidN=$request->post("editPishkharidN");
+                        $seePishKharidN=$request->post("seePishKharidN");
+
+                        if($pishKharidN=="on"){
+                                if($deletePishKharidN="on"){
+                                    $pishKharidN=2;
+                                }elseif($editPishkharidN=="on" && $deletePishKharidN!="on"){
+                                    $pishKharidN=1;
+                                }elseif($seePishKharidN="on" && $editPishkharidN!="on"){
+                                    $pishKharidN=0;
+                                }else{
+                                    $pishKharidN=-1;
+                                }
+
+                        }else{
+                            $pishKharidN=-1;
+                        }
+
+                         // چک کردن  برند ها با سه تا عناصر اش
+                        $brandsN=$request->post("fastKalaN");
+                        $deleteBrandsN=$request->post("deleteBrandsN");
+                        $editBrandN=$request->post("editBrandN");
+                        $seeBrandsN=$request->post("seeBrandsN");
+
+                        if($brandsN=="on"){
+                                if($deleteBrandsN="on"){
+                                    $brandsN=2;
+                                }elseif($editBrandN=="on" && $deleteBrandsN!="on"){
+                                    $brandsN=1;
+                                }elseif($seeBrandsN="on" && $editBrandN!="on"){
+                                    $brandsN=0;
+                                }else{
+                                    $brandsN=-1;
+                                }
+
+                        }else{
+                            $brandsN=-1;
+                        }
+
+
+                     // چک کردن کالاهای شامل هشدار با سه تا عناصر اش
+                        $alertedN=$request->post("fastKalaN");
+                        $deleteAlertedN=$request->post("deleteAlertedN");
+                        $editAlertedN=$request->post("editAlertedN");
+                        $seeAlertedN=$request->post("seeAlertedN");
+
+                        if($alertedN=="on"){
+                                if($deleteAlertedN="on"){
+                                    $alertedN=2;
+                                }elseif($editAlertedN=="on" && $deleteAlertedN!="on"){
+                                    $alertedN=1;
+                                }elseif($seeAlertedN="on" && $editAlertedN!="on"){
+                                    $alertedN=0;
+                                }else{
+                                    $alertedN=-1;
+                                }
+
+                        }else{
+                            $alertedN=-1;
+                        }
+
+
+                     // چک کردن  دسته بندی کالاها با سه تا عناصر اش
+                        $kalaGroupN=$request->post("kalaGroupN");
+                        $deletKalaGroupN=$request->post("deletKalaGroupN");
+                        $editKalaGroupN=$request->post("editKalaGroupN");
+                        $seeKalaGroupN=$request->post("seeKalaGroupN");
+                        if($kalaGroupN=="on"){
+                                if($deletKalaGroupN="on"){
+                                    $kalaGroupN=2;
+                                }elseif($editKalaGroupN=="on" && $deletKalaGroupN!="on"){
+                                    $kalaGroupN=1;
+                                }elseif($seeKalaGroupN="on" && $editKalaGroupN!="on"){
+                                    $kalaGroupN=0;
+                                }else{
+                                    $kalaGroupN=-1;
+                                }
+
+                        }else{
+                            $kalaGroupN=-1;
+                        }
+
+                     // چک کردن  سفارشات فروش با سه تا عناصر اش
+                        $orderSalesN=$request->post("kalaGroupN");
+                        $deleteOrderSalesN=$request->post("deleteOrderSalesN");
+                        $editOrderSalesN=$request->post("editOrderSalesN");
+                        $seeSalesOrderN=$request->post("seeSalesOrderN");
+                        if($orderSalesN=="on"){
+                                if($deleteOrderSalesN="on"){
+                                    $orderSalesN=2;
+                                }elseif($editOrderSalesN=="on" && $deleteOrderSalesN!="on"){
+                                    $orderSalesN=1;
+                                }elseif($seeSalesOrderN="on" && $editOrderSalesN!="on"){
+                                    $orderSalesN=0;
+                                }else{
+                                    $orderSalesN=-1;
+                                }
+
+                        }else{
+                            $orderSalesN=-1;
+                        }
+
+                     // چک کردن پیام ها با سه تا عناصر اش
+                        $messageN=$request->post("kalaGroupN");
+                        $deleteMessageN=$request->post("deleteMessageN");
+                        $editMessageN=$request->post("editMessageN");
+                        $seeMessageN=$request->post("seeMessageN");
+                        if($messageN=="on"){
+                                if($deleteMessageN="on"){
+                                    $messageN=2;
+                                }elseif($editOrderSalesN=="on" && $deleteMessageN!="on"){
+                                    $messageN=1;
+                                }elseif($seeMessageN="on" && $editOrderSalesN!="on"){
+                                    $messageN=0;
+                                }else{
+                                    $messageN=-1;
+                                }
+
+                        }else{
+                            $messageN=-1;
+                        }
+
+
+                }else{
+                    $kalasN=-1;
+                    $kalaListsN=-1;
+                    $requestedKalaN=-1;
+                    $fastKalaN=-1;
+                    $pishKharidN=-1;
+                    $brandsN=-1;
+                    $alertedN=-1;
+                    $orderSalesN=-1;
+                    $messageN=-1;
+                }
+
+        }else{
+            $operationN=-1;
+            $kalasN=-1;
+            $kalaListsN=-1;
+            $requestedKalaN=-1;
+            $fastKalaN=-1;
+            $pishKharidN=-1;
+            $brandsN=-1;
+            $alertedN=-1;
+            $orderSalesN=-1;
+            $messageN=-1;
+        }
+
+
+        // اگر گزارشات روشن بود 
+        $reportN = $request->post("reportN");
+       
+        $reportCustomerN;
+        $cutomerListN;
+        $officialCustomerN;
+        $gameAndLotteryN;
+        $lotteryResultN;
+        $gamerListN;
+        $onlinePaymentN;
+
+        if($reportN=="on") {
+            // اگر مشتریان روشن بود 
+            $reportCustomerN = $request->post();
+            if($reportCustomerN=="on"){
+
+                // لیست مشتریان با سه تا عناصرش چک گردد 
+                    $cutomerListN=$request->post("kalaGroupN");
+                    $deletCustomerListN=$request->post("deletCustomerListN");
+                    $editCustomerListN=$request->post("editCustomerListN");
+                    $seeCustomerListN=$request->post("seeCustomerListN");
+                    if($cutomerListN=="on"){
+                            if($deletCustomerListN="on"){
+                                $cutomerListN=2;
+                            }elseif($editCustomerListN=="on" && $deletCustomerListN!="on"){
+                                $cutomerListN=1;
+                            }elseif($seeCustomerListN="on" && $editCustomerListN!="on"){
+                                $cutomerListN=0;
+                            }else{
+                                $cutomerListN=-1;
+                            }
+
+                    }else{
+                        $cutomerListN=-1;
+                    }
+
+                // لیست مشتریان با سه تا عناصرش چک گردد 
+                    $officialCustomerN=$request->post("kalaGroupN");
+                    $deleteOfficialCustomerN=$request->post("deleteOfficialCustomerN");
+                    $editOfficialCustomerN=$request->post("editOfficialCustomerN");
+                    $seeOfficialCustomerN=$request->post("seeOfficialCustomerN");
+                    if($officialCustomerN=="on"){
+                        if($deleteOfficialCustomerN="on"){
+                            $officialCustomerN=2;
+                        }elseif($editOfficialCustomerN=="on" && $deleteOfficialCustomerN!="on"){
+                            $officialCustomerN=1;
+                        }elseif($seeOfficialCustomerN="on" && $editOfficialCustomerN!="on"){
+                            $officialCustomerN=0;
+                        }else{
+                            $officialCustomerN=-1;
+                        }
+                    }else{
+                        $officialCustomerN=-1;
+                    }
+
+            }else{
+                $reportCustomerN=-1;
+            }
+
+
+            // اگر گیم و لاتری روشن بود 
+
+             $gameAndLotteryN = $request->post("gameAndLotteryN");
+             if($gameAndLotteryN="on"){
+
+                  // نتجه لاتری با سه تا عناصرش چک گردد 
+                    $lotteryResultN=$request->post("kalaGroupN");
+                    $deletLotteryResultN=$request->post("deletLotteryResultN");
+                    $editLotteryResultN=$request->post("editLotteryResultN");
+                    $seeLotteryResultN=$request->post("seeLotteryResultN");
+                    if($lotteryResultN=="on"){
+                            if($deletLotteryResultN="on"){
+                                $lotteryResultN=2;
+                            }elseif($editLotteryResultN=="on" && $deletLotteryResultN!="on"){
+                                $lotteryResultN=1;
+                            }elseif($seeLotteryResultN="on" && $editLotteryResultN!="on"){
+                                $lotteryResultN=0;
+                            }else{
+                                $lotteryResultN=-1;
+                            }
+
+                    }else{
+                        $lotteryResultN=-1;
+                    }
+
+                  // لیست گیمر ها با سه تا عناصرش چک گردد
+                    $gamerListN=$request->post("kalaGroupN");
+                    $deletGamerListN=$request->post("deletGamerListN");
+                    $editGamerListN=$request->post("editGamerListN");
+                    $seeGamerListN=$request->post("seeGamerListN");
+                    if($gamerListN=="on"){
+                            if($deletGamerListN="on"){
+                                $gamerListN=2;
+                            }elseif($editGamerListN=="on" && $deletGamerListN!="on"){
+                                $gamerListN=1;
+                            }elseif($seeGamerListN="on" && $editGamerListN!="on"){
+                                $gamerListN=0;
+                            }else{
+                                $gamerListN=-1;
+                            }
+
+                    }else{
+                        $gamerListN=-1;
+                    }
+
+             }else{
+                $gameAndLotteryN=-1;
+             }
+
+            // اگر پرداخت انلاین روشن بود 
+                $onlinePaymentN = $request->post("onlinePaymentN");
+                $deleteOnlinePaymentN=$request->post("deleteOnlinePaymentN");
+                $editOnlinePaymentN=$request->post("editOnlinePaymentN");
+                $seeOnlinePaymentN=$request->post("seeOnlinePaymentN");
+                if($onlinePaymentN=="on"){
+                        if($deleteOnlinePaymentN="on"){
+                            $onlinePaymentN=2;
+                        }elseif($editOnlinePaymentN=="on" && $deleteOnlinePaymentN!="on"){
+                            $onlinePaymentN=1;
+                        }elseif($seeOnlinePaymentN="on" && $editOnlinePaymentN!="on"){
+                            $onlinePaymentN=0;
+                        }else{
+                            $onlinePaymentN=-1;
+                        }
+
+                }else{
+                    $onlinePaymentN=-1;
+                }
+
+        }else{
+            $reportN=-1;
+            $reportCustomerN=-1;
+            $gameAndLotteryN=-1;
+            $onlinePaymentN=-1;
+        }
+
+
 
 
    

@@ -681,7 +681,7 @@
                                          <fieldset class="border rounded-3">
                                             <legend  class="float-none w-auto firstLevel"><input type="checkbox" class="personsN form-check-input" id="karbaranN" name="karbaranN"/>کاربران </legend>
                                                 <fieldset class="border rounded-3" style="display: justify-content:flex-start; float: right;">
-                                                    <legend  class="float-none w-auto fs-6 secondLevel"> <input type="checkbox" class="personN form-check-input" id="customersN" name="customersN"/>  مشتریان  </legend>
+                                                    <legend  class="float-none w-auto fs-6 secondLevel"> <input type="checkbox" class="personN form-check-input" id="customersN" name="customersN"/>  کاربران  </legend>
                                                     <div class="form-check admin-accesss-level">
                                                         <input class="superN form-check-input box-check" id="deleteCustomersN" type="checkbox" name="deleteCustomersN">
                                                         <label class="form-check-label">حذف</label>
@@ -859,7 +859,6 @@
                                          <fieldset class="border rounded-3" style="display: justify-content:flex-start; float: right;">
                                             <legend  class="float-none w-auto forLegend first"><input type="checkbox" class="kalasN form-check-input" id="reportN" name="reportN"/>  گزارشات  </legend>
                                                    
-                                                  
                                          <fieldset class="border rounded-3" style="display: justify-content:flex-start; float: right;">
                                             <legend  class="float-none w-auto firstLevel"><input type="checkbox" class="reportElementN form-check-input" id="reportCustomerN" name="reportCustomerN"/>  مشتریان </legend>
                                                     <fieldset class="border rounded-3" style="display: justify-content:flex-start; float: right;">
