@@ -446,7 +446,6 @@ public function searchByCity(Request $request)
 
 
     public function doAddAdmin(Request $request){
-
         $username=$request->post('userName');
 
         $password=$request->post('password');
@@ -480,6 +479,7 @@ public function searchByCity(Request $request)
                     $seeMainPageSettingN = $request->post("seeMainPageSettingN");
 
                     if($mainPageSetting=="on"){
+                        $mainPageSetting=1;
                         if($deletMainPageSettingN=="on"){
                             $mainPageSetting=2;
                         }elseif($editManiPageSettingN=="on" and $deletMainPageSettingN!="on"){
@@ -556,10 +556,10 @@ public function searchByCity(Request $request)
         $karbaranN;
         $customersN;
         if($defineElementN = "on"){
-
+            $defineElementN=1;
              $karbaranN = $request->post("karbaranN");
                 if($karbaranN="on"){
-                    
+                    $karbaranN=1;
                     $customersN = $request->post("customersN");
                     $deleteCustomersN = $request->post("deleteCustomersN");
                     $editCustomerN = $request->post("editCustomerN");
@@ -606,8 +606,10 @@ public function searchByCity(Request $request)
         $messageN;
 
         if($operationN="on"){
-                $kalasN = $request->port("kalasN");
+            $operationN=1;
+                $kalasN = $request->post("kalasN");
                 if($kalasN="on"){
+                    $kalasN=1;
                     // چک کردن لیست کالا ها با سه تا عناصر اش
                         $kalaListsN=$request->post("kalaListsN");
                         $deleteKalaListN=$request->post("deleteKalaListN");
@@ -829,7 +831,7 @@ public function searchByCity(Request $request)
         // اگر گزارشات روشن بود 
         $reportN = $request->post("reportN");
         $reportCustomerN;
-        $cutomerListN;
+        $customerListN;
         $officialCustomerN;
         $gameAndLotteryN;
         $lotteryResultN;
@@ -837,32 +839,33 @@ public function searchByCity(Request $request)
         $onlinePaymentN;
 
         if($reportN=="on") {
+            $reportN=1;
             // اگر مشتریان روشن بود 
             $reportCustomerN = $request->post();
             if($reportCustomerN=="on"){
 
                 // لیست مشتریان با سه تا عناصرش چک گردد 
-                    $cutomerListN=$request->post("kalaGroupN");
+                    $customerListN=$request->post("customerListN");
                     $deletCustomerListN=$request->post("deletCustomerListN");
                     $editCustomerListN=$request->post("editCustomerListN");
                     $seeCustomerListN=$request->post("seeCustomerListN");
-                    if($cutomerListN=="on"){
+                    if($customerListN=="on"){
                             if($deletCustomerListN="on"){
-                                $cutomerListN=2;
+                                $customerListN=2;
                             }elseif($editCustomerListN=="on" && $deletCustomerListN!="on"){
-                                $cutomerListN=1;
+                                $customerListN=1;
                             }elseif($seeCustomerListN="on" && $editCustomerListN!="on"){
-                                $cutomerListN=0;
+                                $customerListN=0;
                             }else{
-                                $cutomerListN=-1;
+                                $customerListN=-1;
                             }
 
                     }else{
-                        $cutomerListN=-1;
+                        $customerListN=-1;
                     }
 
                 // لیست مشتریان با سه تا عناصرش چک گردد 
-                    $officialCustomerN=$request->post("kalaGroupN");
+                    $officialCustomerN=$request->post("officialCustomerN");
                     $deleteOfficialCustomerN=$request->post("deleteOfficialCustomerN");
                     $editOfficialCustomerN=$request->post("editOfficialCustomerN");
                     $seeOfficialCustomerN=$request->post("seeOfficialCustomerN");
@@ -882,6 +885,8 @@ public function searchByCity(Request $request)
 
             }else{
                 $reportCustomerN=-1;
+                $customerListN=-1;
+                $officialCustomerN=-1;
             }
 
 
@@ -889,7 +894,7 @@ public function searchByCity(Request $request)
 
              $gameAndLotteryN = $request->post("gameAndLotteryN");
              if($gameAndLotteryN="on"){
-
+                $gameAndLotteryN=1;
                   // نتجه لاتری با سه تا عناصرش چک گردد 
                     $lotteryResultN=$request->post("kalaGroupN");
                     $deletLotteryResultN=$request->post("deletLotteryResultN");
@@ -956,7 +961,7 @@ public function searchByCity(Request $request)
         }else{
             $reportN = -1;
             $reportCustomerN= -1;
-            $cutomerListN= -1;
+            $customerListN= -1;
             $officialCustomerN= -1;
             $gameAndLotteryN= -1;
             $lotteryResultN= -1;
@@ -972,24 +977,36 @@ public function searchByCity(Request $request)
         
         $lastId=DB::table("NewStarfood.dbo.admin")->max('id');
 
-        DB::table("NewStarfood.dbo.star_hasAccess")->insert(
+        DB::table("NewStarfood.dbo.star_hasAccess1")->insert(
         ['adminId'=>$lastId
-        ,'homePage'=>$homePage
-        ,'karbaran'=>$karbaran
-        ,'specialSetting'=>$specialSetting
-        ,'kalaList'=>$kalaList
-        ,'kalaRequests'=>$kalaRequests
-        ,'fastKala'=>$fastKala
-        ,'pishKharid'=>$pishKharid
-        ,'brand'=>$brand
-        ,'alertedKala'=>$alerted
-        ,'listGroups'=>$listGroups
-        ,'customers'=>$customers
-        ,'officials'=>$officials
-        ,'messages'=>$messages]);
-
-        $admins=DB::select("SELECT * FROM NewStarfood.dbo.admin");
-
+        ,'baseInfoN'=>$baseInfoN
+        ,'settingsN'=>$settingsN,
+        'mainPageSetting'=>$mainPageSetting
+        ,'specialSettingN'=>$specialSettingN
+        ,'emptyazSettingN'=>$emptyazSettingN
+        ,'defineElementN'=>$defineElementN
+        ,'karbaranN'=>$karbaranN
+        ,'customersN'=>$customersN
+        ,'operationN'=>$operationN
+        ,'kalasN'=>$kalasN
+        ,'kalaListsN'=>$kalaListsN
+        ,'requestedKalaN'=>$requestedKalaN
+        ,'fastKalaN'=>$fastKalaN
+        ,'pishKharidN'=>$pishKharidN
+        ,'brandsN'=>$brandsN
+        ,'alertedN'=>$alertedN
+        ,'kalaGroupN'=>$kalaGroupN
+        ,'orderSalesN'=>$orderSalesN
+        ,'messageN'=>$messageN
+        ,'reportN'=>$reportN
+        ,'reportCustomerN'=>$reportCustomerN
+        ,'customerListN'=>$customerListN
+        ,'officialCustomerN'=>$officialCustomerN
+        ,'gameAndLotteryN'=>$gameAndLotteryN
+        ,'lotteryResultN'=>$lotteryResultN
+        ,'gamerListN'=>$gamerListN
+        ,'onlinePaymentN'=>$onlinePaymentN
+    ]);
         return redirect("/listKarbaran");
     }
 
@@ -1255,7 +1272,7 @@ public function searchByCity(Request $request)
             $messages=-1;
         }
 
-        DB::table("NewStarfood.dbo.star_hasAccess")->where("adminId",$adminId)->update(
+        DB::table("NewStarfood.dbo.star_hasAccess1")->where("adminId",$adminId)->update(
         ['homePage'=>$homePage
         ,'karbaran'=>$karbaran
         ,'specialSetting'=>$specialSetting

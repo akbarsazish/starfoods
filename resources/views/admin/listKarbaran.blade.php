@@ -869,7 +869,7 @@
                                             <fieldset class="border rounded-3" style="display: justify-content:flex-start; float: right;">
                                                 <legend  class="float-none w-auto firstLevel"><input type="checkbox" class="reportElementN form-check-input" id="reportCustomerN" name="reportCustomerN"/>  مشتریان </legend>
                                                 <fieldset class="border rounded-3" style="display: justify-content:flex-start; float: right;">
-                                                <legend  class="float-none w-auto fs-6 secondLevel"> <input type="checkbox" class="cutomerListN form-check-input" id="cutomerListN" name="cutomerListN"/> لیست مشتریان </legend>
+                                                <legend  class="float-none w-auto fs-6 secondLevel"> <input type="checkbox" class="cutomerListN form-check-input" id="cutomerListN" name="customerListN"/> لیست مشتریان </legend>
                                                     <div class="form-check admin-accesss-level">
                                                         <input class="superN form-check-input box-check" id="deletCustomerListN" type="checkbox" name="deletCustomerListN">
                                                         <label class="form-check-label">حذف</label>
