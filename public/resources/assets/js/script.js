@@ -775,7 +775,6 @@ $("#operationN").on("change", () => {
         $("#seeSalesOrderN").prop("checked", true);
         $("#messageN").prop("checked", true);
         $("#seeMessageN").prop("checked", true);
-        $("#seeKalaGroupN").prop("checked", true);
 
     } else {
         $("#kalasN").prop("checked", false);
@@ -1742,17 +1741,13 @@ $("#reportN").on("change", () => {
         $("#cutomerListN").prop("checked", false);
         $("#seeCustomerListN").prop("checked", false);
         $("#officialCustomerN").prop("checked", false);
-        $("#officialCustomerN").change();
         $("#seeOfficialCustomerN").prop("checked", false);
         $("#gameAndLotteryN").prop("checked", false);
         $("#lotteryResultN").prop("checked", false);
-        $("#lotteryResultN").change();
         $("#seeLotteryResultN").prop("checked", false);
         $("#gamerListN").prop("checked", false);
-        $("#gamerListN").change();
         $("#seeGamerListN").prop("checked", false);
         $("#onlinePaymentN").prop("checked", false);
-        $("#onlinePaymentN").change();
         $("#seeOnlinePaymentN").prop("checked", false);
         $("#editCustomerListN").prop("checked", false);
         $("#deletCustomerListN").prop("checked", false);
@@ -1853,7 +1848,6 @@ $("#seeCustomerListN").on("change", () => {
         $("#reportCustomerN").prop("checked", true);
         $("#cutomerListN").prop("checked", true);
     } else {
-
         $("#cutomerListN").prop("checked", false);
 
         if (!$(".cutomerListN").is(":checked")) {
@@ -1864,7 +1858,6 @@ $("#seeCustomerListN").on("change", () => {
         } else {
             $("#reportN").prop("checked", true);
             $("#reportCustomerN").prop("checked", true);
-
         }
 
         $("#editCustomerListN").prop("checked", false);
@@ -1892,8 +1885,6 @@ $("#officialCustomerN").on("change", () => {
         }
 
         $("#seeOfficialCustomerN").prop("checked", false);
-        $("#editOfficialCustomerN").prop("checked", false);
-        $("#deleteOfficialCustomerN").prop("checked", false);
     }
 
 })
@@ -1995,8 +1986,6 @@ $("#lotteryResultN").on("change", () => {
             $("#gameAndLotteryN").prop("checked", true);
         }
         $("#seeLotteryResultN").prop("checked", false);
-        $("#editLotteryResultN").prop("checked", false);
-        $("#deletLotteryResultN").prop("checked", false);
 
     }
 });
@@ -2135,8 +2124,6 @@ $("#onlinePaymentN").on("change", function () {
             $("#reportN").prop("checked", true);
         }
         $("#seeOnlinePaymentN").prop("checked", false);
-        $("#editOnlinePaymentN").prop("checked", false);
-        $("#deleteOnlinePaymentN").prop("checked", false);
     }
 })
 
@@ -2196,2191 +2183,2447 @@ $("#editOnlinePaymentN").on("change", function () {
 
 
 
-//USDE FOR UPDATING ACCESS LEVEL
-$("#baseInfoED").on("change", () => {
-    if ($("#baseInfoED").is(":checked")) {
-        $("#settingsED").prop("checked", true);
-        $(".allSettingsED").prop("checked", true);
-        $("#seeMainPageSettingED").prop("checked", true);
-        $("#seeSpecialSettingED").prop("checked", true);
-        $("#seeEmtyazSettingED").prop("checked", true);
-
-    } else {
-        $("#settingsED").prop("checked", false);
-        $(".allSettingsED").prop("checked", false);
-        $("#seeMainPageSettingED").prop("checked", false);
-        $("#seeSpecialSettingED").prop("checked", false);
-        $("#seeEmtyazSettingED").prop("checked", false);
-        $("#deletMainPageSettingED").prop("checked", false);
-        $("#editManiPageSettingED").prop("checked", false);
-        $("#deleteSpecialSettingED").prop("checked", false);
-        $("#editSpecialSettingED").prop("checked", false);
-        $("#editEmptyazSettingED").prop("checked", false);
-        $("#deleteEmtyazSettingED").prop("checked", false);
-    }
-});
-
-
-$("#settingsED").on("change", () => {
-    if ($("#settingsED").is(":checked")) {
-        $("#settingsED").prop("checked", true);
-        $(".allSettingsED").prop("checked", true);
-        $("#seeMainPageSettingED").prop("checked", true);
-        $("#seeSpecialSettingED").prop("checked", true);
-        $("#seeEmtyazSettingED").prop("checked", true);
-        $("#baseInfoED").prop("checked", true);
-
-    } else {
-        $("#settingsED").prop("checked", false);
-        $(".allSettingsED").prop("checked", false);
-        $("#seeMainPageSettingED").prop("checked", false);
-        $("#seeSpecialSettingED").prop("checked", false);
-        $("#seeEmtyazSettingED").prop("checked", false);
-        $("#deletMainPageSettingED").prop("checked", false);
-        $("#editManiPageSettingED").prop("checked", false);
-        $("#editEmptyazSettingED").prop("checked", false);
-        $("#deleteEmtyazSettingED").prop("checked", false);
-        $("#deleteSpecialSettingED").prop("checked", false);
-        $("#editSpecialSettingED").prop("checked", false);
-        $("#specialSettingED").prop("checked", false);
-        $("#baseInfoED").prop("checked", false);
-    }
-});
-
-
-
-$("#mainPageSetting").on("change", () => {
-    if ($("#mainPageSetting").is(":checked")) {
-        $("#seeMainPageSettingED").prop("checked", true);
-        $("#settingsED").prop("checked", true);
-        $("#baseInfoED").prop("checked", true);
-    } else {
-        $("#mainPageSetting").prop("checked", false);
-        if (!$(".allSettingsED").is(":checked")) {
-            $("#seeMainPageSettingED").prop("checked", false);
-            $("#editManiPageSettingED").prop("checked", false);
-            $("#deletMainPageSettingED").prop("checked", false);
-            $("#baseInfoED").prop("checked", false);
-            $("#settingsED").prop("checked", false);
-        } else {
-            $("#seeMainPageSettingED").prop("checked", false);
-            $("#editManiPageSettingED").prop("checked", false);
-            $("#deletMainPageSettingED").prop("checked", false);
-        }
-
-    }
-
-})
-
-$("#seeMainPageSettingED").on("change", () => {
-    if ($("#seeMainPageSettingED").is(":checked")) {
-        $("#mainPageSetting").prop("checked", true);
-        $("#settingsED").prop("checked", true);
-        $("#baseInfoED").prop("checked", true);
-    } else {
-        $("#mainPageSetting").prop("checked", false);
-
-        if (!$(".allSettingsED").is(":checked")) {
-            $("#settingsED").prop("checked", false);
-            $("#baseInfoED").prop("checked", false);
-        } else {
-            $("#settingsED").prop("checked", true);
-            $("#baseInfoED").prop("checked", true);
-        }
-
-        $("#deletMainPageSettingED").prop("checked", false);
-        $("#editManiPageSettingED").prop("checked", false);
-    }
-})
-
-$("#editManiPageSettingED").on("change", () => {
-    if ($("#editManiPageSettingED").is(":checked")) {
-        $("#seeMainPageSettingED").prop("checked", true);
-        $("#mainPageSetting").prop("checked", true);
-        $("#settingsED").prop("checked", true);
-        $("#baseInfoED").prop("checked", true);
-
-    } else {
-        $("#editManiPageSettingED").prop("checked", false);
-        $("#deletMainPageSettingED").prop("checked", false);
-    }
-})
-
-
-$("#deletMainPageSettingED").on("change", () => {
-    if ($("#deletMainPageSettingED").is(":checked")) {
-        $("#seeMainPageSettingED").prop("checked", true);
-        $("#editManiPageSettingED").prop("checked", true);
-        $("#mainPageSetting").prop("checked", true);
-        $("#settingsED").prop("checked", true);
-        $("#baseInfoED").prop("checked", true);
-    } else {
-        $("#deletMainPageSettingED").prop("checked", false);
-    }
-})
-
-
-
-
-
-$("#specialSettingED").on("change", () => {
-    if ($("#specialSettingED").is(":checked")) {
-        $("#seeSpecialSettingED").prop("checked", true);
-        $("#settingsED").prop("checked", true);
-        $("#baseInfoED").prop("checked", true);
-    } else {
-        $("#specialSettingED").prop("checked", false);
-        if (!$(".allSettingsED").is(":checked")) {
-            $("#settingsED").prop("checked", false);
-            $("#baseInfoED").prop("checked", false);
-            $("#seeSpecialSettingED").prop("checked", false);
-            $("#editSpecialSettingED").prop("checked", false);
-            $("#deleteSpecialSettingED").prop("checked", false);
-        } else {
-            $("#seeSpecialSettingED").prop("checked", false);
-            $("#editSpecialSettingED").prop("checked", false);
-            $("#deleteSpecialSettingED").prop("checked", false);
-        }
-    }
-
-})
-
-$("#deleteSpecialSettingED").on("change", () => {
-    if ($("#deleteSpecialSettingED").is(":checked")) {
-        $("#editSpecialSettingED").prop("checked", true);
-        $("#seeSpecialSettingED").prop("checked", true);
-        $("#specialSettingED").prop("checked", true);
-        $("#settingsED").prop("checked", true);
-        $("#baseInfoED").prop("checked", true);
-    } else {
-        $("#deleteSpecialSettingED").prop("checked", false);
-    }
-})
-
-$("#editSpecialSettingED").on("change", () => {
-    if ($("#editSpecialSettingED").is(":checked")) {
-        $("#editSpecialSettingED").prop("checked", true);
-        $("#seeSpecialSettingED").prop("checked", true);
-        $("#specialSettingED").prop("checked", true);
-        $("#settingsED").prop("checked", true);
-        $("#baseInfoED").prop("checked", true);
-    } else {
-        $("#editSpecialSettingED").prop("checked", false);
-        $("#deleteSpecialSettingED").prop("checked", false);
-    }
-})
-
-$("#seeSpecialSettingED").on("change", () => {
-    if ($("#seeSpecialSettingED").is(":checked")) {
-        $("#seeSpecialSettingED").prop("checked", true);
-        $("#specialSettingED").prop("checked", true);
-        $("#settingsED").prop("checked", true);
-        $("#baseInfoED").prop("checked", true);
-    } else {
-        $("#specialSettingED").prop("checked", false);
-        if (!$(".allSettingsED").is(":checked")) {
-            $("#settingsED").prop("checked", false);
-            $("#baseInfoED").prop("checked", false);
-        } else {
-            $("#settingsED").prop("checked", true);
-            $("#baseInfoED").prop("checked", true);
-        }
-        $("#deleteSpecialSettingED").prop("checked", false);
-        $("#editSpecialSettingED").prop("checked", false);
-
-    }
-})
-
-
-
-$("#emptyazSettingED").on("change", () => {
-    if ($("#emptyazSettingED").is(":checked")) {
-        $("#settingsED").prop("checked", true);
-        $("#baseInfoED").prop("checked", true);
-        $("#seeEmtyazSettingED").prop("checked", true);
-
-    } else {
-        if (!$(".allSettingsED").is(":checked")) {
-            $("#emptyazSettingED").prop("checked", false);
-            $("#seeEmtyazSettingED").prop("checked", false);
-            $("#deleteEmtyazSettingED").prop("checked", false);
-            $("#editEmptyazSettingED").prop("checked", false);
-            $("#settingsED").prop("checked", false);
-            $("#baseInfoED").prop("checked", false);
-        } else {
-            $("#seeEmtyazSettingED").prop("checked", false);
-            $("#deleteEmtyazSettingED").prop("checked", false);
-            $("#editEmptyazSettingED").prop("checked", false);
-        }
-
-    }
-})
-
-$("#deleteEmtyazSettingED").on("change", () => {
-    if ($("#deleteEmtyazSettingED").is(":checked")) {
-        $("#settingsED").prop("checked", true);
-        $("#baseInfoED").prop("checked", true);
-        $("#emptyazSettingED").prop("checked", true);
-        $("#editEmptyazSettingED").prop("checked", true);
-        $("#seeEmtyazSettingED").prop("checked", true);
-
-    } else {
-        $("#deleteEmtyazSettingED").prop("checked", false);
-    }
-})
-
-$("#editEmptyazSettingED").on("change", () => {
-    if ($("#editEmptyazSettingED").is(":checked")) {
-        $("#settingsED").prop("checked", true);
-        $("#baseInfoED").prop("checked", true);
-        $("#emptyazSettingED").prop("checked", true);
-        $("#editEmptyazSettingED").prop("checked", true);
-        $("#seeEmtyazSettingED").prop("checked", true);
-
-    } else {
-        $("#editEmptyazSettingED").prop("checked", false);
-        $("#deleteEmtyazSettingED").prop("checked", false);
-    }
-})
-
-$("#seeEmtyazSettingED").on("change", () => {
-    if ($("#seeEmtyazSettingED").is(":checked")) {
-        $("#baseInfoED").prop("checked", true);
-        $("#settingsED").prop("checked", true);
-        $("#emptyazSettingED").prop("checked", true);
-        $("#seeEmtyazSettingED").prop("checked", true);
-
-    } else {
-        $("#emptyazSettingED").prop("checked", false);
-        if (!$(".allSettingsED").is(":checked")) {
-            $("#settingsED").prop("checked", false);
-            $("#baseInfoED").prop("checked", false);
-        } else {
-            $("#settingsED").prop("checked", true);
-            $("#baseInfoED").prop("checked", true);
-        }
-
-        $("#editEmptyazSettingED").prop("checked", false);
-        $("#deleteEmtyazSettingED").prop("checked", false);
-
-    }
-})
-
-
-
-// تعریف عناصر 
-
-$("#defineElementED").on("change", () => {
-    if ($("#defineElementED").is(":checked")) {
-        $("#karbaranED").prop("checked", true);
-        $("#customersED").prop("checked", true);
-        $("#seeCustomersED").prop("checked", true);
-    } else {
-        $("#karbaranED").prop("checked", false);
-        $("#customersED").prop("checked", false);
-        $("#seeCustomersED").prop("checked", false);
-        $("#deleteCustomersED").prop("checked", false);
-        $("#editCustomerED").prop("checked", false);
-    }
-})
-
-
-$("#karbaranED").on("change", () => {
-    if ($("#karbaranED").is(":checked")) {
-        $("#defineElementED").prop("checked", true);
-        $("#customersED").prop("checked", true);
-        $("#seeCustomersED").prop("checked", true);
-    } else {
-        $("#defineElementED").prop("checked", false);
-        $("#customersED").prop("checked", false);
-        $("#seeCustomersED").prop("checked", false);
-        $("#deleteCustomersED").prop("checked", false);
-        $("#editCustomerED").prop("checked", false);
-    }
-})
-
-$("#customersED").on("change", () => {
-    if ($("#customersED").is(":checked")) {
-        $("#defineElementED").prop("checked", true);
-        $("#customersED").prop("checked", true);
-        $("#seeCustomersED").prop("checked", true);
-        $("#karbaranED").prop("checked", true);
-    } else {
-        $("#defineElementED").prop("checked", false);
-        $("#customersED").prop("checked", false);
-        $("#seeCustomersED").prop("checked", false);
-        $("#deleteCustomersED").prop("checked", false);
-        $("#editCustomerED").prop("checked", false);
-        $("#karbaranED").prop("checked", false);
-    }
-})
-
-$("#seeCustomersED").on("change", () => {
-    if ($("#seeCustomersED").is(":checked")) {
-        $("#defineElementED").prop("checked", true);
-        $("#customersED").prop("checked", true);
-        $("#seeCustomersED").prop("checked", true);
-        $("#karbaranED").prop("checked", true);
-    } else {
-        $("#defineElementED").prop("checked", false);
-        $("#customersED").prop("checked", false);
-        $("#seeCustomersED").prop("checked", false);
-        $("#deleteCustomersED").prop("checked", false);
-        $("#editCustomerED").prop("checked", false);
-        $("#karbaranED").prop("checked", false);
-    }
-})
-
-$("#seeCustomersED").on("change", () => {
-    if ($("#seeCustomersED").is(":checked")) {
-        $("#defineElementED").prop("checked", true);
-        $("#customersED").prop("checked", true);
-        $("#seeCustomersED").prop("checked", true);
-        $("#karbaranED").prop("checked", true);
-
-    } else {
-        $("#defineElementED").prop("checked", false);
-        $("#customersED").prop("checked", false);
-        $("#seeCustomersED").prop("checked", false);
-        $("#deleteCustomersED").prop("checked", false);
-        $("#editCustomerED").prop("checked", false);
-        $("#karbaranED").prop("checked", false);
-
-    }
-
-})
-
-$("#editCustomerED").on("change", () => {
-    if ($("#editCustomerED").is(":checked")) {
-        $("#defineElementED").prop("checked", true);
-        $("#customersED").prop("checked", true);
-        $("#seeCustomersED").prop("checked", true);
-        $("#karbaranED").prop("checked", true);
-    } else {
-        $("#deleteCustomersED").prop("checked", false);
-    }
-})
-
-$("#deleteCustomersED").on("change", () => {
-    if ($("#deleteCustomersED").is(":checked")) {
-        $("#defineElementED").prop("checked", true);
-        $("#customersED").prop("checked", true);
-        $("#seeCustomersED").prop("checked", true);
-        $("#karbaranED").prop("checked", true);
-        $("#editCustomerED").prop("checked", true);
-    } else {
-        $("#deleteCustomersED").prop("checked", false);
-    }
-
-})
-
-
-
-// عملیات 
-
-$("#operationED").on("change", () => {
-    if ($("#operationED").is(":checked")) {
-        $("#kalasED").prop("checked", true);
-        $("#kalaListsED").prop("checked", true);
-        $("#seeKalaListED").prop("checked", true);
-        $("#requestedKalaED").prop("checked", true);
-        $("#seeRequestedKalaED").prop("checked", true);
-        $("#fastKalaED").prop("checked", true);
-        $("#seeFastKalaED").prop("checked", true);
-        $("#pishKharidED").prop("checked", true);
-        $("#seePishKharidED").prop("checked", true);
-        $("#brandsED").prop("checked", true);
-        $("#seeBrandsED").prop("checked", true);
-        $("#alertedED").prop("checked", true);
-        $("#seeAlertedED").prop("checked", true);
-        $("#kalaGroupED").prop("checked", true);
-        $("#seeKalaGroup").prop("checked", true);
-        $("#orderSalesED").prop("checked", true);
-        $("#seeSalesOrderED").prop("checked", true);
-        $("#messageED").prop("checked", true);
-        $("#seeMessageED").prop("checked", true);
-        $("#seeKalaGroupED").prop("checked", true);
-
-    } else {
-        $("#kalasED").prop("checked", false);
-        $("#kalaListsED").prop("checked", false);
-        $("#seeKalaListED").prop("checked", false);
-        $("#requestedKalaED").prop("checked", false);
-        $("#seeRequestedKalaED").prop("checked", false);
-        $("#fastKalaED").prop("checked", false);
-        $("#seeFastKalaED").prop("checked", false);
-        $("#pishKharidED").prop("checked", false);
-        $("#seePishKharidED").prop("checked", false);
-        $("#brandsED").prop("checked", false);
-        $("#seeBrandsED").prop("checked", false);
-        $("#alertedED").prop("checked", false);
-        $("#seeAlertedED").prop("checked", false);
-        $("#kalaGroupED").prop("checked", false);
-        $("#seeKalaGroup").prop("checked", false);
-        $("#orderSalesED").prop("checked", false);
-        $("#seeSalesOrderED").prop("checked", false);
-        $("#messageED").prop("checked", false);
-        $("#seeMessageED").prop("checked", false);
-        $("#seeKalaListED").prop("checked", false);
-        $("#editKalaListED").prop("checked", false);
-        $("#deleteKalaListED").prop("checked", false);
-        $("#editMessageED").prop("checked", false);
-        $("#deleteMessageED").prop("checked", false);
-        $("#editRequestedKalaED").prop("checked", false);
-        $("#deleteRequestedKalaED").prop("checked", false);
-        $("#editFastKalaED").prop("checked", false);
-        $("#deleteFastKalaED").prop("checked", false);
-        $("#editFastKalaED").prop("checked", false);
-        $("#deleteFastKalaED").prop("checked", false);
-        $("#editPishkharidED").prop("checked", false);
-        $("#deletePishKharidED").prop("checked", false);
-        $("#editBrandED").prop("checked", false);
-        $("#deleteBrandsED").prop("checked", false);
-        $("#editAlertedED").prop("checked", false);
-        $("#deleteAlertedED").prop("checked", false);
-        $("#editKalaGroupED").prop("checked", false);
-        $("#deletKalaGroupED").prop("checked", false);
-        $("#seeKalaGroupED").prop("checked", false);
-        $("#editOrderSalesED").prop("checked", false);
-        $("#deleteOrderSalesED").prop("checked", false);
-    }
-})
-
-
-$("#kalasED").on("change", () => {
-    if ($("#kalasED").is(":checked")) {
-        $("#operationED").prop("checked", true);
-        $("#kalaListsED").prop("checked", true);
-        $("#seeKalaListED").prop("checked", true);
-        $("#requestedKalaED").prop("checked", true);
-        $("#seeRequestedKalaED").prop("checked", true);
-        $("#fastKalaED").prop("checked", true);
-        $("#seeFastKalaED").prop("checked", true);
-        $("#pishKharidED").prop("checked", true);
-        $("#seePishKharidED").prop("checked", true);
-        $("#brandsED").prop("checked", true);
-        $("#seeBrandsED").prop("checked", true);
-        $("#alertedED").prop("checked", true);
-        $("#seeAlertedED").prop("checked", true);
-        $("#kalaGroupED").prop("checked", true);
-        $("#seeKalaGroup").prop("checked", true);
-        $("#orderSalesED").prop("checked", true);
-        $("#seeSalesOrderED").prop("checked", true);
-        $("#messageED").prop("checked", true);
-        $("#seeMessageED").prop("checked", true);
-
-    } else {
-        $("#operationED").prop("checked", false);
-        $("#kalasED").prop("checked", false);
-        $("#kalaListsED").prop("checked", false);
-        $("#seeKalaListED").prop("checked", false);
-        $("#requestedKalaED").prop("checked", false);
-        $("#seeRequestedKalaED").prop("checked", false);
-        $("#fastKalaED").prop("checked", false);
-        $("#seeFastKalaED").prop("checked", false);
-        $("#pishKharidED").prop("checked", false);
-        $("#seePishKharidED").prop("checked", false);
-        $("#brandsED").prop("checked", false);
-        $("#seeBrandsED").prop("checked", false);
-        $("#alertedED").prop("checked", false);
-        $("#seeAlertedED").prop("checked", false);
-        $("#kalaGroupED").prop("checked", false);
-        $("#seeKalaGroup").prop("checked", false);
-        $("#orderSalesED").prop("checked", false);
-        $("#seeSalesOrderED").prop("checked", false);
-        $("#messageED").prop("checked", false);
-        $("#seeMessageED").prop("checked", false);
-        $("#seeKalaListED").prop("checked", false);
-        $("#editKalaListED").prop("checked", false);
-        $("#deleteKalaListED").prop("checked", false);
-        $("#editMessageED").prop("checked", false);
-        $("#deleteMessageED").prop("checked", false);
-        $("#editRequestedKalaED").prop("checked", false);
-        $("#deleteRequestedKalaED").prop("checked", false);
-        $("#editFastKalaED").prop("checked", false);
-        $("#deleteFastKalaED").prop("checked", false);
-        $("#editFastKalaED").prop("checked", false);
-        $("#deleteFastKalaED").prop("checked", false);
-        $("#editPishkharidED").prop("checked", false);
-        $("#deletePishKharidED").prop("checked", false);
-        $("#editBrandED").prop("checked", false);
-        $("#deleteBrandsED").prop("checked", false);
-        $("#editAlertedED").prop("checked", false);
-        $("#deleteAlertedED").prop("checked", false);
-        $("#editKalaGroupED").prop("checked", false);
-        $("#deletKalaGroupED").prop("checked", false);
-        $("#seeKalaGroupED").prop("checked", false);
-        $("#editOrderSalesED").prop("checked", false);
-        $("#deleteOrderSalesED").prop("checked", false);
-    }
-})
-
-
-$("#kalaListsED").on("change", () => {
-    if ($("#kalaListsED").is(":checked")) {
-        $("#seeKalaListED").prop("checked", true);
-        $("#operationED").prop("checked", true);
-        $("#kalasED").prop("checked", true);
-
-    } else {
-        $("#kalaListsED").prop("checked", false);
-        if (!$(".kalaElementED").is(":checked")) {
-            $("#operationED").prop("checked", false);
-            $("#kalasED").prop("checked", false);
-        } else {
-            $("#operationED").prop("checked", true);
-            $("#kalasED").prop("checked", true);
-        }
-
-        $("#seeKalaListED").prop("checked", false);
-        $("#editKalaListED").prop("checked", false);
-        $("#deleteKalaListED").prop("checked", false);
-
-    }
-})
-
-$("#deleteKalaListED").on("change", () => {
-    if ($("#deleteKalaListED").is(":checked")) {
-        $("#operationED").prop("checked", true);
-        $("#kalasED").prop("checked", true);
-        $("#kalaListsED").prop("checked", true);
-        $("#seeKalaListED").prop("checked", true);
-        $("#editKalaListED").prop("checked", true);
-
-    } else {
-        $("#deleteKalaListED").prop("checked", false);
-        if (!$(".kalaElementED").is(":checked")) {
-            $("#operationED").prop("checked", false);
-            $("#kalasED").prop("checked", false);
-        } else {
-            $("#operationED").prop("checked", true);
-            $("#kalasED").prop("checked", true);
-        }
-
-    }
-})
-
-$("#editKalaListED").on("change", () => {
-    if ($("#editKalaListED").is(":checked")) {
-        $("#operationED").prop("checked", true);
-        $("#kalasED").prop("checked", true);
-        $("#kalaListsED").prop("checked", true);
-        $("#seeKalaListED").prop("checked", true);
-
-    } else {
-        $("#editKalaListED").prop("checked", false);
-        if (!$(".kalaElementED").is(":checked")) {
-            $("#operationED").prop("checked", false);
-            $("#kalasED").prop("checked", false);
-        } else {
-            $("#operationED").prop("checked", true);
-            $("#kalasED").prop("checked", true);
-        }
-        $("#deleteKalaListED").prop("checked", false);
-    }
-})
-
-$("#seeKalaListED").on("change", () => {
-    if ($("#seeKalaListED").is(":checked")) {
-        $("#operationED").prop("checked", true);
-        $("#kalasED").prop("checked", true);
-        $("#kalaListsED").prop("checked", true);
-    } else {
-
-        $("#kalaListsED").prop("checked", false);
-
-        if (!$(".kalaElementED").is(":checked")) {
-            $("#operationED").prop("checked", false);
-            $("#kalasED").prop("checked", false);
-        } else {
-            $("#operationED").prop("checked", true);
-            $("#kalasED").prop("checked", true);
-        }
-
-        $("#deleteKalaListED").prop("checked", false);
-        $("#editKalaListED").prop("checked", false);
-    }
-})
-
-
-$("#requestedKalaED").on("change", () => {
-
-
-})
-
-$("#requestedKalaED").on("change", () => {
-    if ($("#requestedKalaED").is(":checked")) {
-        $("#operationED").prop("checked", true);
-        $("#kalasED").prop("checked", true);
-        $("#seeRequestedKalaED").prop("checked", true);
-
-    } else {
-        $("#requestedKalaED").prop("checked", false);
-
-        if (!$(".kalaElementED").is(":checked")) {
-            $("#operationED").prop("checked", false);
-            $("#kalasED").prop("checked", false);
-        } else {
-            $("#operationED").prop("checked", true);
-            $("#kalasED").prop("checked", true);
-        }
-
-        $("#seeRequestedKalaED").prop("checked", false);
-        $("#editRequestedKalaED").prop("checked", false);
-        $("#deleteRequestedKalaED").prop("checked", false);
-    }
-})
-
-
-$("#deleteRequestedKalaED").on("change", () => {
-    if ($("#deleteRequestedKalaED").is(":checked")) {
-        $("#operationED").prop("checked", true);
-        $("#kalasED").prop("checked", true);
-        $("#requestedKalaED").prop("checked", true);
-        $("#seeRequestedKalaED").prop("checked", true);
-        $("#editRequestedKalaED").prop("checked", true);
-
-    } else {
-
-        if (!$(".kalaElementED").is(":checked")) {
-            $("#operationED").prop("checked", false);
-            $("#kalasED").prop("checked", false);
-        } else {
-            $("#operationED").prop("checked", true);
-            $("#kalasED").prop("checked", true);
-        }
-        $("#deleteRequestedKalaED").prop("checked", false);
-    }
-})
-
-
-$("#editRequestedKalaED").on("change", () => {
-    if ($("#editRequestedKalaED").is(":checked")) {
-        $("#operationED").prop("checked", true);
-        $("#kalasED").prop("checked", true);
-        $("#requestedKalaED").prop("checked", true);
-        $("#seeRequestedKalaED").prop("checked", true);
-
-    } else {
-
-        if (!$(".kalaElementED").is(":checked")) {
-            $("#operationED").prop("checked", false);
-            $("#kalasED").prop("checked", false);
-        } else {
-            $("#operationED").prop("checked", true);
-            $("#kalasED").prop("checked", true);
-        }
-        $("#editRequestedKalaED").prop("checked", false);
-        $("#deleteRequestedKalaED").prop("checked", false);
-    }
-})
-
-
-$("#seeRequestedKalaED").on("change", () => {
-    if ($("#seeRequestedKalaED").is(":checked")) {
-        $("#operationED").prop("checked", true);
-        $("#kalasED").prop("checked", true);
-        $("#requestedKalaED").prop("checked", true);
-
-    } else {
-        $("#requestedKalaED").prop("checked", false);
-        if (!$(".kalaElementED").is(":checked")) {
-            $("#operationED").prop("checked", false);
-            $("#kalasED").prop("checked", false);
-        } else {
-            $("#operationED").prop("checked", true);
-            $("#kalasED").prop("checked", true);
-        }
-        $("#seeRequestedKalaED").prop("checked", false);
-        $("#editRequestedKalaED").prop("checked", false);
-        $("#deleteRequestedKalaED").prop("checked", false);
-    }
-})
-
-
-
-$("#fastKalaED").on("change", () => {
-    if ($("#fastKalaED").is(":checked")) {
-        $("#operationED").prop("checked", true);
-        $("#kalasED").prop("checked", true);
-        $("#seeFastKalaED").prop("checked", true);
-
-    } else {
-        $("#fastKalaED").prop("checked", false);
-
-        if (!$(".kalaElementED").is(":checked")) {
-            $("#operationED").prop("checked", false);
-            $("#kalasED").prop("checked", false);
-        } else {
-            $("#operationED").prop("checked", true);
-            $("#kalasED").prop("checked", true);
-        }
-
-        $("#seeFastKalaED").prop("checked", false);
-        $("#editFastKalaED").prop("checked", false);
-        $("#deleteFastKalaED").prop("checked", false);
-    }
-})
-
-
-
-$("#deleteFastKalaED").on("change", () => {
-    if ($("#deleteFastKalaED").is(":checked")) {
-        $("#operationED").prop("checked", true);
-        $("#kalasED").prop("checked", true);
-        $("#fastKalaED").prop("checked", true);
-        $("#seeFastKalaED").prop("checked", true);
-        $("#editFastKalaED").prop("checked", true);
-
-    } else {
-        if (!$(".kalaElementED").is(":checked")) {
-            $("#operationED").prop("checked", false);
-            $("#kalasED").prop("checked", false);
-        } else {
-            $("#operationED").prop("checked", true);
-            $("#kalasED").prop("checked", true);
-        }
-        $("#deleteFastKalaED").prop("checked", false);
-    }
-})
-
-
-$("#editFastKalaED").on("change", () => {
-    if ($("#editFastKalaED").is(":checked")) {
-        $("#operationED").prop("checked", true);
-        $("#kalasED").prop("checked", true);
-        $("#fastKalaED").prop("checked", true);
-        $("#seeFastKalaED").prop("checked", true);
-
-    } else {
-
-        if (!$(".kalaElementED").is(":checked")) {
-            $("#operationED").prop("checked", false);
-            $("#kalasED").prop("checked", false);
-        } else {
-            $("#operationED").prop("checked", true);
-            $("#kalasED").prop("checked", true);
-        }
-        $("#editFastKalaED").prop("checked", false);
-        $("#deleteFastKalaED").prop("checked", false);
-    }
-})
-
-
-$("#seeFastKalaED").on("change", () => {
-    if ($("#seeFastKalaED").is(":checked")) {
-        $("#operationED").prop("checked", true);
-        $("#kalasED").prop("checked", true);
-        $("#fastKalaED").prop("checked", true);
-
-    } else {
-        $("#fastKalaED").prop("checked", false);
-
-        if (!$(".kalaElementED").is(":checked")) {
-            $("#operationED").prop("checked", false);
-            $("#kalasED").prop("checked", false);
-        } else {
-            $("#operationED").prop("checked", true);
-            $("#kalasED").prop("checked", true);
-        }
-        $("#seeFastKalaED").prop("checked", false);
-        $("#editFastKalaED").prop("checked", false);
-        $("#deleteFastKalaED").prop("checked", false);
-    }
-})
-
-
-$("#pishKharidED").on("change", () => {
-    if ($("#pishKharidED").is(":checked")) {
-        $("#operationED").prop("checked", true);
-        $("#kalasED").prop("checked", true);
-        $("#seePishKharidED").prop("checked", true);
-
-    } else {
-        $("#pishKharidED").prop("checked", false);
-
-        if (!$(".kalaElementED").is(":checked")) {
-            $("#operationED").prop("checked", false);
-            $("#kalasED").prop("checked", false);
-        } else {
-            $("#operationED").prop("checked", true);
-            $("#kalasED").prop("checked", true);
-        }
-
-        $("#seePishKharidED").prop("checked", false);
-        $("#editPishkharidED").prop("checked", false);
-        $("#deletePishKharidED").prop("checked", false);
-    }
-})
-
-
-$("#deletePishKharidED").on("change", () => {
-    if ($("#deletePishKharidED").is(":checked")) {
-        $("#operationED").prop("checked", true);
-        $("#kalasED").prop("checked", true);
-        $("#pishKharidED").prop("checked", true);
-        $("#seePishKharidED").prop("checked", true);
-        $("#editPishkharidED").prop("checked", true);
-
-    } else {
-        if (!$(".kalaElementED").is(":checked")) {
-            $("#operationED").prop("checked", false);
-            $("#kalasED").prop("checked", false);
-        } else {
-            $("#operationED").prop("checked", true);
-            $("#kalasED").prop("checked", true);
-        }
-        $("#deletePishKharidED").prop("checked", false);
-    }
-})
-
-
-$("#editPishkharidED").on("change", () => {
-    if ($("#editPishkharidED").is(":checked")) {
-        $("#operationED").prop("checked", true);
-        $("#kalasED").prop("checked", true);
-        $("#pishKharidED").prop("checked", true);
-        $("#seePishKharidED").prop("checked", true);
-
-    } else {
-
-        if (!$(".kalaElementED").is(":checked")) {
-            $("#operationED").prop("checked", false);
-            $("#kalasED").prop("checked", false);
-        } else {
-            $("#operationED").prop("checked", true);
-            $("#kalasED").prop("checked", true);
-        }
-        $("#editPishkharidED").prop("checked", false);
-        $("#deletePishKharidED").prop("checked", false);
-    }
-})
-
-
-$("#seePishKharidED").on("change", () => {
-    if ($("#seePishKharidED").is(":checked")) {
-        $("#operationED").prop("checked", true);
-        $("#kalasED").prop("checked", true);
-        $("#pishKharidED").prop("checked", true);
-
-    } else {
-        $("#pishKharidED").prop("checked", false);
-
-        if (!$(".kalaElementED").is(":checked")) {
-            $("#operationED").prop("checked", false);
-            $("#kalasED").prop("checked", false);
-        } else {
-            $("#operationED").prop("checked", true);
-            $("#kalasED").prop("checked", true);
-        }
-        $("#seePishKharidED").prop("checked", false);
-        $("#editPishkharidED").prop("checked", false);
-        $("#deletePishKharidED").prop("checked", false);
-    }
-})
-
-
-
-$("#brandsED").on("change", () => {
-    if ($("#brandsED").is(":checked")) {
-        $("#operationED").prop("checked", true);
-        $("#kalasED").prop("checked", true);
-        $("#seeBrandsED").prop("checked", true);
-
-    } else {
-        $("#brandsED").prop("checked", false);
-
-        if (!$(".kalaElementED").is(":checked")) {
-            $("#operationED").prop("checked", false);
-            $("#kalasED").prop("checked", false);
-        } else {
-            $("#operationED").prop("checked", true);
-            $("#kalasED").prop("checked", true);
-        }
-
-        $("#seeBrandsED").prop("checked", false);
-        $("#editBrandED").prop("checked", false);
-        $("#deleteBrandsED").prop("checked", false);
-    }
-})
-
-
-$("#deleteBrandsED").on("change", () => {
-    if ($("#deleteBrandsED").is(":checked")) {
-        $("#operationED").prop("checked", true);
-        $("#kalasED").prop("checked", true);
-        $("#brandsED").prop("checked", true);
-        $("#seeBrandsED").prop("checked", true);
-        $("#editBrandED").prop("checked", true);
-    } else {
-
-        if (!$(".kalaElementED").is(":checked")) {
-            $("#operationED").prop("checked", false);
-            $("#kalasED").prop("checked", false);
-        } else {
-            $("#operationED").prop("checked", true);
-            $("#kalasED").prop("checked", true);
-        }
-
-        $("#deleteBrandsED").prop("checked", false);
-    }
-})
-
-$("#editBrandED").on("change", () => {
-    if ($("#editBrandED").is(":checked")) {
-        $("#operationED").prop("checked", true);
-        $("#kalasED").prop("checked", true);
-        $("#brandsED").prop("checked", true);
-        $("#seeBrandsED").prop("checked", true);
-
-    } else {
-
-        if (!$(".kalaElementED").is(":checked")) {
-            $("#operationED").prop("checked", false);
-            $("#kalasED").prop("checked", false);
-        } else {
-            $("#operationED").prop("checked", true);
-            $("#kalasED").prop("checked", true);
-        }
-        $("#editBrandED").prop("checked", false);
-        $("#deleteBrandsED").prop("checked", false);
-    }
-})
-
-
-$("#seeBrandsED").on("change", () => {
-    if ($("#seeBrandsED").is(":checked")) {
-        $("#operationED").prop("checked", true);
-        $("#kalasED").prop("checked", true);
-        $("#brandsED").prop("checked", true);
-
-    } else {
-        $("#brandsED").prop("checked", false);
-
-        if (!$(".kalaElementED").is(":checked")) {
-            $("#operationED").prop("checked", false);
-            $("#kalasED").prop("checked", false);
-        } else {
-            $("#operationED").prop("checked", true);
-            $("#kalasED").prop("checked", true);
-        }
-        $("#seeBrandsED").prop("checked", false);
-        $("#editBrandED").prop("checked", false);
-        $("#deleteBrandsED").prop("checked", false);
-    }
-})
-
-
-
-$("#alertedED").on("change", () => {
-    if ($("#alertedED").is(":checked")) {
-        $("#operationED").prop("checked", true);
-        $("#kalasED").prop("checked", true);
-        $("#seeAlertedED").prop("checked", true);
-
-    } else {
-        $("#alertedED").prop("checked", false);
-
-        if (!$(".kalaElementED").is(":checked")) {
-            $("#operationED").prop("checked", false);
-            $("#kalasED").prop("checked", false);
-        } else {
-            $("#operationED").prop("checked", true);
-            $("#kalasED").prop("checked", true);
-        }
-
-        $("#seeAlertedED").prop("checked", false);
-        $("#editAlertedED").prop("checked", false);
-        $("#deleteAlertedED").prop("checked", false);
-    }
-})
-
-
-$("#deleteAlertedED").on("change", () => {
-    if ($("#deleteAlertedED").is(":checked")) {
-        $("#operationED").prop("checked", true);
-        $("#kalasED").prop("checked", true);
-        $("#alertedED").prop("checked", true);
-        $("#seeAlertedED").prop("checked", true);
-        $("#editAlertedED").prop("checked", true);
-    } else {
-
-        if (!$(".kalaElementED").is(":checked")) {
-            $("#operationED").prop("checked", false);
-            $("#kalasED").prop("checked", false);
-        } else {
-            $("#operationED").prop("checked", true);
-            $("#kalasED").prop("checked", true);
-        }
-
-        $("#deleteAlertedED").prop("checked", false);
-    }
-})
-
-$("#editAlertedED").on("change", () => {
-    if ($("#editAlertedED").is(":checked")) {
-        $("#operationED").prop("checked", true);
-        $("#kalasED").prop("checked", true);
-        $("#alertedED").prop("checked", true);
-        $("#seeAlertedED").prop("checked", true);
-
-    } else {
-
-        if (!$(".kalaElementED").is(":checked")) {
-            $("#operationED").prop("checked", false);
-            $("#kalasED").prop("checked", false);
-        } else {
-            $("#operationED").prop("checked", true);
-            $("#kalasED").prop("checked", true);
-        }
-        $("#editAlertedED").prop("checked", false);
-        $("#deleteAlertedED").prop("checked", false);
-    }
-})
-
-
-$("#seeAlertedED").on("change", () => {
-    if ($("#seeAlertedED").is(":checked")) {
-        $("#operationED").prop("checked", true);
-        $("#kalasED").prop("checked", true);
-        $("#alertedED").prop("checked", true);
-
-    } else {
-        $("#alertedED").prop("checked", false);
-
-        if (!$(".kalaElementED").is(":checked")) {
-            $("#operationED").prop("checked", false);
-            $("#kalasED").prop("checked", false);
-        } else {
-            $("#operationED").prop("checked", true);
-            $("#kalasED").prop("checked", true);
-        }
-        $("#seeAlertedED").prop("checked", false);
-        $("#editAlertedED").prop("checked", false);
-        $("#deleteAlertedED").prop("checked", false);
-    }
-})
-
-
-
-
-$("#kalaGroupED").on("change", () => {
-    if ($("#kalaGroupED").is(":checked")) {
-        $("#operationED").prop("checked", true);
-        $("#kalasED").prop("checked", true);
-        $("#seeKalaGroupED").prop("checked", true);
-
-    } else {
-        $("#kalaGroupED").prop("checked", false);
-
-        if (!$(".kalaElementED").is(":checked")) {
-            $("#operationED").prop("checked", false);
-            $("#kalasED").prop("checked", false);
-        } else {
-            $("#operationED").prop("checked", true);
-            $("#kalasED").prop("checked", true);
-        }
-
-        $("#seeKalaGroupED").prop("checked", false);
-        $("#editKalaGroupED").prop("checked", false);
-        $("#deletKalaGroupED").prop("checked", false);
-    }
-})
-
-
-$("#deletKalaGroupED").on("change", () => {
-    if ($("#deletKalaGroupED").is(":checked")) {
-        $("#operationED").prop("checked", true);
-        $("#kalasED").prop("checked", true);
-        $("#kalaGroupED").prop("checked", true);
-        $("#seeKalaGroupED").prop("checked", true);
-        $("#editKalaGroupED").prop("checked", true);
-    } else {
-
-        if (!$(".kalaElementED").is(":checked")) {
-            $("#operationED").prop("checked", false);
-            $("#kalasED").prop("checked", false);
-        } else {
-            $("#operationED").prop("checked", true);
-            $("#kalasED").prop("checked", true);
-        }
-
-        $("#deletKalaGroupED").prop("checked", false);
-    }
-})
-
-$("#editKalaGroupED").on("change", () => {
-    if ($("#editKalaGroupED").is(":checked")) {
-        $("#operationED").prop("checked", true);
-        $("#kalasED").prop("checked", true);
-        $("#kalaGroupED").prop("checked", true);
-        $("#seeKalaGroupED").prop("checked", true);
-
-    } else {
-
-        if (!$(".kalaElementED").is(":checked")) {
-            $("#operationED").prop("checked", false);
-            $("#kalasED").prop("checked", false);
-        } else {
-            $("#operationED").prop("checked", true);
-            $("#kalasED").prop("checked", true);
-        }
-        $("#editKalaGroupED").prop("checked", false);
-        $("#deletKalaGroupED").prop("checked", false);
-    }
-})
-
-
-$("#seeKalaGroupED").on("change", () => {
-    if ($("#seeKalaGroupED").is(":checked")) {
-        $("#operationED").prop("checked", true);
-        $("#kalasED").prop("checked", true);
-        $("#kalaGroupED").prop("checked", true);
-
-    } else {
-        $("#kalaGroupED").prop("checked", false);
-
-        if (!$(".kalaElementED").is(":checked")) {
-            $("#operationED").prop("checked", false);
-            $("#kalasED").prop("checked", false);
-        } else {
-            $("#operationED").prop("checked", true);
-            $("#kalasED").prop("checked", true);
-        }
-        $("#seeKalaGroupED").prop("checked", false);
-        $("#editKalaGroupED").prop("checked", false);
-        $("#deletKalaGroupED").prop("checked", false);
-    }
-})
-
-
-
-$("#orderSalesED").on("change", () => {
-    if ($("#orderSalesED").is(":checked")) {
-        $("#operationED").prop("checked", true);
-        $("#kalasED").prop("checked", true);
-        $("#seeSalesOrderED").prop("checked", true);
-
-    } else {
-        $("#orderSalesED").prop("checked", false);
-
-        if (!$(".kalaElementED").is(":checked")) {
-            $("#operationED").prop("checked", false);
-            $("#kalasED").prop("checked", false);
-        } else {
-            $("#operationED").prop("checked", true);
-            $("#kalasED").prop("checked", true);
-        }
-
-        $("#seeSalesOrderED").prop("checked", false);
-        $("#editOrderSalesED").prop("checked", false);
-        $("#deleteOrderSalesED").prop("checked", false);
-    }
-})
-
-
-$("#deleteOrderSalesED").on("change", () => {
-    if ($("#deleteOrderSalesED").is(":checked")) {
-        $("#operationED").prop("checked", true);
-        $("#kalasED").prop("checked", true);
-        $("#orderSalesED").prop("checked", true);
-        $("#seeSalesOrderED").prop("checked", true);
-        $("#editOrderSalesED").prop("checked", true);
-    } else {
-
-        if (!$(".kalaElementED").is(":checked")) {
-            $("#operationED").prop("checked", false);
-            $("#kalasED").prop("checked", false);
-        } else {
-            $("#operationED").prop("checked", true);
-            $("#kalasED").prop("checked", true);
-        }
-        $("#deleteOrderSalesED").prop("checked", false);
-    }
-})
-
-$("#editOrderSalesED").on("change", () => {
-    if ($("#editOrderSalesED").is(":checked")) {
-        $("#operationED").prop("checked", true);
-        $("#kalasED").prop("checked", true);
-        $("#orderSalesED").prop("checked", true);
-        $("#seeSalesOrderED").prop("checked", true);
-
-    } else {
-
-        if (!$(".kalaElementED").is(":checked")) {
-            $("#operationED").prop("checked", false);
-            $("#kalasED").prop("checked", false);
-        } else {
-            $("#operationED").prop("checked", true);
-            $("#kalasED").prop("checked", true);
-        }
-        $("#editOrderSalesED").prop("checked", false);
-        $("#deleteOrderSalesED").prop("checked", false);
-    }
-})
-
-$("#seeSalesOrderED").on("change", () => {
-    if ($("#seeSalesOrderED").is(":checked")) {
-        $("#operationED").prop("checked", true);
-        $("#kalasED").prop("checked", true);
-        $("#orderSalesED").prop("checked", true);
-
-    } else {
-        $("#orderSalesED").prop("checked", false);
-
-        if (!$(".kalaElementED").is(":checked")) {
-            $("#operationED").prop("checked", false);
-            $("#kalasED").prop("checked", false);
-        } else {
-            $("#operationED").prop("checked", true);
-            $("#kalasED").prop("checked", true);
-        }
-        $("#seeSalesOrderED").prop("checked", false);
-        $("#editOrderSalesED").prop("checked", false);
-        $("#deleteOrderSalesED").prop("checked", false);
-    }
-})
-
-
-
-
-
-
-
-
-
-
-
-
-
-$("#messageED").on("change", () => {
-    if ($("#messageED").is(":checked")) {
-        $("#operationED").prop("checked", true);
-        $("#kalasED").prop("checked", true);
-        $("#seeMessageED").prop("checked", true);
-
-    } else {
-        $("#messageED").prop("checked", false);
-
-        if (!$(".kalaElementED").is(":checked")) {
-            $("#operationED").prop("checked", false);
-            $("#kalasED").prop("checked", false);
-        } else {
-            $("#operationED").prop("checked", true);
-            $("#kalasED").prop("checked", true);
-        }
-
-        $("#seeMessageED").prop("checked", false);
-        $("#editMessageED").prop("checked", false);
-        $("#deleteMessageED").prop("checked", false);
-    }
-})
-
-
-$("#deleteMessageED").on("change", () => {
-    if ($("#deleteMessageED").is(":checked")) {
-        $("#operationED").prop("checked", true);
-        $("#kalasED").prop("checked", true);
-        $("#messageED").prop("checked", true);
-        $("#seeMessageED").prop("checked", true);
-        $("#editMessageED").prop("checked", true);
-    } else {
-
-        if (!$(".kalaElementED").is(":checked")) {
-            $("#operationED").prop("checked", false);
-            $("#kalasED").prop("checked", false);
-        } else {
-            $("#operationED").prop("checked", true);
-            $("#kalasED").prop("checked", true);
-        }
-
-        $("#deleteMessageED").prop("checked", false);
-    }
-})
-
-$("#editMessageED").on("change", () => {
-    if ($("#editMessageED").is(":checked")) {
-        $("#operationED").prop("checked", true);
-        $("#kalasED").prop("checked", true);
-        $("#messageED").prop("checked", true);
-        $("#seeMessageED").prop("checked", true);
-
-    } else {
-
-        if (!$(".kalaElementED").is(":checked")) {
-            $("#operationED").prop("checked", false);
-            $("#kalasED").prop("checked", false);
-        } else {
-            $("#operationED").prop("checked", true);
-            $("#kalasED").prop("checked", true);
-        }
-        $("#editMessageED").prop("checked", false);
-        $("#deleteMessageED").prop("checked", false);
-    }
-})
-
-
-$("#seeMessageED").on("change", () => {
-    if ($("#seeMessageED").is(":checked")) {
-        $("#operationED").prop("checked", true);
-        $("#kalasED").prop("checked", true);
-        $("#messageED").prop("checked", true);
-
-    } else {
-        $("#messageED").prop("checked", false);
-
-        if (!$(".kalaElementED").is(":checked")) {
-            $("#operationED").prop("checked", false);
-            $("#kalasED").prop("checked", false);
-        } else {
-            $("#operationED").prop("checked", true);
-            $("#kalasED").prop("checked", true);
-        }
-        $("#seeMessageED").prop("checked", false);
-        $("#editMessageED").prop("checked", false);
-        $("#deleteMessageED").prop("checked", false);
-    }
-})
-
-
-
-// گزارشات 
-
-$("#reportED").on("change", () => {
-    if ($("#reportED").is(":checked")) {
-        $("#reportCustomerED").prop("checked", true);
-        $("#cutomerListED").prop("checked", true);
-        $("#seeCustomerListED").prop("checked", true);
-        $("#officialCustomerED").prop("checked", true);
-        $("#seeOfficialCustomerED").prop("checked", true);
-        $("#gameAndLotteryED").prop("checked", true);
-        $("#lotteryResultED").prop("checked", true);
-        $("#seeLotteryResultED").prop("checked", true);
-        $("#gamerListED").prop("checked", true);
-        $("#seeGamerListED").prop("checked", true);
-        $("#onlinePaymentED").prop("checked", true);
-        $("#seeOnlinePaymentED").prop("checked", true);
-    } else {
-        $("#reportCustomerED").prop("checked", false);
-        $("#cutomerListED").prop("checked", false);
-        $("#seeCustomerListED").prop("checked", false);
-        $("#officialCustomerED").prop("checked", false);
-        $("#officialCustomerED").change();
-        $("#seeOfficialCustomerED").prop("checked", false);
-        $("#gameAndLotteryED").prop("checked", false);
-        $("#lotteryResultED").prop("checked", false);
-        $("#lotteryResultED").change();
-        $("#seeLotteryResultED").prop("checked", false);
-        $("#gamerListED").prop("checked", false);
-        $("#gamerListED").change();
-        $("#seeGamerListED").prop("checked", false);
-        $("#onlinePaymentED").prop("checked", false);
-        $("#onlinePaymentED").change();
-        $("#seeOnlinePaymentED").prop("checked", false);
-        $("#editCustomerListED").prop("checked", false);
-        $("#deletCustomerListED").prop("checked", false);
-
-    }
-})
-
-
-$("#reportCustomerED").on("change", () => {
-    if ($("#reportCustomerED").is(":checked")) {
-        $("#reportED").prop("checked", true);
-        $("#cutomerListED").prop("checked", true);
-        $("#seeCustomerListED").prop("checked", true);
-        $("#officialCustomerED").prop("checked", true);
-        $("#seeOfficialCustomerED").prop("checked", true);
-
-    } else {
-        $("#reportCustomerED").prop("checked", false);
-        if (!$(".reportElementED").is(":checked")) {
-            $("#reportED").prop("checked", false);
-        } else {
-            $("#reportED").prop("checked", true);
-        }
-
-        $("#cutomerListED").prop("checked", false);
-        $("#seeCustomerListED").prop("checked", false);
-        $("#officialCustomerED").prop("checked", false);
-        $("#seeOfficialCustomerED").prop("checked", false);
-        $("#editCustomerListED").prop("checked", false);
-        $("#deletCustomerListED").prop("checked", false);
-
-    }
-})
-
-
-$("#cutomerListED").on("change", () => {
-    if ($("#cutomerListED").is(":checked")) {
-        $("#reportED").prop("checked", true);
-        $("#reportCustomerED").prop("checked", true);
-        $("#seeCustomerListED").prop("checked", true);
-
-    } else {
-
-        $("#cutomerListED").prop("checked", false);
-
-        if (!$(".cutomerListED").is(":checked")) {
-            $("#reportCustomerED").prop("checked", false);
-            $("#reportCustomerED").change();
-
-        } else {
-            $("#reportED").prop("checked", true);
-            $("#reportCustomerED").prop("checked", true);
-
-        }
-
-        $("#seeCustomerListED").prop("checked", false);
-        $("#editCustomerListED").prop("checked", false);
-        $("#deletCustomerListED").prop("checked", false);
-
-
-    }
-})
-
-
-
-$("#deletCustomerListED").on("change", () => {
-    if ($("#deletCustomerListED").is(":checked")) {
-        $("#reportED").prop("checked", true);
-        $("#cutomerListED").prop("checked", true);
-        $("#seeCustomerListED").prop("checked", true);
-        $("#editCustomerListED").prop("checked", true);
-        $("#reportCustomerED").prop("checked", true);
-
-    } else {
-        $("#deletCustomerListED").prop("checked", false);
-
-    }
-})
-
-$("#editCustomerListED").on("change", () => {
-    if ($("#editCustomerListED").is(":checked")) {
-        $("#reportED").prop("checked", true);
-        $("#cutomerListED").prop("checked", true);
-        $("#seeCustomerListED").prop("checked", true);
-        $("#reportCustomerED").prop("checked", true);
-    } else {
-        $("#editCustomerListED").prop("checked", false);
-        $("#deletCustomerListED").prop("checked", false);
-
-    }
-})
-
-
-
-$("#seeCustomerListED").on("change", () => {
-    if ($("#seeCustomerListED").is(":checked")) {
-        $("#reportED").prop("checked", true);
-        $("#reportCustomerED").prop("checked", true);
-        $("#cutomerListED").prop("checked", true);
-    } else {
-
-        $("#cutomerListED").prop("checked", false);
-
-        if (!$(".cutomerListED").is(":checked")) {
-
-            $("#reportCustomerED").prop("checked", false);
-            $("#reportCustomerED").change();
-
-        } else {
-            $("#reportED").prop("checked", true);
-            $("#reportCustomerED").prop("checked", true);
-
-        }
-
-        $("#editCustomerListED").prop("checked", false);
-        $("#deletCustomerListED").prop("checked", false);
-
-    }
-})
-
-
-
-$("#officialCustomerED").on("change", () => {
-    if ($("#officialCustomerED").is(":checked")) {
-        $("#reportED").prop("checked", true);
-        $("#reportCustomerED").prop("checked", true);
-        $("#seeOfficialCustomerED").prop("checked", true);
-    } else {
-        $("#officialCustomerED").prop("checked", false);
-        if (!$(".cutomerListED").is(":checked")) {
-            $("#reportCustomerED").prop("checked", false);
-            $("#reportCustomerED").change();
-        } else {
-            $("#reportED").prop("checked", true);
-            $("#reportCustomerED").prop("checked", true);
-
-        }
-
-        $("#seeOfficialCustomerED").prop("checked", false);
-        $("#editOfficialCustomerED").prop("checked", false);
-        $("#deleteOfficialCustomerED").prop("checked", false);
-    }
-
-})
-
-
-$("#deleteOfficialCustomerED").on("change", () => {
-    if ($("#deleteOfficialCustomerED").is(":checked")) {
-        $("#reportED").prop("checked", true);
-        $("#seeOfficialCustomerED").prop("checked", true);
-        $("#editOfficialCustomerED").prop("checked", true);
-        $("#reportCustomerED").prop("checked", true);
-        $("#officialCustomerED").prop("checked", true);
-
-    } else {
-        $("#deleteOfficialCustomerED").prop("checked", false);
-
-    }
-})
-
-
-$("#editOfficialCustomerED").on("change", () => {
-    if ($("#editOfficialCustomerED").is(":checked")) {
-        $("#reportED").prop("checked", true);
-        $("#officialCustomerED").prop("checked", true);
-        $("#reportCustomerED").prop("checked", true);
-        $("#seeOfficialCustomerED").prop("checked", true);
-    } else {
-        $("#editOfficialCustomerED").prop("checked", false);
-        $("#deleteOfficialCustomerED").prop("checked", false);
-    }
-})
-
-
-$("#seeOfficialCustomerED").on("change", () => {
-    if ($("#seeOfficialCustomerED").is(":checked")) {
-        $("#reportED").prop("checked", true);
-        $("#reportCustomerED").prop("checked", true);
-        $("#officialCustomerED").prop("checked", true);
-    } else {
-
-        $("#officialCustomerED").prop("checked", false);
-
-        if (!$(".cutomerListED").is(":checked")) {
-            $("#reportCustomerED").prop("checked", false);
-            $("#reportCustomerED").change();
-
-        } else {
-            $("#editOfficialCustomerED").prop("checked", false);
-            $("#deleteOfficialCustomerED").prop("checked", false);
-        }
-
-
-
-    }
-})
-
-
-
-
-$("#gameAndLotteryED").on("change", () => {
-    if ($("#gameAndLotteryED").is(":checked")) {
-        $("#reportED").prop("checked", true);
-        $("#lotteryResultED").prop("checked", true);
-        $("#seeLotteryResultED").prop("checked", true);
-        $("#gamerListED").prop("checked", true);
-        $("#seeGamerListED").prop("checked", true);
-
-    } else {
-        $("#gameAndLotteryED").prop("checked", false);
-        if (!$(".reportElementED").is(":checked")) {
-            $("#reportED").prop("checked", false);
-        } else {
-            $("#reportED").prop("checked", true);
-        }
-
-        $("#lotteryResultED").prop("checked", false);
-        $("#seeLotteryResultED").prop("checked", false);
-        $("#gamerListED").prop("checked", false);
-        $("#seeGamerListED").prop("checked", false);
-        $("#editCustomerListED").prop("checked", false);
-        $("#deletCustomerListED").prop("checked", false);
-        $("#editLotteryResultED").prop("checked", false);
-
-    }
-})
-
-$("#lotteryResultED").on("change", () => {
-    if ($("#lotteryResultED").is(":checked")) {
-        $("#reportED").prop("checked", true);
-        $("#gameAndLotteryED").prop("checked", true);
-        $("#seeLotteryResultED").prop("checked", true);
-    } else {
-
-        $("#lotteryResultED").prop("checked", false);
-
-        if (!$(".gameAndLotteryElement").is(":checked")) {
-            $("#gameAndLotteryED").prop("checked", false);
-        } else {
-            $("#gameAndLotteryED").prop("checked", true);
-        }
-        $("#seeLotteryResultED").prop("checked", false);
-        $("#editLotteryResultED").prop("checked", false);
-        $("#deletLotteryResultED").prop("checked", false);
-
-    }
-});
-
-$("#deletLotteryResultED").on("change", () => {
-    if ($("#deletLotteryResultED").is(":checked")) {
-        $("#reportED").prop("checked", true);
-        $("#gameAndLotteryED").prop("checked", true);
-        $("#seeLotteryResultED").prop("checked", true);
-        $("#lotteryResultED").prop("checked", true);
-        $("#editLotteryResultED").prop("checked", true);
-
-    } else {
-        $("#deletLotteryResultED").prop("checked", false);
-
-    }
-})
-
-$("#editLotteryResultED").on("change", () => {
-    if ($("#editLotteryResultED").is(":checked")) {
-        $("#reportED").prop("checked", true);
-        $("#gameAndLotteryED").prop("checked", true);
-        $("#seeLotteryResultED").prop("checked", true);
-        $("#lotteryResultED").prop("checked", true);
-        $("#editLotteryResultED").prop("checked", true);
-
-    } else {
-        $("#editLotteryResultED").prop("checked", false);
-        $("#deletLotteryResultED").prop("checked", false);
-
-    }
-})
-
-
-$("#seeLotteryResultED").on("change", () => {
-    if ($("#seeLotteryResultED").is(":checked")) {
-        $("#reportED").prop("checked", true);
-        $("#gameAndLotteryED").prop("checked", true);
-        $("#lotteryResultED").prop("checked", true);
-    } else {
-
-        $("#lotteryResultED").prop("checked", false);
-
-        if (!$(".gameAndLotteryElement").is(":checked")) {
-            $("#gameAndLotteryED").prop("checked", false);
-            $("#gameAndLotteryED").change();
-
-        } else {
-            $("#reportED").prop("checked", true);
-            $("#gameAndLotteryED").prop("checked", true);
-
-        }
-
-        $("#editLotteryResultED").prop("checked", false);
-        $("#deletLotteryResultED").prop("checked", false);
-
-    }
-})
-
-$("#gamerListED").on("change", function () {
-    if ($("#gamerListED").is(":checked")) {
-        $("#seeGamerListED").prop("checked", true);
-        $("#gameAndLotteryED").prop("checked", true);
-        $("#reportED").prop("checked", true);
-    } else {
-        $("#seeGamerListED").prop("checked", false);
-        $("#editGamerListED").prop("checked", false);
-        $("#deletGamerListED").prop("checked", false);
-        if (!$(".gameAndLotteryElement").is(":checked")) {
-            $("#gameAndLotteryED").prop("checked", false);
-            $("#gameAndLotteryED").change();
-
-        } else {
-            $("#reportED").prop("checked", true);
-            $("#gameAndLotteryED").prop("checked", true);
-
-        }
-    }
-})
-
-
-$("#seeGamerListED").on("change", function () {
-    if ($("#seeGamerListED").is(":checked")) {
-        $("#seeGamerListED").prop("checked", true);
-        $("#gameAndLotteryED").prop("checked", true);
-        $("#gamerListED").prop("checked", true);
-        $("#reportED").prop("checked", true);
-    } else {
-        $("#seeGamerListED").prop("checked", false);
-        $("#editGamerListED").prop("checked", false);
-        $("#deletGamerListED").prop("checked", false);
-        $("#gamerListED").prop("checked", false);
-        if (!$(".gameAndLotteryElement").is(":checked")) {
-            $("#gameAndLotteryED").prop("checked", false);
-            $("#gameAndLotteryED").change();
-
-        } else {
-            $("#reportED").prop("checked", true);
-            $("#gameAndLotteryED").prop("checked", true);
-
-        }
-    }
-})
-
-$("#editGamerListED").on("change", function () {
-    if ($("#editGamerListED").is(":checked")) {
-        $("#seeGamerListED").prop("checked", true);
-        $("#gameAndLotteryED").prop("checked", true);
-        $("#reportED").prop("checked", true);
-        $("#gamerListED").prop("checked", true);
-    } else {
-        $("#deletGamerListED").prop("checked", false);
-    }
-})
-
-$("#deletGamerListED").on("change", function () {
-    if ($("#deletGamerListED").is(":checked")) {
-        $("#seeGamerListED").prop("checked", true);
-        $("#editGamerListED").prop("checked", true);
-        $("#gameAndLotteryED").prop("checked", true);
-        $("#reportED").prop("checked", true);
-        $("#gamerListED").prop("checked", true);
-    } else {
-        $("#deletGamerListED").prop("checked", false);
-    }
-})
-
-$("#onlinePaymentED").on("change", function () {
-    if ($("#onlinePaymentED").is(":checked")) {
-        $("#seeOnlinePaymentED").prop("checked", true);
-        $("#reportED").prop("checked", true);
-    } else {
-        if (!$(".reportElementED").is(":checked")) {
-            $("#reportED").prop("checked", false);
-        } else {
-            $("#reportED").prop("checked", true);
-        }
-        $("#seeOnlinePaymentED").prop("checked", false);
-        $("#editOnlinePaymentED").prop("checked", false);
-        $("#deleteOnlinePaymentED").prop("checked", false);
-    }
-})
-
-$("#deleteOnlinePaymentED").on("change", function () {
-    if ($("#deleteOnlinePaymentED").is(":checked")) {
-        $("#seeOnlinePaymentED").prop("checked", true);
-        $("#onlinePaymentED").prop("checked", true);
-        $("#editOnlinePaymentED").prop("checked", true);
-        $("#reportED").prop("checked", true);
-    } else {
-        if (!$(".reportElementED").is(":checked")) {
-            $("#reportED").prop("checked", false);
-        } else {
-            $("#reportED").prop("checked", true);
-        }
-    }
-})
-
-$("#seeOnlinePaymentED").on("change", function () {
-    if ($("#seeOnlinePaymentED").is(":checked")) {
-        $("#onlinePaymentED").prop("checked", true);
-        $("#reportED").prop("checked", true);
-    } else {
-        $("#onlinePaymentED").prop("checked", false);
-        if (!$(".reportElementED").is(":checked")) {
-            $("#seeOnlinePaymentED").prop("checked", false);
-            $("#onlinePaymentED").prop("checked", false);
-            $("#reportED").prop("checked", false);
-            $("#editOnlinePaymentED").prop("checked", false);
-            $("#deleteOnlinePaymentED").prop("checked", false);
-        } else {
-            $("#seeOnlinePaymentED").prop("checked", false);
-            $("#editOnlinePaymentED").prop("checked", false);
-            $("#deleteOnlinePaymentED").prop("checked", false);
-        }
-    }
-});
-
-$("#editOnlinePaymentED").on("change", function () {
-    if ($("#editOnlinePaymentED").is(":checked")) {
-        $("#onlinePaymentED").prop("checked", true);
-        $("#seeOnlinePaymentED").prop("checked", true);
-        $("#reportED").prop("checked", true);
-    } else {
-        if (!$(".reportElementED").is(":checked")) {
-            $("#seeOnlinePaymentED").prop("checked", false);
-            $("#onlinePaymentED").prop("checked", false);
-            $("#reportED").prop("checked", false);
-            $("#editOnlinePaymentED").prop("checked", false);
-            $("#deleteOnlinePaymentED").prop("checked", false);
-        } else {
-            $("#editOnlinePaymentED").prop("checked", false);
-            $("#deleteOnlinePaymentED").prop("checked", false);
-        }
-    }
-})
-
-$("#adminTypeED").on("change",()=>{
-    if($("#adminTypeED").val()=='admin'){
-        //در صورتیکه ادمین باشد
-        $("#baseInfoED").prop("checked", true);
-        $("#settingsED").prop("checked", true);
-        $(".allSettingsED").prop("checked", true);
-        $("#seeMainPageSettingED").prop("checked", true);
-        $("#editManiPageSettingED").prop("checked", true);
-        $("#deletMainPageSettingED").prop("checked", true);
-        $("#seeSpecialSettingED").prop("checked", true);
-        $("#editSpecialSettingED").prop("checked", true);
-        $("#deleteSpecialSettingED").prop("checked", true);
-        $("#seeSpecialSettingED").prop("checked", true);
-        $("#editEmptyazSettingED").prop("checked", true);
-        $("#seeEmtyazSettingED").prop("checked", true);
-        $("#deleteEmtyazSettingED").prop("checked", true);
-        $("#defineElementED").prop("checked", true);
-        $("#karbaranED").prop("checked", true);
-        $("#customersED").prop("checked", true);
-        $("#seeCustomersED").prop("checked", true);
-        $("#operationED").prop("checked", true);
-        $("#kalasED").prop("checked", true);
-        $("#kalaListsED").prop("checked", true);
-        $("#seeKalaListED").prop("checked", true);
-        $("#requestedKalaED").prop("checked", true);
-        $("#seeRequestedKalaED").prop("checked", true);
-        $("#fastKalaED").prop("checked", true);
-        $("#seeFastKalaED").prop("checked", true);
-        $("#pishKharidED").prop("checked", true);
-        $("#seePishKharidED").prop("checked", true);
-        $("#brandsED").prop("checked", true);
-        $("#seeBrandsED").prop("checked", true);
-        $("#alertedED").prop("checked", true);
-        $("#seeAlertedED").prop("checked", true);
-        $("#kalaGroupED").prop("checked", true);
-        $("#seeKalaGroup").prop("checked", true);
-        $("#orderSalesED").prop("checked", true);
-        $("#seeSalesOrderED").prop("checked", true);
-        $("#messageED").prop("checked", true);
-        $("#seeMessageED").prop("checked", true);
-        $("#seeKalaListED").prop("checked", true);
-        $("#editKalaListED").prop("checked", true);
-        $("#deleteKalaListED").prop("checked", true);
-        $("#editMessageED").prop("checked", true);
-        $("#deleteMessageED").prop("checked", true);
-        $("#editRequestedKalaED").prop("checked", true);
-        $("#deleteRequestedKalaED").prop("checked", true);
-        $("#editFastKalaED").prop("checked", true);
-        $("#deleteFastKalaED").prop("checked", true);
-        $("#editFastKalaED").prop("checked", true);
-        $("#deleteFastKalaED").prop("checked", true);
-        $("#editPishkharidED").prop("checked", true);
-        $("#deletePishKharidED").prop("checked", true);
-        $("#editBrandED").prop("checked", true);
-        $("#deleteBrandsED").prop("checked", true);
-        $("#editAlertedED").prop("checked", true);
-        $("#deleteAlertedED").prop("checked", true);
-        $("#editKalaGroupED").prop("checked", true);
-        $("#deletKalaGroupED").prop("checked", true);
-        $("#seeKalaGroupED").prop("checked", true);
-        $("#editOrderSalesED").prop("checked", true);
-        $("#deleteOrderSalesED").prop("checked", true);
-
-        $("#reportED").prop("checked", true);
-        $("#reportCustomerED").prop("checked", true);
-        $("#cutomerListED").prop("checked", true);
-        $("#seeCustomerListED").prop("checked", true);
-        $("#editCustomerListED").prop("checked", true);
-        $("#deleteCustomerListED").prop("checked", true);
-        $("#officialCustomerED").prop("checked", true);
-        $("#seeOfficialCustomerED").prop("checked", true);
-        $("#editOfficialCustomerED").prop("checked", true);
-        $("#deleteOfficialCustomerED").prop("checked", true);
-        $("#gameAndLotteryED").prop("checked", true);
-        $("#lotteryResultED").prop("checked", true);
-        $("#seeLotteryResultED").prop("checked", true);
-        $("#editLotteryResultED").prop("checked", true);
-        $("#deletLotteryResultED").prop("checked", true);
-        $("#gamerListED").prop("checked", true);
-        $("#seeGamerListED").prop("checked", true);
-        $("#editGamerListED").prop("checked", true);
-        $("#deletGamerListED").prop("checked", true);
-        $("#onlinePaymentED").prop("checked", true);
-        $("#seeOnlinePaymentED").prop("checked", true);
-        $("#editOnlinePaymentED").prop("checked", true);
-        $("#deleteOnlinePaymentED").prop("checked", true);
-        $("#editCustomerListED").prop("checked", true);
-        $("#deletCustomerListED").prop("checked", true);
-
-    }else{
-        //در صورتیکه پشتیبان باشد
-        //در صورتیکه ادمین باشد
-        $("#baseInfoED").prop("checked", true);
-        $("#settingsED").prop("checked", true);
-        $(".allSettingsED").prop("checked", true);
-        $("#seeMainPageSettingED").prop("checked", true);
-        $("#editManiPageSettingED").prop("checked", false);
-        $("#deletMainPageSettingED").prop("checked", false);
-        $("#seeSpecialSettingED").prop("checked", true);
-        $("#editSpecialSettingED").prop("checked", false);
-        $("#deleteSpecialSettingED").prop("checked", false);
-        $("#seeSpecialSettingED").prop("checked", true);
-        $("#editEmptyazSettingED").prop("checked", false);
-        $("#seeEmtyazSettingED").prop("checked", true);
-        $("#deleteEmtyazSettingED").prop("checked", false);
-        $("#defineElementED").prop("checked", true);
-        $("#karbaranED").prop("checked", true);
-        $("#customersED").prop("checked", true);
-        $("#seeCustomersED").prop("checked", true);
-        $("#operationED").prop("checked", true);
-        $("#kalasED").prop("checked", true);
-        $("#kalaListsED").prop("checked", true);
-        $("#seeKalaListED").prop("checked", true);
-        $("#requestedKalaED").prop("checked", true);
-        $("#seeRequestedKalaED").prop("checked", true);
-        $("#fastKalaED").prop("checked", true);
-        $("#seeFastKalaED").prop("checked", true);
-        $("#pishKharidED").prop("checked", true);
-        $("#seePishKharidED").prop("checked", true);
-        $("#brandsED").prop("checked", true);
-        $("#seeBrandsED").prop("checked", true);
-        $("#alertedED").prop("checked", true);
-        $("#seeAlertedED").prop("checked", true);
-        $("#kalaGroupED").prop("checked", true);
-        $("#seeKalaGroup").prop("checked", true);
-        $("#orderSalesED").prop("checked", true);
-        $("#seeSalesOrderED").prop("checked", true);
-        $("#messageED").prop("checked", true);
-        $("#seeMessageED").prop("checked", true);
-        $("#seeKalaListED").prop("checked", true);
-        $("#editKalaListED").prop("checked", false);
-        $("#deleteKalaListED").prop("checked", false);
-        $("#editMessageED").prop("checked", true);
-        $("#deleteMessageED").prop("checked", false);
-        $("#editRequestedKalaED").prop("checked", false);
-        $("#deleteRequestedKalaED").prop("checked", false);
-        $("#editFastKalaED").prop("checked", false);
-        $("#deleteFastKalaED").prop("checked", false);
-        $("#editFastKalaED").prop("checked", false);
-        $("#deleteFastKalaED").prop("checked", false);
-        $("#editPishkharidED").prop("checked", false);
-        $("#deletePishKharidED").prop("checked", false);
-        $("#editBrandED").prop("checked", false);
-        $("#deleteBrandsED").prop("checked", false);
-        $("#editAlertedED").prop("checked", false);
-        $("#deleteAlertedED").prop("checked", false);
-        $("#editKalaGroupED").prop("checked", false);
-        $("#deletKalaGroupED").prop("checked", false);
-        $("#seeKalaGroupED").prop("checked", true);
-        $("#editOrderSalesED").prop("checked", false);
-        $("#deleteOrderSalesED").prop("checked", false);
-
-        $("#reportED").prop("checked", true);
-        $("#reportCustomerED").prop("checked", true);
-        $("#cutomerListED").prop("checked", true);
-        $("#seeCustomerListED").prop("checked", true);
-        $("#editCustomerListED").prop("checked", false);
-        $("#deleteCustomerListED").prop("checked", false);
-        $("#officialCustomerED").prop("checked", true);
-        $("#seeOfficialCustomerED").prop("checked", true);
-        $("#editOfficialCustomerED").prop("checked", false);
-        $("#deleteOfficialCustomerED").prop("checked", false);
-        $("#gameAndLotteryED").prop("checked", true);
-        $("#lotteryResultED").prop("checked", true);
-        $("#seeLotteryResultED").prop("checked", true);
-        $("#editLotteryResultED").prop("checked", false);
-        $("#deletLotteryResultED").prop("checked", false);
-        $("#gamerListED").prop("checked", true);
-        $("#seeGamerListED").prop("checked", true);
-        $("#editGamerListED").prop("checked", false);
-        $("#deletGamerListED").prop("checked", false);
-        $("#onlinePaymentED").prop("checked", true);
-        $("#seeOnlinePaymentED").prop("checked", true);
-        $("#editOnlinePaymentED").prop("checked", false);
-        $("#deleteOnlinePaymentED").prop("checked", false);
-        $("#editCustomerListED").prop("checked", false);
-        $("#deletCustomerListED").prop("checked", false);
-
-    }
-})
-
-// برای تعیین پیش فرض تعیین نوعیت کاربر
-
-
-$("#adminTypeN").on("change",()=>{
-    if($("#adminTypeN").val()=='admin'){
-        //در صورتیکه ادمین باشد
-        $("#baseInfoN").prop("checked", true);
-        $("#settingsN").prop("checked", true);
-        $(".allSettingsN").prop("checked", true);
-        $("#seeMainPageSettingN").prop("checked", true);
-        $("#editManiPageSettingN").prop("checked", true);
-        $("#deletMainPageSettingN").prop("checked", true);
-        $("#seeSpecialSettingN").prop("checked", true);
-        $("#editSpecialSettingN").prop("checked", true);
-        $("#deleteSpecialSettingN").prop("checked", true);
-        $("#seeSpecialSettingN").prop("checked", true);
-        $("#editEmptyazSettingN").prop("checked", true);
-        $("#seeEmtyazSettingN").prop("checked", true);
-        $("#deleteEmtyazSettingN").prop("checked", true);
-        $("#defineElementN").prop("checked", true);
-        $("#karbaranN").prop("checked", true);
-        $("#customersN").prop("checked", true);
-        $("#seeCustomersN").prop("checked", true);
-        $("#operationN").prop("checked", true);
-        $("#kalasN").prop("checked", true);
-        $("#kalaListsN").prop("checked", true);
-        $("#seeKalaListN").prop("checked", true);
-        $("#requestedKalaN").prop("checked", true);
-        $("#seeRequestedKalaN").prop("checked", true);
-        $("#fastKalaN").prop("checked", true);
-        $("#seeFastKalaN").prop("checked", true);
-        $("#pishKharidN").prop("checked", true);
-        $("#seePishKharidN").prop("checked", true);
-        $("#brandsN").prop("checked", true);
-        $("#seeBrandsN").prop("checked", true);
-        $("#alertedN").prop("checked", true);
-        $("#seeAlertedN").prop("checked", true);
-        $("#kalaGroupN").prop("checked", true);
-        $("#seeKalaGroup").prop("checked", true);
-        $("#orderSalesN").prop("checked", true);
-        $("#seeSalesOrderN").prop("checked", true);
-        $("#messageN").prop("checked", true);
-        $("#seeMessageN").prop("checked", true);
-        $("#seeKalaListN").prop("checked", true);
-        $("#editKalaListN").prop("checked", true);
-        $("#deleteKalaListN").prop("checked", true);
-        $("#editMessageN").prop("checked", true);
-        $("#deleteMessageN").prop("checked", true);
-        $("#editRequestedKalaN").prop("checked", true);
-        $("#deleteRequestedKalaN").prop("checked", true);
-        $("#editFastKalaN").prop("checked", true);
-        $("#deleteFastKalaN").prop("checked", true);
-        $("#editFastKalaN").prop("checked", true);
-        $("#deleteFastKalaN").prop("checked", true);
-        $("#editPishkharidN").prop("checked", true);
-        $("#deletePishKharidN").prop("checked", true);
-        $("#editBrandN").prop("checked", true);
-        $("#deleteBrandsN").prop("checked", true);
-        $("#editAlertedN").prop("checked", true);
-        $("#deleteAlertedN").prop("checked", true);
-        $("#editKalaGroupN").prop("checked", true);
-        $("#deletKalaGroupN").prop("checked", true);
-        $("#seeKalaGroupN").prop("checked", true);
-        $("#editOrderSalesN").prop("checked", true);
-        $("#deleteOrderSalesN").prop("checked", true);
-        $("#reportN").prop("checked", true);
-        $("#reportCustomerN").prop("checked", true);
-        $("#cutomerListN").prop("checked", true);
-        $("#seeCustomerListN").prop("checked", true);
-        $("#editCustomerListN").prop("checked", true);
-        $("#deleteCustomerListN").prop("checked", true);
-        $("#officialCustomerN").prop("checked", true);
-        $("#seeOfficialCustomerN").prop("checked", true);
-        $("#editOfficialCustomerN").prop("checked", true);
-        $("#deleteOfficialCustomerN").prop("checked", true);
-        $("#gameAndLotteryN").prop("checked", true);
-        $("#lotteryResultN").prop("checked", true);
-        $("#seeLotteryResultN").prop("checked", true);
-        $("#editLotteryResultN").prop("checked", true);
-        $("#deletLotteryResultN").prop("checked", true);
-        $("#gamerListN").prop("checked", true);
-        $("#seeGamerListN").prop("checked", true);
-        $("#editGamerListN").prop("checked", true);
-        $("#deletGamerListN").prop("checked", true);
-        $("#onlinePaymentN").prop("checked", true);
-        $("#seeOnlinePaymentN").prop("checked", true);
-        $("#editOnlinePaymentN").prop("checked", true);
-        $("#deleteOnlinePaymentN").prop("checked", true);
-        $("#editCustomerListN").prop("checked", true);
-        $("#deletCustomerListN").prop("checked", true);
-
-    }else{
-        //در صورتیکه پشتیبان باشد
-        //در صورتیکه ادمین باشد
-        $("#baseInfoN").prop("checked", true);
-        $("#settingsN").prop("checked", true);
-        $(".allSettingsN").prop("checked", true);
-        $("#seeMainPageSettingN").prop("checked", true);
-        $("#editManiPageSettingN").prop("checked", false);
-        $("#deletMainPageSettingN").prop("checked", false);
-        $("#seeSpecialSettingN").prop("checked", true);
-        $("#editSpecialSettingN").prop("checked", false);
-        $("#deleteSpecialSettingN").prop("checked", false);
-        $("#seeSpecialSettingN").prop("checked", true);
-        $("#editEmptyazSettingN").prop("checked", false);
-        $("#seeEmtyazSettingN").prop("checked", true);
-        $("#deleteEmtyazSettingN").prop("checked", false);
-        $("#defineElementN").prop("checked", true);
-        $("#karbaranN").prop("checked", true);
-        $("#customersN").prop("checked", true);
-        $("#seeCustomersN").prop("checked", true);
-        $("#operationN").prop("checked", true);
-        $("#kalasN").prop("checked", true);
-        $("#kalaListsN").prop("checked", true);
-        $("#seeKalaListN").prop("checked", true);
-        $("#requestedKalaN").prop("checked", true);
-        $("#seeRequestedKalaN").prop("checked", true);
-        $("#fastKalaN").prop("checked", true);
-        $("#seeFastKalaN").prop("checked", true);
-        $("#pishKharidN").prop("checked", true);
-        $("#seePishKharidN").prop("checked", true);
-        $("#brandsN").prop("checked", true);
-        $("#seeBrandsN").prop("checked", true);
-        $("#alertedN").prop("checked", true);
-        $("#seeAlertedN").prop("checked", true);
-        $("#kalaGroupN").prop("checked", true);
-        $("#seeKalaGroup").prop("checked", true);
-        $("#orderSalesN").prop("checked", true);
-        $("#seeSalesOrderN").prop("checked", true);
-        $("#messageN").prop("checked", true);
-        $("#seeMessageN").prop("checked", true);
-        $("#seeKalaListN").prop("checked", true);
-        $("#editKalaListN").prop("checked", false);
-        $("#deleteKalaListN").prop("checked", false);
-        $("#editMessageN").prop("checked", true);
-        $("#deleteMessageN").prop("checked", false);
-        $("#editRequestedKalaN").prop("checked", false);
-        $("#deleteRequestedKalaN").prop("checked", false);
-        $("#editFastKalaN").prop("checked", false);
-        $("#deleteFastKalaN").prop("checked", false);
-        $("#editFastKalaN").prop("checked", false);
-        $("#deleteFastKalaN").prop("checked", false);
-        $("#editPishkharidN").prop("checked", false);
-        $("#deletePishKharidN").prop("checked", false);
-        $("#editBrandN").prop("checked", false);
-        $("#deleteBrandsN").prop("checked", false);
-        $("#editAlertedN").prop("checked", false);
-        $("#deleteAlertedN").prop("checked", false);
-        $("#editKalaGroupN").prop("checked", false);
-        $("#deletKalaGroupN").prop("checked", false);
-        $("#seeKalaGroupN").prop("checked", true);
-        $("#editOrderSalesN").prop("checked", false);
-        $("#deleteOrderSalesN").prop("checked", false);
-
-        $("#reportN").prop("checked", true);
-        $("#reportCustomerN").prop("checked", true);
-        $("#cutomerListN").prop("checked", true);
-        $("#seeCustomerListN").prop("checked", true);
-        $("#editCustomerListN").prop("checked", false);
-        $("#deleteCustomerListN").prop("checked", false);
-        $("#officialCustomerN").prop("checked", true);
-        $("#seeOfficialCustomerN").prop("checked", true);
-        $("#editOfficialCustomerN").prop("checked", false);
-        $("#deleteOfficialCustomerN").prop("checked", false);
-        $("#gameAndLotteryN").prop("checked", true);
-        $("#lotteryResultN").prop("checked", true);
-        $("#seeLotteryResultN").prop("checked", true);
-        $("#editLotteryResultN").prop("checked", false);
-        $("#deletLotteryResultN").prop("checked", false);
-        $("#gamerListN").prop("checked", true);
-        $("#seeGamerListN").prop("checked", true);
-        $("#editGamerListN").prop("checked", false);
-        $("#deletGamerListN").prop("checked", false);
-        $("#onlinePaymentN").prop("checked", true);
-        $("#seeOnlinePaymentN").prop("checked", true);
-        $("#editOnlinePaymentN").prop("checked", false);
-        $("#deleteOnlinePaymentN").prop("checked", false);
-        $("#editCustomerListN").prop("checked", false);
-        $("#deletCustomerListN").prop("checked", false);
-
-    }
-})
+///////////////////////////////////
+// $("#").on("change", () => {
+//     if ($("#").is(":checked")) {
+//         $("#").prop("checked", true);
+
+
+//     } else {
+//         $("#").prop("checked", false);
+//         if (!$(".").is(":checked")) {
+//             $("#").prop("checked", false);
+//         } else {
+//             $("#").prop("checked", true);
+//         }
+
+//         $("#").prop("checked", false);
+
+//     }
+// })
+
+
+// $(".webPageN").on("change", () => {
+//     if ($(".webPageN").is(':checked')) {
+//         $(".webN").prop("checked", true);
+//         $("#homeSeeN").prop("checked", true);
+//         $("#karbaranSeeN").prop("checked", true);
+//         $("#specialSeeN").prop("checked", true);
+//     } else {
+//         $(".webN").prop("checked", false);
+//         $("#homeSeeN").prop("checked", false);
+//         $("#karbaranSeeN").prop("checked", false);
+//         $("#specialSeeN").prop("checked", false);
+//         $("#homeChangeN").prop("checked", false);
+//         $("#karbaranChangeN").prop("checked", false);
+//         $("#specialChangeN").prop("checked", false);
+//         $("#homeDeleteN").prop("checked", false);
+//         $("#karbaranDeleteN").prop("checked", false);
+//         $("#specialDeleteN").prop("checked", false);
+//     }
+// });
+
+
+// $("#homePageN").on("change", () => {
+
+//     if ($("#homePageN").is(":checked")) {
+
+//         $("#homeSeeN").prop("checked", true);
+
+//         $(".webPageN").prop("checked", true);
+
+//     } else {
+//         if ($(".webN").filter(":checked").length > 0) {
+
+//         } else {
+
+//             $(".webPageN").prop("checked", false);
+
+//         }
+//         $("#homeSeeN").prop("checked", false);
+
+//         $("#homeChangeN").prop("checked", false);
+
+//         $("#homeDeleteN").prop("checked", false);
+
+//     }
+
+// });
+
+// $("#homeChangeN").on("change", () => {
+
+//     if ($("#homeChangeN").is(":checked")) {
+
+//         $(".webPageN").prop("checked", true);
+
+//         $("#homeSeeN").prop("checked", true);
+
+//         $("#homePageN").prop("checked", true);
+
+//     } else {
+
+//         $("#homeDeleteN").prop("checked", false);
+
+//     }
+// });
+
+// $("#homeDeleteN").on("change", () => {
+
+//     if ($("#homeDeleteN").is(":checked")) {
+
+//         $(".webPageN").prop("checked", true);
+
+//         $("#homeSeeN").prop("checked", true);
+
+//         $("#homeChangeN").prop("checked", true);
+
+//         $("#homeDeleteN").prop("checked", true);
+
+//         $("#homePageN").prop("checked", true);
+
+//     }
+// });
+
+// $("#homeSeeN").on("change", () => {
+
+//     if (!$("#homeSeeN").is(":checked")) {
+
+//         if ($(".webN").filter(":checked").length > 1) {
+
+//         } else {
+
+//             $(".webPageN").prop("checked", false);
+
+//         }
+
+//         $("#homePageN").prop("checked", false);
+
+//         $("#homeChangeN").prop("checked", false);
+
+//         $("#homeDeleteN").prop("checked", false);
+
+//     } else {
+
+//         $(".webPageN").prop("checked", true);
+
+//         $("#homePageN").prop("checked", true);
+
+//     }
+
+// });
+
+// $("#karbaranN").on("change", () => {
+
+//     if ($("#karbaranN").is(":checked")) {
+
+//         $("#karbaranSeeN").prop("checked", true);
+
+//         $(".webPageN").prop("checked", true);
+
+//     } else {
+//         if ($(".webN").filter(":checked").length > 0) {
+
+//         } else {
+
+//             $(".webPageN").prop("checked", false);
+
+//         }
+//         $("#karbaranSeeN").prop("checked", false);
+
+//         $("#karbaranChangeN").prop("checked", false);
+
+//         $("#karbaranDeleteN").prop("checked", false);
+
+//     }
+
+// });
+
+// $("#karbaranDeleteN").on("change", () => {
+
+//     if ($("#karbaranDeleteN").is(":checked")) {
+
+//         $(".webPageN").prop("checked", true);
+
+//         $("#karbaranSeeN").prop("checked", true);
+
+//         $("#karbaranChangeN").prop("checked", true);
+
+//         $("#karbaranDeleteN").prop("checked", true);
+
+//         $("#karbaranN").prop("checked", true);
+
+//     }
+// });
+
+// $("#karbaranChangeN").on("change", () => {
+
+//     if ($("#karbaranChangeN").is(":checked")) {
+
+//         $(".webPageN").prop("checked", true);
+
+//         $("#karbaranSeeN").prop("checked", true);
+
+//         $("#karbaranN").prop("checked", true);
+
+//     } else {
+
+//         $("#karbaranDeleteN").prop("checked", false);
+
+//     }
+// });
+
+// $("#karbaranSeeN").on("change", () => {
+
+//     if (!$("#karbaranSeeN").is(":checked")) {
+
+//         if ($(".webN").filter(":checked").length > 1) {
+
+//         } else {
+
+//             $(".webPageN").prop("checked", false);
+
+//         }
+
+//         $("#karbaranN").prop("checked", false);
+
+//         $("#karbaranChangeN").prop("checked", false);
+
+//         $("#karbaranDeleteN").prop("checked", false);
+
+//     } else {
+
+//         $(".webPageN").prop("checked", true);
+
+//         $("#karbaranN").prop("checked", true);
+
+//     }
+
+// });
+
+// $("#specialSettingN").on("change", () => {
+
+//     if ($("#specialSettingN").is(":checked")) {
+
+//         $(".webPageN").prop("checked", true);
+
+//         $("#specialSeeN").prop("checked", true);
+
+//     } else {
+//         if ($(".webN").filter(":checked").length > 0) {
+
+//         } else {
+
+//             $(".webPageN").prop("checked", false);
+
+//         }
+//         $("#specialSeeN").prop("checked", false);
+
+//         $("#specialChangeN").prop("checked", false);
+
+//         $("#specialDeleteN").prop("checked", false);
+
+//     }
+
+// });
+
+// $("#specialDeleteN").on("change", () => {
+
+//     if ($("#specialDeleteN").is(":checked")) {
+
+//         $(".webPageN").prop("checked", true);
+
+//         $("#specialSeeN").prop("checked", true);
+
+//         $("#specialChangeN").prop("checked", true);
+
+//         $("#specialDeleteN").prop("checked", true);
+
+//         $("#specialSettingN").prop("checked", true);
+
+//     }
+// });
+
+// $("#specialChangeN").on("change", () => {
+
+//     if ($("#specialChangeN").is(":checked")) {
+
+//         $(".webPageN").prop("checked", true);
+
+//         $("#specialSeeN").prop("checked", true);
+
+//         $("#specialSettingN").prop("checked", true);
+
+//     } else {
+
+//         $("#specialDeleteN").prop("checked", false);
+
+//     }
+// });
+
+// $("#specialSeeN").on("change", () => {
+
+//     if (!$("#specialSeeN").is(":checked")) {
+
+//         if ($(".webN").filter(":checked").length > 1) {
+
+//         } else {
+
+//             $(".webPageN").prop("checked", false);
+
+//         }
+
+//         $("#specialChangeN").prop("checked", false);
+
+//         $("#specialSettingN").prop("checked", false);
+
+//         $("#specialDeleteN").prop("checked", false);
+
+//     } else {
+
+//         $(".webPageN").prop("checked", true);
+
+//         $("#specialSettingN").prop("checked", true);
+
+//     }
+
+// });
+
+// $(".kalasN").on("change", () => {
+
+//     if ($(".kalasN").is(':checked')) {
+//         $(".kalaN").prop("checked", true);
+//         $("#seeKalaListN").prop("checked", true);
+//         $("#seeRequestedKalaN").prop("checked", true);
+//         $("#seeAlertedN").prop("checked", true);
+//         $("#seeFastKalaN").prop("checked", true);
+//         $("#seePishKharidN").prop("checked", true);
+//         $("#seeBrandsN").prop("checked", true);
+//         $("#seeGroupListN").prop("checked", true);
+//         $("#changeRequestedN").prop("checked", true);
+//     } else {
+
+//         $(".kalaN").prop("checked", false);
+//         $("#seeKalaListN").prop("checked", false);
+//         $("#seeRequestedN").prop("checked", false);
+//         $("#seeAlertedN").prop("checked", false);
+//         $("#seeFastKalaN").prop("checked", false);
+//         $("#seePishKharidN").prop("checked", false);
+//         $("#seeBrandsN").prop("checked", false);
+//         $("#seeGroupListN").prop("checked", false);
+//         $("#seeRequestedKalaN").prop("checked", false);
+
+//         $("#changeKalaListN").prop("checked", false);
+//         $("#changeRequestedN").prop("checked", false);
+//         $("#changeAlertedN").prop("checked", false);
+//         $("#changeFastKalaN").prop("checked", false);
+//         $("#changePishKharidN").prop("checked", false);
+//         $("#changeBrandsN").prop("checked", false);
+//         $("#changeGroupListN").prop("checked", false);
+//         $("#changeRequestedKalaN").prop("checked", false);
+
+//         $("#deleteKalaListN").prop("checked", false);
+//         $("#deleteRequestedN").prop("checked", false);
+//         $("#deleteAlertedN").prop("checked", false);
+//         $("#deleteFastKalaN").prop("checked", false);
+//         $("#deletePishKharidN").prop("checked", false);
+//         $("#deleteBrandsN").prop("checked", false);
+//         $("#deleteGroupListN").prop("checked", false);
+//         $("#deleteRequestedKalaN").prop("checked", false);
+
+//     }
+
+// });
+
+// $("#kalaListN").on("change", () => {
+
+//     if ($("#kalaListN").is(":checked")) {
+
+//         $(".kalasN").prop("checked", true);
+//         $("#seeKalaListN").prop("checked", true);
+
+//     } else {
+//         if ($(".kalaN").filter(":checked").length > 0) {
+
+//         } else {
+
+//             $(".kalasN").prop("checked", false);
+
+//         }
+//         $("#seeKalaListN").prop("checked", false);
+
+//         $("#changeKalaListN").prop("checked", false);
+
+//         $("#deleteKalaListN").prop("checked", false);
+
+//     }
+// });
+
+// $("#changeKalaListN").on("change", () => {
+
+//     if ($("#changeKalaListN").is(":checked")) {
+
+//         $(".kalasN").prop("checked", true);
+
+//         $("#seeKalaListN").prop("checked", true);
+
+//         $("#kalaListN").prop("checked", true);
+
+//     } else {
+
+//         $("#deleteKalaListN").prop("checked", false);
+
+//     }
+// });
+
+// $("#deleteKalaListN").on("change", () => {
+
+//     if ($("#deleteKalaListN").is(":checked")) {
+
+//         $("#seeKalaListN").prop("checked", true);
+
+//         $("#changeKalaListN").prop("checked", true);
+
+//         $("#deleteKalaListN").prop("checked", true);
+
+//         $("#kalaListN").prop("checked", true);
+
+//         $(".kalasN").prop("checked", true);
+
+//     }
+// });
+
+// $("#seeKalaListN").on("change", () => {
+
+//     if (!$("#seeKalaListN").is(":checked")) {
+
+//         if ($(".kalaN").filter(":checked").length > 1) {
+
+//         } else {
+
+//             $(".kalasN").prop("checked", false);
+
+//         }
+
+//         $("#kalaListN").prop("checked", false);
+
+//         $("#changeKalaListN").prop("checked", false);
+
+//         $("#deleteKalaListN").prop("checked", false);
+
+//     } else {
+
+//         $(".kalasN").prop("checked", true);
+
+//         $("#kalaListN").prop("checked", true);
+
+//     }
+
+// });
+
+
+
+
+// $("#requestedKalaN").on("change", () => {
+
+//     if ($("#requestedKalaN").is(":checked")) {
+
+//         $(".kalasN").prop("checked", true);
+
+//         $("#seeRequestedKalaN").prop("checked", true);
+
+//     } else {
+//         if ($(".kalaN").filter(":checked").length > 0) {
+
+//         } else {
+
+//             $(".kalasN").prop("checked", false);
+
+//         }
+//         $("#seeRequestedKalaN").prop("checked", false);
+
+//         $("#changeRequestedKalaN").prop("checked", false);
+
+//         $("#deleteRequestedKalaN").prop("checked", false);
+
+//     }
+
+// });
+
+// $("#changeRequestedKalaN").on("change", () => {
+
+//     if ($("#changeRequestedKalaN").is(":checked")) {
+
+//         $("#seeRequestedKalaN").prop("checked", true);
+
+//         $(".kalasN").prop("checked", true);
+
+//         $("#requestedKalaN").prop("checked", true);
+
+//     } else {
+//         $("#deleteRequestedKalaN").prop("checked", false);
+//     }
+// });
+
+
+// $("#deleteRequestedKalaN").on("change", () => {
+
+//     if ($("#deleteRequestedKalaN").is(":checked")) {
+
+//         $("#seeRequestedKalaN").prop("checked", true);
+
+//         $("#changeRequestedKalaN").prop("checked", true);
+
+//         $("#requestedKalaN").prop("checked", true);
+
+//         $(".kalasN").prop("checked", true);
+
+//     }
+// });
+
+// $("#seeRequestedKalaN").on("change", () => {
+
+//     if (!$("#seeRequestedKalaN").is(":checked")) {
+
+//         if ($(".kalaN").filter(":checked").length > 1) {
+
+//         } else {
+
+//             $(".kalasN").prop("checked", false);
+
+//         }
+
+//         $("#requestedKalaN").prop("checked", false);
+
+//         $("#changeRequestedKalaN").prop("checked", false);
+//         $("#deleteRequestedKalaN").prop("checked", false);
+
+//     } else {
+
+//         $(".kalasN").prop("checked", true);
+
+//         $("#requestedKalaN").prop("checked", true);
+
+//     }
+
+// });
+
+
+// $("#fastKalaN").on("change", () => {
+
+//     if ($("#fastKalaN").is(":checked")) {
+
+//         $(".kalasN").prop("checked", true);
+
+//         $("#seeFastKalaN").prop("checked", true);
+
+//     } else {
+//         if ($(".kalaN").filter(":checked").length > 0) {
+
+//         } else {
+
+//             $(".kalasN").prop("checked", false);
+
+//         }
+//         $("#seeFastKalaN").prop("checked", false);
+
+//         $("#changeFastKalaN").prop("checked", false);
+
+//         $("#deleteFastKalaN").prop("checked", false);
+
+//     }
+
+// });
+
+// $("#changeFastKalaN").on("change", () => {
+
+//     if ($("#changeFastKalaN").is(":checked")) {
+
+//         $(".kalasN").prop("checked", true);
+
+//         $("#seeFastKalaN").prop("checked", true);
+
+//         $("#fastKalaN").prop("checked", true);
+
+//     } else {
+
+//         $("#deleteFastKalaN").prop("checked", false);
+
+//     }
+// });
+
+// $("#deleteFastKalaN").on("change", () => {
+
+//     if ($("#deleteFastKalaN").is(":checked")) {
+
+//         $("#seeFastKalaN").prop("checked", true);
+
+//         $("#changeFastKalaN").prop("checked", true);
+
+//         $("#deleteFastKalaN").prop("checked", true);
+
+//         $("#fastKalaN").prop("checked", true);
+
+//         $(".kalasN").prop("checked", true);
+
+//     }
+// });
+
+// $("#seeFastKalaN").on("change", () => {
+
+//     if (!$("#seeFastKalaN").is(":checked")) {
+
+//         if ($(".kalaN").filter(":checked").length > 1) {
+
+//         } else {
+
+//             $(".kalasN").prop("checked", false);
+
+//         }
+
+//         $("#fastKalaN").prop("checked", false);
+
+//         $("#changeFastKalaN").prop("checked", false);
+
+//         $("#deleteFastKalaN").prop("checked", false);
+
+//     } else {
+
+//         $(".kalasN").prop("checked", true);
+
+//         $("#fastKalaN").prop("checked", true);
+
+//     }
+
+// });
+
+
+// $("#pishKharidN").on("change", () => {
+
+//     if ($("#pishKharidN").is(":checked")) {
+
+//         $(".kalasN").prop("checked", true);
+
+//         $("#seePishKharidN").prop("checked", true);
+
+//     } else {
+//         if ($(".kalaN").filter(":checked").length > 0) {
+
+//         } else {
+
+//             $(".kalasN").prop("checked", false);
+
+//         }
+//         $("#seePishKharidN").prop("checked", false);
+
+//         $("#deletePishKharidN").prop("checked", false);
+
+//         $("#changePishKharidN").prop("checked", false);
+
+//     }
+
+// });
+
+// $("#changePishKharidN").on("change", () => {
+
+//     if ($("#changePishKharidN").is(":checked")) {
+
+//         $(".kalasN").prop("checked", true);
+
+//         $("#seePishKharidN").prop("checked", true);
+
+//         $("#pishKharidN").prop("checked", true);
+
+//     } else {
+//         $("#deletePishKharidN").prop("checked", false);
+//     }
+// });
+
+// $("#deletePishKharidN").on("change", () => {
+
+//     if ($("#deletePishKharidN").is(":checked")) {
+
+//         $("#seePishKharidN").prop("checked", true);
+
+//         $("#changePishKharidN").prop("checked", true);
+
+//         $("#deletePishKharidN").prop("checked", true);
+
+//         $("#pishKharidN").prop("checked", true);
+
+//         $(".kalasN").prop("checked", true);
+
+//     }
+// });
+
+// $("#seePishKharidN").on("change", () => {
+
+//     if (!$("#seePishKharidN").is(":checked")) {
+
+//         if ($(".kalaN").filter(":checked").length > 1) {
+
+//         } else {
+
+//             $(".kalasN").prop("checked", false);
+
+//         }
+
+//         $("#pishKharidN").prop("checked", false);
+
+//         $("#changePishKharidN").prop("checked", false);
+
+//         $("#deletePishKharidN").prop("checked", false);
+
+//     } else {
+
+//         $(".kalasN").prop("checked", true);
+
+//         $("#pishKharidN").prop("checked", true);
+
+//     }
+
+// });
+
+// $("#brandsN").on("change", () => {
+
+//     if ($("#brandsN").is(":checked")) {
+
+//         $(".kalasN").prop("checked", true);
+
+//         $("#seeBrandsN").prop("checked", true);
+
+//     } else {
+//         if ($(".kalaN").filter(":checked").length > 0) {
+
+//         } else {
+
+//             $(".kalasN").prop("checked", false);
+
+//         }
+//         $("#seeBrandsN").prop("checked", false);
+
+//         $("#deleteBrandsN").prop("checked", false);
+
+//         $("#changeBrandsN").prop("checked", false);
+
+//     }
+
+// });
+
+// $("#changeBrandsN").on("change", () => {
+
+//     if ($("#changeBrandsN").is(":checked")) {
+
+//         $("#seeBrandsN").prop("checked", true);
+
+//         $(".kalasN").prop("checked", true);
+
+//         $("#brandsN").prop("checked", true);
+
+//     } else {
+//         $("#deleteBrandsN").prop("checked", false);
+//     }
+// });
+
+// $("#deleteBrandsN").on("change", () => {
+
+//     if ($("#deleteBrandsN").is(":checked")) {
+
+//         $("#seeBrandsN").prop("checked", true);
+
+//         $("#changeBrandsN").prop("checked", true);
+
+//         $("#deleteBrandsN").prop("checked", true);
+
+//         $("#brandsN").prop("checked", true);
+
+//         $(".kalasN").prop("checked", true);
+
+//     }
+// });
+
+// $("#seeBrandsN").on("change", () => {
+
+//     if (!$("#seeBrandsN").is(":checked")) {
+//         if ($(".kalaN").filter(":checked").length > 1) {
+
+//         } else {
+
+//             $(".kalasN").prop("checked", false);
+
+//         }
+//         $("#brandsN").prop("checked", false);
+
+//         $("#changeBrandsN").prop("checked", false);
+//         $("#deleteBrandsN").prop("checked", false);
+
+//     } else {
+
+//         $(".kalasN").prop("checked", true);
+
+//         $("#brandsN").prop("checked", true);
+
+//     }
+
+// });
+
+
+// $("#alertedN").on("change", () => {
+
+//     if ($("#alertedN").is(":checked")) {
+
+//         $(".kalasN").prop("checked", true);
+
+//         $("#seeAlertedN").prop("checked", true);
+
+//     } else {
+//         if ($(".kalaN").filter(":checked").length > 0) {
+
+//         } else {
+
+//             $(".kalasN").prop("checked", false);
+
+//         }
+//         $("#seeAlertedN").prop("checked", false);
+
+//         $("#deleteAlertedN").prop("checked", false);
+
+//         $("#changeAlertedN").prop("checked", false);
+
+//     }
+
+// });
+
+// $("#changeAlertedN").on("change", () => {
+
+//     if ($("#changeAlertedN").is(":checked")) {
+
+//         $(".kalasN").prop("checked", true);
+
+//         $("#seeAlertedN").prop("checked", true);
+
+//         $("#alertedN").prop("checked", true);
+
+//     } else {
+//         $("#deleteAlertedN").prop("checked", false);
+//     }
+// });
+
+// $("#deleteAlertedN").on("change", () => {
+
+//     if ($("#deleteAlertedN").is(":checked")) {
+
+//         $("#seeAlertedN").prop("checked", true);
+
+//         $("#changeAlertedN").prop("checked", true);
+
+//         $("#deleteAlertedN").prop("checked", true);
+
+//         $("#alertedN").prop("checked", true);
+
+//         $(".kalasN").prop("checked", true);
+
+//     }
+// });
+
+// $("#seeAlertedN").on("change", () => {
+
+//     if (!$("#seeAlertedN").is(":checked")) {
+//         if ($(".kalaN").filter(":checked").length > 1) {
+
+//         } else {
+
+//             $(".kalasN").prop("checked", false);
+
+//         }
+//         $("#alertedN").prop("checked", false);
+
+//         $("#changeAlertedN").prop("checked", false);
+
+//         $("#deleteAlertedN").prop("checked", false);
+
+//     } else {
+
+//         $(".kalasN").prop("checked", true);
+
+//         $("#alertedN").prop("checked", true);
+
+//     }
+
+// });
+
+
+// $("#groupListN").on("change", () => {
+
+//     if ($("#groupListN").is(":checked")) {
+
+//         $(".kalasN").prop("checked", true);
+
+//         $("#seeGroupListN").prop("checked", true);
+
+//         $(".kalasN").prop("checked", true);
+
+//     } else {
+//         if ($(".kalaN").filter(":checked").length > 0) {
+
+//         } else {
+
+//             $(".kalasN").prop("checked", false);
+
+//         }
+//         $("#seeGroupListN").prop("checked", false);
+
+//         $("#deleteGroupListN").prop("checked", false);
+
+//         $("#changeGroupListN").prop("checked", false);
+
+//     }
+
+// });
+
+// $("#changeGroupListN").on("change", () => {
+
+//     if ($("#changeGroupListN").is(":checked")) {
+
+//         $("#seeGroupListN").prop("checked", true);
+
+//         $(".kalasN").prop("checked", true);
+
+//         $("#groupListN").prop("checked", true);
+
+//     } else {
+
+//         $("#deleteGroupListN").prop("checked", false);
+
+//     }
+// });
+
+// $("#deleteGroupListN").on("change", () => {
+
+//     if ($("#deleteGroupListN").is(":checked")) {
+
+//         $("#seeGroupListN").prop("checked", true);
+
+//         $("#changeGroupListN").prop("checked", true);
+
+//         $("#deleteGroupListN").prop("checked", true);
+
+//         $("#groupListN").prop("checked", true);
+
+//         $(".kalasN").prop("checked", true);
+
+//     }
+// });
+
+// $("#seeGroupListN").on("change", () => {
+
+//     if (!$("#seeGroupListN").is(":checked")) {
+//         if ($(".kalaN").filter(":checked").length > 1) {
+
+//         } else {
+
+//             $(".kalasN").prop("checked", false);
+
+//         }
+//         $("#groupListN").prop("checked", false);
+
+//         $("#changeGroupListN").prop("checked", false);
+
+//         $("#deleteGroupListN").prop("checked", false);
+
+//     } else {
+
+//         $(".kalasN").prop("checked", true);
+
+//         $("#groupListN").prop("checked", true);
+
+//     }
+
+// });
+
+// $(".personsN").on("change", () => {
+
+//     if ($(".personsN").is(":checked")) {
+//         $(".personN").prop("checked", true);
+//         $("#seeCustomersN").prop("checked", true);
+//         $("#seeOfficialsN").prop("checked", true);
+//     } else {
+//         $(".personN").prop("checked", false);
+//         $("#seeCustomersN").prop("checked", false);
+//         $("#seeOfficialsN").prop("checked", false);
+//         $("#changeCustomersN").prop("checked", false);
+//         $("#changeOfficialsN").prop("checked", false);
+//         $("#deleteCustomersN").prop("checked", false);
+//         $("#deleteOfficialsN").prop("checked", false);
+//     }
+// });
+
+// $("#customersN").on("change", () => {
+
+//     if ($("#customersN").is(":checked")) {
+
+//         $(".personsN").prop("checked", true);
+
+//         $("#seeCustomersN").prop("checked", true);
+
+//     } else {
+//         if ($(".personN").filter(":checked").length > 0) {
+
+//         } else {
+
+//             $(".personsN").prop("checked", false);
+
+//         }
+//         $("#seeCustomersN").prop("checked", false);
+
+//         $("#changeCustomersN").prop("checked", false);
+
+//         $("#deleteCustomersN").prop("checked", false);
+
+//     }
+
+// });
+
+// $("#changeCustomersN").on("change", () => {
+
+//     if ($("#changeCustomersN").is(":checked")) {
+
+//         $(".personsN").prop("checked", true);
+
+//         $("#seeCustomersN").prop("checked", true);
+
+//         $("#customersN").prop("checked", true);
+
+//     } else {
+
+//         $("#deleteCustomersN").prop("checked", false);
+
+//     }
+// });
+
+// $("#deleteCustomersN").on("change", () => {
+
+//     if ($("#deleteCustomersN").is(":checked")) {
+
+//         $("#seeCustomersN").prop("checked", true);
+
+//         $("#changeCustomersN").prop("checked", true);
+
+//         $("#deleteCustomersN").prop("checked", true);
+
+//         $("#customersN").prop("checked", true);
+
+//         $(".personsN").prop("checked", true);
+
+//     }
+// });
+
+// $("#seeCustomersN").on("change", () => {
+
+//     if (!$("#seeCustomersN").is(":checked")) {
+
+//         if ($(".personN").filter(":checked").length > 1) {
+
+//         } else {
+
+//             $(".personsN").prop("checked", false);
+
+//         }
+
+//         $("#customersN").prop("checked", false);
+
+//         $("#changeCustomersN").prop("checked", false);
+
+//         $("#deleteCustomersN").prop("checked", false);
+
+//     } else {
+
+//         $(".personsN").prop("checked", true);
+
+//         $("#customersN").prop("checked", true);
+
+//     }
+
+// });
+
+// $("#officialsN").on("change", () => {
+
+//     if ($("#officialsN").is(":checked")) {
+
+//         $(".personsN").prop("checked", true);
+
+//         $("#seeOfficialsN").prop("checked", true);
+
+//     } else {
+//         if ($(".personN").filter(":checked").length > 0) {
+
+//         } else {
+
+//             $(".personsN").prop("checked", false);
+
+//         }
+//         $("#seeOfficialsN").prop("checked", false);
+
+//         $("#changeOfficialsN").prop("checked", false);
+
+//         $("#deleteOfficialsN").prop("checked", false);
+
+//     }
+
+// });
+
+// $("#changeOfficialsN").on("change", () => {
+
+//     if ($("#changeOfficialsN").is(":checked")) {
+
+//         $(".personsN").prop("checked", true);
+
+//         $("#seeOfficialsN").prop("checked", true);
+
+//         $("#officialsN").prop("checked", true);
+
+//     } else {
+//         $("#deleteOfficialsN").prop("checked", false);
+//     }
+// });
+
+// $("#deleteOfficialsN").on("change", () => {
+
+//     if ($("#deleteOfficialsN").is(":checked")) {
+
+//         $("#seeOfficialsN").prop("checked", true);
+
+//         $("#changeOfficialsN").prop("checked", true);
+
+//         $("#deleteOfficialsN").prop("checked", true);
+
+//         $("#officialsN").prop("checked", true);
+
+//         $(".personsN").prop("checked", true);
+
+//     }
+// });
+
+// $("#seeOfficialsN").on("change", () => {
+
+//     if (!$("#seeOfficialsN").is(":checked")) {
+
+//         if ($(".personN").filter(":checked").length > 1) {
+
+//         } else {
+
+//             $(".personsN").prop("checked", false);
+
+//         }
+
+//         $("#officialsN").prop("checked", false);
+
+//         $("#changeOfficialsN").prop("checked", false);
+
+//         $("#deleteOfficialsN").prop("checked", false);
+
+//     } else {
+
+//         $(".personsN").prop("checked", true);
+
+//         $("#officialsN").prop("checked", true);
+
+//     }
+
+// });
+
+// $(".messagesN").on("change", () => {
+//     if ($(".messagesN").is(":checked")) {
+//         $("#seeMessagesN").prop("checked", true);
+//     } else {
+//         $("#seeMessagesN").prop("checked", false);
+//         $("#changeMessagesN").prop("checked", false);
+//         $("#deleteMessagesN").prop("checked", false);
+//     }
+// });
+
+
+// $("#changeMessagesN").on("change", () => {
+
+//     if ($("#changeMessagesN").is(":checked")) {
+
+//         $("#seeMessagesN").prop("checked", true);
+
+//         $(".messagesN").prop("checked", true);
+
+//     } else {
+//         $("#deleteMessagesN").prop("checked", false);
+//     }
+// });
+
+// $("#deleteMessagesN").on("change", () => {
+
+//     if ($("#deleteMessagesN").is(":checked")) {
+
+//         $("#seeMessagesN").prop("checked", true);
+
+//         $("#changeMessagesN").prop("checked", true);
+
+//         $("#deleteMessagesN").prop("checked", true);
+
+//         $(".messagesN").prop("checked", true);
+
+//     }
+// });
+
+// $("#seeMessagesN").on("change", () => {
+
+//     if (!$("#seeMessagesN").is(":checked")) {
+
+//         $(".messagesN").prop("checked", false);
+
+//         $("#changeMessagesN").prop("checked", false);
+
+//         $("#deleteMessagesN").prop("checked", false);
+
+//     } else {
+
+//         $(".messagesN").prop("checked", true);
+
+//     }
+
+// });
+// //used for editting access level
+
+// $(".webPage").on("change", () => {
+
+//     if ($(".webPage").is(':checked')) {
+
+//         $(".web").prop("checked", true);
+//         $("#homeSee").prop("checked", true);
+//         $("#karbaranSee").prop("checked", true);
+//         $("#specialSee").prop("checked", true);
+
+//     } else {
+
+//         $(".web").prop("checked", false);
+//         $("#homeSee").prop("checked", false);
+//         $("#karbaranSee").prop("checked", false);
+//         $("#specialSee").prop("checked", false);
+//         $("#homeChange").prop("checked", false);
+//         $("#karbaranChange").prop("checked", false);
+//         $("#specialChange").prop("checked", false);
+//         $("#homeDelete").prop("checked", false);
+//         $("#karbaranDelete").prop("checked", false);
+//         $("#specialDelete").prop("checked", false);
+//     }
+
+// });
+
+// $("#homePage").on("change", () => {
+
+//     if ($("#homePage").is(":checked")) {
+
+//         $("#homeSee").prop("checked", true);
+
+//         $(".webPage").prop("checked", true);
+
+//     } else {
+//         if ($(".web").filter(":checked").length > 0) {
+
+//         } else {
+
+//             $(".webPage").prop("checked", false);
+
+//         }
+//         $("#homeSee").prop("checked", false);
+
+//         $("#homeChange").prop("checked", false);
+
+//         $("#homeDelete").prop("checked", false);
+
+//     }
+
+// });
+
+// $("#homeChange").on("change", () => {
+
+//     if ($("#homeChange").is(":checked")) {
+
+//         $(".webPage").prop("checked", true);
+
+//         $("#homeSee").prop("checked", true);
+
+//         $("#homePage").prop("checked", true);
+
+//     } else {
+//         $("#homeDelete").prop("checked", false);
+//     }
+// });
+
+// $("#homeDelete").on("change", () => {
+
+//     if ($("#homeDelete").is(":checked")) {
+
+//         $(".webPage").prop("checked", true);
+
+//         $("#homeSee").prop("checked", true);
+
+//         $("#homeChange").prop("checked", true);
+
+//         $("#homeDelete").prop("checked", true);
+
+//         $("#homePage").prop("checked", true);
+
+//     }
+// });
+
+// $("#homeSee").on("change", () => {
+
+//     if (!$("#homeSee").is(":checked")) {
+
+//         if ($(".web").filter(":checked").length > 1) {
+
+//         } else {
+
+//             $(".webPage").prop("checked", false);
+
+//         }
+
+//         $("#homePage").prop("checked", false);
+
+//         $("#homeChange").prop("checked", false);
+
+//         $("#homeDelete").prop("checked", false);
+
+//     } else {
+
+//         $(".webPage").prop("checked", true);
+
+//         $("#homePage").prop("checked", true);
+
+//     }
+
+// });
+
+// $("#karbaran").on("change", () => {
+
+//     if ($("#karbaran").is(":checked")) {
+
+//         $("#karbaranSee").prop("checked", true);
+
+//         $(".webPage").prop("checked", true);
+
+//     } else {
+//         if ($(".web").filter(":checked").length > 0) {
+
+//         } else {
+
+//             $(".webPage").prop("checked", false);
+
+//         }
+//         $("#karbaranSee").prop("checked", false);
+
+//         $("#karbaranChange").prop("checked", false);
+//         $("#karbaranDelete").prop("checked", false);
+
+//     }
+
+// });
+
+// $("#karbaranDelete").on("change", () => {
+
+//     if ($("#karbaranDelete").is(":checked")) {
+
+//         $(".webPage").prop("checked", true);
+
+//         $("#karbaranSee").prop("checked", true);
+
+//         $("#karbaranChange").prop("checked", true);
+
+//         $("#karbaranDelete").prop("checked", true);
+
+//         $("#karbaran").prop("checked", true);
+
+//     }
+// });
+
+// $("#karbaranChange").on("change", () => {
+
+//     if ($("#karbaranChange").is(":checked")) {
+
+//         $(".webPage").prop("checked", true);
+
+//         $("#karbaranSee").prop("checked", true);
+
+//         $("#karbaran").prop("checked", true);
+
+//     } else {
+//         $("#karbaranDelete").prop("checked", false);
+//     }
+// });
+
+// $("#karbaranSee").on("change", () => {
+
+//     if (!$("#karbaranSee").is(":checked")) {
+
+//         if ($(".web").filter(":checked").length > 1) {
+
+//         } else {
+
+//             $(".webPage").prop("checked", false);
+
+//         }
+
+//         $("#karbaran").prop("checked", false);
+
+//         $("#karbaranChange").prop("checked", false);
+
+//         $("#karbaranDelete").prop("checked", false);
+
+//     } else {
+
+//         $(".webPage").prop("checked", true);
+
+//         $("#karbaran").prop("checked", true);
+
+//     }
+
+// });
+
+// $("#specialSetting").on("change", () => {
+
+//     if ($("#specialSetting").is(":checked")) {
+
+//         $(".webPage").prop("checked", true);
+
+//         $("#specialSee").prop("checked", true);
+
+//     } else {
+//         if ($(".web").filter(":checked").length > 0) {
+
+//         } else {
+
+//             $(".webPage").prop("checked", false);
+
+//         }
+//         $("#specialSee").prop("checked", false);
+
+//         $("#specialChange").prop("checked", false);
+
+//         $("#specialDelete").prop("checked", false);
+
+//     }
+
+// });
+
+// $("#specialDelete").on("change", () => {
+
+//     if ($("#specialDelete").is(":checked")) {
+
+//         $(".webPage").prop("checked", true);
+
+//         $("#specialSee").prop("checked", true);
+
+//         $("#specialChange").prop("checked", true);
+
+//         $("#specialDelete").prop("checked", true);
+
+//         $("#specialSetting").prop("checked", true);
+
+//     }
+// });
+
+// $("#specialChange").on("change", () => {
+
+//     if ($("#specialChange").is(":checked")) {
+
+//         $(".webPage").prop("checked", true);
+
+//         $("#specialSee").prop("checked", true);
+
+//         $("#specialSetting").prop("checked", true);
+
+//     } else {
+//         $("#specialDelete").prop("checked", false);
+//     }
+// });
+
+// $("#specialSee").on("change", () => {
+
+//     if (!$("#specialSee").is(":checked")) {
+
+//         if ($(".web").filter(":checked").length > 1) {
+
+//         } else {
+
+//             $(".webPage").prop("checked", false);
+
+//         }
+
+//         $("#specialChange").prop("checked", false);
+
+//         $("#specialSetting").prop("checked", false);
+
+//         $("#specialDelete").prop("checked", false);
+
+//     } else {
+
+//         $(".webPage").prop("checked", true);
+
+//         $("#specialSetting").prop("checked", true);
+
+//     }
+
+// });
+
+// $(".kalas").on("change", () => {
+
+//     if ($(".kalas").is(':checked')) {
+//         $(".kala").prop("checked", true);
+//         $("#seeKalaList").prop("checked", true);
+//         $("#seeRequestedKala").prop("checked", true);
+//         $("#seeAlerted").prop("checked", true);
+//         $("#seeFastKala").prop("checked", true);
+//         $("#seePishKharid").prop("checked", true);
+//         $("#seeBrands").prop("checked", true);
+//         $("#seeGroupList").prop("checked", true);
+//         $("#changeRequested").prop("checked", true);
+//     } else {
+//         $(".kala").prop("checked", false);
+//         $("#seeKalaList").prop("checked", false);
+//         $("#seeRequested").prop("checked", false);
+//         $("#seeAlerted").prop("checked", false);
+//         $("#seeFastKala").prop("checked", false);
+//         $("#seePishKharid").prop("checked", false);
+//         $("#seeBrands").prop("checked", false);
+//         $("#seeGroupList").prop("checked", false);
+//         $("#seeRequestedKala").prop("checked", false);
+
+//         $("#changeKalaList").prop("checked", false);
+//         $("#changeRequested").prop("checked", false);
+//         $("#changeAlerted").prop("checked", false);
+//         $("#changeFastKala").prop("checked", false);
+//         $("#changePishKharid").prop("checked", false);
+//         $("#changeBrands").prop("checked", false);
+//         $("#changeGroupList").prop("checked", false);
+//         $("#changeRequestedKala").prop("checked", false);
+
+//         $("#deleteKalaList").prop("checked", false);
+//         $("#deleteRequested").prop("checked", false);
+//         $("#deleteAlerted").prop("checked", false);
+//         $("#deleteFastKala").prop("checked", false);
+//         $("#deletePishKharid").prop("checked", false);
+//         $("#deleteBrands").prop("checked", false);
+//         $("#deleteGroupList").prop("checked", false);
+//         $("#deleteRequestedKala").prop("checked", false);
+//     }
+
+// });
+
+// $("#kalaList").on("change", () => {
+
+//     if ($("#kalaList").is(":checked")) {
+
+//         $(".kalas").prop("checked", true);
+
+//         $("#seeKalaList").prop("checked", true);
+
+//     } else {
+//         if ($(".kala").filter(":checked").length > 0) {
+
+//         } else {
+
+//             $(".kalas").prop("checked", false);
+
+//         }
+//         $("#seeKalaList").prop("checked", false);
+
+//         $("#changeKalaList").prop("checked", false);
+
+//         $("#deleteKalaList").prop("checked", false);
+
+//     }
+
+// });
+
+// $("#changeKalaList").on("change", () => {
+
+//     if ($("#changeKalaList").is(":checked")) {
+
+//         $(".kalas").prop("checked", true);
+
+//         $("#seeKalaList").prop("checked", true);
+
+//         $("#kalaList").prop("checked", true);
+
+//     } else {
+//         $("#deleteKalaList").prop("checked", false);
+//     }
+// });
+
+// $("#deleteKalaList").on("change", () => {
+
+//     if ($("#deleteKalaList").is(":checked")) {
+
+//         $("#seeKalaList").prop("checked", true);
+
+//         $("#changeKalaList").prop("checked", true);
+
+//         $("#deleteKalaList").prop("checked", true);
+
+//         $("#kalaList").prop("checked", true);
+
+//         $(".kalas").prop("checked", true);
+
+//     }
+// });
+
+// $("#seeKalaList").on("change", () => {
+
+//     if (!$("#seeKalaList").is(":checked")) {
+
+//         if ($(".kala").filter(":checked").length > 1) {
+
+//         } else {
+
+//             $(".kalas").prop("checked", false);
+
+//         }
+
+//         $("#kalaList").prop("checked", false);
+
+//         $("#changeKalaList").prop("checked", false);
+
+//         $("#deleteKalaList").prop("checked", false);
+
+//     } else {
+
+//         $(".kalas").prop("checked", true);
+
+//         $("#kalaList").prop("checked", true);
+
+//     }
+
+// });
+
+
+
+
+// $("#requestedKala").on("change", () => {
+
+//     if ($("#requestedKala").is(":checked")) {
+
+//         $(".kalas").prop("checked", true);
+
+//         $("#seeRequestedKala").prop("checked", true);
+
+//     } else {
+//         if ($(".kala").filter(":checked").length > 0) {
+
+//         } else {
+
+//             $(".kalas").prop("checked", false);
+
+//         }
+//         $("#seeRequestedKala").prop("checked", false);
+
+//         $("#changeRequestedKala").prop("checked", false);
+
+//         $("#deleteRequestedKala").prop("checked", false);
+
+//     }
+
+// });
+
+// $("#changeRequestedKala").on("change", () => {
+
+//     if ($("#changeRequestedKala").is(":checked")) {
+
+//         $("#seeRequestedKala").prop("checked", true);
+
+//         $(".kalas").prop("checked", true);
+
+//         $("#requestedKala").prop("checked", true);
+
+//     } else {
+//         $("#deleteRequestedKala").prop("checked", false);
+//     }
+// });
+
+
+
+// $("#deleteRequestedKala").on("change", () => {
+
+//     if ($("#deleteRequestedKala").is(":checked")) {
+
+//         $("#seeRequestedKala").prop("checked", true);
+
+//         $("#changeRequestedKala").prop("checked", true);
+
+//         $("#requestedKala").prop("checked", true);
+
+//         $(".kalas").prop("checked", true);
+
+//     }
+// });
+
+// $("#seeRequestedKala").on("change", () => {
+
+//     if (!$("#seeRequestedKala").is(":checked")) {
+
+//         if ($(".kala").filter(":checked").length > 1) {
+
+//         } else {
+
+//             $(".kalas").prop("checked", false);
+
+//         }
+
+//         $("#requestedKala").prop("checked", false);
+
+//         $("#changeRequestedKala").prop("checked", false);
+//         $("#deleteRequestedKala").prop("checked", false);
+
+//     } else {
+
+//         $(".kalas").prop("checked", true);
+
+//         $("#requestedKala").prop("checked", true);
+
+//     }
+
+// });
+
+
+
+// $("#fastKala").on("change", () => {
+
+//     if ($("#fastKala").is(":checked")) {
+
+//         $(".kalas").prop("checked", true);
+
+//         $("#seeFastKala").prop("checked", true);
+
+//     } else {
+//         if ($(".kala").filter(":checked").length > 0) {
+
+//         } else {
+
+//             $(".kalas").prop("checked", false);
+
+//         }
+//         $("#seeFastKala").prop("checked", false);
+
+//         $("#changeFastKala").prop("checked", false);
+
+//         $("#deleteFastKala").prop("checked", false);
+
+//     }
+
+// });
+
+// $("#changeFastKala").on("change", () => {
+
+//     if ($("#changeFastKala").is(":checked")) {
+
+//         $(".kalas").prop("checked", true);
+
+//         $("#seeFastKala").prop("checked", true);
+
+//         $("#fastKala").prop("checked", true);
+
+//     } else {
+//         $("#deleteFastKala").prop("checked", false);
+//     }
+// });
+
+// $("#deleteFastKala").on("change", () => {
+
+//     if ($("#deleteFastKala").is(":checked")) {
+
+//         $("#seeFastKala").prop("checked", true);
+
+//         $("#changeFastKala").prop("checked", true);
+
+//         $("#deleteFastKala").prop("checked", true);
+
+//         $("#fastKala").prop("checked", true);
+
+//         $(".kalas").prop("checked", true);
+
+//     }
+// });
+
+// $("#seeFastKala").on("change", () => {
+
+//     if (!$("#seeFastKala").is(":checked")) {
+
+//         if ($(".kala").filter(":checked").length > 1) {
+
+//         } else {
+
+//             $(".kalas").prop("checked", false);
+
+//         }
+
+//         $("#fastKala").prop("checked", false);
+
+//         $("#changeFastKala").prop("checked", false);
+
+//         $("#deleteFastKala").prop("checked", false);
+
+//     } else {
+
+//         $(".kalas").prop("checked", true);
+
+//         $("#fastKala").prop("checked", true);
+
+//     }
+
+// });
+
+
+// $("#pishKharid").on("change", () => {
+
+//     if ($("#pishKharid").is(":checked")) {
+
+//         $(".kalas").prop("checked", true);
+
+//         $("#seePishKharid").prop("checked", true);
+
+//     } else {
+//         if ($(".kala").filter(":checked").length > 0) {
+
+//         } else {
+
+//             $(".kalas").prop("checked", false);
+
+//         }
+//         $("#seePishKharid").prop("checked", false);
+
+//         $("#deletePishKharid").prop("checked", false);
+
+//         $("#changePishKharid").prop("checked", false);
+
+//     }
+
+// });
+
+// $("#changePishKharid").on("change", () => {
+
+//     if ($("#changePishKharid").is(":checked")) {
+
+//         $(".kalas").prop("checked", true);
+
+//         $("#seePishKharid").prop("checked", true);
+
+//         $("#pishKharid").prop("checked", true);
+
+//     } else {
+
+//         $("#deletePishKharid").prop("checked", false);
+
+//     }
+// });
+
+// $("#deletePishKharid").on("change", () => {
+
+//     if ($("#deletePishKharid").is(":checked")) {
+
+//         $("#seePishKharid").prop("checked", true);
+
+//         $("#changePishKharid").prop("checked", true);
+
+//         $("#deletePishKharid").prop("checked", true);
+
+//         $("#pishKharid").prop("checked", true);
+
+//         $(".kalas").prop("checked", true);
+
+//     }
+// });
+
+// $("#seePishKharid").on("change", () => {
+
+//     if (!$("#seePishKharid").is(":checked")) {
+
+//         if ($(".kala").filter(":checked").length > 1) {
+
+//         } else {
+
+//             $(".kalas").prop("checked", false);
+
+//         }
+
+//         $("#pishKharid").prop("checked", false);
+
+//         $("#changePishKharid").prop("checked", false);
+
+//         $("#deletePishKharid").prop("checked", false);
+
+//     } else {
+
+//         $(".kalas").prop("checked", true);
+
+//         $("#pishKharid").prop("checked", true);
+
+//     }
+
+// });
+
+// $("#brands").on("change", () => {
+
+//     if ($("#brands").is(":checked")) {
+
+//         $(".kalas").prop("checked", true);
+
+//         $("#seeBrands").prop("checked", true);
+
+//     } else {
+//         if ($(".kala").filter(":checked").length > 0) {
+
+//         } else {
+
+//             $(".kalas").prop("checked", false);
+
+//         }
+//         $("#seeBrands").prop("checked", false);
+
+//         $("#deleteBrands").prop("checked", false);
+
+//         $("#changeBrands").prop("checked", false);
+
+//     }
+
+// });
+
+// $("#changeBrands").on("change", () => {
+
+//     if ($("#changeBrands").is(":checked")) {
+
+//         $("#seeBrands").prop("checked", true);
+
+//         $(".kalas").prop("checked", true);
+
+//         $("#brands").prop("checked", true);
+
+//     } else {
+//         $("#deleteBrands").prop("checked", false);
+//     }
+// });
+
+// $("#deleteBrands").on("change", () => {
+
+//     if ($("#deleteBrands").is(":checked")) {
+
+//         $("#seeBrands").prop("checked", true);
+
+//         $("#changeBrands").prop("checked", true);
+
+//         $("#deleteBrands").prop("checked", true);
+
+//         $("#brands").prop("checked", true);
+
+//         $(".kalas").prop("checked", true);
+
+//     }
+// });
+
+// $("#seeBrands").on("change", () => {
+
+//     if (!$("#seeBrands").is(":checked")) {
+//         if ($(".kala").filter(":checked").length > 1) {
+
+//         } else {
+
+//             $(".kalas").prop("checked", false);
+
+//         }
+//         $("#brands").prop("checked", false);
+
+//         $("#changeBrands").prop("checked", false);
+//         $("#deleteBrands").prop("checked", false);
+
+//     } else {
+
+//         $(".kalas").prop("checked", true);
+
+//         $("#brands").prop("checked", true);
+
+//     }
+
+// });
+
+
+// $("#alerted").on("change", () => {
+
+//     if ($("#alerted").is(":checked")) {
+
+//         $(".kalas").prop("checked", true);
+
+//         $("#seeAlerted").prop("checked", true);
+
+//     } else {
+//         if ($(".kala").filter(":checked").length > 0) {
+
+//         } else {
+
+//             $(".kalas").prop("checked", false);
+
+//         }
+//         $("#seeAlerted").prop("checked", false);
+
+//         $("#deleteAlerted").prop("checked", false);
+
+//         $("#changeAlerted").prop("checked", false);
+
+//     }
+
+// });
+
+// $("#changeAlerted").on("change", () => {
+
+//     if ($("#changeAlerted").is(":checked")) {
+
+//         $(".kalas").prop("checked", true);
+
+//         $("#seeAlerted").prop("checked", true);
+
+//         $("#alerted").prop("checked", true);
+
+//     } else {
+//         $("#deleteAlerted").prop("checked", false);
+//     }
+// });
+
+// $("#deleteAlerted").on("change", () => {
+
+//     if ($("#deleteAlerted").is(":checked")) {
+
+//         $("#seeAlerted").prop("checked", true);
+
+//         $("#changeAlerted").prop("checked", true);
+
+//         $("#deleteAlerted").prop("checked", true);
+
+//         $("#alerted").prop("checked", true);
+
+//         $(".kalas").prop("checked", true);
+
+//     }
+// });
+
+// $("#seeAlerted").on("change", () => {
+
+//     if (!$("#seeAlerted").is(":checked")) {
+//         if ($(".kala").filter(":checked").length > 1) {
+
+//         } else {
+
+//             $(".kalas").prop("checked", false);
+
+//         }
+//         $("#alerted").prop("checked", false);
+
+//         $("#changeAlerted").prop("checked", false);
+
+//         $("#deleteAlerted").prop("checked", false);
+
+//     } else {
+
+//         $(".kalas").prop("checked", true);
+
+//         $("#alerted").prop("checked", true);
+
+//     }
+
+// });
+
+
+// $("#groupList").on("change", () => {
+
+//     if ($("#groupList").is(":checked")) {
+
+//         $(".kalas").prop("checked", true);
+
+//         $("#seeGroupList").prop("checked", true);
+
+//         $(".kalas").prop("checked", true);
+
+//     } else {
+//         if ($(".kala").filter(":checked").length > 0) {
+
+//         } else {
+
+//             $(".kalas").prop("checked", false);
+
+//         }
+//         $("#seeGroupList").prop("checked", false);
+
+//         $("#deleteGroupList").prop("checked", false);
+
+//         $("#changeGroupList").prop("checked", false);
+
+//     }
+
+// });
+
+// $("#changeGroupList").on("change", () => {
+
+//     if ($("#changeGroupList").is(":checked")) {
+
+//         $("#seeGroupList").prop("checked", true);
+
+//         $(".kalas").prop("checked", true);
+
+//         $("#groupList").prop("checked", true);
+
+//     } else {
+//         $("#deleteGroupList").prop("checked", false);
+//     }
+// });
+
+// $("#deleteGroupList").on("change", () => {
+
+//     if ($("#deleteGroupList").is(":checked")) {
+
+//         $("#seeGroupList").prop("checked", true);
+
+//         $("#changeGroupList").prop("checked", true);
+
+//         $("#deleteGroupList").prop("checked", true);
+
+//         $("#groupList").prop("checked", true);
+
+//         $(".kalas").prop("checked", true);
+
+//     }
+// });
+
+// $("#seeGroupList").on("change", () => {
+
+//     if (!$("#seeGroupList").is(":checked")) {
+//         if ($(".kala").filter(":checked").length > 1) {
+
+//         } else {
+
+//             $(".kalas").prop("checked", false);
+
+//         }
+//         $("#groupList").prop("checked", false);
+
+//         $("#changeGroupList").prop("checked", false);
+
+//         $("#deleteGroupList").prop("checked", false);
+
+//     } else {
+
+//         $(".kalas").prop("checked", true);
+
+//         $("#groupList").prop("checked", true);
+
+//     }
+
+// });
+
+// $(".persons").on("change", () => {
+
+//     if ($(".persons").is(":checked")) {
+//         $(".person").prop("checked", true);
+//         $("#seeCustomers").prop("checked", true);
+//         $("#seeOfficials").prop("checked", true);
+//     } else {
+//         $(".person").prop("checked", false);
+//         $("#seeCustomers").prop("checked", false);
+//         $("#seeOfficials").prop("checked", false);
+//         $("#changeCustomers").prop("checked", false);
+//         $("#changeOfficials").prop("checked", false);
+//         $("#deleteCustomers").prop("checked", false);
+//         $("#deleteOfficials").prop("checked", false);
+//     }
+// });
+
+// $("#customers").on("change", () => {
+
+//     if ($("#customers").is(":checked")) {
+
+//         $(".persons").prop("checked", true);
+
+//         $("#seeCustomers").prop("checked", true);
+
+//     } else {
+//         if ($(".person").filter(":checked").length > 0) {
+
+//         } else {
+
+//             $(".persons").prop("checked", false);
+
+//         }
+//         $("#seeCustomers").prop("checked", false);
+
+//         $("#changeCustomers").prop("checked", false);
+
+//         $("#deleteCustomers").prop("checked", false);
+
+//     }
+
+// });
+
+// $("#changeCustomers").on("change", () => {
+
+//     if ($("#changeCustomers").is(":checked")) {
+
+//         $(".persons").prop("checked", true);
+
+//         $("#seeCustomers").prop("checked", true);
+
+//         $("#customers").prop("checked", true);
+
+//     } else {
+//         $("#deleteCustomers").prop("checked", false);
+//     }
+// });
+
+// $("#deleteCustomers").on("change", () => {
+
+//     if ($("#deleteCustomers").is(":checked")) {
+
+//         $("#seeCustomers").prop("checked", true);
+
+//         $("#changeCustomers").prop("checked", true);
+
+//         $("#deleteCustomers").prop("checked", true);
+
+//         $("#customers").prop("checked", true);
+
+//         $(".persons").prop("checked", true);
+
+//     }
+// });
+
+// $("#seeCustomers").on("change", () => {
+
+//     if (!$("#seeCustomers").is(":checked")) {
+
+//         if ($(".person").filter(":checked").length > 1) {
+
+//         } else {
+
+//             $(".persons").prop("checked", false);
+
+//         }
+
+//         $("#customers").prop("checked", false);
+
+//         $("#changeCustomers").prop("checked", false);
+
+//         $("#deleteCustomers").prop("checked", false);
+
+//     } else {
+
+//         $(".persons").prop("checked", true);
+
+//         $("#customers").prop("checked", true);
+
+//     }
+
+// });
+
+// $("#officials").on("change", () => {
+
+//     if ($("#officials").is(":checked")) {
+
+//         $(".persons").prop("checked", true);
+
+//         $("#seeOfficials").prop("checked", true);
+
+//     } else {
+//         if ($(".person").filter(":checked").length > 0) {
+
+//         } else {
+
+//             $(".persons").prop("checked", false);
+
+//         }
+//         $("#seeOfficials").prop("checked", false);
+
+//         $("#changeOfficials").prop("checked", false);
+
+//         $("#deleteOfficials").prop("checked", false);
+
+//     }
+
+// });
+
+// $("#changeOfficials").on("change", () => {
+
+//     if ($("#changeOfficials").is(":checked")) {
+
+//         $(".persons").prop("checked", true);
+
+//         $("#seeOfficials").prop("checked", true);
+
+//         $("#officials").prop("checked", true);
+
+//     } else {
+//         $("#deleteOfficials").prop("checked", false);
+//     }
+// });
+
+// $("#deleteOfficials").on("change", () => {
+
+//     if ($("#deleteOfficials").is(":checked")) {
+
+//         $("#seeOfficials").prop("checked", true);
+
+//         $("#changeOfficials").prop("checked", true);
+
+//         $("#deleteOfficials").prop("checked", true);
+
+//         $("#officials").prop("checked", true);
+
+//         $(".persons").prop("checked", true);
+
+//     }
+// });
+
+// $("#seeOfficials").on("change", () => {
+
+//     if (!$("#seeOfficials").is(":checked")) {
+
+//         if ($(".person").filter(":checked").length > 1) {
+
+//         } else {
+
+//             $(".persons").prop("checked", false);
+
+//         }
+
+//         $("#officials").prop("checked", false);
+
+//         $("#changeOfficials").prop("checked", false);
+
+//         $("#deleteOfficials").prop("checked", false);
+
+//     } else {
+
+//         $(".persons").prop("checked", true);
+
+//         $("#officials").prop("checked", true);
+
+//     }
+
+// });
+
+// $(".messages").on("change", () => {
+//     if ($(".messages").is(":checked")) {
+//         $("#seeMessages").prop("checked", true);
+//     } else {
+//         $("#seeMessages").prop("checked", false);
+//         $("#changeMessages").prop("checked", false);
+//         $("#deleteMessages").prop("checked", false);
+//     }
+// });
+
+
+
+// $("#changeMessages").on("change", () => {
+
+//     if ($("#changeMessages").is(":checked")) {
+
+//         $("#seeMessages").prop("checked", true);
+
+//         $(".messages").prop("checked", true);
+
+//     } else {
+//         $("#deleteMessages").prop("checked", false);
+//     }
+// });
+
+// $("#deleteMessages").on("change", () => {
+
+//     if ($("#deleteMessages").is(":checked")) {
+
+//         $("#seeMessages").prop("checked", true);
+
+//         $("#changeMessages").prop("checked", true);
+
+//         $("#deleteMessages").prop("checked", true);
+
+//         $(".messages").prop("checked", true);
+
+//     }
+// });
+
+// $("#seeMessages").on("change", () => {
+
+//     if (!$("#seeMessages").is(":checked")) {
+
+//         $(".messages").prop("checked", false);
+
+//         $("#changeMessages").prop("checked", false);
+
+//         $("#deleteMessages").prop("checked", false);
+
+//     } else {
+
+//         $(".messages").prop("checked", true);
+
+//     }
+
+// });
+
+// $("#adminTypeN").on("change", () => {
+
+//     if ($("#adminTypeN").val() == "super") {
+
+//         $(".superN").prop("checked", true).change();
+
+//     }
+
+//     if ($("#adminTypeN").val() === "admin") {
+
+//         $(".superN").prop("checked", false).change();
+
+//         $(".adminN").prop("checked", true).change();
+
+//     }
+
+//     if ($("#adminTypeN").val() == "poshtiban") {
+
+//         $(".superN").prop("checked", false).change();
+
+//         $(".adminN").prop("checked", false).change();
+
+//         $(".poshtibanN").prop("checked", true).change();
+
+//     }
+
+// });
+
+// $("#adminType").on("change", () => {
+
+//     if ($("#adminType").val() == "super") {
+
+//         $(".super").prop("checked", true).change();
+
+//     }
+
+//     if ($("#adminType").val() === "admin") {
+
+//         $(".super").prop("checked", false).change();
+
+//         $(".admin").prop("checked", true).change();
+
+//     }
+
+//     if ($("#adminType").val() == "poshtiban") {
+
+//         $(".super").prop("checked", false).change();
+
+//         $(".admin").prop("checked", false).change();
+
+//         $(".poshtibanN").prop("checked", true).change();
+
+//     }
+
+// });
+
 $("#openViewTenSalesModal").on("click", () => {
     const kalaId = $("#kalaIdForEdit").val();
     $.ajax({
@@ -4393,8 +4636,7 @@ $("#openViewTenSalesModal").on("click", () => {
         },
         success: function (arrayed_result) {
             $('#lastTenSaleBody').empty();
-            $("#lasTenSaleName").text(arrayed_result[1][0].GoodName);
-            arrayed_result[0].forEach((element, index) => {
+            arrayed_result.forEach((element, index) => {
                 $('#lastTenSaleBody').append(`<tr>
                                     <td>`+ (index + 1) + `</td>
                                    
@@ -4502,6 +4744,77 @@ $('#kalaPicState').on('change', () => {
     });
 });
 
+
+
+$('#selectStockExist').on('change', () => {
+    let stockExistance = $('#selectStockExist').val();
+    let stockId = $('#selectStock').val();
+    $.ajax({
+        method: 'get',
+        url: baseUrl + "/searchKalaByExisanceOnStock",
+        async: true,
+        data: {
+            _token: "{{ csrf_token() }}",
+            stockExistance: stockExistance,
+            stockId: stockId
+        },
+        success: function (arrayed_result) {
+            $('#kalaContainer').empty();
+            for (var i = 0; i <= arrayed_result.length - 1; i++) {
+                $('#kalaContainer').append(`<tr onClick="kalaProperties(this)">
+                                        <td></td>
+                                        <td>` + arrayed_result[i].GoodCde + `</td>
+                                        <td>` + arrayed_result[i].GoodName + `</td>
+                                        <td>` + arrayed_result[i].NameGRP + `</td>
+                                        <td>1401.2.21</td>
+                                        <td>1401.2.21</td>
+                                        <td><input class="kala form-check-input" name="kalaId[]" disabled type="checkbox" value="{{$kala->GoodSn}}" id=""></td>
+                                        <td>` + parseInt(arrayed_result[i].Price4 / 10).toLocaleString("en-US") + `</td>
+                                        <td>` + parseInt(arrayed_result[i].Price3 / 10).toLocaleString("en-US") + `</td>
+                                        <td>` + parseInt(arrayed_result[i].Amount / 1).toLocaleString("en-US") + `</td>
+                                        <td>
+                                        <input class="kala form-check-input" name="kalaId[]" type="radio" value="` + arrayed_result[i].GoodSn + `_` + arrayed_result[i].Price4 + `_` + arrayed_result[i].Price3 + `" id="flexCheckCheckedKala">
+                                        </td>
+                                    </tr>`);
+            }
+        },
+        error: function (data) { }
+    });
+});
+$('#kalaCodeId').on('change', function () {
+    const input = $(this).val();
+    $.ajax({
+        method: 'get',
+        url: baseUrl + "/searchKalaByCode",
+        async: true,
+        data: {
+            _token: "{{ csrf_token() }}",
+            code: input
+        },
+        success: function (arrayed_result) {
+            $('#kalaContainer').empty();
+            for (var i = 0; i <= arrayed_result.length - 1; i++) {
+                $('#kalaContainer').append(`<tr onClick="kalaProperties(this)">
+        <td>` + (i + 1) + `</td>
+        <td>` + arrayed_result[i].GoodCde + `</td>
+        <td>` + arrayed_result[i].GoodName + `</td>
+        <td>` + arrayed_result[i].NameGRP + `</td>
+        <td>1401.2.21</td>
+        <td>1401.2.21</td>
+        <td><input class="kala form-check-input" name="kalaId[]" disabled type="checkbox" value="{{$kala->GoodSn}}" id=""></td>
+        <td>` + parseInt(arrayed_result[i].Price4 / 10).toLocaleString('en-US') + `</td>
+        <td>` + parseInt(arrayed_result[i].Price3 / 10).toLocaleString('en-US') + `</td>
+        <td>` + parseInt(arrayed_result[i].Amount / 1).toLocaleString("en-US") + `</td>
+        <td>
+        <input class="kala form-check-input" name="kalaId[]" type="radio" value="` + arrayed_result[i].GoodSn + `_` + arrayed_result[i].Price4 + `_` + arrayed_result[i].Price3 + `" id="flexCheckCheckedKala">
+        </td>
+        </tr>`);
+            }
+        },
+        error: function (data) { }
+    });
+});
+
 function kalaProperties(element) {
     $(element).find('input:radio').prop('checked', true);
     let inp = $(element).find('input:radio:checked');
@@ -4515,6 +4828,59 @@ function kalaProperties(element) {
     document.querySelector("#editKalaList").disabled = false;
     $(".kala-btn").prop("disabled", false);
 }
+$("#mainGroupForKalaListSearch").on("change", () => {
+    let mainGrId = $("#mainGroupForKalaListSearch").val();
+    $.ajax({
+        method: 'get',
+        url: baseUrl + "/getSubGroups",
+        data: {
+            _token: "{{ csrf_token() }}",
+            mainGrId: mainGrId
+        },
+        async: true,
+        success: function (arrayed_result) {
+            $("#subGroupForKalaListSearch").empty();
+            $('#subGroupForKalaListSearch').append(`<option value="0">همه</option>`);
+            for (var i = 0; i <= arrayed_result.length - 1; i++) {
+                $('#subGroupForKalaListSearch').append(`<option value="` + arrayed_result[i].id + `">` + arrayed_result[i].title + `</option>`);
+            }
+        },
+        error: function (data) {
+        }
+    });
+    $.ajax({
+        method: 'get',
+        url: baseUrl + "/getKalaBySubGroups",
+        data: {
+            _token: "{{ csrf_token() }}",
+            subGrId: 0,
+            firstGrId: mainGrId
+        },
+        async: true,
+        success: function (arrayed_result) {
+            $('#kalaContainer').empty();
+            for (var i = 0; i <= arrayed_result.length - 1; i++) {
+                $('#kalaContainer').append(`<tr onClick="kalaProperties(this)">
+        <td></td>
+        <td>` + arrayed_result[i].GoodCde + `</td>
+        <td>` + arrayed_result[i].GoodName + `</td>
+        <td>` + arrayed_result[i].NameGRP + `</td>
+        <td>1401.2.21</td>
+        <td>1401.2.21</td>
+        <td><input class="kala form-check-input" name="kalaId[]" disabled type="checkbox" value="{{$kala->GoodSn}}" id=""></td>
+        <td>` + parseInt(arrayed_result[i].Price4 / 10).toLocaleString("en-US") + `</td>
+        <td>` + parseInt(arrayed_result[i].Price3 / 10).toLocaleString("en-US") + `</td>
+        <td>` + parseInt(arrayed_result[i].Amount / 1).toLocaleString("en-US") + `</td>
+        <td>
+        <input class="kala form-check-input" name="kalaId[]" type="radio" value="` + arrayed_result[i].GoodSn + `_` + arrayed_result[i].Price4 + `_` + arrayed_result[i].Price3 + `" id="flexCheckCheckedKala">
+        </td>
+        </tr>`);
+            }
+        },
+        error: function (data) {
+        }
+    });
+});
 
 $('.select-highlight tr').click(function () {
     $(this).children('td').children('input:radio').prop('checked', true);
@@ -4527,6 +4893,7 @@ $('.select-highlight tr').click(function () {
 });
 
 $('.select-highlightKala tr').click(function () {
+
     $(this).find('input:radio').prop('checked', true);
     let inp = $(this).find('input:radio:checked');
     $('.select-highlightKala tr').removeClass('selected');
@@ -4538,25 +4905,49 @@ $('.select-highlightKala tr').click(function () {
     if (document.querySelector("#editKalaList")) {
         document.querySelector("#editKalaList").disabled = false;
     }
-    $(".kala-btn").prop("disabled", false);
-});
- 
-function setListKalaStuff(element,title){
-    $(element).find('input:radio').prop('checked', true);
-    $("#changePriceTitle").text(title);
-    let inp = $(element).find('input:radio:checked');
-    $('tr').removeClass('selected');
-    $(element).toggleClass('selected');
-    $("#kalaIdForEdit").val(inp.val().split("_")[0]);
-    $("#firstPrice").val(parseInt(inp.val().split("_")[1]).toLocaleString("en-US"));
-    $("#secondPrice").val(parseInt(inp.val().split("_")[2]).toLocaleString("en-US"));
-    $("#kalaId").val(parseInt(inp.val().split("_")[0]));
-    if (document.querySelector("#editKalaList")) {
-        document.querySelector("#editKalaList").disabled = false;
-    }
+
     $(".kala-btn").prop("disabled", false);
 
-}
+});
+$("#subGroupForKalaListSearch").on("change", () => {
+    let subGrId = $("#subGroupForKalaListSearch").val();
+    let mainGrId = $("#mainGroupForKalaListSearch").val();
+    $.ajax({
+        method: 'get',
+        url: baseUrl + "/getKalaBySubGroups",
+        data: {
+            _token: "{{ csrf_token() }}",
+            subGrId: subGrId,
+            firstGrId: mainGrId
+        },
+        async: true,
+        success: function (arrayed_result) {
+
+            $('#kalaContainer').empty();
+            for (var i = 0; i <= arrayed_result.length - 1; i++) {
+                $('#kalaContainer').append(`<tr onClick="kalaProperties(this)">
+        <td></td>
+        <td>` + arrayed_result[i].GoodCde + `</td>
+        <td>` + arrayed_result[i].GoodName + `</td>
+        <td>` + arrayed_result[i].NameGRP + `</td>
+        <td>1401.2.21</td>
+        <td>1401.2.21</td>
+        <td><input class="kala form-check-input" name="kalaId[]" disabled type="checkbox" value="{{$kala->GoodSn}}" id=""></td>
+        <td>` + parseInt(arrayed_result[i].Price4 / 10).toLocaleString("en-US") + `</td>
+        <td>` + parseInt(arrayed_result[i].Price3 / 10).toLocaleString("en-US") + `</td>
+        <td>` + parseInt(arrayed_result[i].Amount / 1).toLocaleString("en-US") + `</td>
+        <td>
+        <input class="kala form-check-input" name="kalaId[]" type="radio" value="` + arrayed_result[i].GoodSn + `_` + arrayed_result[i].Price4 + `_` + arrayed_result[i].Price3 + `" id="flexCheckCheckedKala">
+        </td>
+        </tr>`);
+            }
+
+        },
+        error: function (data) {
+        }
+
+    });
+});
 //
 
 $("#selectCities").on("change", () => {
@@ -4581,62 +4972,7 @@ $("#selectCities").on("change", () => {
     });
 });
 
-$.get(baseUrl+"/getProductMainGroups", function(data, status){
-    $("#superGroup").empty();
-    $("#superGroup").append(`<option value="_">همه</option>`);
-    data.forEach((element)=>{
-        $("#superGroup").append(`<option value="`+element.id+`_`+element.title+`">`+element.title+`</option>`);
-    });
-  });
 
-
-if($("#superGroup")){
-    $("#superGroup").on("change",function(){
-    $.get(baseUrl+"/getSubGroups",{ mainGroupId:$("#superGroup").val().split("_")[0] }, function(data, status){
-        $("#subGroup").empty();
-        $("#subGroup").append(`<option value="">همه</option>`);
-        data.forEach((element)=>{
-            $("#subGroup").append(`<option value="`+element.title+`">`+element.title+`</option>`);
-        });
-      });
-});
-}
-
-function filterAllKala(){
-    $.get(baseUrl+"/filterAllKala",{
-            kalaNameCode:$("#searchKalaNameCode").val(),
-            mainGroup:$("#superGroup").val().split("_")[1],
-            subGroup:$("#subGroup").val(),
-            searchKalaStock:$("#searchKalaStock").val(),
-            searchKalaActiveOrNot:$("#searchKalaActiveOrNot").val(),
-            searchKalaExistInStock:$("#searchKalaExistInStock").val(),
-            assesFirstDate:$("#assesFirstDate").val(),
-            assesSecondDate:$("#assesSecondDate").val()
-    },function(data,status) {
-        if(status=="success"){
-            $('#kalaContainer').empty();
-            data.forEach((element,index)=>{
-                $('#kalaContainer').append(`<tr onclick="setListKalaStuff(this,'`+element.GoodName+`')">
-                <td>` + (index+1) + `</td>
-                <td  style="width: 222px">` + element.GoodName + `</td>
-                <td>` + element.GoodCde + `</td>
-                <td>` + element.firstGroupName + `</td>
-                <td>` + element.lastDate + `</td>
-                <td>no</td>
-                <td>` + element.hideKala+ `</td>
-                <td>` + parseInt(element.Price4 / 10).toLocaleString("en-US") + `</td>
-                <td>` + parseInt(element.Price3 / 10).toLocaleString("en-US") + `</td>
-                <td>` + element.Amount + `</td>
-                <td>
-                <input class="kala form-check-input" name="kalaId[]" type="radio" value="` + element.GoodSn + `_` + element.Price4 + `_` + element.Price3 + `" id="flexCheckCheckedKala">
-                </td>
-                </tr>`);
-            });
-    }else{
-        alert("data has not come");
-    }
-    });
-}
 
 $("#searchCustomerByName").on("keyup", () => {
     let searchTerm = $("#searchCustomerByName").val();
@@ -5021,7 +5357,9 @@ function setBrandStuff(element) {
     let input = $(element).find('input:radio');
     document.querySelector("#editGroupList").disabled = false;
     document.querySelector("#brandChagesSaveBtn").disabled = false;
-
+    if (document.querySelector("#deleteBrand")) {
+        document.querySelector("#deleteBrand").disabled = false;
+    }
     let title = input.val().split('_')[1];
     let id = input.val().split('_')[0];
     document.querySelector("#BrandToAddKala").value = id;
@@ -5038,11 +5376,6 @@ function setBrandStuff(element) {
         },
         async: true,
         success: function (arrayed_result) {
-            if(arrayed_result.length<1){
-                if (document.querySelector("#deleteBrand")) {
-                    document.querySelector("#deleteBrand").disabled = false;
-                }
-            }
             $('#allKalaOfBrand').empty();
             for (var i = 0; i <= arrayed_result.length - 1; i++) {
                 $('#allKalaOfBrand').append(`
@@ -5541,8 +5874,8 @@ function openEditDashboard() {
 
 }
 
-$(document).on('keyup', '#mainGroupSearchFast', (() => {
-    let searchTerm = $('#mainGroupSearchFast').val();
+$(document).on('keyup', '#mainGroupSearch', (() => {
+    let searchTerm = $('#mainGroupSearch').val();
     $.ajax({
         method: 'get',
         url: baseUrl + "/getMainGroupList",
@@ -5552,10 +5885,10 @@ $(document).on('keyup', '#mainGroupSearchFast', (() => {
         },
         async: true,
         success: function (arrayed_result) {
-            $('#mainGroupListfast').empty();
+            $('#mainGroupList').empty();
             for (var i = 0; i <= arrayed_result.length - 1; i++) {
-                $('#mainGroupListfast').append(`
-                <tr onclick="changePicture(this)"> 
+                $('#mainGroupList').append(`
+                <tr onclick="changeMainGroupStuff(this)"> 
                     <td>` + (i + 1) + `</td>
                     <td>` + arrayed_result[i].title + `</td>
                     <td>
@@ -6715,7 +7048,7 @@ $("#searchCityId").on("change", function () {
             $("#searchSelectMantiqah").empty();
             arrayed_result.forEach((element, index) => {
                 $("#searchSelectMantiqah").append(`
-                <option value="`+ element.NameRec+ `">` + element.NameRec + `</option>
+                <option value="`+ element.SnMNM + `">` + element.NameRec + `</option>
                 `);
             });
         },
@@ -6744,8 +7077,9 @@ $("#searchCityId").on("change", function () {
                     <td>`+ (index + 1) + `</td>
                     <td>`+ element.PCode + `</td>
                     <td>`+ element.Name + `</td>
-                    <td style="width:390px">`+ element.peopeladdress + `</td>
-                    <td>`+ element.PhoneStr + `</td>
+                    <td>`+ element.peopeladdress + `</td>
+                    <td>`+ element.hamrah + `</td>
+                    <td>`+ element.sabit + `</td>
                     <td>`+ nameRec + `</td>
                     <td>2</td>
                     <td> <input class="customerList form-check-input" name="customerId" type="radio" value="`+ element.PSN + `_` + element.GroupCode + `" id="flexCheckChecked"></td>
@@ -6808,38 +7142,6 @@ $("#searchNameMNM").on("keyup", () => {
     });
 });
 
-$("#filterCustomerBtn").on("click",function(){
-    $.get('/filterCustomers',{
-        nameOrCodeOrPhone:$("#searchCustomerByName").val(),
-        recName:$("#searchSelectMantiqah").val(),
-        locationState:$("#searchLocationOrNot").val(),
-        activationState:$("#searchActiveOrNot").val(),
-        baseName:$("#orderCustomers").val()
-    },function(arrayed_result,status) {
-        if(status=="success"){
-        $("#customerList").empty();
-        arrayed_result.forEach((element, index) => {
-            let nameRec = element.NameRec;
-            let iterator = parseInt(index);
-            if (element.NameRec == null) {
-                nameRec = ""
-            }
-            $("#customerList").append(`<tr onclick="selectCustomerStuff(this)">
-            <td>`+(index+1)+`</td>
-            <td>`+ element.PCode + `</td>
-            <td>`+ element.Name + `</td>
-            <td>`+ element.peopeladdress + `</td>
-            <td>`+ element.PhoneStr + `</td>
-            <td>`+ nameRec + `</td>
-            <td>2</td>
-            <td> <input class="customerList form-check-input" name="customerId" type="radio" value="`+ element.PSN + `_` + element.GroupCode + `" id="flexCheckChecked"></td>
-        </tr>
-            `);
-        });
-    }
-    })
-
-});
 
 $("#searchAddedAddressMNM").on("keyup", () => {
     const searchTerm = $("#searchAddedAddressMNM").val();
@@ -7273,10 +7575,9 @@ function changePicture(element) {
             for (var i = 0; i <= data.length - 1; i++) {
                 $('#subGroup2').append(
                     `<tr class="subGroupList1" onClick="changeId(this)">
-                        <td>` + (i + 1) + `</td>
-                        <td>` + data[i].title + `</td>
-                        <td><a href="` + baseUrl + `/getKalaWithPic/` + data[i].id + `" target="_blank" class="btn btn-success btn-sm buttonHover"> <i class='fa fa-image'> </i> </a></td>
-                    </tr>`);
+        <td>` + (i + 1) + `</td>
+        <td>` + data[i].title + `</td>
+        <td><a href="` + baseUrl + `/getKalaWithPic/` + data[i].id + `" target="_blank" class="btn btn-success btn-sm buttonHover"> <i class='fa fa-image'> </i> </a></td></tr>`);
             }
             if (data.length > 0) {
                 for (var i = 1; i <= (data.length + 1); i++) {
@@ -8136,9 +8437,9 @@ function changeMainGroupPriority(element) {
         },
         dataType: "json",
         success: function (arrayed_result) {
-            $('#mainGroupList2').empty();
+            $('#mainGroupList').empty();
             for (var i = 0; i <= arrayed_result.length - 1; i++) {
-                $('#mainGroupList2').append(
+                $('#mainGroupList').append(
                     `<tr onclick="changeMainGroupStuff(this)" >
         <td> ` + (i + 1) + ` </td> <td> ` + arrayed_result[i].title + ` </td> <td>
         <input class="mainGroupId" type ="radio" name="mainGroupId[]" value="` + arrayed_result[i].id + '_' + arrayed_result[i].title + `" id="flexCheckChecked" >
@@ -8328,9 +8629,9 @@ function changeSubGroupPriority(element) {
             } else {
                 document.querySelector("#deleteGroupList").disabled = true;
             }
-            $('#subGroup01').empty();
+            $('#subGroup1').empty();
             for (var i = 0; i <= data.length - 1; i++) {
-                $('#subGroup01').append(
+                $('#subGroup1').append(
                     ` <tr class ="subGroupList1"
             onClick ="changeId(this)" >
                 <td> ` + (i + 1) + ` </td> <td > ` + data[i].title + ` </td> <td> <input class="subGroupId" name ="subGroupId[]"
@@ -11220,19 +11521,7 @@ $("#officialCustomerListRadioBtn").on("change", () => {
     $(".customerListStaff").css("display", "none");
 })
 
-$("#assesFirstDate").persianDatepicker({
-    cellWidth: 32,
-    cellHeight: 22,
-    fontSize: 14,
-    formatDate: "YYYY/0M/0D",
-});
 
-$("#assesSecondDate").persianDatepicker({
-    cellWidth: 32,
-    cellHeight: 22,
-    fontSize: 14,
-    formatDate: "YYYY/0M/0D",
-});
 
 
 
