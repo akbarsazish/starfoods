@@ -138,12 +138,11 @@ document.querySelector('.fa-bars').parentElement.addEventListener('click', () =>
 // window.addEventListener('DOMContentLoaded', () => document.querySelector('.loading').classList.remove('show'));
 ///JAVAD JAVASCRIPT CODES
 
-var baseUrl = "http://192.168.10.26:8080";
+var baseUrl = "http://127.0.0.1:8000";
 var myVar;
 function loadFunction() {
     myVar = setTimeout(showPage, 1000);
 }
-
 
 $('#kalaNameId').on('keyup', function () {
     const input = $(this).val();
