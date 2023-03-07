@@ -21,49 +21,63 @@
                         <input class="form-check-input p-2 float-start" type="radio" name="settings" id="officialCustomerListRadioBtn">
                         <label class="form-check-label me-4" for="assesPast"> اشخاص رسمی </label>
                     </div>
-                     <div class="col-sm-12 customerListStaff">
-                        <input type="text" name="" size="20" class="form-control form-control-sm" placeholder="نام" id="searchCustomerByName">
+                     <div class="form-group customerListStaff">
+                        <div class="input-group mt-2">
+                            <span class="input-group-text">کد, شماره تماس, اسم</span>
+                            <input type="text" name="" size="20" class="form-control form-control-sm" placeholder="نام-تماس-کد" id="searchCustomerByName">
+                        </div>
                     </div>
-                    <div class="col-sm-12 customerListStaff">
-                        <input type="text" name="" size="20" class="form-control form-control-sm" placeholder="کد حساب" id="searchCustomerByCode">
+                    <div class="form-group customerListStaff mt-2">
+                        <div class="input-group">
+                            <span class="input-group-text">شهر</span>
+                            <select class="form-select form-select-sm" id='searchCityId'>
+                                <option value="">همه</option>
+                                @foreach($cities as $city)
+                                    <option value="{{$city->SnMNM}}">{{$city->NameRec}}</option>
+                                @endforeach
+                            </select>
+                        </div>
                     </div>
-                    <div class="col-sm-12 customerListStaff">
-                        <select  style="" class="form-select form-select-sm" id='searchCityId'>
-                                <option value="1" hidden>شهر</option>  
-                            @foreach($cities as $city)
-                                <option value="{{$city->SnMNM}}">{{$city->NameRec}}</option>
-                            @endforeach
-                            <option value="0">بدون شهر</option>
-                        </select>
-                    </div>
-                        <div class="col-sm-12 customerListStaff">
-                            <select  style="" class="form-select form-select-sm" id="searchSelectMantiqah">
-                                <option value="1" hidden>منطقه</option> 
-                                <option value="0">--</option>
-                            </select>
+                        <div class="form-group customerListStaff mt-2">
+                            <div class="input-group">
+                                <span  class="input-group-text">منطقه</span>
+                                <select class="form-select form-select-sm" id="searchSelectMantiqah">
+                                    <option value="">همه</option>
+                                </select>
+                            </div>
                         </div>
-                        <div class="form-group col-sm-12 customerListStaff">
-                            <select  style="" class="form-select form-select-sm" id="searchActiveOrNot">
-                                <option  value="1" hidden>فعال</option>
-                                <option value="1">فعال</option>
-                                <option value="0"> غیر فعال</option>
-                            </select>
+                        <div class="form-group  customerListStaff mt-2">
+                            <div class="input-group">
+                                <span class="input-group-text">فعال</span>
+                                <select  class="form-select form-select-sm" id="searchActiveOrNot">
+                                    <option  value="-1" hidden>همه</option>
+                                    <option value="0">فعال</option>
+                                    <option value="1"> غیر فعال</option>
+                                </select>
+                            </div>
                         </div>
-                        <div class="form-group col-sm-12 customerListStaff">
-                            <select  style="" class="form-select form-select-sm" id="searchLocationOrNot">
-                            <option value="1" hidden>موقعیت</option> 
-                                <option value="1">موقعیت دار </option>
-                                <option value="0"> بدون موقعیت </option>
-                            </select>
+                        <div class="form-group  customerListStaff mt-2">
+                            <div class="input-group">
+                                <span class="input-group-text">موقعیت</span>
+                                <select  class="form-select form-select-sm" id="searchLocationOrNot">
+                                    <option value="-1"> همه </option>
+                                    <option value="1">موقعیت دار </option>
+                                    <option value="0"> بدون موقعیت </option>
+                                </select>
+                            </div>
                         </div>
-                        <div class="form-group col-sm-12 customerListStaff">
-                            <select style="" class="form-select form-select-sm" id="orderCustomers">
-                                <option value="1" hidden>مرتب سازی</option> 
-                                <option value="1">اسم</option>
-                                <option value="0">کد</option>
-                            </select>
+                        <div class="form-group  customerListStaff mt-2">
+                            <div class="input-group">
+                                <span class="input-group-text">مرتب سازی</span>
+                                <select class="form-select form-select-sm" id="orderCustomers">
+                                    <option value="Name">اسم</option>
+                                    <option value="PCode">کد</option>
+                                </select>
+                            </div>
                         </div>
-
+                        <div class="form-group  customerListStaff mt-2">
+                            <button type="button" class="btn btn-success btn-sm topButton" id="filterCustomerBtn"> بازخوانی &nbsp; <i class="fa fa-refresh"></i> </button>
+                        </div>
                 </fieldset>
                 </div>
             <div class="col-sm-10 col-md-10 col-sm-12 contentDiv">
@@ -93,7 +107,6 @@
                                 <th>اسم</th>
                                 <th style="width:390px">آدرس </th>
                                 <th>همراه</th>
-                                <th>تلفن</th>
                                 <th>منطقه </th>
                                 <th>درج </th>
                                 <th>انتخاب</th>
@@ -102,14 +115,13 @@
                             <tbody id="customerList" class="select-highlight tableBody">
                                 @foreach ($customers as $customer)
                                     <tr>
-                                        <td></td>
+                                        <td>{{$loop->iteration}}</td>
                                         <td>{{$customer->PCode}}</td>
                                         <td>{{$customer->Name}}</td>
                                         <td style="width:390px">{{$customer->peopeladdress}}</td>
-                                        <td>{{$customer->hamrah}}</td>
-                                        <td>{{$customer->sabit}}</td>
+                                        <td>{{$customer->PhoneStr}}</td>
                                         <td>{{$customer->NameRec}}</td>
-                                        <td>2</td>
+                                        <td>{{$customer->TimeStamp}}</td>
                                         <td> <input class="customerList form-check-input" name="customerId" type="radio" value="{{$customer->PSN.'_'.$customer->GroupCode}}" id="flexCheckChecked"></td>
                                     </tr>
                                 @endforeach

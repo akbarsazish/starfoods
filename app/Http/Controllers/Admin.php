@@ -60,34 +60,13 @@ class Admin extends Controller{
             }
         }
 
-        $customers=DB::select("SELECT top 25 * from (
-            SELECT * FROM(
-            SELECT Peopels.PCode,peopels.Name,peopels.PSN,peopels.peopeladdress,Peopels.GroupCode,Peopels.SnMantagheh,Peopels.CompanyNo FROM Shop.dbo.Peopels
-            ) a
-            LEFT JOIN (select NameRec,SnMNM from Shop.dbo.MNM)d ON a.SnMantagheh=d.SnMNM)e
-            WHERE e.CompanyNo=5 AND Name !='' AND (GroupCode =291 or GroupCode =1297 or GroupCode =1297 or GroupCode =299 or GroupCode =312 or GroupCode =313 or GroupCode =314) ORDER BY PSN ASC");
-        
-        foreach ($customers as $customer) {
+        $customers=DB::select("SELECT PSN,PCode,Name,GroupCode,FORMAT(TimeStamp,'yyyy/MM/dd','fa-ir') as TimeStamp,peopeladdress,CRM.dbo.getCustomerPhoneNumbers(PSN) as PhoneStr,CRm.dbo.getCustomerMantagheh(SnMantagheh) as NameRec  FROM Shop.dbo.Peopels
             
-            $phones=DB::table("Shop.dbo.PhoneDetail")->where("SnPeopel",$customer->PSN)->get();
-            $hamrah="";
-            $sabit="";
+        WHERE CompanyNo=5 AND Name !='' AND GroupCode in(291,1297,1297 ,299 ,312 ,313 ,314) and IsActive=1 and not exists(select * from CRM.dbo.crm_inactiveCustomer where state=1 and customerId=PSN) ORDER BY PSN ASC");
+        
 
-            foreach ($phones as $phone) {
-                if($phone->PhoneType==1){
-                    $sabit.="\n".$phone->PhoneStr;
-                }else{
-                    $hamrah.="\n".$phone->PhoneStr;
-                }
-            }
-
-            $customer->sabit=$sabit;
-            $customer->hamrah=$hamrah;
-        }
         $regions=DB::select("SELECT * FROM Shop.dbo.MNM WHERE CompanyNo=5 and FatherMNM=80");
         $cities=DB::select("SELECT * FROM Shop.dbo.MNM WHERE CompanyNo=5 and Rectype=1 and FatherMNM=79");
-
-
         // کیوری اشخاص رسمی 
          $haqiqiCustomers=DB::table("NewStarfood.dbo.star_Customer")->where('customerType','haqiqi')->select("*")->get();
          $hohoqiCustomers=DB::table("NewStarfood.dbo.star_Customer")->where('customerType','hoqoqi')->select("*")->get();
@@ -190,46 +169,20 @@ public function searchByCity(Request $request)
     {
         $citySn=$request->get("csn");
         if($citySn!=0){
-        $customers=DB::select("SELECT * from(
+        $customers=DB::select("SELECT *,CRM.dbo.getCustomerPhoneNumbers(PSN) as PhoneStr from(
                         SELECT Peopels.PCode,peopels.Name,peopels.PSN,peopels.peopeladdress,Peopels.GroupCode,Peopels.SnNahiyeh,Peopels.SnMantagheh,Peopels.CompanyNo FROM Shop.dbo.Peopels
                         ) a
                         LEFT JOIN Shop.dbo.MNM ON a.SnMantagheh=MNM.SnMNM
-                        WHERE a.CompanyNo=5 AND Name !='' AND GroupCode IN ( ".implode(",",[291,297,299,312,313,314]).") and SnNahiyeh=".$citySn." order by PSN asc");
-        foreach ($customers as $customer) {
-            $phones=DB::table("Shop.dbo.PhoneDetail")->where("SnPeopel",$customer->PSN)->get();
-            $hamrah="";
-            $sabit="";
-            foreach ($phones as $phone) {
-                if($phone->PhoneType==1){
-                    $sabit.="\n".$phone->PhoneStr;
-                }else{
-                    $hamrah.="\n".$phone->PhoneStr;
-                }
-            }
-            $customer->sabit=$sabit;
-            $customer->hamrah=$hamrah;
-        }
+                        WHERE a.CompanyNo=5 AND Name !='' AND GroupCode IN (291,297,299,312,313,314) and SnNahiyeh=".$citySn." order by PSN asc");
+
             return Response::json($customers);}
             else{
-                $customers=DB::select("SELECT * FROM(
+                $customers=DB::select("SELECT *,,CRM.dbo.getCustomerPhoneNumbers(PSN) as PhoneStr FROM(
                                 SELECT Peopels.PCode,peopels.Name,peopels.PSN,peopels.peopeladdress,Peopels.GroupCode,Peopels.SnMantagheh,Peopels.SnNahiyeh,Peopels.CompanyNo FROM Shop.dbo.Peopels
                                 ) a
                                 LEFT JOIN Shop.dbo.MNM ON a.SnMantagheh=Shop.dbo.MNM.SnMNM
-                                WHERE a.CompanyNo=5 AND Name !='' AND GroupCode IN ( ".implode(",",[291,297,299,312,313,314]).") and SnNahiyeh=0 order by PSN asc");
-                foreach ($customers as $customer) {
-                    $phones=DB::table("Shop.dbo.PhoneDetail")->where("SnPeopel",$customer->PSN)->get();
-                    $hamrah="";
-                    $sabit="";
-                    foreach ($phones as $phone) {
-                        if($phone->PhoneType==1){
-                            $sabit.="\n".$phone->PhoneStr;
-                        }else{
-                            $hamrah.="\n".$phone->PhoneStr;
-                        }
-                    }
-                    $customer->sabit=$sabit;
-                    $customer->hamrah=$hamrah;
-                }
+                                WHERE a.CompanyNo=5 AND Name !='' AND GroupCode IN (291,297,299,312,313,314) and SnNahiyeh=0 order by PSN asc");
+                
                     return Response::json($customers);
             }
     }

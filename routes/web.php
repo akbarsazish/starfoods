@@ -139,7 +139,6 @@ Route::get('/getGroupSearch',[Group::class,'getGroupSearch'])->middleware('check
 Route::get('/getSearchGroups',[Group::class,'getSearchGroups'])->middleware('checkUser');
 Route::get('/searchGroups',[Group::class,'searchGroups'])->middleware('checkUser');
 Route::get('/searchKalaByName',[Kala::class,'searchKalaByName'])->middleware('checkAdmin');
-Route::get('/searchKalaByCode',[Kala::class,'searchKalaByCode'])->middleware('checkAdmin');
 Route::get('/getSubGroupList',[SubGroup::class,'getSubGroupList'])->middleware('checkAdmin');
 Route::get('/getSubGroup',[SubGroup::class,'getSubGroup'])->middleware('checkAdmin');
 Route::get('/searchKalaBySubGroup',[Kala::class,'searchKalaBySubGroup'])->middleware('checkUser');
@@ -181,15 +180,15 @@ Route::get('/getAllKalas',[Kala::class,'getAllKalas'])->middleware('checkAdmin')
 Route::get('/addKalaToList',[Kala::class,'addKalaToList'])->middleware('checkAdmin');
 Route::post('/addStockToList',[Kala::class,'addStockToList'])->middleware('checkAdmin');
 Route::get('/addOrDeleteKalaFromSubGroup',[Kala::class,'addOrDeleteKalaFromSubGroup'])->middleware('checkAdmin');
-
 Route::get('/getKalaWithPic/{id}',[Kala::class,'getKalaWithPic'])->middleware('checkAdmin');
 Route::get('/changePriceKala',[Kala::class,'changePriceKala'])->middleware('checkAdmin');
 Route::get('/getStocks',[Kala::class,'getStocks'])->middleware('checkAdmin');
 Route::get('/searchKalaByStock',[Kala::class,'searchKalaByStock'])->middleware('checkAdmin');
-Route::get('/searchKalaByExisanceOnStock',[Kala::class,'searchKalaByExisanceOnStock'])->middleware('checkAdmin');
 Route::get('/getMainGroups',[Group::class,'getMainGroups'])->middleware('checkAdmin');
-Route::get('/getSubGroups',[SubGroup::class,'getSubGroups'])->middleware('checkAdmin');
 Route::get('/getKalaBySubGroups',[Kala::class,'getKalaBySubGroups'])->middleware('checkAdmin');
+Route::get("/getProductMainGroups",[Kala::class,"getProductMainGroups"])->middleware('checkAdmin');
+Route::get("/getSubGroups",[kala::class,"getSubGroups"])->middleware('checkAdmin');
+Route::get("/filterAllKala",[Kala::class,"filterAllKala"])->middleware('checkAdmin');
 Route::get('/listKala/brandCode/{code}',[Kala::class,'getKalaBybrandItem'])->middleware('checkUser');
 Route::post('/viewOreders',[Carts::class,'getOrders'])->middleware('checkUser');
 Route::get('/listPictureName',[Kala::class,'listPictureName'])->middleware('checkUser');
@@ -218,6 +217,7 @@ Route::get('/android/{userName}/{password}', [Logout::class, 'androidCall']);
 Route::get('/androidLogin/{userName}/{password}', [Logout::class, 'androidLogin']);
 // official customer route admin side
 Route::get('/listCustomers',[Admin::class,'listCustomers'])->middleware('checkAdmin');
+Route::get('/filterCustomers',[CustomerController::class,'filterCustomers'])->middleware('checkAdmin');
 Route::post('/editCustomer',[Admin::class,'editCustomer'])->middleware('checkAdmin');
 Route::get('/afterEditCustomer',[Admin::class,'afterEditCustomer'])->middleware('checkAdmin');
 Route::get('/searchPreBuyAbleKalas',[Kala::class,'searchPreBuyAbleKalas'])->middleware('checkAdmin');

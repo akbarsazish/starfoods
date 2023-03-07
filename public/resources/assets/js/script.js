@@ -2864,7 +2864,8 @@ $("#openViewTenSalesModal").on("click", () => {
         },
         success: function (arrayed_result) {
             $('#lastTenSaleBody').empty();
-            arrayed_result.forEach((element, index) => {
+            $("#lasTenSaleName").text(arrayed_result[1][0].GoodName);
+            arrayed_result[0].forEach((element, index) => {
                 $('#lastTenSaleBody').append(`<tr>
                                     <td>`+ (index + 1) + `</td>
                                    
@@ -2972,77 +2973,6 @@ $('#kalaPicState').on('change', () => {
     });
 });
 
-
-
-$('#selectStockExist').on('change', () => {
-    let stockExistance = $('#selectStockExist').val();
-    let stockId = $('#selectStock').val();
-    $.ajax({
-        method: 'get',
-        url: baseUrl + "/searchKalaByExisanceOnStock",
-        async: true,
-        data: {
-            _token: "{{ csrf_token() }}",
-            stockExistance: stockExistance,
-            stockId: stockId
-        },
-        success: function (arrayed_result) {
-            $('#kalaContainer').empty();
-            for (var i = 0; i <= arrayed_result.length - 1; i++) {
-                $('#kalaContainer').append(`<tr onClick="kalaProperties(this)">
-                                        <td></td>
-                                        <td>` + arrayed_result[i].GoodCde + `</td>
-                                        <td>` + arrayed_result[i].GoodName + `</td>
-                                        <td>` + arrayed_result[i].NameGRP + `</td>
-                                        <td>1401.2.21</td>
-                                        <td>1401.2.21</td>
-                                        <td><input class="kala form-check-input" name="kalaId[]" disabled type="checkbox" value="{{$kala->GoodSn}}" id=""></td>
-                                        <td>` + parseInt(arrayed_result[i].Price4 / 10).toLocaleString("en-US") + `</td>
-                                        <td>` + parseInt(arrayed_result[i].Price3 / 10).toLocaleString("en-US") + `</td>
-                                        <td>` + parseInt(arrayed_result[i].Amount / 1).toLocaleString("en-US") + `</td>
-                                        <td>
-                                        <input class="kala form-check-input" name="kalaId[]" type="radio" value="` + arrayed_result[i].GoodSn + `_` + arrayed_result[i].Price4 + `_` + arrayed_result[i].Price3 + `" id="flexCheckCheckedKala">
-                                        </td>
-                                    </tr>`);
-            }
-        },
-        error: function (data) { }
-    });
-});
-$('#kalaCodeId').on('change', function () {
-    const input = $(this).val();
-    $.ajax({
-        method: 'get',
-        url: baseUrl + "/searchKalaByCode",
-        async: true,
-        data: {
-            _token: "{{ csrf_token() }}",
-            code: input
-        },
-        success: function (arrayed_result) {
-            $('#kalaContainer').empty();
-            for (var i = 0; i <= arrayed_result.length - 1; i++) {
-                $('#kalaContainer').append(`<tr onClick="kalaProperties(this)">
-        <td>` + (i + 1) + `</td>
-        <td>` + arrayed_result[i].GoodCde + `</td>
-        <td>` + arrayed_result[i].GoodName + `</td>
-        <td>` + arrayed_result[i].NameGRP + `</td>
-        <td>1401.2.21</td>
-        <td>1401.2.21</td>
-        <td><input class="kala form-check-input" name="kalaId[]" disabled type="checkbox" value="{{$kala->GoodSn}}" id=""></td>
-        <td>` + parseInt(arrayed_result[i].Price4 / 10).toLocaleString('en-US') + `</td>
-        <td>` + parseInt(arrayed_result[i].Price3 / 10).toLocaleString('en-US') + `</td>
-        <td>` + parseInt(arrayed_result[i].Amount / 1).toLocaleString("en-US") + `</td>
-        <td>
-        <input class="kala form-check-input" name="kalaId[]" type="radio" value="` + arrayed_result[i].GoodSn + `_` + arrayed_result[i].Price4 + `_` + arrayed_result[i].Price3 + `" id="flexCheckCheckedKala">
-        </td>
-        </tr>`);
-            }
-        },
-        error: function (data) { }
-    });
-});
-
 function kalaProperties(element) {
     $(element).find('input:radio').prop('checked', true);
     let inp = $(element).find('input:radio:checked');
@@ -3056,59 +2986,6 @@ function kalaProperties(element) {
     document.querySelector("#editKalaList").disabled = false;
     $(".kala-btn").prop("disabled", false);
 }
-$("#mainGroupForKalaListSearch").on("change", () => {
-    let mainGrId = $("#mainGroupForKalaListSearch").val();
-    $.ajax({
-        method: 'get',
-        url: baseUrl + "/getSubGroups",
-        data: {
-            _token: "{{ csrf_token() }}",
-            mainGrId: mainGrId
-        },
-        async: true,
-        success: function (arrayed_result) {
-            $("#subGroupForKalaListSearch").empty();
-            $('#subGroupForKalaListSearch').append(`<option value="0">همه</option>`);
-            for (var i = 0; i <= arrayed_result.length - 1; i++) {
-                $('#subGroupForKalaListSearch').append(`<option value="` + arrayed_result[i].id + `">` + arrayed_result[i].title + `</option>`);
-            }
-        },
-        error: function (data) {
-        }
-    });
-    $.ajax({
-        method: 'get',
-        url: baseUrl + "/getKalaBySubGroups",
-        data: {
-            _token: "{{ csrf_token() }}",
-            subGrId: 0,
-            firstGrId: mainGrId
-        },
-        async: true,
-        success: function (arrayed_result) {
-            $('#kalaContainer').empty();
-            for (var i = 0; i <= arrayed_result.length - 1; i++) {
-                $('#kalaContainer').append(`<tr onClick="kalaProperties(this)">
-        <td></td>
-        <td>` + arrayed_result[i].GoodCde + `</td>
-        <td>` + arrayed_result[i].GoodName + `</td>
-        <td>` + arrayed_result[i].NameGRP + `</td>
-        <td>1401.2.21</td>
-        <td>1401.2.21</td>
-        <td><input class="kala form-check-input" name="kalaId[]" disabled type="checkbox" value="{{$kala->GoodSn}}" id=""></td>
-        <td>` + parseInt(arrayed_result[i].Price4 / 10).toLocaleString("en-US") + `</td>
-        <td>` + parseInt(arrayed_result[i].Price3 / 10).toLocaleString("en-US") + `</td>
-        <td>` + parseInt(arrayed_result[i].Amount / 1).toLocaleString("en-US") + `</td>
-        <td>
-        <input class="kala form-check-input" name="kalaId[]" type="radio" value="` + arrayed_result[i].GoodSn + `_` + arrayed_result[i].Price4 + `_` + arrayed_result[i].Price3 + `" id="flexCheckCheckedKala">
-        </td>
-        </tr>`);
-            }
-        },
-        error: function (data) {
-        }
-    });
-});
 
 $('.select-highlight tr').click(function () {
     $(this).children('td').children('input:radio').prop('checked', true);
@@ -3121,7 +2998,6 @@ $('.select-highlight tr').click(function () {
 });
 
 $('.select-highlightKala tr').click(function () {
-
     $(this).find('input:radio').prop('checked', true);
     let inp = $(this).find('input:radio:checked');
     $('.select-highlightKala tr').removeClass('selected');
@@ -3133,49 +3009,25 @@ $('.select-highlightKala tr').click(function () {
     if (document.querySelector("#editKalaList")) {
         document.querySelector("#editKalaList").disabled = false;
     }
-
+    $(".kala-btn").prop("disabled", false);
+});
+ 
+function setListKalaStuff(element,title){
+    $(element).find('input:radio').prop('checked', true);
+    $("#changePriceTitle").text(title);
+    let inp = $(element).find('input:radio:checked');
+    $('tr').removeClass('selected');
+    $(element).toggleClass('selected');
+    $("#kalaIdForEdit").val(inp.val().split("_")[0]);
+    $("#firstPrice").val(parseInt(inp.val().split("_")[1]).toLocaleString("en-US"));
+    $("#secondPrice").val(parseInt(inp.val().split("_")[2]).toLocaleString("en-US"));
+    $("#kalaId").val(parseInt(inp.val().split("_")[0]));
+    if (document.querySelector("#editKalaList")) {
+        document.querySelector("#editKalaList").disabled = false;
+    }
     $(".kala-btn").prop("disabled", false);
 
-});
-$("#subGroupForKalaListSearch").on("change", () => {
-    let subGrId = $("#subGroupForKalaListSearch").val();
-    let mainGrId = $("#mainGroupForKalaListSearch").val();
-    $.ajax({
-        method: 'get',
-        url: baseUrl + "/getKalaBySubGroups",
-        data: {
-            _token: "{{ csrf_token() }}",
-            subGrId: subGrId,
-            firstGrId: mainGrId
-        },
-        async: true,
-        success: function (arrayed_result) {
-
-            $('#kalaContainer').empty();
-            for (var i = 0; i <= arrayed_result.length - 1; i++) {
-                $('#kalaContainer').append(`<tr onClick="kalaProperties(this)">
-        <td></td>
-        <td>` + arrayed_result[i].GoodCde + `</td>
-        <td>` + arrayed_result[i].GoodName + `</td>
-        <td>` + arrayed_result[i].NameGRP + `</td>
-        <td>1401.2.21</td>
-        <td>1401.2.21</td>
-        <td><input class="kala form-check-input" name="kalaId[]" disabled type="checkbox" value="{{$kala->GoodSn}}" id=""></td>
-        <td>` + parseInt(arrayed_result[i].Price4 / 10).toLocaleString("en-US") + `</td>
-        <td>` + parseInt(arrayed_result[i].Price3 / 10).toLocaleString("en-US") + `</td>
-        <td>` + parseInt(arrayed_result[i].Amount / 1).toLocaleString("en-US") + `</td>
-        <td>
-        <input class="kala form-check-input" name="kalaId[]" type="radio" value="` + arrayed_result[i].GoodSn + `_` + arrayed_result[i].Price4 + `_` + arrayed_result[i].Price3 + `" id="flexCheckCheckedKala">
-        </td>
-        </tr>`);
-            }
-
-        },
-        error: function (data) {
-        }
-
-    });
-});
+}
 //
 
 $("#selectCities").on("change", () => {
@@ -3200,7 +3052,62 @@ $("#selectCities").on("change", () => {
     });
 });
 
+$.get(baseUrl+"/getProductMainGroups", function(data, status){
+    $("#superGroup").empty();
+    $("#superGroup").append(`<option value="_">همه</option>`);
+    data.forEach((element)=>{
+        $("#superGroup").append(`<option value="`+element.id+`_`+element.title+`">`+element.title+`</option>`);
+    });
+  });
 
+
+if($("#superGroup")){
+    $("#superGroup").on("change",function(){
+    $.get(baseUrl+"/getSubGroups",{ mainGroupId:$("#superGroup").val().split("_")[0] }, function(data, status){
+        $("#subGroup").empty();
+        $("#subGroup").append(`<option value="">همه</option>`);
+        data.forEach((element)=>{
+            $("#subGroup").append(`<option value="`+element.title+`">`+element.title+`</option>`);
+        });
+      });
+});
+}
+
+function filterAllKala(){
+    $.get(baseUrl+"/filterAllKala",{
+            kalaNameCode:$("#searchKalaNameCode").val(),
+            mainGroup:$("#superGroup").val().split("_")[1],
+            subGroup:$("#subGroup").val(),
+            searchKalaStock:$("#searchKalaStock").val(),
+            searchKalaActiveOrNot:$("#searchKalaActiveOrNot").val(),
+            searchKalaExistInStock:$("#searchKalaExistInStock").val(),
+            assesFirstDate:$("#assesFirstDate").val(),
+            assesSecondDate:$("#assesSecondDate").val()
+    },function(data,status) {
+        if(status=="success"){
+            $('#kalaContainer').empty();
+            data.forEach((element,index)=>{
+                $('#kalaContainer').append(`<tr onclick="setListKalaStuff(this,'`+element.GoodName+`')">
+                <td>` + (index+1) + `</td>
+                <td  style="width: 222px">` + element.GoodName + `</td>
+                <td>` + element.GoodCde + `</td>
+                <td>` + element.firstGroupName + `</td>
+                <td>` + element.lastDate + `</td>
+                <td>no</td>
+                <td>` + element.hideKala+ `</td>
+                <td>` + parseInt(element.Price4 / 10).toLocaleString("en-US") + `</td>
+                <td>` + parseInt(element.Price3 / 10).toLocaleString("en-US") + `</td>
+                <td>` + element.Amount + `</td>
+                <td>
+                <input class="kala form-check-input" name="kalaId[]" type="radio" value="` + element.GoodSn + `_` + element.Price4 + `_` + element.Price3 + `" id="flexCheckCheckedKala">
+                </td>
+                </tr>`);
+            });
+    }else{
+        alert("data has not come");
+    }
+    });
+}
 
 $("#searchCustomerByName").on("keyup", () => {
     let searchTerm = $("#searchCustomerByName").val();
@@ -3585,9 +3492,7 @@ function setBrandStuff(element) {
     let input = $(element).find('input:radio');
     document.querySelector("#editGroupList").disabled = false;
     document.querySelector("#brandChagesSaveBtn").disabled = false;
-    if (document.querySelector("#deleteBrand")) {
-        document.querySelector("#deleteBrand").disabled = false;
-    }
+
     let title = input.val().split('_')[1];
     let id = input.val().split('_')[0];
     document.querySelector("#BrandToAddKala").value = id;
@@ -3604,6 +3509,11 @@ function setBrandStuff(element) {
         },
         async: true,
         success: function (arrayed_result) {
+            if(arrayed_result.length<1){
+                if (document.querySelector("#deleteBrand")) {
+                    document.querySelector("#deleteBrand").disabled = false;
+                }
+            }
             $('#allKalaOfBrand').empty();
             for (var i = 0; i <= arrayed_result.length - 1; i++) {
                 $('#allKalaOfBrand').append(`
@@ -4102,8 +4012,8 @@ function openEditDashboard() {
 
 }
 
-$(document).on('keyup', '#mainGroupSearch', (() => {
-    let searchTerm = $('#mainGroupSearch').val();
+$(document).on('keyup', '#mainGroupSearchFast', (() => {
+    let searchTerm = $('#mainGroupSearchFast').val();
     $.ajax({
         method: 'get',
         url: baseUrl + "/getMainGroupList",
@@ -4113,10 +4023,10 @@ $(document).on('keyup', '#mainGroupSearch', (() => {
         },
         async: true,
         success: function (arrayed_result) {
-            $('#mainGroupList').empty();
+            $('#mainGroupListfast').empty();
             for (var i = 0; i <= arrayed_result.length - 1; i++) {
-                $('#mainGroupList').append(`
-                <tr onclick="changeMainGroupStuff(this)"> 
+                $('#mainGroupListfast').append(`
+                <tr onclick="changePicture(this)"> 
                     <td>` + (i + 1) + `</td>
                     <td>` + arrayed_result[i].title + `</td>
                     <td>
@@ -5276,7 +5186,7 @@ $("#searchCityId").on("change", function () {
             $("#searchSelectMantiqah").empty();
             arrayed_result.forEach((element, index) => {
                 $("#searchSelectMantiqah").append(`
-                <option value="`+ element.SnMNM + `">` + element.NameRec + `</option>
+                <option value="`+ element.NameRec+ `">` + element.NameRec + `</option>
                 `);
             });
         },
@@ -5305,9 +5215,8 @@ $("#searchCityId").on("change", function () {
                     <td>`+ (index + 1) + `</td>
                     <td>`+ element.PCode + `</td>
                     <td>`+ element.Name + `</td>
-                    <td>`+ element.peopeladdress + `</td>
-                    <td>`+ element.hamrah + `</td>
-                    <td>`+ element.sabit + `</td>
+                    <td style="width:390px">`+ element.peopeladdress + `</td>
+                    <td>`+ element.PhoneStr + `</td>
                     <td>`+ nameRec + `</td>
                     <td>2</td>
                     <td> <input class="customerList form-check-input" name="customerId" type="radio" value="`+ element.PSN + `_` + element.GroupCode + `" id="flexCheckChecked"></td>
@@ -5370,6 +5279,38 @@ $("#searchNameMNM").on("keyup", () => {
     });
 });
 
+$("#filterCustomerBtn").on("click",function(){
+    $.get('/filterCustomers',{
+        nameOrCodeOrPhone:$("#searchCustomerByName").val(),
+        recName:$("#searchSelectMantiqah").val(),
+        locationState:$("#searchLocationOrNot").val(),
+        activationState:$("#searchActiveOrNot").val(),
+        baseName:$("#orderCustomers").val()
+    },function(arrayed_result,status) {
+        if(status=="success"){
+        $("#customerList").empty();
+        arrayed_result.forEach((element, index) => {
+            let nameRec = element.NameRec;
+            let iterator = parseInt(index);
+            if (element.NameRec == null) {
+                nameRec = ""
+            }
+            $("#customerList").append(`<tr onclick="selectCustomerStuff(this)">
+            <td>`+(index+1)+`</td>
+            <td>`+ element.PCode + `</td>
+            <td>`+ element.Name + `</td>
+            <td>`+ element.peopeladdress + `</td>
+            <td>`+ element.PhoneStr + `</td>
+            <td>`+ nameRec + `</td>
+            <td>2</td>
+            <td> <input class="customerList form-check-input" name="customerId" type="radio" value="`+ element.PSN + `_` + element.GroupCode + `" id="flexCheckChecked"></td>
+        </tr>
+            `);
+        });
+    }
+    })
+
+});
 
 $("#searchAddedAddressMNM").on("keyup", () => {
     const searchTerm = $("#searchAddedAddressMNM").val();
@@ -5803,9 +5744,10 @@ function changePicture(element) {
             for (var i = 0; i <= data.length - 1; i++) {
                 $('#subGroup2').append(
                     `<tr class="subGroupList1" onClick="changeId(this)">
-        <td>` + (i + 1) + `</td>
-        <td>` + data[i].title + `</td>
-        <td><a href="` + baseUrl + `/getKalaWithPic/` + data[i].id + `" target="_blank" class="btn btn-success btn-sm buttonHover"> <i class='fa fa-image'> </i> </a></td></tr>`);
+                        <td>` + (i + 1) + `</td>
+                        <td>` + data[i].title + `</td>
+                        <td><a href="` + baseUrl + `/getKalaWithPic/` + data[i].id + `" target="_blank" class="btn btn-success btn-sm buttonHover"> <i class='fa fa-image'> </i> </a></td>
+                    </tr>`);
             }
             if (data.length > 0) {
                 for (var i = 1; i <= (data.length + 1); i++) {
@@ -9749,7 +9691,19 @@ $("#officialCustomerListRadioBtn").on("change", () => {
     $(".customerListStaff").css("display", "none");
 })
 
+$("#assesFirstDate").persianDatepicker({
+    cellWidth: 32,
+    cellHeight: 22,
+    fontSize: 14,
+    formatDate: "YYYY/0M/0D",
+});
 
+$("#assesSecondDate").persianDatepicker({
+    cellWidth: 32,
+    cellHeight: 22,
+    fontSize: 14,
+    formatDate: "YYYY/0M/0D",
+});
 
 
 
