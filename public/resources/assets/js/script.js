@@ -144,7 +144,6 @@ function loadFunction() {
     myVar = setTimeout(showPage, 1000);
 }
 
-
 $('#kalaNameId').on('keyup', function () {
     const input = $(this).val();
     $.ajax({

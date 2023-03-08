@@ -651,7 +651,6 @@ public function searchByCity(Request $request)
                         }else{
                             $requestedKalaN=-1;
                         }
-
                      // چک کردن فست کالا با سه تا عناصر اش
                         $fastKalaN=$request->post("fastKalaN");
                         $deleteFastKalaN=$request->post("deleteFastKalaN");
@@ -673,7 +672,7 @@ public function searchByCity(Request $request)
                             $fastKalaN=-1;
                         }
 
-
+                        
                     // چک کردن پیش خرید با سه تا عناصر اش
                         $pishKharidN=$request->post("fastKalaN");
                         $deletePishKharidN=$request->post("deletePishKharidN");
@@ -785,22 +784,33 @@ public function searchByCity(Request $request)
                         $editMessageN=$request->post("editMessageN");
                         $seeMessageN=$request->post("seeMessageN");
                         if($messageN=="on"){
-                                if($deleteMessageN="on"){
-                                    $messageN=2;
-                                }elseif($editOrderSalesN=="on" && $deleteMessageN!="on"){
-                                    $messageN=1;
-                                }elseif($seeMessageN="on" && $editOrderSalesN!="on"){
-                                    $messageN=0;
-                                }else{
-                                    $messageN=-1;
-                                }
+                            if($deleteMessageN="on"){
+                                $messageN=2;
+                            }elseif($editOrderSalesN=="on" && $deleteMessageN!="on"){
+                                $messageN=1;
+                            }elseif($seeMessageN="on" && $editOrderSalesN!="on"){
+                                $messageN=0;
+                            }else{
+                                $messageN=-1;
+                            }
 
                         }else{
                             $messageN=-1;
                         }
-
-
+                    }else{
+                        $kalasN=-1;
+                        $kalaListsN=-1;
+                        $requestedKalaN=-1;
+                        $fastKalaN=-1;
+                        $pishKharidN=-1;
+                        $brandsN=-1;
+                        $alertedN=-1;
+                        $orderSalesN=-1;
+                        $messageN=-1;
+                    }
                 }else{
+                    $operationN =-1;
+                    $operationN=-1;
                     $kalasN=-1;
                     $kalaListsN=-1;
                     $requestedKalaN=-1;
@@ -808,26 +818,12 @@ public function searchByCity(Request $request)
                     $pishKharidN=-1;
                     $brandsN=-1;
                     $alertedN=-1;
+                    $kalaGroupN=-1;
                     $orderSalesN=-1;
                     $messageN=-1;
                 }
 
-        }else{
-            $operationN =-1;
-            $operationN=-1;
-            $kalasN=-1;
-            $kalaListsN=-1;
-            $requestedKalaN=-1;
-            $fastKalaN=-1;
-            $pishKharidN=-1;
-            $brandsN=-1;
-            $alertedN=-1;
-            $kalaGroupN=-1;
-            $orderSalesN=-1;
-            $messageN=-1;
-        }
-
-
+        
         // اگر گزارشات روشن بود 
         $reportN = $request->post("reportN");
         $reportCustomerN;
@@ -970,7 +966,7 @@ public function searchByCity(Request $request)
         }
 
    
-
+        
         DB::insert("INSERT INTO NewStarfood.dbo.admin (name,lastName,userName,password,activeState,sex,address,adminType)
 
         VALUES('".$name."','".$lastname."','".$username."','".$password."',1,'$sex','','$adminType')");
