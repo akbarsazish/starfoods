@@ -3607,6 +3607,8 @@ $("#reportCustomerED").on("change", () => {
         $("#seeOfficialCustomerED").prop("checked", false);
         $("#editCustomerListED").prop("checked", false);
         $("#deletCustomerListED").prop("checked", false);
+        $("#deleteOfficialCustomerED").prop("checked", false);
+        $("#editOfficialCustomerED").prop("checked", false);
 
     }
 })
@@ -3800,6 +3802,9 @@ $("#gameAndLotteryED").on("change", () => {
         $("#editCustomerListED").prop("checked", false);
         $("#deletCustomerListED").prop("checked", false);
         $("#editLotteryResultED").prop("checked", false);
+        $("#deletLotteryResultED").prop("checked", false);
+        $("#deletGamerListED").prop("checked", false);
+        $("#editGamerListED").prop("checked", false);
 
     }
 })
@@ -5279,239 +5284,281 @@ function openEditDashboard() {
             } else {
                 $("#activeState").prop("checked", false);
             }
-            switch (parseInt(data.homePage)) {
+
+            switch (parseInt(data.mainPageSetting)) {
                 case 2:
-                    $("#homeDelete").prop("checked", true).change();
+                    $("#deletMainPageSettingED").prop("checked", true).change();
                     break;
                 case 1:
-                    $("#homeChange").prop("checked", true).change();
+                    $("#editManiPageSettingN").prop("checked", true).change();
                     break;
                 case 0:
-                    $("#homeSee").prop("checked", true).change();
+                    $("#seeManiPageSettingED").prop("checked", true).change();
                     break;
                 case -1:
-                    $("#homeSee").prop("checked", false).change();
+                    $("#seeManiPageSettingED").prop("checked", false).change();
                     break
                 default:
-                    $("#homeSee").prop("checked", false).change();
+                    $("#seeManiPageSettingED").prop("checked", false).change();
+                    break;
+            }
+            switch (parseInt(data.specialSettingN)) {
+                case 2:
+                    $("#deleteSpecialSettingED").prop("checked", true).change();
+                    break;
+                case 1:
+                    $("#editSpecialSettingED").prop("checked", true).change();
+                    break;
+                case 0:
+                    $("#seeSpecialSettingED").prop("checked", true).change();
+                    break;
+                case -1:
+                    $("#seeSpecialSettingED").prop("checked", false).change();
+                    break
+                default:
+                    $("#seeSpecialSettingED").prop("checked", false).change();
+                    break;
+            }
+            switch (parseInt(data.emptyazSettingN)) {
+                case 2:
+                    $("#deleteEmtyazSettingED").prop("checked", true).change();
+                    break;
+                case 1:
+                    $("#editEmtyazSettingED").prop("checked", true).change();
+                    break;
+                case 0:
+                    $("#seeEmtyazSettingED").prop("checked", true).change();
+                    break;
+                case -1:
+                    $("#seeEmtyazSettingED").prop("checked", false).change();
+                    break
+                default:
+                    $("#seeEmtyazSettingED").prop("checked", false).change();
                     break;
             }
 
-            switch (parseInt(data.karbaran)) {
+            switch (parseInt(data.customersN)) {
                 case 2:
-                    $("#karbaranDelete").prop("checked", true).change();
+                    $("#deleteCustomersED").prop("checked", true).change();
                     break;
                 case 1:
-                    $("#karbaranChange").prop("checked", true).change();
+                    $("#editCustomersED").prop("checked", true).change();
                     break;
                 case 0:
-                    $("#karbaranSee").prop("checked", true).change();
+                    $("#seeCustomersED").prop("checked", true).change();
                     break;
                 case -1:
-                    $("#karbaranSee").prop("checked", false).change();
+                    $("#seeCustomersED").prop("checked", false).change();
                     break
                 default:
-                    $("#karbaranSee").prop("checked", false).change();
+                    $("#seeCustomersED").prop("checked", false).change();
+                    break;
+            }
+            switch (parseInt(data.kalaListsN)) {
+                case 2:
+                    $("#deleteKalaListED").prop("checked", true).change();
+                    break;
+                case 1:
+                    $("#editKalaListED").prop("checked", true).change();
+                    break;
+                case 0:
+                    $("#seeKalaListED").prop("checked", true).change();
+                    break;
+                case -1:
+                    $("#seeKalaListED").prop("checked", false).change();
+                    break
+                default:
+                    $("#seeKalaListED").prop("checked", false).change();
+                    break;
+            }
+            switch (parseInt(data.requestedKalaN)) {
+                case 2:
+                    $("#deleteRequestedKalaED").prop("checked", true).change();
+                    break;
+                case 1:
+                    $("#editRequestedKalaED").prop("checked", true).change();
+                    break;
+                case 0:
+                    $("#seeRequestedKalaED").prop("checked", true).change();
+                    break;
+                case -1:
+                    $("#seeRequestedKalaED").prop("checked", false).change();
+                    break
+                default:
+                    $("#seeRequestedKalaED").prop("checked", false).change();
+                    break;
+            }
+            switch (parseInt(data.fastKalaN)) {
+                case 2:
+                    $("#deleteFastKalaED").prop("checked", true).change();
+                    break;
+                case 1:
+                    $("#editFastKalaED").prop("checked", true).change();
+                    break;
+                case 0:
+                    $("#seeFastKalaED").prop("checked", true).change();
+                    break;
+                case -1:
+                    $("#seeFastKalaED").prop("checked", false).change();
+                    break
+                default:
+                    $("#seeFastKalaED").prop("checked", false).change();
                     break;
             }
 
-            switch (parseInt(data.specialSetting)) {
+            switch (parseInt(data.pishKharidN)) {
                 case 2:
-                    $("#specialDelete").prop("checked", true).change();
+                    $("#deletePishKharidED").prop("checked", true).change();
                     break;
                 case 1:
-                    $("#specialChange").prop("checked", true).change();
+                    $("#editPishKharidED").prop("checked", true).change();
                     break;
                 case 0:
-                    $("#specialSee").prop("checked", true).change();
+                    $("#seePishKharidED").prop("checked", true).change();
                     break;
                 case -1:
-                    $("#specialSee").prop("checked", false).change();
+                    $("#seePishKharidED").prop("checked", false).change();
                     break
                 default:
-                    $("#specialSee").prop("checked", false).change();
+                    $("#seePishKharidED").prop("checked", false).change();
+                    break;
+            }
+            switch (parseInt(data.brandsN)) {
+                case 2:
+                    $("#deleteBrandsED").prop("checked", true).change();
+                    break;
+                case 1:
+                    $("#editBrandsED").prop("checked", true).change();
+                    break;
+                case 0:
+                    $("#seeBrandsED").prop("checked", true).change();
+                    break;
+                case -1:
+                    $("#seeBrandsED").prop("checked", false).change();
+                    break
+                default:
+                    $("#seeBrandsED").prop("checked", false).change();
                     break;
             }
 
-            switch (parseInt(data.kalaList)) {
-                case 2:
-                    $("#deleteKalaList").prop("checked", true).change();
+            switch (parseInt(data.alertedN)) {
+                case 2: $("#deleteAlertedED").prop("checked", true).change();
                     break;
-                case 1:
-                    $("#changeKalaList").prop("checked", true).change();
+                case 1: $("#editAlertedED").prop("checked", true).change();
                     break;
-                case 0:
-                    $("#seeKalaList").prop("checked", true).change();
+                case 0: $("#seeAlertedED").prop("checked", true).change();
                     break;
-                case -1:
-                    $("#seeKalaList").prop("checked", false).change();
-                    break
-                default:
-                    $("#seeKalaList").prop("checked", false).change();
+                case -1: $("#seeAlertedED").prop("checked", false).change();
+                    break;
+                default: $("#seeAlertedED").prop("checked", false).change();
                     break;
             }
 
-            switch (parseInt(data.kalaRequests)) {
-                case 2:
-                    $("#deleteRequestedKala").prop("checked", true).change();
+            switch (parseInt(data.kalaGroupN)) {
+                case 2: $("#deletKalaGroupED").prop("checked", true).change();
                     break;
-                case 1:
-                    $("#changeRequestedKala").prop("checked", true).change();
+                case 1: $("#editKalaGroupED").prop("checked", true).change();
                     break;
-                case 0:
-                    $("#seeRequestedKala").prop("checked", true).change();
+                case 0: $("#seeKalaGroupED").prop("checked", true).change();
                     break;
-                case -1:
-                    $("#seeRequestedKala").prop("checked", false).change();
-                    break
-                default:
-                    $("#seeRequestedKala").prop("checked", false).change();
+                case -1: $("#seeKalaGroupED").prop("checked", false).change();
+                    break;
+                default: $("#seeKalaGroupED").prop("checked", false).change();
                     break;
             }
 
-            switch (parseInt(data.fastKala)) {
-                case 2:
-                    $("#deleteFastKala").prop("checked", true).change();
+            switch (parseInt(data.orderSalesN)) {
+                case 2: $("#deleteOrderSalesED").prop("checked", true).change();
                     break;
-                case 1:
-                    $("#changeFastKala").prop("checked", true).change();
+                case 1: $("#editOrderSalesED").prop("checked", true).change();
                     break;
-                case 0:
-                    $("#seeFastKala").prop("checked", true).change();
+                case 0: $("#seeOrderSalesED").prop("checked", true).change();
                     break;
-                case -1:
-                    $("#seeFastKala").prop("checked", false).change();
-                    break
-                default:
-                    $("#seeFastKala").prop("checked", false).change();
+                case -1: $("#seeOrderSalesED").prop("checked", false).change();
+                    break;
+                default: $("#seeOrderSalesED").prop("checked", false).change();
                     break;
             }
 
-            switch (parseInt(data.pishKharid)) {
-                case 2:
-                    $("#deletePishKharid").prop("checked", true).change();
+            switch (parseInt(data.messageN)) {
+                case 2: $("#deleteMessageED").prop("checked", true).change();
                     break;
-                case 1:
-                    $("#changePishKharid").prop("checked", true).change();
+                case 1: $("#editMessageED").prop("checked", true).change();
                     break;
-                case 0:
-                    $("#seePishKharid").prop("checked", true).change();
+                case 0: $("#seeMessageED").prop("checked", true).change();
                     break;
-                case -1:
-                    $("#seePishKharid").prop("checked", false).change();
-                    break
-                default:
-                    $("#seePishKharid").prop("checked", false).change();
+                case -1: $("#seeMessageED").prop("checked", false).change();
+                    break;
+                default: $("#seeMessageED").prop("checked", false).change();
                     break;
             }
 
-            switch (parseInt(data.brand)) {
-                case 2:
-                    $("#deleteBrands").prop("checked", true).change();
+            switch (parseInt(data.customerListN)) {
+                case 2: $("#deletCustomerListED").prop("checked", true).change();
                     break;
-                case 1:
-                    $("#changeBrands").prop("checked", true).change();
+                case 1: $("#editCustomerListED").prop("checked", true).change();
                     break;
-                case 0:
-                    $("#seeBrands").prop("checked", true).change();
+                case 0: $("#seeCustomerListED").prop("checked", true).change();
                     break;
-                case -1:
-                    $("#seeBrands").prop("checked", false).change();
-                    break
-                default:
-                    $("#seeBrands").prop("checked", false).change();
+                case -1: $("#seeCustomerListED").prop("checked", false).change();
+                    break;
+                default: $("#seeCustomerListED").prop("checked", false).change();
                     break;
             }
 
-            switch (parseInt(data.alertedKala)) {
-                case 2:
-                    $("#deleteAlerted").prop("checked", true).change();
+            switch (parseInt(data.officialCustomerN)) {
+                case 2: $("#deleteOfficialCustomerED").prop("checked", true).change();
                     break;
-                case 1:
-                    $("#changeAlerted").prop("checked", true).change();
+                case 1: $("#editOfficialCustomerED").prop("checked", true).change();
                     break;
-                case 0:
-                    $("#seeAlerted").prop("checked", true).change();
+                case 0: $("#seeOfficialCustomerED").prop("checked", true).change();
                     break;
-                case -1:
-                    $("#seeAlerted").prop("checked", false).change();
-                    break
-                default:
-                    $("#seeAlerted").prop("checked", false).change();
+                case -1: $("#seeOfficialCustomerED").prop("checked", false).change();
+                    break;
+                default: $("#seeOfficialCustomerED").prop("checked", false).change();
                     break;
             }
 
-            switch (parseInt(data.listGroups)) {
-                case 2:
-                    $("#deleteGroupList").prop("checked", true).change();
+            switch (parseInt(data.lotteryResultN)) {
+                case 2: $("#deletLotteryResultED").prop("checked", true).change();
                     break;
-                case 1:
-                    $("#changeGroupList").prop("checked", true).change();
+                case 1: $("#editLotteryResultED").prop("checked", true).change();
                     break;
-                case 0:
-                    $("#seeGroupList").prop("checked", true).change();
+                case 0: $("#seeLotteryResultED").prop("checked", true).change();
                     break;
-                case -1:
-                    $("#seeGroupList").prop("checked", false).change();
-                    break
-                default:
-                    $("#seeGroupList").prop("checked", false).change();
+                case -1: $("#seeLotteryResultED").prop("checked", false).change();
+                    break;
+                default: $("#seeLotteryResultED").prop("checked", false).change();
                     break;
             }
 
-            switch (parseInt(data.messages)) {
-                case 2:
-                    $("#deleteMessages").prop("checked", true).change();
+
+            switch (parseInt(data.gamerListN)) {
+                case 2: $("#deletGamerListED").prop("checked", true).change();
                     break;
-                case 1:
-                    $("#changeMessages").prop("checked", true).change();
+                case 1: $("#editGamerListED").prop("checked", true).change();
                     break;
-                case 0:
-                    $("#seeMessages").prop("checked", true).change();
+                case 0: $("#seeGamerListED").prop("checked", true).change();
                     break;
-                case -1:
-                    $("#seeMessages").prop("checked", false).change();
-                    break
-                default:
-                    $("#seeMessages").prop("checked", false).change();
+                case -1: $("#seeGamerListED").prop("checked", false).change();
+                    break;
+                default: $("#seeGamerListED").prop("checked", false).change();
                     break;
             }
 
-            switch (parseInt(data.customers)) {
-                case 2:
-                    $("#deleteCustomers").prop("checked", true).change();
+            switch (parseInt(data.onlinePaymentN)) {
+                case 2: $("#deleteOnlinePaymentED").prop("checked", true).change();
                     break;
-                case 1:
-                    $("#changeCustomers").prop("checked", true).change();
+                case 1: $("#editOnlinePaymentED").prop("checked", true).change();
                     break;
-                case 0:
-                    $("#seeCustomers").prop("checked", true).change();
+                case 0: $("#seeOnlinePaymentED").prop("checked", true).change();
                     break;
-                case -1:
-                    $("#seeCustomers").prop("checked", false).change();
-                    break
-                default:
-                    $("#seeCustomers").prop("checked", false).change();
+                case -1: $("#seeOnlinePaymentED").prop("checked", false).change();
+                    break;
+                default: $("#seeOnlinePaymentED").prop("checked", false).change();
                     break;
             }
 
-            switch (parseInt(data.officials)) {
-                case 2:
-                    $("#deleteOfficials").prop("checked", true).change();
-                    break;
-                case 1:
-                    $("#changeOfficials").prop("checked", true).change();
-                    break;
-                case 0:
-                    $("#seeOfficials").prop("checked", true).change();
-                    break;
-                case -1:
-                    $("#seeOfficials").prop("checked", false).change();
-                    break
-                default:
-                    $("#seeOfficials").prop("checked", false).change();
-                    break;
-            }
 
             $("#userName").val(data.userName);
             $("#name").val(data.name);
