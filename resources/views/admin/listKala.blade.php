@@ -163,7 +163,9 @@
                 <div class="row contentHeader">
                     <div class="col-lg-12 text-end mt-1">
                         <span class="listkalarStaff">
-                            <button class="kala-btn btn btn-success btn-sm text-warning " disabled id="openEditKalaModal"> ویرایش <i class="fal fa-edit" aria-hidden="true"></i></button>
+                               @if(hasPermission(Session::get("adminId"),"kalasN") > -1)
+                                 <button class="kala-btn btn btn-success btn-sm text-warning " disabled id="openEditKalaModal"> ویرایش <i class="fal fa-edit" aria-hidden="true"></i></button>
+                               @endif
                             <input type="text" class="form-control" value="" id="kalaIdForEdit1" style="display:none;">
                             <form action="{{url('/editKala')}}" method="POST" style="display: inline;">
                                 @csrf
