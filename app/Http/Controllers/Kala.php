@@ -2366,6 +2366,18 @@ $minSubGroupId=DB::table("NewStarfood.dbo.star_add_prod_group")->where("firstGro
         $listKala=DB::select("SELECT * FROM Shop.dbo.PubGoods join NewStarfood.dbo.star_add_prod_group on PubGoods.GoodSn=star_add_prod_group.product_Id where star_add_prod_group.secondGroupId=".$subGroupId);
         return view("admin.changeKalaPic",['listKala'=>$listKala]);
     }
+    public function getGoodPictureState(Request $request)
+    {
+        $respond="deleted";
+        $goodSn=$request->get('goodSn');
+        if(file_exists('resources/assets/images/kala/' . $goodSn . '_1.jpg')){
+            unlink('resources/assets/images/kala/' . $goodSn . '_1.jpg');
+            $respond="deleted";
+        }else{
+            $respond="notExist";
+        }
+        return response()->json($respond);
+    }
     public function changePriceKala(Request $request)
     {
         $kalaId=$request->get("kalaId");

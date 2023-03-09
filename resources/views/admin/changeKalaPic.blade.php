@@ -1,5 +1,10 @@
 @extends ('admin.layout')
 @section('content')
+<style>
+    .showdeleteBtn{
+        display: none;
+    }
+</style>
 <div class="container-fluid containerDiv">
     <div class="row">
             <div class="col-lg-2 col-md-2 col-sm-3 sideBar">
@@ -35,28 +40,25 @@
                                 <div class="c-product__add">
                                     <div class="c-product__add" style="display: block">
                                     <iframe name="votar" style="display:none;"></iframe>
-                                    <form action="{{ url('/addpicture') }}" onsubmit='document.getElementById("uploadButton{{$item->GoodSn}}").style.backgroundColor="#198754";' target="votar" enctype="multipart/form-data" method="POST">
+                                    <form action="{{ url('/addpicture') }}" onsubmit='document.getElementById("uploadButton{{$item->GoodSn}}").style.backgroundColor="#198754"; document.getElementById("deleteBtn{{$item->GoodSn}}").classList.remove("showdeleteBtn");' target="votar" enctype="multipart/form-data" method="POST">
                                         @csrf
-                                        <label @if(hasPermission(Session::get( 'adminId'),'fastKala' ) > 0) for="mainPic{{$item->GoodSn}}" @endif style="width: 220px;margin-bottom:5%;" class="btn btn-success editButtonHover">  ویرایش <i class="fa-light fa-image fa-lg"></i></label>
-
+                                        <label @if(hasPermission(Session::get( 'adminId'),'fastKala' ) > 0) for="mainPic{{$item->GoodSn}}" @endif style="width: 100px;margin-bottom:5%;" class="btn btn-success editButtonHover">  ویرایش <i class="fa-light fa-image fa-lg"></i></label>
                                         <input type="file"   onchange='document.getElementById("mainPicEdit{{$item->GoodSn}}").src = window.URL.createObjectURL(this.files[0]); document.getElementById("uploadButton{{$item->GoodSn}}").style.backgroundColor="red";' style="display: none" class="form-control" name="firstPic" id="mainPic{{$item->GoodSn}}">
+                                        
+                                            <button style="width: 100px;margin-bottom:5%;" onclick="deleteKalaPicture({{$item->GoodSn}},this)" id="deleteBtn{{$item->GoodSn}}" class="btn editButtonHover btn-danger @if(!file_exists('resources/assets/images/kala/' . $item->GoodSn . '_1.jpg')) showdeleteBtn @endif">حذف عکس</button>
+                                        
+                                        <br/>
                                         <br/>
                                         <label  style="width: 110px;margin-bottom:5%;" class="btn btn-success editButtonHover">  ویرایش <i class="fa-light fa-image fa-lg"></i></label>
-
                                         <input type="file"   style="display: none" class="form-control"  >
                                         <label  style="width: 110px;margin-bottom:5%;" class="btn btn-success editButtonHover">  ویرایش <i class="fa-light fa-image fa-lg"></i></label>
-
                                         <input type="file"   style="display: none" class="form-control"  >
                                         <br/>
                                         <label  style="width: 110px;margin-bottom:5%;" class="btn btn-success editButtonHover">  ویرایش <i class="fa-light fa-image fa-lg"></i></label>
-
                                         <input type="file"   style="display: none" class="form-control"  >
                                         <label  style="width: 110px;margin-bottom:5%;" class="btn btn-success editButtonHover">  ویرایش <i class="fa-light fa-image fa-lg"></i></label>
-
                                         <input type="file"   style="display: none" class="form-control"  >
-                                        <div class="d-flex justify-content-between"
-                                        style="border-top: 1px solid gray;border-bottom: 1px solid gray;">
-                                        </div>
+                                        <div class="d-flex justify-content-between" style="border-top: 1px solid gray;border-bottom: 1px solid gray;"></div>
                                         <input type="text" name="kalaId" value="{{$item->GoodSn}}" style="display: none">
                                         <button type="submit" id="uploadButton{{$item->GoodSn}}" style="margin: 2%;" class="btn btn-success btn-sm editButtonHover">اپلود</button>
                                     </form>
