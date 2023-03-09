@@ -27,14 +27,14 @@
                                     <div class="col-sm-3">
                                         <div class='form-group'>
                                             <label class='form-label'>اسم سطر</label>
-                                            <input   @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 ) disabled @endif class="form-control form-control-sm" type='text' id='partTitle' value="{{   trim($part->partTitle) }}" autocomplete="off" class='form-control' name='partTitle' placeholder=''>
+                                            <input   @if(hasPermission(Session::get( 'adminId'),'mainPageSetting' ) <1 ) disabled @endif class="form-control form-control-sm" type='text' id='partTitle' value="{{   trim($part->partTitle) }}" autocomplete="off" class='form-control' name='partTitle' placeholder=''>
                                             <input type='text' style="display: none" id="partId" value="{{ $part->partId }}" class='form-control' name='partId' placeholder=''>
                                         </div>
                                     </div>
                                     <div class="col-sm-3">
                                         <div class='form-group'>
                                             <label class='form-label'>نوع دسته بندی</label>
-                                            <select   @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 ) disabled @endif class="form-select form-select-sm" name='partType' onchange='showDiv(this)' class='form-control' id='partType'>
+                                            <select   @if(hasPermission(Session::get( 'adminId'),'mainPageSetting' ) <1 ) disabled @endif class="form-select form-select-sm" name='partType' onchange='showDiv(this)' class='form-control' id='partType'>
                                                 <option value="{{ $part->partType }}">{{ $part->name }}</option>
                                             </select>
                                         </div>
@@ -42,7 +42,7 @@
                                     <div class="col-sm-2">
                                         <div class='form-group'>
                                             <label class='form-label'>اولویت</label>
-                                            <select   @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 ) disabled @endif class="form-select form-select-sm"  type='text' id="priority"  class='form-select' name='partPriority' placeholder=''>
+                                            <select   @if(hasPermission(Session::get( 'adminId'),'mainPageSetting' ) <1 ) disabled @endif class="form-select form-select-sm"  type='text' id="priority"  class='form-select' name='partPriority' placeholder=''>
                                                 @for ($i =3; $i <= (int)$countHomeParts; $i++)
                                                     <option @if((int)$part->priority==$i) selected @endif value="{{$i}}">{{$i-2}}</option>
                                                 @endfor
@@ -51,12 +51,12 @@
                                     </div>
                                     <div class="col-sm-1 d-flex align-items-stretch">
                                         <div class="form-group d-flex text-nowrap align-items-center pt-3">
-                                            <input   @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 ) disabled @endif class="form-control d-flex form-check-input align-items-end" type="checkbox" name="activeOrNot" id="activeOrNot" @if ($part->activeOrNot==1) checked @else @endif >
+                                            <input   @if(hasPermission(Session::get( 'adminId'),'mainPageSetting' ) <1 ) disabled @endif class="form-control d-flex form-check-input align-items-end" type="checkbox" name="activeOrNot" id="activeOrNot" @if ($part->activeOrNot==1) checked @else @endif >
                                             <label class="form-check-label align-items-end" style="font-weight: bold" for="activeOrNot">نمایش</label>
                                         </div>
                                     </div>
                                     <div class="col-sm-3 text-end">
-                                         <button type="submit"  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 ) disabled @endif class="btn btn-success btn-sm text-warning" style="foloat:left;">ذخیره <i class="fa-light fa-save"></i></button>
+                                         <button type="submit"  @if(hasPermission(Session::get( 'adminId'),'mainPageSetting' ) <1 ) disabled @endif class="btn btn-success btn-sm text-warning" style="foloat:left;">ذخیره <i class="fa-light fa-save"></i></button>
                                     </div>
                                 </div>
 
@@ -69,12 +69,12 @@
                                                 <tr>
                                                     <th>ردیف</th>
                                                     <th>گروه اصلی </th>
-                                                    <th><input type="checkbox" @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 ) disabled @endif  class="selectAllFromTop form-check-input"  ></th>
+                                                    <th><input type="checkbox" @if(hasPermission(Session::get( 'adminId'),'mainPageSetting' ) <1 ) disabled @endif  class="selectAllFromTop form-check-input"  ></th>
                                                 </tr>
                                             </thead>
                                             <tbody class="tableBody" style="height: 300px !important" id="groupsPart">
                                                 @foreach ($groups as $group)
-                                                    <tr   @if(hasPermission(Session::get( 'adminId'),'homePage' ) > 0 )  onclick="checkCheckBox(this,event)" @endif>
+                                                    <tr   @if(hasPermission(Session::get( 'adminId'),'mainPageSetting' ) > 0 )  onclick="checkCheckBox(this,event)" @endif>
                                                         <td>{{ $loop->index+1 }}</td>
                                                         <td>{{ $group->title }}</td>
                                                         <td>
@@ -86,10 +86,10 @@
                                         </table>
                                     </div>
                                     <div class="subgroup-item" style="margin-top:88px;">
-                                         <button style="background-color:transparent;" id="addGroupData" type="button" @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 ) disabled @endif>
+                                         <button style="background-color:transparent;" id="addGroupData" type="button" @if(hasPermission(Session::get( 'adminId'),'mainPageSetting' ) <1 ) disabled @endif>
                                             <i class="fa-regular fa-circle-chevron-left fa-2x"></i>
                                         </button> <br>
-                                        <button style="background-color:transparent;" id="removeGroupData" type="button" @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 ) disabled @endif>
+                                        <button style="background-color:transparent;" id="removeGroupData" type="button" @if(hasPermission(Session::get( 'adminId'),'mainPageSetting' ) <1 ) disabled @endif>
                                             <i class="fa-regular fa-circle-chevron-right fa-2x"></i>
                                         </button>
                                     </div>
@@ -106,12 +106,12 @@
                                                         <button class='groupPartPriority' style="background-color:transparent; margin-top:-10px;" type="button" value="down"><i class="fa-solid fa-circle-chevron-down fa-sm" style=''></i></button>
                                                         <button class='groupPartPriority' style="background-color:transparent; margin-top:-10px;" type="button" value="up"><i class="fa-solid fa-circle-chevron-up fa-sm" style=''></i></button>
                                                     </th>
-                                                    <th><input type="checkbox" @if(hasPermission(Session::get( 'adminId'),'homePage' ) < 1 ) disabled @endif class="selectAllFromTop form-check-input"></th>
+                                                    <th><input type="checkbox" @if(hasPermission(Session::get( 'adminId'),'mainPageSetting' ) < 1 ) disabled @endif class="selectAllFromTop form-check-input"></th>
                                                 </tr>
                                             </thead>
                                             <tbody class="tableBody" style="height: 300px !important" id="addedGroups">
                                                 @foreach ($addedGroups as $group)
-                                                    <tr class="addedTr"  @if(hasPermission(Session::get( 'adminId'),'homePage' ) > 0 ) onClick="checkCheckBox(this,event)" @endif>
+                                                    <tr class="addedTr"  @if(hasPermission(Session::get( 'adminId'),'mainPageSetting' ) > 0 ) onClick="checkCheckBox(this,event)" @endif>
                                                         <td>{{ $loop->index+1}}</td>
                                                         <td>{{ $group->groupTitle }}</td>
                                                         <td>
