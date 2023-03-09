@@ -45,23 +45,23 @@
             <div class="col-sm-10 col-md-10 col-sm-12 contentDiv">
                 <div class="row contentHeader"> 
                     <div class='col-lg-12 text-end mt-1'>
-                        <button class="btn btn-sm btn-success specialSettingsBtn float-end"  id="webSpecialSettingBtn" @if(hasPermission(Session::get( 'adminId'),'specialSetting' ) < 1) disabled @endif  > ذخیره <i class="fa fa-save"> </i> </button>
+                        <button class="btn btn-sm btn-success specialSettingsBtn float-end"  id="webSpecialSettingBtn" @if(hasPermission(Session::get( 'adminId'),'specialSettingN' ) < 1) disabled @endif  > ذخیره <i class="fa fa-save"> </i> </button>
                          <form action="{{ url('/editParts') }}" style="display: inline;" method="POST" class="mainPageStuff">
-                            @if(hasPermission(Session::get("adminId"),"homePage") >1)
+                            @if(hasPermission(Session::get("adminId"),"mainPageSetting") >1)
                                 <a href="{{ url('/addNewGroup') }}" class='btn btn-sm btn-success'> بخش جدید <i class="fa fa-plus" aria-hidden="true"></i></a>
                             @endif
                                 @csrf
                                 <input type="text" id="partType" style="display: none" name="partType" value="" />
                                 <input type="text" id="partId" style="display: none" name="partId" value="" />
                                 <input type="text" id="partTitle" style="display: none" name="title" value="" />
-                            @if(hasPermission(Session::get("adminId"),"homePage") > -1)
+                            @if(hasPermission(Session::get("adminId"),"mainPageSetting") > -0)
                                 <button class='btn btn-success btn-sm text-white' disabled  type="submit" id='editPart'> ویرایش  <i class="fa fa-edit" aria-hidden="true"></i></button>
                             @endif
                         </form>
-                        @if(hasPermission(Session::get("adminId"),"homePage") > 1)
+                        @if(hasPermission(Session::get("adminId"),"mainPageSetting") > 1)
                               <button class='btn btn-danger btn-sm disabled mainPageStuff' id='deletePart'>  حذف  <i class="fa fa-trash" aria-hidden="true"></i></button>
                         @endif
-                        @if(hasPermission(Session::get("adminId"),"homePage") > 0)
+                        @if(hasPermission(Session::get("adminId"),"mainPageSetting") > 0)
                         <form action="{{ url('/changePriority') }}" style="display:inline;" method="POST" >
                                 @csrf
                                 <button class="mainPageStuff" name='changePriority' id="downArrow" disabled type="submit" value="down" style="background-color:#43bfa3; padding:0;"> <i class="fa-solid fa-circle-chevron-down fa-2x chevronHover"></i></button>
@@ -113,13 +113,13 @@
                      <div class="tab-pane active" id="webSettings">
                          <div class="row bg-white">
                             <div class="col-sm-3">
-                                <input type="checkbox" @if($settings->buyFromHome==1) checked @endif value="" name="buyFromHome[]" @if(hasPermission(Session::get("adminId"),"specialSetting") < 1) disabled @endif  class="form-check-input float-start">
+                                <input type="checkbox" @if($settings->buyFromHome==1) checked @endif value="" name="buyFromHome[]" @if(hasPermission(Session::get("adminId"),"specialSettingN") < 1) disabled @endif  class="form-check-input float-start">
                                 <label class="form-check-label ms-2" for="flexCheckDefault">
                                     امکان خرید از صفحه اصلی 
                                 </label>
                             </div>
                             <div class="col-sm-2">
-                                    <input type="checkbox" @if($settings->enamad==1) checked @endif value="" name="enamad[]" @if(hasPermission(Session::get("adminId"),"specialSetting") < 1) disabled @endif  class="form-check-input float-start"> 
+                                    <input type="checkbox" @if($settings->enamad==1) checked @endif value="" name="enamad[]" @if(hasPermission(Session::get("adminId"),"specialSettingN") < 1) disabled @endif  class="form-check-input float-start"> 
                                     <label class="form-check-label ms-2" for="flexCheckDefault">
                                     نمایش E-Namad
                                     </label>
@@ -128,14 +128,14 @@
                                 <label class="form-check-label ms-2" for="flexCheckDefault">
                                         نمایش صفحه اصلی 
                                 </label>
-                                <select name="selectHome" @if(hasPermission(Session::get( 'adminId'),'specialSetting' ) < 1) disabled @endif  type="text" class="form-select form-select-sm">
+                                <select name="selectHome" @if(hasPermission(Session::get( 'adminId'),'specialSettingN' ) < 1) disabled @endif  type="text" class="form-select form-select-sm">
                                     <option @if($settings->homePage==1) selected @endif value="1">با جزئیات</option>
                                     <option @if($settings->homePage==2) selected @endif value="2">دسته بندی</option>
                                 </select>
                             </div>
                             <div class="col-sm-2">
                                 <label class="form-check-label ms-2" for="flexCheckDefault">تعیین سال مالی</label>
-                                    <select name="fiscallYear" @if(hasPermission(Session::get( 'adminId'),'specialSetting' ) < 1) disabled @endif   type="text" class="form-select form-select-sm">
+                                    <select name="fiscallYear" @if(hasPermission(Session::get( 'adminId'),'specialSettingN' ) < 1) disabled @endif   type="text" class="form-select form-select-sm">
                                     @for ($i=1398; $i<=1440;$i++)
                                     <option @if( $settings -> FiscallYear==$i ) selected @endif value="{{$i}}">{{$i}}</option>
                                     @endfor
@@ -143,13 +143,13 @@
                             </div>
                             <div class="col-sm-2 float-start">نمایش لوگو 
                                 <div class="form-check">
-                                    <input type="radio" @if($settings->logoPosition==0) checked @endif value="0"  @if(hasPermission(Session::get("adminId"),"specialSetting") < 1) disabled @endif  class="form-check-input float-start" name="logoPosition">
+                                    <input type="radio" @if($settings->logoPosition==0) checked @endif value="0"  @if(hasPermission(Session::get("adminId"),"specialSettingN") < 1) disabled @endif  class="form-check-input float-start" name="logoPosition">
                                     <label class="form-check-label ms-4" for="flexRadioDefault1">
                                             چب
                                     </label>  
                                 </div>
                                 <div class="form-check">
-                                    <input type="radio" @if($settings->logoPosition==1) checked @endif value="1"  @if(hasPermission(Session::get("adminId"),"specialSetting") < 1) disabled @endif  class="form-check-input float-start" name="logoPosition">
+                                    <input type="radio" @if($settings->logoPosition==1) checked @endif value="1"  @if(hasPermission(Session::get("adminId"),"specialSettingN") < 1) disabled @endif  class="form-check-input float-start" name="logoPosition">
                                     <label class="form-check-label ms-4" for="flexRadioDefault1">
                                         راست
                                     </label>
@@ -164,14 +164,14 @@
 						 <div class="col-sm-3">
 							 <div class="input-group input-group-sm mb-3">
 							    <span class="input-group-text" id="inputGroup-sizing-sm"> تعداد انتخاب کالاها </span>
-							    <input type="text" @if(hasPermission(Session::get( 'adminId'),'specialSetting' ) < 1) disabled @endif  class="form-control form-control-sm" name="maxSale" @if ($settings) value="{{$settings->maxSale}}" @endif>
+							    <input type="text" @if(hasPermission(Session::get( 'adminId'),'specialSettingN' ) < 1) disabled @endif  class="form-control form-control-sm" name="maxSale" @if ($settings) value="{{$settings->maxSale}}" @endif>
 							 </div>
 						 </div>
 							
 						 <div class="col-sm-3">
 							<div class="input-group input-group-sm mb-3">
 							   <span class="input-group-text" id="inputGroup-sizing-sm"> کف مبلغ ثبت فاکتور (تومان) </span>
-							    <input type="text" @if(hasPermission(Session::get( 'adminId'),'specialSetting' ) < 1) disabled @endif  class="form-control form-control-sm" id="minSalePriceFactor" name="minSalePriceFactor" placeholder="تومان" value="{{ number_format($settings->minSalePriceFactor) }}" size="20" id="allKalaFirst">
+							    <input type="text" @if(hasPermission(Session::get( 'adminId'),'specialSettingN' ) < 1) disabled @endif  class="form-control form-control-sm" id="minSalePriceFactor" name="minSalePriceFactor" placeholder="تومان" value="{{ number_format($settings->minSalePriceFactor) }}" size="20" id="allKalaFirst">
 							 </div>
 						 </div>
 							
@@ -182,7 +182,7 @@
 							 </div>
 						 </div>
 						<div class="col-sm-3">
-							 <select type="text" @if(hasPermission(Session::get( 'adminId'),'specialSetting' ) < 1) disabled @endif  class="form-select form-select-sm" id="" name="currency">
+							 <select type="text" @if(hasPermission(Session::get( 'adminId'),'specialSettingN' ) < 1) disabled @endif  class="form-select form-select-sm" id="" name="currency">
 							 <option @if($settings->currency==1) selected @endif  value="1">ریال</option>
 							 <option @if($settings->currency==10) selected @endif value="10">تومان</option>
 							</select>
@@ -190,14 +190,14 @@
                     </div>
                     <div class="row">
                         <div class="col-sm-5">
-                            <input type="text" class="form-control form-control-sm" @if(hasPermission(Session::get( 'adminId'),'specialSetting' ) < 1) disabled @endif  id="serachKalaForSubGroup"  placeholder="جستجو">
+                            <input type="text" class="form-control form-control-sm" @if(hasPermission(Session::get( 'adminId'),'specialSettingN' ) < 1) disabled @endif  id="serachKalaForSubGroup"  placeholder="جستجو">
                                 <table class="table table-bordered table table-hover table-sm">
                                     <thead class="tableHeader">
                                         <tr>
                                             <th>ردیف</th>
                                             <th>اسم </th>
                                             <th>
-                                             <input type="checkbox" name="" @if(hasPermission(Session::get( 'adminId'),'specialSetting' ) < 1) disabled @endif   class="selectAllFromTop form-check-input"  >
+                                             <input type="checkbox" name="" @if(hasPermission(Session::get( 'adminId'),'specialSettingN' ) < 1) disabled @endif   class="selectAllFromTop form-check-input"  >
                                             </th>
                                         </tr>
                                     </thead>
@@ -207,7 +207,7 @@
                                             <td>{{$loop->iteration}}</td>
                                             <td>{{$stock->NameStock}} </td>
                                             <td>
-                                             <input type="checkbox" @if(hasPermission(Session::get( 'adminId'),'specialSetting' ) < 1) disabled @endif  value="{{$stock->SnStock.'_'.$stock->NameStock}}" name="allStocks[]" class="form-check-input" >
+                                             <input type="checkbox" @if(hasPermission(Session::get( 'adminId'),'specialSettingN' ) < 1) disabled @endif  value="{{$stock->SnStock.'_'.$stock->NameStock}}" name="allStocks[]" class="form-check-input" >
                                             </td>
                                         </tr>
                                         @endforeach
@@ -230,14 +230,14 @@
                         </div>
 
                         <div class="col-sm-5">
-                            <input type="text" @if(hasPermission(Session::get( 'adminId'),'specialSetting' ) < 1)disabled @endif class="form-control form-control-sm" id="serachKalaOfSubGroup"  placeholder="جستجو">
+                            <input type="text" @if(hasPermission(Session::get( 'adminId'),'specialSettingN') < 1)disabled @endif class="form-control form-control-sm" id="serachKalaOfSubGroup"  placeholder="جستجو">
                                 <table class="table table-bordered table table-hover table-sm">
                                     <thead class="tableHeader">
                                         <tr>
                                             <th>ردیف</th>
                                             <th>اسم</th>
                                             <th>
-                                                <input type="checkbox" @if(hasPermission(Session::get( 'adminId'),'specialSetting' ) < 1) disabled @endif   name="" class="selectAllFromTop form-check-input"/>
+                                                <input type="checkbox" @if(hasPermission(Session::get( 'adminId'),'specialSettingN') < 1) disabled @endif   name="" class="selectAllFromTop form-check-input"/>
                                             </th>
                                         </tr>
                                     </thead>
@@ -247,7 +247,7 @@
                                             <td>{{$loop->iteration}}</td>
                                             <td>{{$stock->NameStock}} </td>
                                             <td>
-                                             <input type="checkbox" @if(hasPermission(Session::get( 'adminId'),'specialSetting' ) < 1) disabled @endif  value="{{$stock->SnStock.'_'.$stock->NameStock}}" name="allStocks[]"  class="form-check-input"  >
+                                             <input type="checkbox" @if(hasPermission(Session::get( 'adminId'),'specialSettingN') < 1) disabled @endif  value="{{$stock->SnStock.'_'.$stock->NameStock}}" name="allStocks[]"  class="form-check-input"  >
                                             </td>
                                         </tr>
                                         @endforeach
@@ -263,36 +263,36 @@
                                   <div class="col-sm-4"> 
                                     <div class="input-group input-group-sm mb-3">
                                         <span class="input-group-text" id="inputGroup-sizing-default">متن قبل از ظهر </span>
-                                        <input type="text" @if(hasPermission(Session::get( 'adminId'),'specialSetting' ) < 1) disabled @endif  class="form-control form-control-sm" @if ($settings) value="{{$settings->moorningTimeContent}}" @endif name="moorningTimeContent">
+                                        <input type="text" @if(hasPermission(Session::get( 'adminId'),'specialSettingN' ) < 1) disabled @endif  class="form-control form-control-sm" @if ($settings) value="{{$settings->moorningTimeContent}}" @endif name="moorningTimeContent">
                                     </div>
                                   </div>
                                   <div class="col-sm-4"> 
                                     <div class="input-group input-group-sm mb-3">
                                         <span class="input-group-text" id="inputGroup-sizing-default">متن بعد از ظهر </span>
-                                        <input type="text" @if(hasPermission(Session::get( 'adminId'),'specialSetting' ) < 1) disabled @endif  class="form-control form-control-sm" @if ($settings) value="{{$settings->afternoonTimeContent}}" @endif name="afternoonTimeContent">
+                                        <input type="text" @if(hasPermission(Session::get( 'adminId'),'specialSettingN' ) < 1) disabled @endif  class="form-control form-control-sm" @if ($settings) value="{{$settings->afternoonTimeContent}}" @endif name="afternoonTimeContent">
                                     </div>
                                   </div>
                                 </div>
                                 
                                 <div class="row py-3">
                                     <div class="col-md-4 ">
-										&nbsp; <input class="form-check-input" @if(hasPermission(Session::get( 'adminId'),'specialSetting' ) < 1) disabled @endif  type="checkbox"  name="firstDayMoorningActive" @if($settings) @if($settings->firstDayMoorningActive==1) checked @else  @endif @endif id="third-price">
+										&nbsp; <input class="form-check-input" @if(hasPermission(Session::get( 'adminId'),'specialSettingN' ) < 1) disabled @endif  type="checkbox"  name="firstDayMoorningActive" @if($settings) @if($settings->firstDayMoorningActive==1) checked @else  @endif @endif id="third-price">
                                         <label for="userName">قبل از ظهر روز اول</label> &nbsp;
-                                        <input class="form-check-input" @if(hasPermission(Session::get( 'adminId'),'specialSetting' ) < 1) disabled @endif  type="checkbox"  name="firstDayAfternoonActive" @if($settings) @if($settings->firstDayAfternoonActive==1) checked @else  @endif @endif   id="third-price">
+                                        <input class="form-check-input" @if(hasPermission(Session::get( 'adminId'),'specialSettingN' ) < 1) disabled @endif  type="checkbox"  name="firstDayAfternoonActive" @if($settings) @if($settings->firstDayAfternoonActive==1) checked @else  @endif @endif   id="third-price">
                                         <label for="userName" >بعد از ظهر روز اول</label>
                                     </div>
                                
                                     <div class="col-md-4 px-0">
-                                         <input class="form-check-input" type="checkbox" @if(hasPermission(Session::get( 'adminId'),'specialSetting' ) < 1) disabled @endif  name="secondDayMoorningActive" @if($settings) @if($settings->secondDayMoorningActive==1) checked @else @endif @endif id="third-price">
+                                         <input class="form-check-input" type="checkbox" @if(hasPermission(Session::get( 'adminId'),'specialSettingN' ) < 1) disabled @endif  name="secondDayMoorningActive" @if($settings) @if($settings->secondDayMoorningActive==1) checked @else @endif @endif id="third-price">
                                         <label for="userName">قبل از ظهر روز دوم</label> &nbsp;
-                                         <input class="form-check-input" type="checkbox" @if(hasPermission(Session::get( 'adminId'),'specialSetting' ) < 1) disabled @endif  name="secondDayAfternoonActive" @if($settings) @if($settings->secondDayAfternoonActive==1) checked @else @endif @endif id="third-price">
+                                         <input class="form-check-input" type="checkbox" @if(hasPermission(Session::get( 'adminId'),'specialSettingN' ) < 1) disabled @endif  name="secondDayAfternoonActive" @if($settings) @if($settings->secondDayAfternoonActive==1) checked @else @endif @endif id="third-price">
                                         <label for="userName">بعد از ظهر روز دوم</label>
                                     </div>
                                
                                     <div class="col-md-4 px-0">
-                                         <input class="form-check-input" type="checkbox" @if(hasPermission(Session::get( 'adminId'),'specialSetting' ) < 1) disabled @endif   name="favoriteDateMoorningActive" @if($settings) @if($settings->FavoriteDateMoorningActive==1) checked @else @endif @endif id="third-price">
+                                         <input class="form-check-input" type="checkbox" @if(hasPermission(Session::get( 'adminId'),'specialSettingN' ) < 1) disabled @endif   name="favoriteDateMoorningActive" @if($settings) @if($settings->FavoriteDateMoorningActive==1) checked @else @endif @endif id="third-price">
                                         <label for="idealBeforNoon">قبل از ظهر روز دلخواه</label> &nbsp;
-                                         <input class="form-check-input" type="checkbox" @if(hasPermission(Session::get( 'adminId'),'specialSetting' ) < 1) disabled @endif  name="favoriteDateAfternoonActive" @if($settings) @if($settings->FavoriteDateAfternoonActive==1) checked @else @endif @endif id="third-price">
+                                         <input class="form-check-input" type="checkbox" @if(hasPermission(Session::get( 'adminId'),'specialSettingN' ) < 1) disabled @endif  name="favoriteDateAfternoonActive" @if($settings) @if($settings->FavoriteDateAfternoonActive==1) checked @else @endif @endif id="third-price">
                                         <label for="idealAfterNoon">بعد از ظهر روز دلخواه</label>
                                     </div>
                                 </div>
@@ -347,17 +347,17 @@
                                 <div class="col-sm-3">
                                     <i class="fab fa-instagram 4x" style="color:#e94a66; font-size:22px;"></i>
                                     <label for="userName"> انستاگرام</label>
-                                    <input type="text" class="form-control form-control-sm" @if(hasPermission(Session::get( 'adminId'),'specialSetting' ) < 1) disabled @endif  @if ($settings) value="{{$settings->telegramId}}" @endif name="telegramId">
+                                    <input type="text" class="form-control form-control-sm" @if(hasPermission(Session::get( 'adminId'),'specialSettingN' ) < 1) disabled @endif  @if ($settings) value="{{$settings->telegramId}}" @endif name="telegramId">
                                 </div>
                                 <div class="col-sm-3">
                                     <i class="fab fa-telegram" style="color:#269cd9; font-size:22px;"></i>
                                     <label for="userName">  تلگرام</label>
-                                    <input type="text" class="form-control form-control-sm" @if(hasPermission(Session::get( 'adminId'),'specialSetting' ) < 1) disabled @endif  @if ($settings) value="{{$settings->instagramId}}" @endif name="instagramId">
+                                    <input type="text" class="form-control form-control-sm" @if(hasPermission(Session::get( 'adminId'),'specialSettingN' ) < 1) disabled @endif  @if ($settings) value="{{$settings->instagramId}}" @endif name="instagramId">
                                 </div>
                                 <div class="col-sm-3">
                                     <i class="fab fa-whatsapp-square" style="color:#57ed68; font-size:22px;"></i>
                                     <label for="userName">  واتساپ </label>
-                                    <input type="text" class="form-control form-control-sm" @if(hasPermission(Session::get( 'adminId'),'specialSetting' ) < 1) disabled @endif  @if ($settings) value="{{$settings->whatsappNumber}}" @endif  name="whatsappNumber">
+                                    <input type="text" class="form-control form-control-sm" @if(hasPermission(Session::get( 'adminId'),'specialSettingN' ) < 1) disabled @endif  @if ($settings) value="{{$settings->whatsappNumber}}" @endif  name="whatsappNumber">
                                 </div>
                                     <div class="col-sm-3">
                                     <label for="userName"> پوسته اندروید</label>
@@ -374,9 +374,13 @@
                             <h5 style="font-style:bold; margin-right:10px;">شهر ها </h5>
                           </div>
                           <div class="col-sm-8 text-end"> 
-                            <button type="button" style="margint:0" class="btn btn-success btn-sm" @if(hasPermission(Session::get( 'adminId'),'specialSetting' ) < 2) disabled @endif  id="addNewCity"> جدید <i class="fa fa-plus" aria-hidden="true"></i></button>
+                            @if(hasPermission(Session::get("adminId"),"specialSettingN") > 0)
+                                <button type="button" style="margint:0" class="btn btn-success btn-sm" @if(hasPermission(Session::get( 'adminId'),'specialSettingN' ) < 1) disabled @endif  id="addNewCity"> جدید <i class="fa fa-plus" aria-hidden="true"></i></button>
                                 <button type="button" value="Reterive data" class="btn btn-info btn-sm text-white" data-toggle="modal" id="editCityButton" disabled>ویرایش <i class="fa fa-edit" aria-hidden="true"></i></button>
+                              @endif
+                                @if(hasPermission(Session::get("adminId"),"specialSettingN") > 1)
                                 <button type="button" disabled id="deleteCityButton" class="btn btn-danger btn-sm">حذف <i class="fa fa-trash" aria-hidden="true"></i></button>
+                                @endif
                                 <input type="text" style="display:none" value="" id="CityId" style=""/>
                           </div>
                         </div>
@@ -391,11 +395,11 @@
                                         </thead>
                                         <tbody class="c-checkout tableBody" id="cityList" style="height:222px !important;">
                                             @foreach ($cities as $city)
-                                                <tr  @if(hasPermission(Session::get( 'adminId'),'specialSetting' ) > 1) onclick="changeCityStuff(this)" @endif  >
+                                                <tr  @if(hasPermission(Session::get( 'adminId'),'specialSettingN' ) > 1) onclick="changeCityStuff(this)" @endif  >
                                                     <td>{{ $loop->index+1 }}</td>
                                                     <td>{{ $city->NameRec }}</td>
                                                     <td>
-                                                        <input class="mainGroupId" @if(hasPermission(Session::get( 'adminId'),'specialSetting' ) < 1) disabled @endif  type="radio" name="mainGroupId[]" value="{{ $city->SnMNM . '_' . $city->NameRec}}">
+                                                        <input class="mainGroupId" @if(hasPermission(Session::get( 'adminId'),'specialSettingN' ) < 1) disabled @endif  type="radio" name="mainGroupId[]" value="{{ $city->SnMNM . '_' . $city->NameRec}}">
                                                     </td>
                                                 </tr>
                                             @endforeach
@@ -410,9 +414,13 @@
                             <h5 style="font-style:bold; margin-right:10px;"> منطقه ها  </h5>
                           </div>
                           <div class="col-sm-8 text-end"> 
-                            <button class="btn btn-success btn-sm buttonHover" type="button" disabled  id="addNewMantiqah"> جدید <i class="fa fa-plus" aria-hidden="true"></i></button>
-                                      <button  class="btn btn-info btn-sm text-white editButtonHover" type="button" disabled id="editMantiqah"  > ویرایش <i class="fa fa-edit" aria-hidden="true"></i></button>
-                                      <button id="deleteMantagheh" type="button" disabled class="btn btn-danger btn-sm buttonHoverDelete"> حذف <i class="fa fa-trash" aria-hidden="true"></i></button>
+                             @if(hasPermission(Session::get("adminId"),"specialSettingN") > 0)
+                                <button class="btn btn-success btn-sm buttonHover" type="button" disabled  id="addNewMantiqah"> جدید <i class="fa fa-plus" aria-hidden="true"></i></button>
+                                <button  class="btn btn-info btn-sm text-white editButtonHover" type="button" disabled id="editMantiqah"  > ویرایش <i class="fa fa-edit" aria-hidden="true"></i></button>
+                             @endif
+                             @if(hasPermission(Session::get("adminId"),"specialSettingN") > 1)
+                                <button id="deleteMantagheh" type="button" disabled class="btn btn-danger btn-sm buttonHoverDelete"> حذف <i class="fa fa-trash" aria-hidden="true"></i></button>
+                              @endif
                             </div>
                         </div>
                             <div class="well" style="margin-top:2%;">
@@ -506,8 +514,10 @@
                       <div class="row">
                           <div class="col-lg-12 text-end">
                               <span class="prizeName float-start"> <i class="fa fa-bullseye 4x" style="color:green; font-size:22px;"></i>  حد اقل امتیاز لاتری : {{number_format($lotteryMinBonus)}} </span> 
+                         @if(hasPermission(Session::get("adminId"),"emptyazSettingN") > 1)
                               <button  data-toggle="modal" type="button"  class="btn btn-sm btn-success text-warning" id="editLotteryPrizeBtn" > ویرایش لاتاری  <i class="fa fa-edit"> </i> </button>
-                          </div>
+                          @endif
+                            </div>
                       </div>
                       <div class="row p-3">
                         <div class="prizeSettingTab">
@@ -544,7 +554,9 @@
                             <!-- <span data-toggle="modal" data-target="#addingTargetModal"><i class="fa fa-plus-circle fa-lg" style="color:#1684db; font-size:33px"></i></span> -->
                           </div>
                           <div class="col-lg-8 col-md-8 col-sm-8 text-end">
-                            <button class='btn btn-sm btn-success text-warning' id="targetEditBtn" type="button" disabled  data-toggle="modal" style="margin-top:-3px;">ویرایش تارگت<i class="fa fa-edit fa-lg"></i></button> 
+                             @if(hasPermission(Session::get("adminId"),"emptyazSettingN") > 1)
+                               <button class='btn btn-sm btn-success text-warning' id="targetEditBtn" type="button" disabled  data-toggle="modal" style="margin-top:-3px;">ویرایش تارگت<i class="fa fa-edit fa-lg"></i></button> 
+                              @endif 
                             <!-- <button class='btn btn-danger text-warning' disabled style="margin-top:-3px;" id="deleteTargetBtn"> حذف <i class="fa fa-trash fa-lg"></i></button>  -->
                           </div>
                       </div>
@@ -586,10 +598,13 @@
 
                    <div class="row rounded-2 tab-pane" id="askIdea">
                             <div class="col-lg-12 text-end">
+                                  @if(hasPermission(Session::get("adminId"),"emptyazSettingN") > 1)
                                     <button type="button" class="btn btn-sm btn-success" id="insetQuestionBtn"> افزودن  <i class="fa fa-plus"></i> </button>
+                               
                                     <button type="button" class="btn btn-sm btn-success" id="editQuestionBtn" disabled> ویرایش  <i class="fa fa-edit" style="color:yellow"></i> </button>
                                     <button type="button" class="btn btn-sm btn-success" onclick="startAgainNazar()" id="startAgainNazarBtn" disabled> از سرگیری نظر خواهی <i class="fa fa-history" style="color:white"></i> </button>
-                            </div>
+                                    @endif
+                              </div>
 
                             <div class="col-lg-12" id="nazaranjicontainer">
                               @foreach($nazars as $nazar)
@@ -989,7 +1004,7 @@
             <div class="col-sm-6">
               <div class="input-group input-group-sm mb-3">
                 <span class="input-group-text" id="inputGroup-sizing-sm"> حد اقل امتیاز لاتری  </span>
-                <input type="text" class="form-control form-control-sm" @if(hasPermission(Session::get( 'adminId'),'specialSetting' ) < 1) disabled @endif value="{{number_format($lotteryMinBonus)}}" name="lotteryMinBonus">
+                <input type="text" class="form-control form-control-sm" @if(hasPermission(Session::get( 'adminId'),'specialSettingN') < 1) disabled @endif value="{{number_format($lotteryMinBonus)}}" name="lotteryMinBonus">
               </div>
             </div>
             <div class="col-sm-6 text-end">

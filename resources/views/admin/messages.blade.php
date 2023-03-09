@@ -74,8 +74,8 @@
           </div>
         </div>
         <div class="modal-footer"  id="replay">
-                <textarea id="replayMessag" @if(hasPermission(Session::get( 'adminId'),'messages' ) < 1) disabled @endif class="md-textarea form-control" placeholder="جواب شما..."  rows="3"></textarea>
-                <a  @if(hasPermission(Session::get( 'adminId'),'messages' ) > 0) onclick="replayMessage()" @endif class="btn btn-success btn-sm">جواب</a>
+                <textarea id="replayMessag" @if(hasPermission(Session::get( 'adminId'),'messageN' ) < 1) disabled @endif class="md-textarea form-control" placeholder="جواب شما..."  rows="3"></textarea>
+                <a  @if(hasPermission(Session::get( 'adminId'),'messageN' ) > 0) onclick="replayMessage()" @endif class="btn btn-success btn-sm">جواب</a>
         </div>
       </div>
     </div>

@@ -5,14 +5,14 @@
             <div class="col-lg-2 col-md-2 col-sm-3 sideBar">
                 <fieldset class="border rounded mt-5 sidefieldSet">
                     <legend  class="float-none w-auto legendLabel mb-0"> تنظیمات </legend>
-                    <div class="form-check">
+                    <!-- <div class="form-check">
                         <input class="form-check-input p-2 float-start" type="radio" name="settings" id="elseSettingsRadio">
                         <label class="form-check-label me-4" for="assesPast">  سطح دسترسی  </label>
                     </div>
                     <div class="form-check">
                         <input class="form-check-input p-2 float-start" type="radio" name="settings" id="settingAndTargetRadio">
                         <label class="form-check-label me-4" for="assesPast"> تارگت ها و امتیازات </label>
-                    </div>
+                    </div> -->
                 </fieldset>
                 </div>
             <div class="col-sm-10 col-md-10 col-sm-12 contentDiv">
@@ -26,7 +26,7 @@
                                         <div class="col-sm-3">
                                             <div class='form-group'>
                                                 <label class='form-label'>اسم سطر</label>
-                                                <input type='text' id='partTitle'   @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif value="{{  trim($part->partTitle) }}" class='form-control form-control-sm' name='partTitle' placeholder='' />
+                                                <input type='text' id='partTitle'   @if(hasPermission(Session::get( 'adminId'),'mainPageSetting' ) <1 )  disabled @endif value="{{  trim($part->partTitle) }}" class='form-control form-control-sm' name='partTitle' placeholder='' />
                                                 <input type='text' id='partId' style="display: none" value="{{ $part->partId }}" class='form-control' name='partId' placeholder='' />
                                             </div>
                                         </div>   
@@ -34,7 +34,7 @@
                                         <div class="col-sm-3">
                                             <div class='form-group'>
                                                 <label class='form-label'>نوعیت دسته بندی</label>
-                                                <select name='partType' @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif onchange='showDiv(this)' class='form-control form-control-sm' id='partType'>
+                                                <select name='partType' @if(hasPermission(Session::get( 'adminId'),'mainPageSetting' ) <1 )  disabled @endif onchange='showDiv(this)' class='form-control form-control-sm' id='partType'>
                                                     <option value="{{ $part->partType }}">{{ $part->name }}</option>
                                                 </select>
                                             </div>
@@ -43,7 +43,7 @@
                                         <div class="col-sm-2"> 
                                             <div class='form-group'>
                                                 <label class='form-label'>اولویت</label>
-                                                <select type='text' id="PicturePriority" @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif value="{{ $part->priority }}"
+                                                <select type='text' id="PicturePriority" @if(hasPermission(Session::get( 'adminId'),'mainPageSetting' ) <1 )  disabled @endif value="{{ $part->priority }}"
                                                     class='form-select form-select-sm' name='partPriority' placeholder='' >
                                                      @for ($i =3; $i <= (int)$countHomeParts; $i++)
                                                         <option @if((int)$part->priority==$i) selected @endif value="{{$i}}">{{$i-2}}</option>
@@ -53,12 +53,12 @@
                                         </div>  
                                         <div class="col-sm-1 d-flex align-items-stretch">
                                             <div class="form-group d-flex text-nowrap align-items-center pt-3">
-                                                <input class="form-control d-flex form-check-input align-items-end" @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif type="checkbox" name="activeOrNot" id="activeOrNot" @if ($part->activeOrNot==1)checked @else @endif>
+                                                <input class="form-control d-flex form-check-input align-items-end" @if(hasPermission(Session::get( 'adminId'),'mainPageSetting' ) <1 )  disabled @endif type="checkbox" name="activeOrNot" id="activeOrNot" @if ($part->activeOrNot==1)checked @else @endif>
                                                 <label class="form-check-label align-items-end" style="font-weight: bold" for="activeOrNot">نمایش</label>
                                             </div>
                                         </div>
                                          <div class="col-sm-3 text-end"> 
-                                              <button type="submit"  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif class="btn btn-success btn-sm text-warning mt-1"> ذخیره <i class="fa-light fa-save"></i></button>
+                                              <button type="submit"  @if(hasPermission(Session::get( 'adminId'),'mainPageSetting' ) <1 )  disabled @endif class="btn btn-success btn-sm text-warning mt-1"> ذخیره <i class="fa-light fa-save"></i></button>
                                          </div>
                                     </div>
                            
@@ -87,7 +87,7 @@
                                                                         <input style="display:none" name="pic{{$loop->iteration}}" value="{{$pic->picId}}"/>
                                                                 </div> <br>
                                                                 <div class="p-0 pt-1">
-                                                                    <button type="button"    @if(hasPermission(Session::get( 'adminId'),'homePage' ) >0 ) onclick="changePicBrandKalaEdit(this)" @endif value="{{$loop->iteration}}" style="display: inline; padding:0; border:none; background:none" class="editKalaPic1_5Pic">
+                                                                    <button type="button"    @if(hasPermission(Session::get( 'adminId'),'mainPageSetting' ) >0 ) onclick="changePicBrandKalaEdit(this)" @endif value="{{$loop->iteration}}" style="display: inline; padding:0; border:none; background:none" class="editKalaPic1_5Pic">
                                                                         <i class="fa-light fa-pen-to-square fa-lg text-success p-1 inheritHover" style="font-size: 25px"></i>
                                                                     </button>
                                                                     <input type="file" style="display:none;" onchange='document.getElementById("PicId{{$loop->iteration}}").src = window.URL.createObjectURL(this.files[0])' id="file{{$loop->iteration}}" name="editPic{{$loop->iteration}}"/>
@@ -111,7 +111,7 @@
                                                                     <th>ردیف</th>
                                                                     <th>اسم برند&nbsp;&nbsp;<div style="background-color:black;color:white!important; height:inherit; width:20px;"
                                                                             class="rounded-circle d-inline-flex justify-content-center m-0 p-0">  </div> </th>
-                                                                    <th><input  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
+                                                                    <th><input  @if(hasPermission(Session::get( 'adminId'),'mainPageSetting' ) <1 )  disabled @endif type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
                                                                 </tr>
                                                             </thead>
                                                             <tbody style="height: 400px;" id="brandAllKalaContainer">
@@ -146,7 +146,7 @@
                                                                     <button  class='brandPriority' id="down" type="button" value="down" ><i class="fa-solid fa-circle-chevron-down fa-sm" style=''></i></button>
                                                                     <button class='brandPriority' id="top"  type="button" value="up" >  <i class="fa-solid fa-circle-chevron-up fa-sm" style=''></i></button> 
                                                                 </th>
-                                                                    <th><input  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
+                                                                    <th><input  @if(hasPermission(Session::get( 'adminId'),'mainPageSetting' ) <1 )  disabled @endif type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
                                                                 </tr>
                                                             </thead>
                                                             <tbody class="tableBody" id="brandAddedKalaContainer">
@@ -200,17 +200,17 @@
                                                         <tr>
                                                             <th>ردیف</th>
                                                             <th> اسم کالا </th>
-                                                            <th><input  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
+                                                            <th><input  @if(hasPermission(Session::get( 'adminId'),'mainPageSetting' ) <1 )  disabled @endif type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
                                                         </tr>
                                                     </thead>
                                                     <tbody class="tableBody" id="onePic1AllKala"> </tbody>
                                                 </table>
                                             </div>
                                             <div class="subgroup-item mt-5">
-                                                <button type="button" style="background-color:transparent;" @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif id="addOnePicKalaList1" style="display: inline; padding:0; border:none; background:none">
+                                                <button type="button" style="background-color:transparent;" @if(hasPermission(Session::get( 'adminId'),'mainPageSetting' ) <1 )  disabled @endif id="addOnePicKalaList1" style="display: inline; padding:0; border:none; background:none">
                                                         <i class="fa-regular fa-circle-chevron-left fa-2x text-success"></i> </button>
                                                     <br />
-                                                <button type="button" style="background-color:transparent;" @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif id="removeOnePicKalaList1" style="display: inline; padding:0; border:none; background:none">
+                                                <button type="button" style="background-color:transparent;" @if(hasPermission(Session::get( 'adminId'),'mainPageSetting' ) <1 )  disabled @endif id="removeOnePicKalaList1" style="display: inline; padding:0; border:none; background:none">
                                                             <i class="fa-regular fa-circle-chevron-right fa-2x text-success"></i> </button>
                                             </div>
                                             <div class="subgroup-item">
@@ -219,7 +219,7 @@
                                                         <tr>
                                                             <th>ردیف</th>
                                                             <th>گروه اصلی </th>
-                                                            <th><input  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif type="checkbox" name=""  class="selectAllFromTop form-check-input"></th>
+                                                            <th><input  @if(hasPermission(Session::get( 'adminId'),'mainPageSetting' ) <1 )  disabled @endif type="checkbox" name=""  class="selectAllFromTop form-check-input"></th>
                                                         </tr>
                                                     </thead>
                                                     <tbody class="tableBody" id="onePic1AddedKala1"></tbody>
@@ -275,11 +275,11 @@
                                                 </table>
                                             </div>
                                             <div class="subgroup-item mt-5">
-                                                <button type="button"  style="background-color:transparent;" id="add2PicKalaList1" @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif>
+                                                <button type="button"  style="background-color:transparent;" id="add2PicKalaList1" @if(hasPermission(Session::get( 'adminId'),'mainPageSetting' ) <1 )  disabled @endif>
                                                         <i class="fa-regular fa-circle-chevron-left fa-2x text-success"></i>
                                                     </button>
                                                     <br />
-                                                <button type="button"  style="background-color:transparent;" id="remove2PicKalaList1"  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif>
+                                                <button type="button"  style="background-color:transparent;" id="remove2PicKalaList1"  @if(hasPermission(Session::get( 'adminId'),'mainPageSetting' ) <1 )  disabled @endif>
                                                         <i class="fa-regular fa-circle-chevron-right fa-2x text-success"></i>
                                                     </button>
                                             </div>
@@ -289,7 +289,7 @@
                                                         <tr>
                                                             <th>ردیف</th>
                                                             <th>گروه اصلی </th>
-                                                            <th><input  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif type="checkbox" name=""  class="selectAllFromTop form-check-input"></th>
+                                                            <th><input  @if(hasPermission(Session::get( 'adminId'),'mainPageSetting' ) <1 )  disabled @endif type="checkbox" name=""  class="selectAllFromTop form-check-input"></th>
                                                         </tr>
                                                     </thead>
                                                     <tbody class="tableBody" style="height:300px !important;"  id="twoPicAddedKala1"></tbody>
@@ -335,18 +335,18 @@
                                                             <th>ردیف</th>
                                                             <th> اسم کالا &nbsp;&nbsp;<div style="background-color:black;color:white!important; height:inherit; width:20px;"
                                                                 class="rounded-circle d-inline-flex justify-content-center m-0 p-0"> 2 </div></th>
-                                                            <th><input  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif type="checkbox" name=""  class="selectAllFromTop form-check-input"></th>
+                                                            <th><input  @if(hasPermission(Session::get( 'adminId'),'mainPageSetting' ) <1 )  disabled @endif type="checkbox" name=""  class="selectAllFromTop form-check-input"></th>
                                                         </tr>
                                                     </thead>
                                                     <tbody class="tableBody" style="height:300px !important;"  id="twoPicAllKala2"></tbody>
                                                 </table>
                                             </div>
                                             <div class="subgroup-item mt-5">
-                                                <button type="button"   style="background-color:transparent;" @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif id="add2PicKalaList2">
+                                                <button type="button"   style="background-color:transparent;" @if(hasPermission(Session::get( 'adminId'),'mainPageSetting' ) <1 )  disabled @endif id="add2PicKalaList2">
                                                         <i class="fa-regular fa-circle-chevron-left fa-2x text-success"></i>
                                                      </button>
                                                         <br />
-                                                <button type="button"   style="background-color:transparent;" @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif id="remove2PicKalaList2">
+                                                <button type="button"   style="background-color:transparent;" @if(hasPermission(Session::get( 'adminId'),'mainPageSetting' ) <1 )  disabled @endif id="remove2PicKalaList2">
                                                 <i class="fa-regular fa-circle-chevron-right fa-2x text-success"></i>
                                                 </button>
                                             </div>
@@ -356,7 +356,7 @@
                                                         <tr>
                                                             <th>ردیف</th>
                                                             <th>گروه اصلی </th>
-                                                            <th><input  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
+                                                            <th><input  @if(hasPermission(Session::get( 'adminId'),'mainPageSetting' ) <1 )  disabled @endif type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
                                                         </tr>
                                                     </thead>
                                                     <tbody class="tableBody" style="height:300px !important;" id="twoPicAddedKala2"> </tbody>
@@ -401,18 +401,18 @@
                                                                 <th>ردیف</th>
                                                                 <th> اسم کالا &nbsp;&nbsp;<div style="background-color:black;color:white!important; height:inherit; width:20px;"
                                                                     class="rounded-circle d-inline-flex justify-content-center m-0 p-0"> 1 </div></th>
-                                                                <th><input  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif type="checkbox" name=""  class="selectAllFromTop form-check-input"></th>
+                                                                <th><input  @if(hasPermission(Session::get( 'adminId'),'mainPageSetting' ) <1 )  disabled @endif type="checkbox" name=""  class="selectAllFromTop form-check-input"></th>
                                                             </tr>
                                                         </thead>
                                                         <tbody class="tableBody" style="height:300px !important;"  id="threePicAllKala1"> </tbody>
                                                     </table>
                                                 </div>
                                                 <div class="subgroup-item mt-5">
-                                                    <button type="button"  style="background-color:transparent;" @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif id="add3PicKalaList1">
+                                                    <button type="button"  style="background-color:transparent;" @if(hasPermission(Session::get( 'adminId'),'mainPageSetting' ) <1 )  disabled @endif id="add3PicKalaList1">
                                                         <i class="fa-regular fa-circle-chevron-left fa-2x text-success"></i>
                                                         </button>
                                                         <br />
-                                                    <button type="button"  style="background-color:transparent;" @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif id="remove3PicKalaList1">
+                                                    <button type="button"  style="background-color:transparent;" @if(hasPermission(Session::get( 'adminId'),'mainPageSetting' ) <1 )  disabled @endif id="remove3PicKalaList1">
                                                         <i class="fa-regular fa-circle-chevron-right fa-2x text-success"></i>
                                                         </button>
                                                 </div>
@@ -422,7 +422,7 @@
                                                                 <tr>
                                                                     <th>ردیف</th>
                                                                     <th>گروه اصلی </th>
-                                                                    <th><input  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
+                                                                    <th><input  @if(hasPermission(Session::get( 'adminId'),'mainPageSetting' ) <1 )  disabled @endif type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
                                                                 </tr>
                                                             </thead>
                                                             <tbody class="tableBody" style="height:300px !important;" id="threePicAddedKala1"> </tbody>
@@ -468,7 +468,7 @@
                                                                 <th>ردیف</th>
                                                                 <th> اسم کالا &nbsp;&nbsp;<div style="background-color:black;color:white!important; height:inherit; width:20px;"
                                                                     class="rounded-circle d-inline-flex justify-content-center m-0 p-0"> 2 </div></th>
-                                                                <th><input  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif type="checkbox" name=""  class="selectAllFromTop form-check-input"></th>
+                                                                <th><input  @if(hasPermission(Session::get( 'adminId'),'mainPageSetting' ) <1 )  disabled @endif type="checkbox" name=""  class="selectAllFromTop form-check-input"></th>
                                                             </tr>
                                                         </thead>
                                                         <tbody class="tableBody" style="height:300px !important;"  id="threePicAllKala2"> </tbody>
@@ -476,11 +476,11 @@
                                                 </div>
 
                                                 <div class="subgroup-item mt-5">
-                                                    <button type="button"   style="background-color:transparent;" @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif id="add3PicKalaList2">
+                                                    <button type="button"   style="background-color:transparent;" @if(hasPermission(Session::get( 'adminId'),'mainPageSetting' ) <1 )  disabled @endif id="add3PicKalaList2">
                                                         <i class="fa-regular fa-circle-chevron-left fa-2x text-success"></i>
                                                     </button>
                                                         <br />
-                                                        <button type="button"  style="background-color:transparent;" @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif id="remove3PicKalaList2">
+                                                        <button type="button"  style="background-color:transparent;" @if(hasPermission(Session::get( 'adminId'),'mainPageSetting' ) <1 )  disabled @endif id="remove3PicKalaList2">
                                                         <i class="fa-regular fa-circle-chevron-right fa-2x text-success"></i>
                                                     </button>
                                                 </div>
@@ -490,7 +490,7 @@
                                                             <tr>
                                                                 <th>ردیف</th>
                                                                 <th>گروه اصلی </th>
-                                                                <th><input  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
+                                                                <th><input  @if(hasPermission(Session::get( 'adminId'),'mainPageSetting' ) <1 )  disabled @endif type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
                                                             </tr>
                                                         </thead>
                                                         <tbody class="tableBody" style="height:300px !important;"  id="threePicAddedKala2"> </tbody>
@@ -535,18 +535,18 @@
                                                                 <th>ردیف</th>
                                                                 <th> اسم کالا &nbsp;&nbsp;<div style="background-color:black;color:white!important; height:inherit; width:20px;"
                                                                     class="rounded-circle d-inline-flex justify-content-center m-0 p-0"> 3 </div></th>
-                                                                <th><input  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
+                                                                <th><input  @if(hasPermission(Session::get( 'adminId'),'mainPageSetting' ) <1 )  disabled @endif type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
                                                             </tr>
                                                         </thead>
                                                         <tbody class="tableBody" style="height:300px !important;"  id="threePicAllKala3"></tbody>
                                                     </table>
                                                 </div>
                                                 <div class="subgroup-item mt-5">
-                                                    <button type="button" style="background-color:transparent;"  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif id="add3PicKalaList3">
+                                                    <button type="button" style="background-color:transparent;"  @if(hasPermission(Session::get( 'adminId'),'mainPageSetting' ) <1 )  disabled @endif id="add3PicKalaList3">
                                                         <i class="fa-regular fa-circle-chevron-left fa-2x text-success"></i>
                                                         </button>
                                                         <br />
-                                                        <button type="button" style="background-color:transparent;"  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif id="remove3PicKalaList3">
+                                                        <button type="button" style="background-color:transparent;"  @if(hasPermission(Session::get( 'adminId'),'mainPageSetting' ) <1 )  disabled @endif id="remove3PicKalaList3">
                                                         <i class="fa-regular fa-circle-chevron-right fa-2x text-success"></i>
                                                     </button>
                                                 </div>
@@ -556,7 +556,7 @@
                                                             <tr>
                                                                 <th>ردیف</th>
                                                                 <th>گروه اصلی </th>
-                                                                <th><input  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
+                                                                <th><input  @if(hasPermission(Session::get( 'adminId'),'mainPageSetting' ) <1 )  disabled @endif type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
                                                             </tr>
                                                         </thead>
                                                         <tbody class="tableBody" style="height:300px !important;"  id="threePicAddedKala3"></tbody>
@@ -600,18 +600,18 @@
                                                                     <th>ردیف</th>
                                                                     <th> اسم کالا &nbsp;&nbsp;<div style="background-color:black;color:white!important; height:inherit; width:20px;"
                                                                         class="rounded-circle d-inline-flex justify-content-center m-0 p-0"> 1 </div></th>
-                                                                    <th><input  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
+                                                                    <th><input  @if(hasPermission(Session::get( 'adminId'),'mainPageSetting' ) <1 )  disabled @endif type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
                                                                 </tr>
                                                             </thead>
                                                             <tbody class="tableBody" style="height:300px !important;"  id="fourPicAllKala1"> </tbody>
                                                         </table>
                                                     </div>
                                                     <div class="subgroup-item mt-5">
-                                                            <button  type="button" style="background-color:transparent;" @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif id="add4PicKalaList1">
+                                                            <button  type="button" style="background-color:transparent;" @if(hasPermission(Session::get( 'adminId'),'mainPageSetting' ) <1 )  disabled @endif id="add4PicKalaList1">
                                                             <i class="fa-regular fa-circle-chevron-left fa-2x text-success"></i>
                                                             </button>
                                                             <br />
-                                                            <button  type="button" style="background-color:transparent;" @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif id="remove4PicKalaList1">
+                                                            <button  type="button" style="background-color:transparent;" @if(hasPermission(Session::get( 'adminId'),'mainPageSetting' ) <1 )  disabled @endif id="remove4PicKalaList1">
                                                             <i class="fa-regular fa-circle-chevron-right fa-2x text-success"></i>
                                                             </button>
                                                     </div>
@@ -621,7 +621,7 @@
                                                                 <tr>
                                                                     <th>ردیف</th>
                                                                     <th>گروه اصلی </th>
-                                                                    <th><input  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
+                                                                    <th><input  @if(hasPermission(Session::get( 'adminId'),'mainPageSetting' ) <1 )  disabled @endif type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
                                                                 </tr>
                                                             </thead>
                                                             <tbody class="tableBody" style="height:300px !important;"  id="fourPicAddedKala1"> </tbody>
@@ -666,18 +666,18 @@
                                                                 <tr>
                                                                     <th>ردیف</th>
                                                                     <th> اسم کالا </th>
-                                                                    <th> <input  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif type="checkbox" name=""  class="selectAllFromTop form-check-input"> </th>
+                                                                    <th> <input  @if(hasPermission(Session::get( 'adminId'),'mainPageSetting' ) <1 )  disabled @endif type="checkbox" name=""  class="selectAllFromTop form-check-input"> </th>
                                                                 </tr>
                                                             </thead>
                                                             <tbody class="tableBody" style="height:300px !important;" id="fourPicAllKala2"> </tbody>
                                                         </table>
                                                     </div>
                                                     <div class="subgroup-item mt-5">
-                                                        <button  style="background-color:transparent;" type="button" @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif id="add4PicKalaList2">
+                                                        <button  style="background-color:transparent;" type="button" @if(hasPermission(Session::get( 'adminId'),'mainPageSetting' ) <1 )  disabled @endif id="add4PicKalaList2">
                                                             <i class="fa-regular fa-circle-chevron-left fa-2x text-success"></i>
                                                             </button>
                                                             <br />
-                                                            <button  style="background-color:transparent;" type="button" @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif id="remove4PicKalaList2">
+                                                            <button  style="background-color:transparent;" type="button" @if(hasPermission(Session::get( 'adminId'),'mainPageSetting' ) <1 )  disabled @endif id="remove4PicKalaList2">
                                                             <i class="fa-regular fa-circle-chevron-right fa-2x text-success"></i>
                                                         </button>
                                                     </div>
@@ -687,7 +687,7 @@
                                                                 <tr>
                                                                     <th>ردیف</th>
                                                                     <th>گروه اصلی </th>
-                                                                    <th><input  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
+                                                                    <th><input  @if(hasPermission(Session::get( 'adminId'),'mainPageSetting' ) <1 )  disabled @endif type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
                                                                 </tr>
                                                             </thead>
                                                             <tbody class="tableBody" style="height:300px !important;" id="fourPicAddedKala2"> </tbody>
@@ -732,18 +732,18 @@
                                                                     <th>ردیف</th>
                                                                     <th> اسم کالا &nbsp;&nbsp;<div style="background-color:black;color:white!important; height:inherit; width:20px;"
                                                                         class="rounded-circle d-inline-flex justify-content-center m-0 p-0"> 3 </div></th>
-                                                                    <th><input  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
+                                                                    <th><input  @if(hasPermission(Session::get( 'adminId'),'mainPageSetting' ) <1 )  disabled @endif type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
                                                                 </tr>
                                                             </thead>
                                                             <tbody class="tableBody" style="height:300px !important;"  id="fourPicAllKala3"> </tbody>
                                                         </table>
                                                     </div>
                                                     <div class="subgroup-item mt-5">
-                                                           <button  type="button" style="background-color:transparent;"  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif id="add4PicKalaList3">
+                                                           <button  type="button" style="background-color:transparent;"  @if(hasPermission(Session::get( 'adminId'),'mainPageSetting' ) <1 )  disabled @endif id="add4PicKalaList3">
                                                           <i class="fa-regular fa-circle-chevron-left fa-2x text-success"></i>
                                                             </button>
                                                                 <br />
-                                                                <button  type="button" style="background-color:transparent;"  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif id="remove4PicKalaList3">
+                                                                <button  type="button" style="background-color:transparent;"  @if(hasPermission(Session::get( 'adminId'),'mainPageSetting' ) <1 )  disabled @endif id="remove4PicKalaList3">
                                                                 <i class="fa-regular fa-circle-chevron-right fa-2x text-success"></i>
                                                             </button>
                                                     </div>
@@ -753,7 +753,7 @@
                                                                 <tr>
                                                                     <th>ردیف</th>
                                                                     <th>گروه اصلی </th>
-                                                                    <th><input  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
+                                                                    <th><input  @if(hasPermission(Session::get( 'adminId'),'mainPageSetting' ) <1 )  disabled @endif type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
                                                                 </tr>
                                                             </thead>
                                                             <tbody class="tableBody" style="height:300px !important;"  id="fourPicAddedKala3"> </tbody>
@@ -797,18 +797,18 @@
                                                                 <th>ردیف</th>
                                                                 <th> اسم کالا &nbsp;&nbsp;<div style="background-color:black;color:white!important; height:inherit; width:20px;"
                                                                     class="rounded-circle d-inline-flex justify-content-center m-0 p-0"> 4 </div></th>
-                                                                <th><input  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
+                                                                <th><input  @if(hasPermission(Session::get( 'adminId'),'mainPageSetting' ) <1 )  disabled @endif type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
                                                             </tr>
                                                         </thead>
                                                         <tbody class="tableBody" style="height:300px !important;"  id="fourPicAllKala4"> </tbody>
                                                     </table>
                                                 </div>
                                                 <div class="subgroup-item mt-5">
-                                                    <button  type="button" style="background-color:transparent;" @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif id="add4PicKalaList4">
+                                                    <button  type="button" style="background-color:transparent;" @if(hasPermission(Session::get( 'adminId'),'mainPageSetting' ) <1 )  disabled @endif id="add4PicKalaList4">
                                                         <i class="fa-regular fa-circle-chevron-left fa-2x text-success"></i>
                                                     </button>
                                                         <br />
-                                                        <button  type="button" style="background-color:transparent;" @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif id="remove4PicKalaList4">
+                                                        <button  type="button" style="background-color:transparent;" @if(hasPermission(Session::get( 'adminId'),'mainPageSetting' ) <1 )  disabled @endif id="remove4PicKalaList4">
                                                         <i class="fa-regular fa-circle-chevron-right fa-2x text-success"></i>
                                                     </button>
                                                 </div>
@@ -818,7 +818,7 @@
                                                             <tr>
                                                                 <th>ردیف</th>
                                                                 <th>گروه اصلی </th>
-                                                                <th><input  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
+                                                                <th><input  @if(hasPermission(Session::get( 'adminId'),'mainPageSetting' ) <1 )  disabled @endif type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
                                                             </tr>
                                                         </thead>
                                                         <tbody class="tableBody" style="height:300px !important;"  id="fourPicAddedKala4"> </tbody>
@@ -862,18 +862,18 @@
                                                             <th>ردیف</th>
                                                             <th> اسم کالا &nbsp;&nbsp;<div style="background-color:black;color:white!important; height:inherit; width:20px;"
                                                                 class="rounded-circle d-inline-flex justify-content-center m-0 p-0"> 1 </div></th>
-                                                            <th><input  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
+                                                            <th><input  @if(hasPermission(Session::get( 'adminId'),'mainPageSetting' ) <1 )  disabled @endif type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
                                                         </tr>
                                                     </thead>
                                                     <tbody class="tableBody" style="height:300px !important;"  id="fivePicAllKala1"> </tbody>
                                                 </table>
                                             </div>
                                             <div class="subgroup-item mt-5">
-                                                <button  type="button" style="background-color:transparent;"  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif id="add5PicKalaList1">
+                                                <button  type="button" style="background-color:transparent;"  @if(hasPermission(Session::get( 'adminId'),'mainPageSetting' ) <1 )  disabled @endif id="add5PicKalaList1">
                                                         <i class="fa-regular fa-circle-chevron-left fa-2x text-success"></i>
                                                 </button>
                                                     <br />
-                                                    <button  type="button"  style="background-color:transparent;"  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif id="remove5PicKalaList1">
+                                                    <button  type="button"  style="background-color:transparent;"  @if(hasPermission(Session::get( 'adminId'),'mainPageSetting' ) <1 )  disabled @endif id="remove5PicKalaList1">
                                                     <i class="fa-regular fa-circle-chevron-right fa-2x text-success"></i>
                                                 </button>
                                             </div>
@@ -883,7 +883,7 @@
                                                         <tr>
                                                             <th>ردیف</th>
                                                             <th>گروه اصلی </th>
-                                                            <th><input  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
+                                                            <th><input  @if(hasPermission(Session::get( 'adminId'),'mainPageSetting' ) <1 )  disabled @endif type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
                                                         </tr>
                                                     </thead>
                                                     <tbody class="tableBody" style="height:300px !important;" id="fivePicAddedKala1"> </tbody>
@@ -927,18 +927,18 @@
                                                                 <th>ردیف</th>
                                                                 <th> اسم کالا &nbsp;&nbsp;<div style="background-color:black;color:white!important; height:inherit; width:20px;"
                                                                     class="rounded-circle d-inline-flex justify-content-center m-0 p-0"> 2 </div></th>
-                                                                <th><input  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
+                                                                <th><input  @if(hasPermission(Session::get( 'adminId'),'mainPageSetting' ) <1 )  disabled @endif type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
                                                             </tr>
                                                         </thead>
                                                         <tbody class="tableBody" style="height:300px !important;" id="fivePicAllKala2"> </tbody>
                                                     </table>
                                                 </div>
                                                 <div class="subgroup-item mt-5">
-                                                    <button  type="button" style="background-color:transparent;"  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif id="add5PicKalaList2">
+                                                    <button  type="button" style="background-color:transparent;"  @if(hasPermission(Session::get( 'adminId'),'mainPageSetting' ) <1 )  disabled @endif id="add5PicKalaList2">
                                                         <i class="fa-regular fa-circle-chevron-left fa-2x text-success"></i>
                                                     </button>
                                                         <br />
-                                                        <button  type="button" style="background-color:transparent;"  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif id="remove5PicKalaList2">
+                                                        <button  type="button" style="background-color:transparent;"  @if(hasPermission(Session::get( 'adminId'),'mainPageSetting' ) <1 )  disabled @endif id="remove5PicKalaList2">
                                                         <i class="fa-regular fa-circle-chevron-right fa-2x text-success"></i>
                                                     </button>
                                                 </div>
@@ -948,7 +948,7 @@
                                                             <tr>
                                                                 <th>ردیف</th>
                                                                 <th>گروه اصلی </th>
-                                                                <th><input  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
+                                                                <th><input  @if(hasPermission(Session::get( 'adminId'),'mainPageSetting' ) <1 )  disabled @endif type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
                                                             </tr>
                                                         </thead>
                                                         <tbody class="tableBody" style="height:300px !important;" id="fivePicAddedKala2"> </tbody>
@@ -992,7 +992,7 @@
                                                                 <th>ردیف</th>
                                                                 <th> اسم کالا &nbsp;&nbsp;<div style="background-color:black;color:white!important; height:inherit; width:20px;"
                                                                     class="rounded-circle d-inline-flex justify-content-center m-0 p-0"> 3 </div></th>
-                                                                <th><input  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
+                                                                <th><input  @if(hasPermission(Session::get( 'adminId'),'mainPageSetting' ) <1 )  disabled @endif type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
                                                             </tr>
                                                         </thead>
                                                         <tbody class="tableBody" style="height:300px !important;"  id="fivePicAllKala3"> </tbody>
@@ -1000,11 +1000,11 @@
                                                 </div>
 
                                                 <div class="subgroup-item mt-5">
-                                                     <button  type="button" style="background-color:transparent;"  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif id="add5PicKalaList3">
+                                                     <button  type="button" style="background-color:transparent;"  @if(hasPermission(Session::get( 'adminId'),'mainPageSetting' ) <1 )  disabled @endif id="add5PicKalaList3">
                                                         <i class="fa-regular fa-circle-chevron-left fa-2x text-success"></i>
                                                         </button>
                                                         <br />
-                                                        <button  type="button" style="background-color:transparent;"  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif id="remove5PicKalaList3">
+                                                        <button  type="button" style="background-color:transparent;"  @if(hasPermission(Session::get( 'adminId'),'mainPageSetting' ) <1 )  disabled @endif id="remove5PicKalaList3">
                                                         <i class="fa-regular fa-circle-chevron-right fa-2x text-success"></i>
                                                     </button>
                                                 </div>
@@ -1014,7 +1014,7 @@
                                                             <tr>
                                                                 <th>ردیف</th>
                                                                 <th>گروه اصلی </th>
-                                                                <th><input  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
+                                                                <th><input  @if(hasPermission(Session::get( 'adminId'),'mainPageSetting' ) <1 )  disabled @endif type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
                                                             </tr>
                                                         </thead>
                                                         <tbody class="tableBody" style="height:300px !important;"  id="fivePicAddedKala3"> </tbody>
@@ -1057,18 +1057,18 @@
                                                         <tr>
                                                             <th>ردیف</th>
                                                             <th> اسم کالا </th>
-                                                            <th><input  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
+                                                            <th><input  @if(hasPermission(Session::get( 'adminId'),'mainPageSetting' ) <1 )  disabled @endif type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
                                                         </tr>
                                                     </thead>
                                                     <tbody class="tableBody" style="height:300px !important;"  id="fivePicAllKala4"> </tbody>
                                                 </table>
                                             </div>
                                             <div class="subgroup-item mt-5">
-                                                 <button  type="button" style="background-color:transparent;" @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif id="add5PicKalaList4">
+                                                 <button  type="button" style="background-color:transparent;" @if(hasPermission(Session::get( 'adminId'),'mainPageSetting' ) <1 )  disabled @endif id="add5PicKalaList4">
                                                     <i class="fa-regular fa-circle-chevron-left fa-2x text-success"></i>
                                                     </button>
                                                     <br />
-                                                    <button  type="button" style="background-color:transparent;" @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif id="remove5PicKalaList4">
+                                                    <button  type="button" style="background-color:transparent;" @if(hasPermission(Session::get( 'adminId'),'mainPageSetting' ) <1 )  disabled @endif id="remove5PicKalaList4">
                                                     <i class="fa-regular fa-circle-chevron-right fa-2x text-success"></i>
                                                     </button>
                                             </div>
@@ -1078,7 +1078,7 @@
                                                         <tr>
                                                             <th>ردیف</th>
                                                             <th>گروه اصلی </th>
-                                                            <th><input  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
+                                                            <th><input  @if(hasPermission(Session::get( 'adminId'),'mainPageSetting' ) <1 )  disabled @endif type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
                                                         </tr>
                                                     </thead>
                                                     <tbody class="tableBody" style="height:300px !important;"  id="fivePicAddedKala4"> </tbody>
@@ -1122,7 +1122,7 @@
                                                         <tr>
                                                             <th>ردیف</th>
                                                             <th> اسم کالا </th>
-                                                            <th><input  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
+                                                            <th><input  @if(hasPermission(Session::get( 'adminId'),'mainPageSetting' ) <1 )  disabled @endif type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
                                                         </tr>
                                                     </thead>
                                                     <tbody class="tableBody" id="fivePicAllKala5"> </tbody>
@@ -1130,11 +1130,11 @@
                                             </div>
 
                                             <div class="subgroup-item mt-5">
-                                                 <button  type="button" style="background-color:transparent;"  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif id="add5PicKalaList5">
+                                                 <button  type="button" style="background-color:transparent;"  @if(hasPermission(Session::get( 'adminId'),'mainPageSetting' ) <1 )  disabled @endif id="add5PicKalaList5">
                                                 <i class="fa-regular fa-circle-chevron-left fa-2x text-success"></i>
                                                 </button>
                                                 <br />
-                                                <button  type="button" style="background-color:transparent;"  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif id="remove5PicKalaList5">
+                                                <button  type="button" style="background-color:transparent;"  @if(hasPermission(Session::get( 'adminId'),'mainPageSetting' ) <1 )  disabled @endif id="remove5PicKalaList5">
                                                 <i class="fa-regular fa-circle-chevron-right fa-2x text-success"></i>
                                                 </button>
                                             </div>
@@ -1145,7 +1145,7 @@
                                                         <tr>
                                                             <th>ردیف</th>
                                                             <th>گروه اصلی </th>
-                                                            <th><input  @if(hasPermission(Session::get( 'adminId'),'homePage' ) <1 )  disabled @endif type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
+                                                            <th><input  @if(hasPermission(Session::get( 'adminId'),'mainPageSetting' ) <1 )  disabled @endif type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
                                                         </tr>
                                                     </thead>
                                                     <tbody class="tableHeader" id="fivePicAddedKala5">

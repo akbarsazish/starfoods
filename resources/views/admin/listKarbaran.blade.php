@@ -59,13 +59,13 @@
 						   <input type="text" name="search_mainPart" class="form-control form-control-sm searchInputTopC" id="basic-url" aria-describedby="basic-addon3" placeholder="جستجو ">
 					</div>
 					<div class="col-lg-6 col-md-6 col-sm-12 text-end mt-1">
-						 @if(hasPermission(Session::get("adminId"),"karbaran") > 1)
+						 @if(hasPermission(Session::get("adminId"),"karbaranN") > 0)
                             <button class="btn btn-success btn-sm" id="addingNewKarbar"> کاربر جدید <i class="fa fa-plus" aria-hidden="true"></i></button>
                         @endif  
-                        @if(hasPermission(Session::get("adminId"),"karbaran") > 0)  
+                        @if(hasPermission(Session::get("adminId"),"karbaranN") > 0)  
                             <button  type="button" class="btn btn-success btn-sm text-white" onclick="openEditDashboard()"> ویرایش <i class="fa fa-edit" aria-hidden="true"></i></button>
                         @endif
-                        @if(hasPermission(Session::get("adminId"),"karbaran") > 1)
+                        @if(hasPermission(Session::get("adminId"),"karbaranN") > 1)
                             <button  type="button" class="btn btn-danger btn-sm text-white" onclsuper ick="deleteConfirm()"> حذف <i class="fa fa-trash" aria-hidden="true"></i></button>
                         @endif
 					</div>

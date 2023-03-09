@@ -22,13 +22,13 @@
                         <label class="form-check-label me-4" for="assesPast"> اشخاص رسمی </label>
                     </div>
                      <div class="form-group customerListStaff">
-                        <div class="input-group mt-2">
-                            <span class="input-group-text">کد, شماره تماس, اسم</span>
-                            <input type="text" name="" size="20" class="form-control form-control-sm" placeholder="نام-تماس-کد" id="searchCustomerByName">
+                        <div class="input-group input-group-sm mt-1">
+                            <span class="input-group-text"> جستجو  </span>
+                            <input type="text" name=""  class="form-control form-control-sm" placeholder="کد, شماره تماس, اسم" id="searchCustomerByName">
                         </div>
                     </div>
-                    <div class="form-group customerListStaff mt-2">
-                        <div class="input-group">
+                    <div class="form-group input-group-sm customerListStaff mt-1">
+                        <div class="input-group input-group-sm">
                             <span class="input-group-text">شهر</span>
                             <select class="form-select form-select-sm" id='searchCityId'>
                                 <option value="">همه</option>
@@ -38,16 +38,16 @@
                             </select>
                         </div>
                     </div>
-                        <div class="form-group customerListStaff mt-2">
-                            <div class="input-group">
+                        <div class="form-group input-group-sm customerListStaff mt-1">
+                            <div class="input-group input-group-sm">
                                 <span  class="input-group-text">منطقه</span>
                                 <select class="form-select form-select-sm" id="searchSelectMantiqah">
                                     <option value="">همه</option>
                                 </select>
                             </div>
                         </div>
-                        <div class="form-group  customerListStaff mt-2">
-                            <div class="input-group">
+                        <div class="form-group input-group-sm customerListStaff mt-1">
+                            <div class="input-group input-group-sm">
                                 <span class="input-group-text">فعال</span>
                                 <select  class="form-select form-select-sm" id="searchActiveOrNot">
                                     <option  value="-1" hidden>همه</option>
@@ -56,18 +56,18 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="form-group  customerListStaff mt-2">
-                            <div class="input-group">
+                        <div class="form-group input-group-sm customerListStaff mt-1">
+                            <div class="input-group input-group-sm">
                                 <span class="input-group-text">موقعیت</span>
-                                <select  class="form-select form-select-sm" id="searchLocationOrNot">
+                                <select  class="for input-group-smm-select form-select-sm" id="searchLocationOrNot">
                                     <option value="-1"> همه </option>
                                     <option value="1">موقعیت دار </option>
                                     <option value="0"> بدون موقعیت </option>
                                 </select>
                             </div>
                         </div>
-                        <div class="form-group  customerListStaff mt-2">
-                            <div class="input-group">
+                        <div class="form-group input-group-sm customerListStaff mt-1">
+                            <div class="input-group input-group-sm">
                                 <span class="input-group-text">مرتب سازی</span>
                                 <select class="form-select form-select-sm" id="orderCustomers">
                                     <option value="Name">اسم</option>
@@ -87,11 +87,11 @@
                             @csrf
                             <input type="text" id="customerSn" style="display: none" name="customerSn" value="" />
                             <input type="text" id="customerGroup" style="display: none" name="customerGRP" value="" />
-                            @if(hasPermission(Session::get( 'adminId'),'customers' ) > -1) 
+                            @if(hasPermission(Session::get( 'adminId'),'reportCustomerN' ) > 1) 
                             <button class='enableBtn btn btn-success btn-sm text-warning' data-toggle='modal' type="submit" id='editPart' disabled style="color:#9ed5b6 "> ویرایش <i class="fal fa-edit"></i></button>
                             <button class='enableBtn btn btn-success btn-sm text-warning' type="button" id="openDashboard" disabled> داشبورد <i class="fal fa-money-bill-alt"></i></button>
                             @endif
-                            @if(hasPermission(Session::get( 'adminId'),'customers' ) > 1) 
+                            @if(hasPermission(Session::get( 'adminId'),'reportCustomerN' ) > 1) 
                             <button class='enableBtn btn btn-success btn-sm text-warning' data-toggle='modal' type="submit" id='editPart'disabled> ارسال به اکسل <i class="fal fa-file-excel" aria-hidden="true"></i></button>
                             <button class="enableBtn btn btn-success btn-sm text-warning" id="defineRoute" type="button" disabled>تعیین مسیر <i class="fal fa-address-card"></i></button>
                             @endif
@@ -165,7 +165,9 @@
                                                         <td> {{$haqiqiCustomer->codePosti}}</td>
                                                         <td> {{$haqiqiCustomer->address}}</td>
                                                     <td> <i class="fa fa-paper-plane" style="color:#198754"> </td>
-                                                        <td> <a  @if(hasPermission(Session::get( 'adminId'),'homePage' ) >0 ) href="{{url('haqiqiCustomerAdmin', $haqiqiCustomer->customerShopSn)}}" @else href="#" @endif> <i class="fal fa-edit fa-md" style="color:#ffc107"></i> </a></td>
+                                                      @if(hasPermission(Session::get( 'adminId'),'officialCustomerN' ) > 1)
+                                                        <td> <a  @if(hasPermission(Session::get( 'adminId'),'officialCustomerN' ) >0 ) href="{{url('haqiqiCustomerAdmin', $haqiqiCustomer->customerShopSn)}}" @else href="#" @endif> <i class="fal fa-edit fa-md" style="color:#ffc107"></i> </a></td>
+                                                      @endif
                                                     </tr>
                                                 @endforeach
                                                 <?php } ?>
@@ -198,7 +200,11 @@
                                                             <td> {{$hohoqiCustomer->codePosti}}</td>
                                                             <td> {{$hohoqiCustomer->address}}</td>
                                                             <td> <i class="fa fa-paper-plane" style="color:#198754"> </td>
-                                                            <td> <a @if(hasPermission(Session::get( 'adminId'),'homePage' ) > 0 ) href="{{url('haqiqiCustomerAdmin', $hohoqiCustomer->customerShopSn)}}" @else href="#" @endif> <i class="fal fa-edit" style="color:#ffc107"></i> </a> </td>
+                                                            <td>
+                                                                 @if(hasPermission(Session::get( 'adminId'),'officialCustomerN' ) > 1)
+                                                                 <a @if(hasPermission(Session::get( 'adminId'),'officialCustomerN' ) > 0 ) href="{{url('haqiqiCustomerAdmin', $hohoqiCustomer->customerShopSn)}}" @else href="#" @endif> <i class="fal fa-edit" style="color:#ffc107"></i> </a>
+                                                                 @endif
+                                                             </td>
                                                             </tr>
                                                         @endforeach
                                                     <?php }?>

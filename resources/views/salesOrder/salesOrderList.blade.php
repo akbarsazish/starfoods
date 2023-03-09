@@ -41,23 +41,28 @@
             <div class="col-lg-2 col-md-2 col-sm-3 sideBar">
                 <fieldset class="border rounded mt-4 sidefieldSet">
                     <legend  class="float-none w-auto legendLabel mb-0">انتخاب</legend>
+                     @if(hasPermission(Session::get("adminId"),"orderSalesN") > 1)
                       <button type="button" class="btn btn-success btn-sm topButton" id="saleToFactorSaleBtn">ارسال به فاکتور فروش <i class="fa fa-send"></i> </button>
                       <button type="button" class="btn btn-success btn-sm topButton" disabled data-toggle="modal" data-target="#orderReport">  گزارش سفارش   &nbsp; <i class="fa fa-list"></i> </button>
-           
+                    @endif
                         <span class="situation">
                             <fieldset class="border rounded">
                               <legend  class="float-none w-auto legendLabel mb-0">وضعیت</legend>
+                                     @if(hasPermission(Session::get("adminId"),"orderSalesN") > 1)
                                     <div class="form-check">
                                         <input class="form-check-input float-start" type="radio" name="sefRadio" id="sefNewOrderRadio">
                                             <label class="form-check-label ms-3" for="sefNewOrderRadio"> جدید </label>
                                       </div>
+                                      @endif
+                                       @if(hasPermission(Session::get("adminId"),"orderSalesN") > 1)
                                       <div class="form-check">
                                         <input class="form-check-input float-start" type="radio" name="sefRadio" id="sefRemainOrderRadio">
                                             <label class="form-check-label ms-3" for="sefRemainOrderRadio">  باطل </label>
                                        </div>
+                                       @endif
                                        <div class="form-check">
                                           <input class="form-check-input float-start" type="radio" name="sefRadio" id="sefSentOrderRadio">
-                                                <label class="form-check-label ms-3" for="sefSentOrderRadio"> فاکتور شده </label>
+                                            <label class="form-check-label ms-3" for="sefSentOrderRadio"> فاکتور شده </label>
                                        </div>
                                        <div class="form-check">
                                            <input class="form-check-input float-start" type="radio" name="sefRadio" id="sefTodayOrderRadio">
