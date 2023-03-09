@@ -164,11 +164,13 @@
                 <div class="row contentHeader">
                     <div class="col-lg-12 text-end mt-1">
                         <span class="listkalarStaff">
-                            <button class="kala-btn btn btn-success btn-sm text-warning " disabled id="openEditKalaModal"> ویرایش <i class="fal fa-edit" aria-hidden="true"></i></button>
+                               @if(hasPermission(Session::get("adminId"),"kalasN") > -1)
+                                 <button class="kala-btn btn btn-success btn-sm text-warning " disabled id="openEditKalaModal"> ویرایش <i class="fal fa-edit" aria-hidden="true"></i></button>
+                               @endif
                             <input type="text" class="form-control" value="" id="kalaIdForEdit1" style="display:none;">
                             <form action="{{url('/editKala')}}" method="POST" style="display: inline;">
                                 @csrf
-                                @if(hasPermission(Session::get( 'adminId'),'kalasN' ) > -1) 
+                                @if(hasPermission(Session::get( 'adminId'),'kalasN' ) > 1) 
                                     <!-- <button type="submit" id="editKalaList" disabled class="kala-btn btn btn-success btn-md text-warning"> ویرایش <i class="fal fa-edit " aria-hidden="true"></i></button> -->
                                 <input type="text"  name="kalaId" class="form-control" value="" id="kalaIdForEdit" style="display:none;">
                                 <!-- <button type="submit" id="editKalaList" disabled class="kala-btn btn btn-success text-warning"> رویت <i class="fal fa-eye " aria-hidden="true"></i></button> -->
@@ -179,7 +181,7 @@
                                 @endif
                                
                             </form>
-                             @if(hasPermission(Session::get( 'adminId'),'kalasN' ) > 1) 
+                              @if(hasPermission(Session::get( 'adminId'),'pishKharidN' ) > 1) 
                                 <button type="#" id="editKalaList" disabled class="kala-btn btn btn-success btn-sm text-warning"> ارسال به اکسل  <i class="fal fa-file-excel" aria-hidden="true"></i></button>
                                 @endif
                             </span>
@@ -194,9 +196,10 @@
                             </span>
                             <!-- brand staff  -->
                             <span class="brandStaff">
+                             @if(hasPermission(Session::get("adminId"),"brandsN") > 1)
                                 <button @if(hasPermission(Session::get("adminId"),"brandsN") < 2) disabled @endif class="btn btn-success btn-sm" id="newBrandBtn">جدید <i class="fa fa-plus" aria-hidden="true"></i></button>
                                 <button type="button" value="Reterive data" class="btn btn-success btn-sm text-white" id="editBrandBtn"> ویرایش  <i class="fa fa-edit" aria-hidden="true"></i></button>
-
+                            @endif
                                 <form action='{{ url('/deleteBrand') }}' onsubmit="return confirm('میخوهید حذف کنید?');" method='post' style=" margin:0; padding:0; display: inline !important;">
                                     @csrf
                                     @if(hasPermission(Session::get("adminId"),"brandsN") > 1)
