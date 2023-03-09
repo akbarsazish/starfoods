@@ -1153,11 +1153,11 @@ public function searchByCity(Request $request)
                     $seeCustomersED = $request->post("seeCustomersED");
 
                         if($customersED=="on"){
-                                if($deleteCustomersED="on"){
+                                if($deleteCustomersED=="on"){
                                     $customersED=2;
-                                }elseif($editCustomerED="on" &&  $deleteCustomersED!="on"){
+                                }elseif($editCustomerED=="on" &&  $deleteCustomersED!="on"){
                                     $customersED=1;    
-                                }elseif($seeCustomersED="on" && $editCustomerED!="on"){
+                                }elseif($seeCustomersED=="on" && $editCustomerED!="on"){
                                     $customersED=0;
                                 }else{
                                     $customersED=-1;
@@ -1204,11 +1204,11 @@ public function searchByCity(Request $request)
                         $seeKalaListED=$request->post("seeKalaListED");
 
                         if($kalaListsED=="on"){
-                                if($deleteKalaListED="on"){
+                                if($deleteKalaListED=="on"){
                                     $kalaListsED=2;
                                 }elseif($editKalaListED=="on" && $deleteKalaListED!="on"){
                                     $kalaListsED=1;
-                                }elseif($seeKalaListED="on" && $editKalaListED!="on"){
+                                }elseif($seeKalaListED=="on" && $editKalaListED!="on"){
                                     $kalaListsED=0;
                                 }else{
                                     $kalaListsED=-1;
@@ -1225,11 +1225,11 @@ public function searchByCity(Request $request)
                         $seeRequestedKalaED=$request->post("seeRequestedKalaED");
 
                         if($requestedKalaED=="on"){
-                                if($deleteRequestedKalaED="on"){
+                                if($deleteRequestedKalaED=="on"){
                                     $requestedKalaED=2;
                                 }elseif($editRequestedKalaED=="on" && $deleteRequestedKalaED!="on"){
                                     $requestedKalaED=1;
-                                }elseif($seeRequestedKalaED="on" && $editRequestedKalaED!="on"){
+                                }elseif($seeRequestedKalaED=="on" && $editRequestedKalaED!="on"){
                                     $requestedKalaED=0;
                                 }else{
                                     $requestedKalaED=-1;
@@ -1246,11 +1246,11 @@ public function searchByCity(Request $request)
                         $seeFastKalaED=$request->post("seeFastKalaED");
 
                         if($fastKalaED=="on"){
-                                if($deleteFastKalaED="on"){
+                                if($deleteFastKalaED=="on"){
                                     $fastKalaED=2;
                                 }elseif($editFastKalaED=="on" && $deleteFastKalaED!="on"){
                                     $fastKalaED=1;
-                                }elseif($seeFastKalaED="on" && $editFastKalaED!="on"){
+                                }elseif($seeFastKalaED=="on" && $editFastKalaED!="on"){
                                     $fastKalaED=0;
                                 }else{
                                     $fastKalaED=-1;
@@ -1268,11 +1268,11 @@ public function searchByCity(Request $request)
                         $seePishKharidED=$request->post("seePishKharidED");
 
                         if($pishKharidED=="on"){
-                                if($deletePishKharidED="on"){
+                                if($deletePishKharidED=="on"){
                                     $pishKharidED=2;
                                 }elseif($editPishkharidED=="on" && $deletePishKharidED!="on"){
                                     $pishKharidED=1;
-                                }elseif($seePishKharidED="on" && $editPishkharidED!="on"){
+                                }elseif($seePishKharidED=="on" && $editPishkharidED!="on"){
                                     $pishKharidED=0;
                                 }else{
                                     $pishKharidED=-1;
@@ -1289,11 +1289,11 @@ public function searchByCity(Request $request)
                         $seeBrandsED=$request->post("seeBrandsED");
 
                         if($brandsED=="on"){
-                                if($deleteBrandsED="on"){
+                                if($deleteBrandsED=="on"){
                                     $brandsED=2;
                                 }elseif($editBrandED=="on" && $deleteBrandsED!="on"){
                                     $brandsED=1;
-                                }elseif($seeBrandsED="on" && $editBrandED!="on"){
+                                }elseif($seeBrandsED=="on" && $editBrandED!="on"){
                                     $brandsED=0;
                                 }else{
                                     $brandsED=-1;
@@ -1311,11 +1311,11 @@ public function searchByCity(Request $request)
                         $seeAlertedED=$request->post("seeAlertedED");
 
                         if($alertedED=="on"){
-                                if($deleteAlertedED="on"){
+                                if($deleteAlertedED=="on"){
                                     $alertedED=2;
                                 }elseif($editAlertedED=="on" && $deleteAlertedED!="on"){
                                     $alertedED=1;
-                                }elseif($seeAlertedED="on" && $editAlertedED!="on"){
+                                }elseif($seeAlertedED=="on" && $editAlertedED!="on"){
                                     $alertedED=0;
                                 }else{
                                     $alertedED=-1;
@@ -1332,11 +1332,12 @@ public function searchByCity(Request $request)
                         $editKalaGroupED=$request->post("editKalaGroupED");
                         $seeKalaGroupED=$request->post("seeKalaGroupED");
                         if($kalaGroupED=="on"){
-                                if($deletKalaGroupED="on"){
+                                if($deletKalaGroupED=="on"){
+                                    return 1;
                                     $kalaGroupED=2;
-                                }elseif($editKalaGroupED=="on" && $deletKalaGroupED!="on"){
+                                }elseif($editKalaGroupED=="on" && $deletKalaGroupED!=="on"){
                                     $kalaGroupED=1;
-                                }elseif($seeKalaGroupED="on" && $editKalaGroupED!="on"){
+                                }elseif($seeKalaGroupED=="on" && $editKalaGroupED!=="on"){
                                     $kalaGroupED=0;
                                 }else{
                                     $kalaGroupED=-1;
@@ -1351,12 +1352,13 @@ public function searchByCity(Request $request)
                         $deleteOrderSalesED=$request->post("deleteOrderSalesED");
                         $editOrderSalesED=$request->post("editOrderSalesED");
                         $seeSalesOrderED=$request->post("seeSalesOrderED");
+                       
                         if($orderSalesED=="on"){
-                                if($deleteOrderSalesED="on"){
+                                if($deleteOrderSalesED=="on"){
                                     $orderSalesED=2;
                                 }elseif($editOrderSalesED=="on" && $deleteOrderSalesED!="on"){
                                     $orderSalesED=1;
-                                }elseif($seeSalesOrderED="on" && $editOrderSalesED!="on"){
+                                }elseif($seeSalesOrderED=="on" && $editOrderSalesED!="on"){
                                     $orderSalesED=0;
                                 }else{
                                     $orderSalesED=-1;
@@ -1365,18 +1367,17 @@ public function searchByCity(Request $request)
                         }else{
                             $orderSalesED=-1;
                         }
-
                      // چک کردن پیام ها با سه تا عناصر اش
                         $messageED=$request->post("messageED");
                         $deleteMessageED=$request->post("deleteMessageED");
                         $editMessageED=$request->post("editMessageED");
                         $seeMessageED=$request->post("seeMessageED");
                         if($messageED=="on"){
-                                if($deleteMessageED="on"){
+                                if($deleteMessageED=="on"){
                                     $messageED=2;
                                 }elseif($editOrderSalesED=="on" && $deleteMessageED!="on"){
                                     $messageED=1;
-                                }elseif($seeMessageED="on" && $editOrderSalesED!="on"){
+                                }elseif($seeMessageED=="on" && $editOrderSalesED!="on"){
                                     $messageED=0;
                                 }else{
                                     $messageED=-1;
@@ -1437,11 +1438,11 @@ public function searchByCity(Request $request)
                     $editCustomerListED=$request->post("editCustomerListED");
                     $seeCustomerListED=$request->post("seeCustomerListED");
                     if($customerListED=="on"){
-                            if($deletCustomerListED="on"){
+                            if($deletCustomerListED=="on"){
                                 $customerListED=2;
                             }elseif($editCustomerListED=="on" && $deletCustomerListED!="on"){
                                 $customerListED=1;
-                            }elseif($seeCustomerListED="on" && $editCustomerListED!="on"){
+                            }elseif($seeCustomerListED=="on" && $editCustomerListED!="on"){
                                 $customerListED=0;
                             }else{
                                 $customerListED=-1;
@@ -1456,11 +1457,11 @@ public function searchByCity(Request $request)
                     $editOfficialCustomerED=$request->post("editOfficialCustomerED");
                     $seeOfficialCustomerED=$request->post("seeOfficialCustomerED");
                     if($officialCustomerED=="on"){
-                        if($deleteOfficialCustomerED="on"){
+                        if($deleteOfficialCustomerED=="on"){
                             $officialCustomerED=2;
                         }elseif($editOfficialCustomerED=="on" && $deleteOfficialCustomerED!="on"){
                             $officialCustomerED=1;
-                        }elseif($seeOfficialCustomerED="on" && $editOfficialCustomerED!="on"){
+                        }elseif($seeOfficialCustomerED=="on" && $editOfficialCustomerED!="on"){
                             $officialCustomerED=0;
                         }else{
                             $officialCustomerED=-1;
@@ -1487,11 +1488,11 @@ public function searchByCity(Request $request)
                     $editLotteryResultED=$request->post("editLotteryResultED");
                     $seeLotteryResultED=$request->post("seeLotteryResultED");
                     if($lotteryResultED=="on"){
-                            if($deletLotteryResultED="on"){
+                            if($deletLotteryResultED=="on"){
                                 $lotteryResultED=2;
                             }elseif($editLotteryResultED=="on" && $deletLotteryResultED!="on"){
                                 $lotteryResultED=1;
-                            }elseif($seeLotteryResultED="on" && $editLotteryResultED!="on"){
+                            }elseif($seeLotteryResultED=="on" && $editLotteryResultED!="on"){
                                 $lotteryResultED=0;
                             }else{
                                 $lotteryResultED=-1;
@@ -1507,11 +1508,11 @@ public function searchByCity(Request $request)
                     $editGamerListED=$request->post("editGamerListED");
                     $seeGamerListED=$request->post("seeGamerListED");
                     if($gamerListED=="on"){
-                            if($deletGamerListED="on"){
+                            if($deletGamerListED=="on"){
                                 $gamerListED=2;
                             }elseif($editGamerListED=="on" && $deletGamerListED!="on"){
                                 $gamerListED=1;
-                            }elseif($seeGamerListED="on" && $editGamerListED!="on"){
+                            }elseif($seeGamerListED=="on" && $editGamerListED!="on"){
                                 $gamerListED=0;
                             }else{
                                 $gamerListED=-1;
@@ -1530,11 +1531,11 @@ public function searchByCity(Request $request)
                 $editOnlinePaymentED=$request->post("editOnlinePaymentED");
                 $seeOnlinePaymentED=$request->post("seeOnlinePaymentED");
                 if($onlinePaymentED=="on"){
-                        if($deleteOnlinePaymentED="on"){
+                        if($deleteOnlinePaymentED=="on"){
                             $onlinePaymentED=2;
                         }elseif($editOnlinePaymentED=="on" && $deleteOnlinePaymentED!="on"){
                             $onlinePaymentED=1;
-                        }elseif($seeOnlinePaymentED="on" && $editOnlinePaymentED!="on"){
+                        }elseif($seeOnlinePaymentED=="on" && $editOnlinePaymentED!="on"){
                             $onlinePaymentED=0;
                         }else{
                             $onlinePaymentED=-1;
@@ -1554,6 +1555,7 @@ public function searchByCity(Request $request)
             $gamerListED= -1;
             $onlinePaymentED= -1;
         }
+
     DB::table("NewStarfood.dbo.star_hasAccess1")->where("adminId",$adminId)->update(
         ['adminId'=>$adminId
         ,'baseInfoN'=>$baseInfoED

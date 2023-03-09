@@ -34,48 +34,49 @@
             <div class="col-lg-2 col-md-2 col-sm-3 sideBar">
                 <fieldset class="border rounded mt-4 sidefieldSet">
                     <legend  class="float-none w-auto legendLabel mb-0"> انتخاب </legend>
-                       @if(hasPermission(Session::get("adminId"),"kalasN") > -1)
+                       @if(hasPermission(Session::get("adminId"),"kalaListsN") > -1)
                         <div class="form-check">
                             <input class="form-check-input p-2 float-start" type="radio" name="settings" id="kalaListRadio" checked>
                             <label class="form-check-label me-4" for="assesPast"> لیست کالاها  </label>
                         </div>
                         @endif
-                        @if(hasPermission(Session::get("adminId"),"kalasN") > -1)
+                        @if(hasPermission(Session::get("adminId"),"requestedKalaN") > -1)
                         <div class="form-check">
                             <input class="form-check-input p-2 float-start" type="radio" name="settings" id="customerRequestRadio">
                             <label class="form-check-label me-4" for="assesPast"> در خواست مشتریان </label>
                         </div>
                         @endif
-                        @if(hasPermission(Session::get("adminId"),"kalasN") > -1)
+                        @if(hasPermission(Session::get("adminId"),"fastKalaN") > -1)
                         <div class="form-check">
                             <input class="form-check-input p-2 float-start" type="radio" name="settings" id="fastKalaRadio">
                             <label class="form-check-label me-4" for="assesPast"> فست کالا </label>
                         </div>
                         @endif
-                        @if(hasPermission(Session::get("adminId"),"kalasN") > -1)
+                        @if(hasPermission(Session::get("adminId"),"pishKharidN") > -1)
                         <div class="form-check">
                             <input class="form-check-input p-2 float-start" type="radio" name="settings" id="pishKharidRadio">
                             <label class="form-check-label me-4" for="assesPast"> پیش خرید  </label>
                         </div>
                         @endif
-                        @if(hasPermission(Session::get("adminId"),"kalasN") > -1)
+                        @if(hasPermission(Session::get("adminId"),"brandsN") > -1)
                         <div class="form-check">
                             <input class="form-check-input p-2 float-start" type="radio" name="settings" id="brandsRadio">
                             <label class="form-check-label me-4" for="assesPast"> برند ها  </label>
                         </div>
                         @endif
-                        @if(hasPermission(Session::get("adminId"),"kalasN") > -1)
+                        @if(hasPermission(Session::get("adminId"),"alertedN") > -1)
                         <div class="form-check">
                             <input class="form-check-input p-2 float-start" type="radio" name="settings" id="alarmedKalaListRadio">
                             <label class="form-check-label me-4" for="assesPast"> لیست شامل هشدار </label>
                         </div>
                         @endif
-                        @if(hasPermission(Session::get("adminId"),"kalasN") > -1)
+                        @if(hasPermission(Session::get("adminId"),"kalaGroupN") > -1)
                         <div class="form-check">
                             <input class="form-check-input p-2 float-start" type="radio" name="settings" id="categorykalaRadio">
                             <label class="form-check-label me-4" for="assesPast"> دسته بندی کالا </label>
                         </div>
                         @endif
+
                         <div class="col-sm-12 listkalarStaff">
                             <div class="form-group">
                                 <div class="input-group  input-group-sm">
@@ -168,24 +169,21 @@
                             <input type="text" class="form-control" value="" id="kalaIdForEdit1" style="display:none;">
                             <form action="{{url('/editKala')}}" method="POST" style="display: inline;">
                                 @csrf
-                                @if(hasPermission(Session::get( 'adminId'),'kalasN' ) > 1) 
-                                    <!-- <button type="submit" id="editKalaList" disabled class="kala-btn btn btn-success btn-md text-warning"> ویرایش <i class="fal fa-edit " aria-hidden="true"></i></button> -->
                                 <input type="text"  name="kalaId" class="form-control" value="" id="kalaIdForEdit" style="display:none;">
-                                <!-- <button type="submit" id="editKalaList" disabled class="kala-btn btn btn-success text-warning"> رویت <i class="fal fa-eye " aria-hidden="true"></i></button> -->
+                                @if(hasPermission(Session::get( 'adminId'),'kalaListsN' ) > -1)
+                                    <button type="button" id="openViewTenSalesModal" disabled class="kala-btn btn btn-success btn-sm text-warning">ده فروش آخر<i class="fal fa-history" aria-hidden="true"></i></button>
                                 @endif
-                                <button type="button" id="openViewTenSalesModal" disabled class="kala-btn btn btn-success btn-sm text-warning">ده فروش آخر<i class="fal fa-history" aria-hidden="true"></i></button>
-                                @if(hasPermission(Session::get( 'adminId'),'kalasN' ) > 0) 
-                                <button type="button" data-toggle="modal"  onclick="openChangePriceModal()"  disabled class="kala-btn btn btn-success btn-sm text-warning"> تغییر قیمت <i class="fal fa-exchange-alt" aria-hidden="true"></i></button>
+                                @if(hasPermission(Session::get( 'adminId'),'kalaListsN' ) > 1)
+                                    <button type="button" data-toggle="modal"  onclick="openChangePriceModal()"  disabled class="kala-btn btn btn-success btn-sm text-warning"> تغییر قیمت <i class="fal fa-exchange-alt" aria-hidden="true"></i></button>
                                 @endif
-                               
                             </form>
-                              @if(hasPermission(Session::get( 'adminId'),'pishKharidN' ) > 1) 
+                             @if(hasPermission(Session::get( 'adminId'),'kalaListsN' ) > 0)
                                 <button type="#" id="editKalaList" disabled class="kala-btn btn btn-success btn-sm text-warning"> ارسال به اکسل  <i class="fal fa-file-excel" aria-hidden="true"></i></button>
                                 @endif
                             </span>
                              <!-- بتن های مربوط کلای پیش خرید -->
                             <span class="pishKaridStaff">
-                                @if(hasPermission(Session::get("adminId"),"pishKharidN") > -1)
+                                @if(hasPermission(Session::get("adminId"),"pishKharidN") > 0)
                                     <button disabled id="submitFactorToAppButton" name="action" value="sendToApp" class="btn btn-sm btn-success pishKaridStaff" type="submit" form="pishKharidFormId">ارسال به پشتیبان فروش</button>
                                 @endif 
                                 @if(hasPermission(Session::get("adminId"),"pishKharidN") > 1)
@@ -194,10 +192,12 @@
                             </span>
                             <!-- brand staff  -->
                             <span class="brandStaff">
-                             @if(hasPermission(Session::get("adminId"),"brandsN") > 1)
-                                <button @if(hasPermission(Session::get("adminId"),"brandsN") < 2) disabled @endif class="btn btn-success btn-sm" id="newBrandBtn">جدید <i class="fa fa-plus" aria-hidden="true"></i></button>
-                                <button type="button" value="Reterive data" class="btn btn-success btn-sm text-white" id="editBrandBtn"> ویرایش  <i class="fa fa-edit" aria-hidden="true"></i></button>
-                            @endif
+                                @if(hasPermission(Session::get("adminId"),"brandsN") > 1)
+                                    <button   class="btn btn-success btn-sm" id="newBrandBtn">جدید <i class="fa fa-plus" aria-hidden="true"></i></button>
+                                @endif
+                                @if(hasPermission(Session::get("adminId"),"brandsN") > 0)
+                                    <button type="button" value="Reterive data" class="btn btn-success btn-sm text-white" id="editBrandBtn"> ویرایش  <i class="fa fa-edit" aria-hidden="true"></i></button>
+                                @endif
                                 <form action='{{ url('/deleteBrand') }}' onsubmit="return confirm('میخوهید حذف کنید?');" method='post' style=" margin:0; padding:0; display: inline !important;">
                                     @csrf
                                     @if(hasPermission(Session::get("adminId"),"brandsN") > 1)
@@ -213,8 +213,10 @@
                             <!-- بتن های مربوط به دسته بندی گروپ اصلی -->
                             <div class="row">
                              <span class="kalaCategoryStaff col-lg-6 text-center">
-                                    <button style="margint:0"  @if(hasPermission(Session::get("adminId"),"kalaGroupN") < 2) disabled @endif class="btn btn-success btn-sm buttonHover" id="addNewMainGroupBtn"> جدید <i class="fa fa-plus " aria-hidden="true"></i></button> &nbsp;
                                     @if(hasPermission(Session::get("adminId"),"kalaGroupN") > 1)
+                                        <button style="margint:0" class="btn btn-success btn-sm buttonHover" id="addNewMainGroupBtn"> جدید <i class="fa fa-plus " aria-hidden="true"></i></button> &nbsp;
+                                    @endif
+                                    @if(hasPermission(Session::get("adminId"),"kalaGroupN") > 0)
                                         <button type="button" value="Reterive data" class="btn btn-success btn-sm text-white editButtonHover"
                                     onclick="getGroupId()" data-toggle="modal" id="editGroupList">ویرایش<i class="fa fa-edit " aria-hidden="true"></i></button> &nbsp;
                                     @endif
@@ -233,22 +235,24 @@
                                     @if(hasPermission(Session::get("adminId"),"kalaGroupN") > 1)
                                         <button class="btn btn-success btn-sm buttonHover" onclick="addNewSubGroup()" disabled  id="addNewSubGroupButton" > جدید <i class="fa fa-plus " aria-hidden="true"></i></button> &nbsp;
                                     @endif
-                                    @if(hasPermission(Session::get("adminId"),"kalaGroupN") > 1)
-                                            <button  class="btn btn-success btn-sm text-white editButtonHover" disabled id="editSubGroupButton" > ویرایش <i class="fa fa-edit " aria-hidden="true"></i></button> &nbsp;
+                                    @if(hasPermission(Session::get("adminId"),"kalaGroupN") > 0)
+                                        <button  class="btn btn-success btn-sm text-white editButtonHover" disabled id="editSubGroupButton" > ویرایش <i class="fa fa-edit " aria-hidden="true"></i></button> &nbsp;
                                     @endif
                                     <form action='{{ url('/deleteSubGroup') }}' method='post' onsubmit="return confirm('میخوهید حذف کنید?');" style=" margin:0; padding:0; display: inline;"> 
                                         @csrf
                                         @if(hasPermission(Session::get("adminId"),"kalaGroupN") > 1)
-                                        <button id="deleteSubGroup" disabled class="btn btn-danger btn-sm buttonHoverDelete"> حذف <i class="fa fa-trash " aria-hidden="true"></i></button>
+                                            <button id="deleteSubGroup" disabled class="btn btn-danger btn-sm buttonHoverDelete"> حذف <i class="fa fa-trash " aria-hidden="true"></i></button>
                                         @endif
                                         <input type="text" value="" name="id" style="display: none" id="subGroupIdForDelete"/>
                                         @if(hasPermission(Session::get("adminId"),"kalaGroupN") > 0)
                                         <button onclick="changeSubGroupPriority(this)" value="top"  type="button" style="background-color:transparent;" ><i class="fa-solid fa-circle-chevron-up fa-xl chevronHover"></i></button>
                                         <button onclick="changeSubGroupPriority(this)" value="down"  type="button" style="background-color:transparent;"><i class="fa-solid fa-circle-chevron-down fa-xl chevronHover"></i></button>
-                                        <br />
+                                        <br/>
                                         @endif
                                     </form>
-                                    <button class='btn btn-success btn-sm' form="subGroupofSubGroupForm" id="subGroupofSubGrouppBtn" type="submit" disabled> ذخیره  <i class="fa fa-save"></i> </button>
+                                    @if(hasPermission(Session::get("adminId"),"kalaGroupN") > 0)
+                                        <button class='btn btn-success btn-sm' form="subGroupofSubGroupForm" id="subGroupofSubGrouppBtn" type="submit" disabled> ذخیره  <i class="fa fa-save"></i> </button>
+                                    @endif
                               </span>
                            </div>
 

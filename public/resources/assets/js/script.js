@@ -5471,11 +5471,11 @@ function openEditDashboard() {
                     break;
                 case 1: $("#editOrderSalesED").prop("checked", true).change();
                     break;
-                case 0: $("#seeOrderSalesED").prop("checked", true).change();
+                case 0: $("#seeSalesOrderED").prop("checked", true).change();
                     break;
-                case -1: $("#seeOrderSalesED").prop("checked", false).change();
+                case -1: $("#seeSalesOrderED").prop("checked", false).change();
                     break;
-                default: $("#seeOrderSalesED").prop("checked", false).change();
+                default: $("#seeSalesOrderED").prop("checked", false).change();
                     break;
             }
 
@@ -6879,10 +6879,10 @@ $("#filterCustomerBtn").on("click", function () {
             <td>`+ (index + 1) + `</td>
             <td>`+ element.PCode + `</td>
             <td>`+ element.Name + `</td>
-            <td>`+ element.peopeladdress + `</td>
+            <td style="width:390px">`+ element.peopeladdress + `</td>
             <td>`+ element.PhoneStr + `</td>
             <td>`+ nameRec + `</td>
-            <td>2</td>
+            <td>`+ element.TimeStamp + `</td>
             <td> <input class="customerList form-check-input" name="customerId" type="radio" value="`+ element.PSN + `_` + element.GroupCode + `" id="flexCheckChecked"></td>
         </tr>
             `);
