@@ -74,7 +74,7 @@ class Group extends Controller {
        $picture->move("resources/assets/images/mainGroups/",$filename);
        }
        DB::update("UPDATE NewStarfood.dbo.Star_Group_Def set title='".$groupName."' where id=".$groupId);
-    return redirect('/listGroup');
+    return redirect('/listKala');
  }
  public function getListGroup(Request $request)
  {

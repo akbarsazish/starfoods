@@ -62,12 +62,6 @@
                             <input class="form-check-input p-2 float-start" type="radio" name="settings" id="categorykalaRadio">
                             <label class="form-check-label me-4" for="assesPast"> دسته بندی کالا </label>
                         </div>
-
-
-
-
-
-
                         <div class="col-sm-12 listkalarStaff">
                             <div class="form-group">
                                 <div class="input-group  input-group-sm">
@@ -140,14 +134,6 @@
                         <div class="form-group col-sm-12 mb-1 listkalarStaff">
                             <button type="button" class="btn btn-success btn-sm topButton"  onclick="filterAllKala()" > بازخوانی &nbsp; <i class="fa fa-refresh"></i> </button>
                         </div>
-
-
-
-
-
-
-
-
                          <div class="col-sm-12 requestedKalaStaff">
                             <input type="text" onkeyup="searchRequestedKala(this)" class="form-control form-control-sm" id="allKalaFirst" placeholder="جستجو">
                         </div>
