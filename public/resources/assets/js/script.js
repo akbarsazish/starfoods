@@ -9673,13 +9673,13 @@ $("#editDeleteOrderItem").on("click", () => {
     });
 });
 
-function deleteKalaPicture(goodSn,element) {
-    $.get(baseUrl+'/getGoodPictureState',{goodSn:goodSn},function(respond,status){
-        if(status=="success"){
-            $("#mainPicEdit"+goodSn).attr('src','');
+function deleteKalaPicture(goodSn, element) {
+    $.get(baseUrl + '/getGoodPictureState', { goodSn: goodSn }, function (respond, status) {
+        if (status == "success") {
+            $("#mainPicEdit" + goodSn).attr('src', '');
             $(element).hide();
-            if($("#mainPicEdit")){
-                $("#mainPicEdit").attr('src','');
+            if ($("#mainPicEdit")) {
+                $("#mainPicEdit").attr('src', '');
             }
         }
     });
