@@ -19,7 +19,7 @@
             <div class="col-sm-10 col-md-10 col-sm-12 contentDiv">
                 <div class="row contentHeader">
                     <div class="col-lg-12 text-end mt-1">
-                        <button form="sliderEditForm" type="submit" @if(hasPermission(Session::get( 'adminId'),'homePage' ) < 1 ) disabled @endif class="btn btn-success btn-sm text-warning" id="sliderEditSaveBtn">ذخیره <i class="fa fa-save fa-lg" aria-hidden="true"></i></button>
+                        <button form="sliderEditForm" type="submit" @if(hasPermission(Session::get( 'adminId'),'mainPageSetting' ) < 1 ) disabled @endif class="btn btn-success btn-sm text-warning" id="sliderEditSaveBtn">ذخیره <i class="fa fa-save fa-lg" aria-hidden="true"></i></button>
                     </div>
                 </div>
                 <div class="row mainContent">
@@ -75,7 +75,7 @@
                                                                 @endif
                                                                 <br/>
                                                                 <div>
-                                                                    <button class="btn btn-success btn-sm text-warning"  @if(hasPermission(Session::get( 'adminId'),'homePage' ) >0 ) onclick="document.getElementById('firstPic').click();" @endif type="button" style="display: inline; margin-right: 2%;">ویرایش</button>
+                                                                    <button class="btn btn-success btn-sm text-warning"  @if(hasPermission(Session::get( 'adminId'),'mainPageSetting' ) >0 ) onclick="document.getElementById('firstPic').click();" @endif type="button" style="display: inline; margin-right: 2%;">ویرایش</button>
                                                                 </div>
                                                                 <input type="file"  onchange='document.getElementById("imageSrc1").src = window.URL.createObjectURL(this.files[0])'  name="slider1" id="firstPic" style="display: none"/>
                                                             </div>
@@ -91,7 +91,7 @@
                                                                 @endif
                                                                 <br/>
                                                                 <div>
-                                                                    <button class="btn btn-success btn-sm text-warning"   @if(hasPermission(Session::get( 'adminId'),'homePage' ) >0 )  onclick="document.getElementById('secondPic').click();" @endif type="button" style="display: inline;margin-right: 2%;">ویرایش</button>
+                                                                    <button class="btn btn-success btn-sm text-warning"   @if(hasPermission(Session::get( 'adminId'),'mainPageSetting' ) >0 )  onclick="document.getElementById('secondPic').click();" @endif type="button" style="display: inline;margin-right: 2%;">ویرایش</button>
                                                                 </div>
                                                                 <input type="file" onchange='document.getElementById("imageSrc2").src = window.URL.createObjectURL(this.files[0])' name="slider2" id="secondPic" style="display: none"/>
                                                             </div>
@@ -103,7 +103,7 @@
                                                                 <img id="imageSrc3" style="width:85% height:45%" src="{{url('/resources/assets/images/mainSlider/'.$pic->thirdPic.'')}}">
                                                                 <br/>
                                                                 <div>
-                                                                    <button class="btn btn-success btn-sm text-warning" @if(hasPermission(Session::get( 'adminId'),'homePage' ) >0 ) onclick="document.getElementById('thirdPic').click();" @endif type="button" style="display: inline;margin-right: 2%;">ویرایش</button>
+                                                                    <button class="btn btn-success btn-sm text-warning" @if(hasPermission(Session::get( 'adminId'),'mainPageSetting' ) >0 ) onclick="document.getElementById('thirdPic').click();" @endif type="button" style="display: inline;margin-right: 2%;">ویرایش</button>
                                                                 </div>
                                                                 <input type="file"  onchange='document.getElementById("imageSrc3").src = window.URL.createObjectURL(this.files[0])' name="slider3" id="thirdPic" style="display: none"/>
                                                             </div>
@@ -115,7 +115,7 @@
                                                                 <img id="imageSrc4" style="width:85% height:45%" src="{{url('/resources/assets/images/mainSlider/'.$pic->fourthPic.'')}}">
                                                                 <br/>
                                                                 <div>
-                                                                    <button class="btn btn-success btn-sm text-warning" @if(hasPermission(Session::get( 'adminId'),'homePage' ) >0 ) onclick="document.getElementById('fourthPic').click();" @endif type="button" style="display: inline;margin-right: 2%;">ویرایش</button>
+                                                                    <button class="btn btn-success btn-sm text-warning" @if(hasPermission(Session::get( 'adminId'),'mainPageSetting' ) >0 ) onclick="document.getElementById('fourthPic').click();" @endif type="button" style="display: inline;margin-right: 2%;">ویرایش</button>
                                                                 </div>
 
                                                                 <input onchange='document.getElementById("imageSrc4").src = window.URL.createObjectURL(this.files[0])' type="file" name="slider4" id="fourthPic" style="display: none"/>
@@ -130,7 +130,7 @@
                                                                 <img  id="imageSrc5" style="width:85% height:80%" src="{{url('/resources/assets/images/mainSlider/'.$pic->fifthPic.'')}}">
                                                                 <br/>
                                                                 <div>
-                                                                    <button class="btn btn-success btn-sm text-warning" @if(hasPermission(Session::get( 'adminId'),'homePage' ) >0 ) onclick="document.getElementById('fifthPic').click();" @endif type="button" style="display: inline;margin-right: 2%;">ویرایش</button>
+                                                                    <button class="btn btn-success btn-sm text-warning" @if(hasPermission(Session::get( 'adminId'),'mainPageSetting' ) >0 ) onclick="document.getElementById('fifthPic').click();" @endif type="button" style="display: inline;margin-right: 2%;">ویرایش</button>
                                                                 </div>
                                                                 <input onchange='document.getElementById("imageSrc5").src = window.URL.createObjectURL(this.files[0])' type="file" name="slider5" id="fifthPic" style="display: none"/>
                                                             </div>
