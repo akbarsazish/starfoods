@@ -92,12 +92,15 @@ class Group extends Controller {
      $group=DB::select('SELECT id,title FROM NewStarfood.dbo.Star_Group_Def WHERE selfGroupId=0 AND id='.$groupId);
      return Response::json($group);
  }
- public function searchGroups(Request $request)
- {
+
+ public function searchGroups(Request $request) {
      $searchTerm=$request->get('searchTerm');
      $groups=DB::select("SELECT id,title FROM NewStarfood.dbo.Star_Group_Def WHERE title like '%".$searchTerm."%' and selfGroupId=0");
      return Response::json($groups);
  }
+
+
+
  public function changeGroupsPartPriority(Request $request)
     {
         $partId=$request->get('partId');

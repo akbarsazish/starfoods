@@ -148,10 +148,6 @@
                         <div class="form-group col-sm-12 mb-1 listkalarStaff">
                             <button type="button" class="btn btn-success btn-sm topButton"  onclick="filterAllKala()" > بازخوانی &nbsp; <i class="fa fa-refresh"></i> </button>
                         </div>
-<<<<<<< HEAD
-=======
-
->>>>>>> 151572aa7fb0654eab7fdae19d3432e12736f9dc
                          <div class="col-sm-12 requestedKalaStaff">
                             <input type="text" onkeyup="searchRequestedKala(this)" class="form-control form-control-sm" id="allKalaFirst" placeholder="جستجو">
                         </div>
@@ -556,7 +552,7 @@
                                         <thead class="tableHeader">
                                             <tr>
                                                 <th>ردیف</th>
-                                                <th>گروه اصلی </th>
+                                                <th>گروه  1اصلی </th>
                                                 <th>فعال</th>
                                             </tr>
                                         </thead>

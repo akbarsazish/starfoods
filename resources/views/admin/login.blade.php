@@ -31,7 +31,20 @@
 ::placeholder { /* Most modern browsers support this now. */
    color:#ececec;
 }
-    </style>
+
+.notLoginInfo{
+  margin: 0 auto !important;
+  color:#fff;
+  text-align:center;
+  padding:20px;
+}
+
+.theValue {
+    color:#e5e5e5;
+    font-size:14px;
+}
+
+</style>
     
 </head>
 <body style=" background-image:linear-gradient(#198754, #034620); height:98vh;">
@@ -56,13 +69,11 @@
                 </form>
             </div>
         </div>
-        <br />
-        <div class="register-logo">
-            <h2 style="color:white">شماره تماس :  48286 </h2>
-            <br />
-            <h2 style="color:white">بررسی و شکایات :49973000 </h2>
-            <br />
-            <h2 style="color:white">شرایط حفظ حریم خصوصی </h2>
+     
+        <div class="notLoginInfo">
+            <h2>شماره تماس :   <span class="theValue"> 48286 </span> </h2>
+            <h2>بررسی و شکایات : <span class="theValue"> 49973000 </span> </h2>
+            <h2>شرایط حفظ حریم خصوصی </h2>
         </div>
     </section>
     <script src="{{ url('/resources/assets/js/jquery.min.js') }}"></script>

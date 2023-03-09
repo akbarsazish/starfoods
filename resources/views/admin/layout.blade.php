@@ -58,7 +58,6 @@
                                      @endif
                                   </ul>
                                </li>
-
                               <li class='has-sub'><a class="mySidenav__item" href="{{url('/dashboardAdmin')}}"> <span> <i class="fa-light fa-tasks"  style="color:#fff"></i> &nbsp;&nbsp; عملیات </span></a>
                                   <ul>
                                      @if(hasPermission(Session::get("adminId"),"kalasN") > -1)
@@ -67,9 +66,9 @@
                                     @if(hasPermission(Session::get("adminId"),"orderSalesN") > -1)
                                       <li><a class="mySidenav__item" href="{{url('/salesOrder')}}"> &nbsp;&nbsp; <i class="fa fa-shopping-cart fa-lg" style="margin-right: 5%; color:#597c9d"></i> &nbsp;&nbsp; سفارشات فروش </a>
                                     @endif
-                                     @if(hasPermission(Session::get("adminId"),"karbaranN") > -1)
+                                    @if(hasPermission(Session::get("adminId"),"karbaranN") > -1)
                                     <li><a class="mySidenav__item" href="{{url('/messages')}}"> &nbsp;&nbsp; <i class="far fa-envelope" style="margin-right: 5%; color:#597c9d"></i><span @if($countNewMessages < 1 ) class="headerNotifications0" @else  class="headerNotifications1" @endif id="countNewMessages" style="border-radius: 50%">@if($countNewMessages){{$countNewMessages}} @else 0 @endif</span></a></li>
-                                     @endif
+                                    @endif
                                   </ul>
                                </li>
                                <li class='has-sub'><a class="mySidenav__item" href="{{url('/dashboardAdmin')}}"><span><i class="fa-solid fa-chart-user fa-lg " style="color:#fff"></i>&nbsp;&nbsp;  گزارشات </span></a>

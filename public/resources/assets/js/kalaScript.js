@@ -872,4 +872,5 @@ $("#categorykalaRadio").on("change", () => {
     $(".fastKalaStaff").css("display", "none")
     $(".listkalarStaff").css("display", "none")
     $(".requestedKalaStaff").css("display", "none")
+    $("#addKalaToBrand").css("display", "none")
 })

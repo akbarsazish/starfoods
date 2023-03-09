@@ -5586,8 +5586,12 @@ function openEditDashboard() {
 
 }
 
+
+
 $(document).on('keyup', '#mainGroupSearchFast', (() => {
     let searchTerm = $('#mainGroupSearchFast').val();
+    console.log(searchTerm);
+
     $.ajax({
         method: 'get',
         url: baseUrl + "/getMainGroupList",
@@ -5614,6 +5618,8 @@ $(document).on('keyup', '#mainGroupSearchFast', (() => {
         error: function (data) { }
     });
 }));
+
+
 $(document).on('keyup', '#serachSubGroupId', (() => {
     let searchTerm = $('#serachSubGroupId').val();
     let mainGrId = document.querySelector('.mainGroupId:checked').value.split('_')[0];
@@ -7409,7 +7415,7 @@ $('#search_mainGroup').on('keyup', function () {
     if (searchTerm.length > 2) {
         $.ajax({
             method: 'get',
-            url: baseUrl + "/searchGroups",
+            url: baseUrl + "/ز",
             async: true,
             data: {
                 _token: "{{ csrf_token() }}",
@@ -7441,7 +7447,7 @@ $('#search_mainGroup2').on('keyup', function () {
     //قسمت لیست کالاها آورده شود
     $.ajax({
         method: 'get',
-        url: baseUrl + "/searchGroups",
+        url: baseUrl + "/ز",
         async: true,
         data: {
             _token: "{{ csrf_token() }}",
@@ -7470,7 +7476,7 @@ $(document).on('keyup', "#search_mainGroup3", function () {
     //قسمت لیست کالاها آورده شود
     $.ajax({
         method: 'get',
-        url: baseUrl + "/searchGroups",
+        url: baseUrl + "/ز",
         async: true,
         data: {
             _token: "{{ csrf_token() }}",
