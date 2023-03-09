@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    var baseUrl = "http://192.168.10.26:8080";
+    var baseUrl = "http://192.168.10.27:8080";
     $('#listKala tr').on('click', function () {
         $(this).find('input:radio').prop('checked', true);
         let inp = $(this).find('input:radio:checked');
@@ -17,18 +17,28 @@ $(document).ready(function () {
 
     });
 
+    $("#deleteKalaPictureButton").on("click",()=>{
+        deleteKalaPicture($("#deleteKalaPictureButton").val(),$("#deleteKalaPictureButton"));
+    })
 
     $("#openEditKalaModal").on("click", () => {
-        const kalaId = $("#kalaIdForEdit1").val();
+        const kalaId = $("#kalaIdForEdit").val();
         $("#kalaIdForAddStock").val(kalaId);
         $("#kalaIdSpecialRest").val(kalaId);
         $("#kalaIdEdit").val(kalaId);
         $("#kalaIdDescription").val(kalaId);
         $("#kalaIdSameKala").val(kalaId);
-        $('#mainPicEdit').attr('src', baseUrl + '/resources/assets/images/kala/' + kalaId + '_1.jpg');
+        $.get(baseUrl + '/resources/assets/images/kala/' + kalaId + '_1.jpg')
+            .done(function() { 
+                $('#mainPicEdit').attr('src', baseUrl + '/resources/assets/images/kala/' + kalaId + '_1.jpg');
+                $("#deleteKalaPictureButton").show();
+                $("#deleteKalaPictureButton").val(kalaId);
+            }).fail(function() { 
+                $('#mainPicEdit').attr('src','');
+                $("#deleteKalaPictureButton").hide();
+            })
+
         $("#kalaIdChangePic").val(kalaId);
-
-
         $.ajax({
             method: "get",
             dataType: "json",

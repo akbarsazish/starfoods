@@ -138,7 +138,7 @@ document.querySelector('.fa-bars').parentElement.addEventListener('click', () =>
 // window.addEventListener('DOMContentLoaded', () => document.querySelector('.loading').classList.remove('show'));
 ///JAVAD JAVASCRIPT CODES
 
-var baseUrl = "http://192.168.10.26:8080";
+var baseUrl = "http://192.168.10.27:8080";
 var myVar;
 function loadFunction() {
     myVar = setTimeout(showPage, 1000);
@@ -9416,78 +9416,78 @@ $("#cancelPayFromHisabdariBtn").on("click", function () {
     });
 });
 
-$("#sefRemainPayRadio").on("change", () => {
-    $.ajax({
-        method: 'get',
-        url: baseUrl + "/remainedPays",
-        async: true,
-        data: {
-            _token: "{{ csrf_token() }}",
-            payState: 0
-        },
-        success: function (response) {
-            $("#paymentListBody").empty();
-            response.forEach((element, index) => {
-                payedClass = "";
-                isSent = "خیر";
-                if (element.isSent == 1) {
-                    payedClass = "payedOnline";
-                    isSent = "بله";
-                }
+// $("#sefRemainPayRadio").on("change", () => {
+//     $.ajax({
+//         method: 'get',
+//         url: baseUrl + "/remainedPays",
+//         async: true,
+//         data: {
+//             _token: "{{ csrf_token() }}",
+//             payState: 0
+//         },
+//         success: function (response) {
+//             $("#paymentListBody").empty();
+//             response.forEach((element, index) => {
+//                 payedClass = "";
+//                 isSent = "خیر";
+//                 if (element.isSent == 1) {
+//                     payedClass = "payedOnline";
+//                     isSent = "بله";
+//                 }
 
-                $("#paymentListBody").append(`
-                <tr class="`+ payedClass + `" onclick="getPayDetail(this,` + element.id + `,` + element.PSN + `,` + element.isSent + `)">
-                <td>`+ (index + 1) + `</td>
-                <td>`+ element.FactNo + `</td>
-                <td style="width:80px;">`+ element.payedDate + `</td>
-                <td style="width:180px; font-weight:bold;">`+ element.Name + `</td>
-                <td  style="font-weight:bold;">`+ parseInt(element.payedMoney / 10).toLocaleString("en-us") + ` ت</td>
-                <td style="width:77px;">`+ element.TimeStamp + `</td>
-                <td>`+ isSent + `</td>
-            </tr>`);
-            })
-        },
-        error: function (error) {
-            alert("error in getting data");
-        }
-    });
-});
-$("#sefSentPayRadio").on("change", () => {
-    $.ajax({
-        method: 'get',
-        url: baseUrl + "/remainedPays",
-        async: true,
-        data: {
-            _token: "{{ csrf_token() }}",
-            payState: 1
-        },
-        success: function (response) {
-            $("#paymentListBody").empty();
-            response.forEach((element, index) => {
-                payedClass = "";
-                isSent = "خیر";
-                if (element.isSent == 1) {
-                    payedClass = "payedOnline";
-                    isSent = "بله";
-                }
+//                 $("#paymentListBody").append(`
+//                 <tr class="`+ payedClass + `" onclick="getPayDetail(this,` + element.id + `,` + element.PSN + `,` + element.isSent + `)">
+//                 <td>`+ (index + 1) + `</td>
+//                 <td>`+ element.FactNo + `</td>
+//                 <td style="width:80px;">`+ element.payedDate + `</td>
+//                 <td style="width:180px; font-weight:bold;">`+ element.Name + `</td>
+//                 <td  style="font-weight:bold;">`+ parseInt(element.payedMoney / 10).toLocaleString("en-us") + ` ت</td>
+//                 <td style="width:77px;">`+ element.TimeStamp + `</td>
+//                 <td>`+ isSent + `</td>
+//             </tr>`);
+//             })
+//         },
+//         error: function (error) {
+//             alert("error in getting data");
+//         }
+//     });
+// });
+// $("#sefSentPayRadio").on("change", () => {
+//     $.ajax({
+//         method: 'get',
+//         url: baseUrl + "/remainedPays",
+//         async: true,
+//         data: {
+//             _token: "{{ csrf_token() }}",
+//             payState: 1
+//         },
+//         success: function (response) {
+//             $("#paymentListBody").empty();
+//             response.forEach((element, index) => {
+//                 payedClass = "";
+//                 isSent = "خیر";
+//                 if (element.isSent == 1) {
+//                     payedClass = "payedOnline";
+//                     isSent = "بله";
+//                 }
 
-                $("#paymentListBody").append(`
-                <tr class="`+ payedClass + `" onclick="getPayDetail(this,` + element.id + `,` + element.PSN + `,` + element.isSent + `)">
-                <td>`+ (index + 1) + `</td>
-                <td>`+ element.FactNo + `</td>
-                <td style="width:80px;">`+ element.payedDate + `</td>
-                <td style="width:180px; font-weight:bold;">`+ element.Name + `</td>
-                <td  style="font-weight:bold;">`+ parseInt(element.payedMoney / 10).toLocaleString("en-us") + ` ت</td>
-                <td style="width:77px;">`+ element.TimeStamp + `</td>
-                <td>`+ isSent + `</td>
-            </tr>`);
-            })
-        },
-        error: function (error) {
-            alert("error in getting data");
-        }
-    });
-});
+//                 $("#paymentListBody").append(`
+//                 <tr class="`+ payedClass + `" onclick="getPayDetail(this,` + element.id + `,` + element.PSN + `,` + element.isSent + `)">
+//                 <td>`+ (index + 1) + `</td>
+//                 <td>`+ element.FactNo + `</td>
+//                 <td style="width:80px;">`+ element.payedDate + `</td>
+//                 <td style="width:180px; font-weight:bold;">`+ element.Name + `</td>
+//                 <td  style="font-weight:bold;">`+ parseInt(element.payedMoney / 10).toLocaleString("en-us") + ` ت</td>
+//                 <td style="width:77px;">`+ element.TimeStamp + `</td>
+//                 <td>`+ isSent + `</td>
+//             </tr>`);
+//             })
+//         },
+//         error: function (error) {
+//             alert("error in getting data");
+//         }
+//     });
+// });
 function getOrderDetail(element, orderSn, isPayed, customerSn) {
     $("tr").removeClass('selected');
     $(element).addClass('selected');
@@ -9647,22 +9647,22 @@ $("#editDeleteOrderItem").on("click", () => {
                             secondUnit = element.secondUnit;
                         }
                         $("#editSalesOrdersItemsBody").append(`                         
-                <tr onclick="getEditItemInfo(this,`+ element.SnGood + `,` + element.SnOrderBYSS + `)">
-                <td>`+ (index + 1) + `</td>
-                <td>`+ element.GoodCde + `</td>
-                <td style="width:180px;">`+ element.GoodName + `</td>
-                <td>`+ element.DateOrder + `</td>
-                <td>`+ element.firstUnit + `</td>
-                <td>`+ secondUnit + `</td>
-                <td>`+ parseInt(element.PackAmount).toLocaleString("en-us") + `</td>
-                <td>0</td>
-                <td>`+ parseInt(element.Amount).toLocaleString("en-us") + `</td>
-                <td>`+ parseInt(element.Fi / 10).toLocaleString("en-us") + `</td>
-                <td>`+ parseInt(element.FiPack / 10).toLocaleString("en-us") + ` </td>
-                <td>`+ parseInt(element.totalPrice / 10).toLocaleString("en-us") + `</td>
-                <td>`+ element.DescRecord + `</td>
-                </tr>
-                `);
+                            <tr onclick="getEditItemInfo(this,`+ element.SnGood + `,` + element.SnOrderBYSS + `)">
+                            <td>`+ (index + 1) + `</td>
+                            <td>`+ element.GoodCde + `</td>
+                            <td style="width:180px;">`+ element.GoodName + `</td>
+                            <td>`+ element.DateOrder + `</td>
+                            <td>`+ element.firstUnit + `</td>
+                            <td>`+ secondUnit + `</td>
+                            <td>`+ parseInt(element.PackAmount).toLocaleString("en-us") + `</td>
+                            <td>0</td>
+                            <td>`+ parseInt(element.Amount).toLocaleString("en-us") + `</td>
+                            <td>`+ parseInt(element.Fi / 10).toLocaleString("en-us") + `</td>
+                            <td>`+ parseInt(element.FiPack / 10).toLocaleString("en-us") + ` </td>
+                            <td>`+ parseInt(element.totalPrice / 10).toLocaleString("en-us") + `</td>
+                            <td>`+ element.DescRecord + `</td>
+                            </tr>
+                        `);
                     });
                 },
                 error: function (error) {
@@ -9671,11 +9671,21 @@ $("#editDeleteOrderItem").on("click", () => {
             });
         }
     });
-
 });
 
-function getEditItemInfo(element, goodSn, snOrderBYS) {
+function deleteKalaPicture(goodSn,element) {
+    $.get(baseUrl+'/getGoodPictureState',{goodSn:goodSn},function(respond,status){
+        if(status=="success"){
+            $("#mainPicEdit"+goodSn).attr('src','');
+            $(element).hide();
+            if($("#mainPicEdit")){
+                $("#mainPicEdit").attr('src','');
+            }
+        }
+    });
+}
 
+function getEditItemInfo(element, goodSn, snOrderBYS) {
     $("#editDeleteOrderItem").val(snOrderBYS);
     $("#editEditOrderItem").val(snOrderBYS);
     let stockId = $("#editSelectedStockKala").val();
@@ -9692,7 +9702,6 @@ function getEditItemInfo(element, goodSn, snOrderBYS) {
             customerSn: $("#editCustomerSn").val()
         },
         success: function (response) {
-
             $("#editStockExistance").text(parseInt(response[0][0].Amount).toLocaleString("en-us"));
             $("#editPrice").text(parseInt(response[1][0].Price3).toLocaleString("en-us"));
             if (response[2][0]) {
@@ -10666,52 +10675,6 @@ $("#payFirstDate").persianDatepicker({
     formatDate: "YYYY/0M/0D",
     onShow: function () {
         $('#payFirstDate').val(p.now().toString("YYYY/MM/DD"));
-    },
-    onSelect: () => {
-        let sentState = 0;
-        if ($("#sefRemainPayRadio").is(':checked')) {
-
-            sentState = 0;
-        }
-        if ($("#sefSentPayRadio").is(':checked')) {
-
-            sentState = 1;
-        }
-        $.ajax({
-            method: 'get',
-            url: baseUrl + "/paysFromDate",
-            async: true,
-            data: {
-                _token: "{{ csrf_token() }}",
-                payState: 0,
-                fromDate: $("#payFirstDate").val()
-            },
-            success: function (response) {
-                $("#paymentListBody").empty();
-                response.forEach((element, index) => {
-                    payedClass = "";
-                    isSent = "خیر";
-                    if (element.isSent == 1) {
-                        payedClass = "payedOnline";
-                        isSent = "بله";
-                    }
-
-                    $("#paymentListBody").append(`
-                        <tr class="`+ payedClass + `" onclick="getPayDetail(this,` + element.id + `,` + element.PSN + `,` + element.isSent + `)">
-                        <td>`+ (index + 1) + `</td>
-                        <td>`+ element.FactNo + `</td>
-                        <td style="width:80px;">`+ element.payedDate + `</td>
-                        <td style="width:180px; font-weight:bold;">`+ element.Name + `</td>
-                        <td  style="font-weight:bold;">`+ parseInt(element.payedMoney / 10).toLocaleString("en-us") + ` ت</td>
-                        <td style="width:77px;">`+ element.TimeStamp + `</td>
-                        <td>`+ isSent + `</td>
-                    </tr>`);
-                })
-            },
-            error: function (error) {
-                alert("error in getting data");
-            }
-        });
     }
 });
 $("#paySecondDate").persianDatepicker({
@@ -10721,53 +10684,6 @@ $("#paySecondDate").persianDatepicker({
     formatDate: "YYYY/0M/0D",
     onShow: function () {
         $('#paySecondDate').val(p.now().toString("YYYY/MM/DD"));
-    },
-    onSelect: () => {
-        let sentState = 0;
-        if ($("#sefRemainPayRadio").is(':checked')) {
-
-            sentState = 0;
-        }
-        if ($("#sefSentPayRadio").is(':checked')) {
-
-            sentState = 1;
-        }
-        $.ajax({
-            method: 'get',
-            url: baseUrl + "/paysToDate",
-            async: true,
-            data: {
-                _token: "{{ csrf_token() }}",
-                payState: 0,
-                fromDate: $("#payFirstDate").val(),
-                toDate: $("#paySecondDate").val()
-            },
-            success: function (response) {
-                $("#paymentListBody").empty();
-                response.forEach((element, index) => {
-                    payedClass = "";
-                    isSent = "خیر";
-                    if (element.isSent == 1) {
-                        payedClass = "payedOnline";
-                        isSent = "بله";
-                    }
-
-                    $("#paymentListBody").append(`
-                        <tr class="`+ payedClass + `" onclick="getPayDetail(this,` + element.id + `,` + element.PSN + `,` + element.isSent + `)">
-                        <td>`+ (index + 1) + `</td>
-                        <td>`+ element.FactNo + `</td>
-                        <td style="width:80px;">`+ element.payedDate + `</td>
-                        <td style="width:180px; font-weight:bold;">`+ element.Name + `</td>
-                        <td  style="font-weight:bold;">`+ parseInt(element.payedMoney / 10).toLocaleString("en-us") + ` ت</td>
-                        <td style="width:77px;">`+ element.TimeStamp + `</td>
-                        <td>`+ isSent + `</td>
-                    </tr>`);
-                })
-            },
-            error: function (error) {
-                alert("error in getting data");
-            }
-        });
     }
 });
 $("#submitpayForm").on("click", function () {

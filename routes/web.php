@@ -181,6 +181,7 @@ Route::get('/addKalaToList',[Kala::class,'addKalaToList'])->middleware('checkAdm
 Route::post('/addStockToList',[Kala::class,'addStockToList'])->middleware('checkAdmin');
 Route::get('/addOrDeleteKalaFromSubGroup',[Kala::class,'addOrDeleteKalaFromSubGroup'])->middleware('checkAdmin');
 Route::get('/getKalaWithPic/{id}',[Kala::class,'getKalaWithPic'])->middleware('checkAdmin');
+Route::get('/getGoodPictureState',[Kala::class,'getGoodPictureState'])->middleware('checkAdmin');
 Route::get('/changePriceKala',[Kala::class,'changePriceKala'])->middleware('checkAdmin');
 Route::get('/getStocks',[Kala::class,'getStocks'])->middleware('checkAdmin');
 Route::get('/searchKalaByStock',[Kala::class,'searchKalaByStock'])->middleware('checkAdmin');

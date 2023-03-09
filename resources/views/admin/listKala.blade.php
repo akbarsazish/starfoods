@@ -986,47 +986,46 @@
                                                 <tbody>
                                                     <tr>
                                                         <td style="width:160px !important;">
-                                                            <div class='product-item swiper-slide' style='width:100%;'>
-                                                                <img id="mainPicEdit" src="" />
-                                                            </div>
-                                                            <div>
-                                                                <label for="mainPic" class="btn btn-success editButtonHover kalaEditbtn">ویرایش<i class="fa-light fa-image "></i></label>
+                                                            
+                                                                <img class="rounded-2" style="width:100%; height:122px;" id="mainPicEdit" src="" />
+                                                            <div class="mt-1">
+                                                                <label for="mainPic" class="btn btn-success btn-sm  kalaEditbtn"> ویرایش <i class="fa-light fa-image "></i></label>
                                                                 <input type="file"  onchange='document.getElementById("mainPicEdit").src = window.URL.createObjectURL(this.files[0]);' style="display:none" class="form-control" name="firstPic" id="mainPic">
+                                                                <button class="btn btn-danger btn-sm kalaEditbtn" id="deleteKalaPictureButton"> حذف <i class="fa-light fa-trash"></i></button>
                                                             </div>
                                                         </td>
 
                                                         <td>
-                                                            <div class='product-item swiper-slide' style='width:100%;'>
-                                                                    <img id="secondPic" src="{{url('/resources/assets/images/kala/_2.jpg')}}" />
-                                                                </div>
-                                                            <div>
+                                                            
+                                                             <img id="secondPic" class="rounded-2" src="{{url('/resources/assets/images/kala/_2.jpg')}}" /> <br>
+                                                            <div class="mt-1">
                                                                 <label for="secondPic" class="btn btn-success editButtonHover kalaEditbtn">  ویرایش <i class="fa-light fa-image "></i></label>
                                                                 <input type="file" onchange='document.getElementById("secondPic").src = window.URL.createObjectURL(this.files[1]);' style="display:none" class="form-control" name="secondPic" id="secondPic">
                                                             </div>
                                                         </td>
 
                                                         <td>
-                                                            <div class='product-item swiper-slide' style='width:100%;'>
+                                                            
                                                                 <img id="2PicEdit" src="{{url('/resources/assets/images/kala/_3.jpg')}}" />
-                                                            </div>
+                                                           
                                                             <div>
                                                                 <label for="2Pic" class="btn btn-success editButtonHover kalaEditbtn"> ویرایش <i class="fa-light fa-image "></i></label>
                                                                 <input type="file"    style="display: none" class="form-control" name="thirthPic" >
                                                             </div>
                                                         </td>
                                                         <td>
-                                                            <div class='product-item swiper-slide' style='width:100%;'>
+                                                            
                                                                 <img id="3PicEdit" src="{{url('/resources/assets/images/kala/_4.jpg')}}" />
-                                                            </div>
+                                                           
                                                             <div>
                                                                 <label for="3Pic" class="btn btn-success editButtonHover kalaEditbtn"> ویرایش <i class="fa-light fa-image "></i></label>
                                                                 <input type="file"   style="display: none" class="form-control" name="fourthPic" >
                                                             </div>
                                                         </td>
                                                         <td style="width:160px !important;">
-                                                            <div class='product-item swiper-slide' style='width:100%;'>
+                                                            
                                                                 <img id="4PicEdit" src="{{url('/resources/assets/images/kala/_5.jpg')}}" />
-                                                            </div>
+                                                           
                                                             <div>
                                                                 <label for="4Pic" class="btn btn-success editButtonHover kalaEditbtn"> ویرایش <i class="fa-light fa-image "></i></label>
                                                                 <input type="file"   style="display: none" class="form-control" name="fifthPic" >
