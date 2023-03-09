@@ -43,7 +43,7 @@
                     <legend  class="float-none w-auto legendLabel mb-0">انتخاب</legend>
                      @if(hasPermission(Session::get("adminId"),"orderSalesN") > 1)
                       <button type="button" class="btn btn-success btn-sm topButton" id="saleToFactorSaleBtn">ارسال به فاکتور فروش <i class="fa fa-send"></i> </button>
-                      <button type="button" class="btn btn-success btn-sm topButton" disabled data-toggle="modal" data-target="#orderReport">  گزارش سفارش   &nbsp; <i class="fa fa-list"></i> </button>
+                      {{-- <button type="button" class="btn btn-success btn-sm topButton" disabled data-toggle="modal" data-target="#orderReport">  گزارش سفارش   &nbsp; <i class="fa fa-list"></i> </button> --}}
                     @endif
                         <span class="situation">
                             <fieldset class="border rounded">
@@ -96,14 +96,20 @@
             <div class="col-sm-10 col-md-10 col-sm-12 contentDiv">
                 <div class="row contentHeader"> 
                     <div class="col-lg-12 text-end mt-1">
-                         <button type="button" class="btn btn-success btn-sm" id="newOrderBtn"  data-toggle="modal" disabled data-target="#newOrder">سفارش جدید &nbsp; <i class="fa fa-list"></i></button>
-                        <button type="button" class="btn btn-success btn-sm" id="editOrderBtn" disabled>اصلاح &nbsp; <i class="fa fa-check"></i> </button>
-                        <button type="button" class="btn btn-success btn-sm deletOrderButton" id="distroyOrderBtn" disabled  >باطل  &nbsp; <i class="fa fa-xmark"></i></button>
-                        <form action="https://starfoods.ir/crmLogin" target="_blank"  method="get" style="display:inline;">
-                            <input type="hidden" id="psn" name="psn" value="" />
-                            <input type="hidden" name="otherName" value="{{Session::get('adminName')}}" />
-                            <Button class="btn btn-success btn-sm" disabled id="fakeLogin" type="submit"> ورود جعلی  <i class="fas fa-sign-in fa-lg"> </i> </Button>
-                        </form>
+                         {{-- <button type="button" class="btn btn-success btn-sm" id="newOrderBtn"  data-toggle="modal" disabled data-target="#newOrder">سفارش جدید &nbsp; <i class="fa fa-list"></i></button> --}}
+                        @if(hasPermission(Session::get("adminId"),"orderSalesN") > 0)
+                            <button type="button" class="btn btn-success btn-sm" id="editOrderBtn" disabled>اصلاح &nbsp; <i class="fa fa-check"></i> </button>
+                        @endif
+                        @if(hasPermission(Session::get("adminId"),"orderSalesN") > 1)
+                            <button type="button" class="btn btn-success btn-sm deletOrderButton" id="distroyOrderBtn" disabled  >باطل  &nbsp; <i class="fa fa-xmark"></i></button>
+                        @endif
+                        @if(hasPermission(Session::get("adminId"),"orderSalesN") > 0)
+                            <form action="https://starfoods.ir/crmLogin" target="_blank"  method="get" style="display:inline;">
+                                <input type="hidden" id="psn" name="psn" value="" />
+                                <input type="hidden" name="otherName" value="{{Session::get('adminName')}}" />
+                                <Button class="btn btn-success btn-sm" disabled id="fakeLogin" type="submit"> ورود جعلی  <i class="fas fa-sign-in fa-lg"> </i> </Button>
+                            </form>
+                        @endif
                     </div>
                 </div>
                   <div class="row mainContent">

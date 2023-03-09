@@ -59,7 +59,7 @@
                         <div class="form-group input-group-sm customerListStaff mt-1">
                             <div class="input-group input-group-sm">
                                 <span class="input-group-text">موقعیت</span>
-                                <select  class="for input-group-smm-select form-select-sm" id="searchLocationOrNot">
+                                <select  class="form-select input-group-smm-select form-select-sm" id="searchLocationOrNot">
                                     <option value="-1"> همه </option>
                                     <option value="1">موقعیت دار </option>
                                     <option value="0"> بدون موقعیت </option>
@@ -87,13 +87,13 @@
                             @csrf
                             <input type="text" id="customerSn" style="display: none" name="customerSn" value="" />
                             <input type="text" id="customerGroup" style="display: none" name="customerGRP" value="" />
-                            @if(hasPermission(Session::get( 'adminId'),'reportCustomerN' ) > 1) 
-                            <button class='enableBtn btn btn-success btn-sm text-warning' data-toggle='modal' type="submit" id='editPart' disabled style="color:#9ed5b6 "> ویرایش <i class="fal fa-edit"></i></button>
-                            <button class='enableBtn btn btn-success btn-sm text-warning' type="button" id="openDashboard" disabled> داشبورد <i class="fal fa-money-bill-alt"></i></button>
+                            @if(hasPermission(Session::get( 'adminId'),'customerListN') > 0) 
+                                <button class='enableBtn btn btn-success btn-sm text-warning' data-toggle='modal' type="submit" id='editPart' disabled style="color:#9ed5b6 "> ویرایش <i class="fal fa-edit"></i></button>
                             @endif
-                            @if(hasPermission(Session::get( 'adminId'),'reportCustomerN' ) > 1) 
-                            <button class='enableBtn btn btn-success btn-sm text-warning' data-toggle='modal' type="submit" id='editPart'disabled> ارسال به اکسل <i class="fal fa-file-excel" aria-hidden="true"></i></button>
-                            <button class="enableBtn btn btn-success btn-sm text-warning" id="defineRoute" type="button" disabled>تعیین مسیر <i class="fal fa-address-card"></i></button>
+                                <button class='enableBtn btn btn-success btn-sm text-warning' type="button" id="openDashboard" disabled> داشبورد <i class="fal fa-money-bill-alt"></i></button>
+                            @if(hasPermission(Session::get( 'adminId'),'customerListN') > 0) 
+                                <button class='enableBtn btn btn-success btn-sm text-warning' data-toggle='modal' type="submit" id='editPart'disabled> ارسال به اکسل <i class="fal fa-file-excel" aria-hidden="true"></i></button>
+                                <button class="enableBtn btn btn-success btn-sm text-warning" id="defineRoute" type="button" disabled>تعیین مسیر <i class="fal fa-address-card"></i></button>
                             @endif
                         </form>
                     </div>
