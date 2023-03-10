@@ -100,7 +100,6 @@ class Group extends Controller {
  }
 
 
-
  public function changeGroupsPartPriority(Request $request)
     {
         $partId=$request->get('partId');

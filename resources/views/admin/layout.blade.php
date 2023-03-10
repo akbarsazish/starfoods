@@ -43,49 +43,6 @@
                         <div id='cssmenu' style="direction:rtl;">
                             <ul>
                                <li class='fw-bold'><a class="mySidenav__item" href="{{url('/dashboardAdmin')}}"><span><i class="fa-solid fa-dashboard fa-lg" style="color:#fff;"></i>&nbsp;&nbsp; داشبورد </span></a>
-<<<<<<< HEAD
-                               @if(hasPermission(Session::get("adminId"),"baseInfoN") > -1 or hasPermission(Session::get("adminId"),"karbaranN") > -1 or hasPermission(Session::get("adminId"),"settingsN") > -1)
-                               <li class='has-sub'><a class="mySidenav__item" href="{{url('/dashboardAdmin')}}"><span><i class="fa-solid fa-info fa-lg " style="color:#fff"></i>&nbsp;&nbsp; طلاعات پایه </span></a>
-                                  <ul>
-                                    @if(hasPermission(Session::get("adminId"),"settingsN") > -1)
-                                    <li><a class="mySidenav__item" href="{{url('/controlMainPage')}}">&nbsp;&nbsp;<i class="fa-regular fa-cog fa-lg" style="margin-right: 5%; color:#597c9d"></i>&nbsp;&nbsp; تنظیمات  </a></li>
-                                    @endif
-                                  </ul>
-                               </li>
-                              <li class='has-sub'><a class="mySidenav__item" href="{{url('/dashboardAdmin')}}"> <span> <i class="fa-light fa-layer-plus"  style="color:#fff"></i> &nbsp;&nbsp;  تعریف عناصر  </span></a>
-                                  <ul>
-                                     @if(hasPermission(Session::get("adminId"),"karbaranN") > -1)
-                                      <li><a class="mySidenav__item" href="{{url('/listKarbaran')}}">&nbsp;&nbsp;<i class="fa-regular fa-user fa-lg" style="margin-right: 5%; color:#597c9d"></i> &nbsp;&nbsp; کاربران </a></li>
-                                     @endif
-                                  </ul>
-                               </li>
-                              <li class='has-sub'><a class="mySidenav__item" href="{{url('/dashboardAdmin')}}"> <span> <i class="fa-light fa-tasks"  style="color:#fff"></i> &nbsp;&nbsp; عملیات </span></a>
-                                  <ul>
-                                     @if(hasPermission(Session::get("adminId"),"kalasN") > -1)
-                                        <li><a class="mySidenav__item" href="{{url('/listKala')}}" > &nbsp;&nbsp; <i class="fa-regular fa-list-radio fa-lg" style="margin-right: 5%; color:#597c9d"></i> &nbsp;&nbsp;  کالا ها </a></li>
-                                      @endif
-                                    @if(hasPermission(Session::get("adminId"),"orderSalesN") > -1)
-                                      <li><a class="mySidenav__item" href="{{url('/salesOrder')}}"> &nbsp;&nbsp; <i class="fa fa-shopping-cart fa-lg" style="margin-right: 5%; color:#597c9d"></i> &nbsp;&nbsp; سفارشات فروش </a>
-                                    @endif
-                                    @if(hasPermission(Session::get("adminId"),"karbaranN") > -1)
-                                    <li><a class="mySidenav__item" href="{{url('/messages')}}"> &nbsp;&nbsp; <i class="far fa-envelope" style="margin-right: 5%; color:#597c9d"></i><span @if($countNewMessages < 1 ) class="headerNotifications0" @else  class="headerNotifications1" @endif id="countNewMessages" style="border-radius: 50%">@if($countNewMessages){{$countNewMessages}} @else 0 @endif</span></a></li>
-                                    @endif
-                                  </ul>
-                               </li>
-                               <li class='has-sub'><a class="mySidenav__item" href="{{url('/dashboardAdmin')}}"><span><i class="fa-solid fa-chart-user fa-lg " style="color:#fff"></i>&nbsp;&nbsp;  گزارشات </span></a>
-                                  <ul>
-                                    @if(hasPermission(Session::get("adminId"),"karbaranN") > -1)
-                                        <li><a class="mySidenav__item" href="{{url('/listCustomers')}}"><i class="fa-light fa-users fa-lg" style="margin-right: 5%"></i>&nbsp;&nbsp; مشتریان</a></li>
-                                    @endif
-                                   @if(hasPermission(Session::get("adminId"),"karbaranN") > -1)
-                                       <li><a class="mySidenav__item" href="{{url('/payedOnline')}}"><i class="fa-light fa-credit-card fa-lg" style="margin-right: 5%"></i>&nbsp;&nbsp; پرداخت آنلاین </a></li>
-                                   @endif
-                                   @if(hasPermission(Session::get("adminId"),"karbaranN") > -1)
-                                       <li><a class="mySidenav__item" href="{{url('/lotteryResult')}}"><i class="fa-light fa-briefcase fa-lg" style="margin-right: 5%"></i>&nbsp;&nbsp; بازیها و لاتری </a></li>
-                                   @endif
-                                </ul>
-                               </li>
-=======
                                @if(hasPermission(Session::get("adminId"),"baseInfoN") > -1)
                                 <li class='has-sub'><a class="mySidenav__item" href="{{url('/dashboardAdmin')}}"><span><i class="fa-solid fa-info fa-lg " style="color:#fff"></i>&nbsp;&nbsp; طلاعات پایه </span></a>
                                     <ul>
@@ -94,7 +51,6 @@
                                         @endif
                                     </ul>
                                 </li>
->>>>>>> 3a17d5cb9ad34e09b4d910560f80380415d40e99
                                @endif
                                 @if(hasPermission(Session::get("adminId"),"customersN") > -1)
                                     <li class='has-sub'><a class="mySidenav__item" href="{{url('/dashboardAdmin')}}"> <span> <i class="fa-light fa-layer-plus"  style="color:#fff"></i> &nbsp;&nbsp;  تعریف عناصر  </span></a>

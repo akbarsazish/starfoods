@@ -20,7 +20,6 @@
     <link rel="stylesheet" href="{{ url('/resources/assets/js/jquery-ui.css')}}"/>
     <script src="{{ url('resources/assets/js/jquery.min.js')}}"></script>
 
-    
         <script src="{{ url('/resources/assets/js/jquery-ui.min.js')}}"></script>
         <meta name="theme-color" content="#6777ef"/>
         <link rel="apple-touch-icon" href="{{ asset('logo.PNG') }}">
