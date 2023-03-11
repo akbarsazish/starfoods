@@ -162,8 +162,7 @@ class SaveEarth extends Controller
         (
         SELECT * FROM(
         SELECT Row,PrizeName,prize FROM (
-        SELECT ROW_NUMBER() OVER (ORDER BY id)  AS Row,id,PrizeName,
-          prize
+        SELECT ROW_NUMBER() OVER (ORDER BY id)  AS Row,id,PrizeName,prize
         FROM NewStarfood.dbo.star_game_history
         
         unpivot

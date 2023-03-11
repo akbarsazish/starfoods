@@ -6564,12 +6564,15 @@ span.footerbasket {
     position: sticky !important;
     top: 0 !important;
     background-color: #198754 ! important;
+    font-size: 14px;
+    font-weight: bold;
 }
 
 .tableBody {
     height: 420px !important;
     overflow-y: scroll !important;
     display: block !important;
+    font-size: 14px;
 }
 
 .tableHeader .tableBbody,
@@ -7184,6 +7187,7 @@ table thead {
         overflow-y: scroll !important;
         display: block !important;
         overflow-x: hidden !important;
+
     }
 
 }

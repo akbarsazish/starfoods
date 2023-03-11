@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html dir="rtl">
 <head>
-<style>
-    </style>
     <meta charset="UTF-8">
     <meta name="author" content="Ali Akbar Sazish">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
@@ -11,7 +9,7 @@
     <title> استار فود</title>
     <link rel="icon" type="image/png" href="{{ url('resources/assets/images/part.png')}}">
     <link rel="stylesheet" href="{{ url('/resources/assets/css/bootstrap.min.css')}}" rel="stylesheet">
-    <link rel="stylesheet" href="{{url('/resources/assets/jquery-ui-1.12.1/jquery-ui-1.12.1/jquery-ui.min.css')}}"/>
+    <link rel="stylesheet" href="{{ url('/resources/assets/jquery-ui-1.12.1/jquery-ui-1.12.1/jquery-ui.min.css')}}"/>
     <link rel="stylesheet" href="{{ url('/resources/assets/fontawesome/css/all.min.css')}}">
     <link rel="stylesheet" href="{{ url('/resources/assets/css/main.css')}}">
     <link rel="stylesheet" href="{{ url('/resources/assets/css/mediaq.css')}}">
@@ -19,12 +17,10 @@
     <link rel="stylesheet" href="{{url('/resources/assets/js/persianDatepicker-master/css/persianDatepicker-default.css')}}" />
     <link rel="stylesheet" href="{{ url('/resources/assets/js/jquery-ui.css')}}"/>
     <script src="{{ url('resources/assets/js/jquery.min.js')}}"></script>
-
-        <script src="{{ url('/resources/assets/js/jquery-ui.min.js')}}"></script>
-        <meta name="theme-color" content="#6777ef"/>
-        <link rel="apple-touch-icon" href="{{ asset('logo.PNG') }}">
-        <link rel="manifest" href="{{ asset('/manifest.json') }}">
-        
+    <script src="{{ url('/resources/assets/js/jquery-ui.min.js')}}"></script>
+    <meta name="theme-color" content="#6777ef"/>
+    <link rel="apple-touch-icon" href="{{asset('logo.PNG')}}">
+    <link rel="manifest" href="{{asset('/manifest.json')}}">
 </head>
 <body>
 <?php
@@ -60,11 +56,13 @@
                         <a href="{{url('/carts')}}"> <i class="fal fa-shopping-cart fa-lg"> </i> سبد خرید </a>
 						<!-- <a href="{{url('/bagCash')}}"> <i class="fal fa-briefcase fa-lg"> </i> کیف تخفیف</a> -->
                         <a href="{{url('/messageList')}}"> <i class="far fa-envelope fa-lg"></i>   پیام ها 
-                        <span id="replayCountWeb" @if($countNewReplayMessage<1) class="headerNotifications0 translate-middle badge rounded-pill bg-dark" @else class="headerNotifications1 position-absolute start-200 translate-middle badge rounded-pill bg-dark" @endif>@if($countNewReplayMessage>0){{$countNewReplayMessage}}@else 0 @endif</span>
+                            <span id="replayCountWeb" @if($countNewReplayMessage<1) class="headerNotifications0 translate-middle badge rounded-pill bg-dark" @else class="headerNotifications1 position-absolute start-200 translate-middle badge rounded-pill bg-dark" @endif>@if($countNewReplayMessage>0){{$countNewReplayMessage}}@else 0 @endif</span>
                         </a>
                         <a href="{{url('/constact')}}"> <i class="fal fa-phone-square fa-lg"> </i> تماس با ما  </a>
 					   <a href="{{url('/saveEarth/0')}}"> <i class="fas fa-gamepad fa-lg"> </i> نجات زمین </a>
 					   <a href="{{url('/saveEarth/1')}}"> <i class="fas fa-tower fa-lg"> </i>  بازی با رنگ  </a>
+					   <a href="{{url('/saveEarth/2')}}"> <i class="fas fa-tower fa-lg"> </i>  بازی برج سازی   </a>
+					   {{-- <a href="{{url('/resources/assets/tower/index.html')}}"> <i class="fas fa-tower fa-lg"> </i>  بازی برج سازی   </a> --}}
 					   <!-- <a href="{{url('/showLottery')}}"> <i class="fa fa-ticket fa-lg"></i> شانس آزمایی </a> -->
 
                         @if($exitAllowance==1)

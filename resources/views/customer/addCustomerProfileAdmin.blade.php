@@ -22,15 +22,17 @@
             <div class="col-sm-10 col-md-10 col-sm-12 contentDiv">
                 <div class="row contentHeader"> </div>
                 <div class="row mainContent">
-                    <div class="c-checkout container" id="haqiqi" style="background-color:#00c378; border-radius:6px 6px 2px 2px;">
-                    <div class="col-sm-6">
-                        <ul class="header-list nav nav-tabs" data-tabs="tabs">
+                    <div class="c-checkout " id="haqiqi" style="background-color:#f6fffb; border-radius:6px 6px 2px 2px; width:100%;">
+                    <div class="col-sm-12 bg-success rounded">
+                        <div class="col-sm-6">
+                        <ul class="header-list nav nav-tabs  " data-tabs="tabs">
                             <li><a class="active" data-toggle="tab" style="color:black;"  href="#custAddress"> اشخاص حقیقی </a></li>
                             <li><a data-toggle="tab" style="color:black;"  href="#moRagiInfo"> اشخاص حقوقی </a></li>
                         </ul>
                       </div>
+                      </div>
 
-                         <div class="c-checkout tab-content" style="background-color:#f5f5f5; border-radius:10px 10px 2px 2px; display:block; height:422px; overflow-y:scroll; overflow-x:hidden;">
+                         <div class="c-checkout tab-content" style="border-radius:10px 10px 2px 2px; display:block; height:422px; overflow-y:scroll; overflow-x:hidden;">
                             <div class="row c-checkout rounded-2 tab-pane active" id="custAddress">
                                 <div class="col-sm-12">
                                     <div class="row ">

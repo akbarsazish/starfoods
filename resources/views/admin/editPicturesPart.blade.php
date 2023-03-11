@@ -62,8 +62,8 @@
                                          </div>
                                     </div>
                            
-                                    <div class="container p-0 m-0" id="addTakhsisKala">
-                                        <div class="row p-0 m-0" >
+                                
+                                        <div class="row p-0 m-0" id="addTakhsisKala">
                                             <div class='modal-body p-0'style="display:flex;  justify-content:center;">
                                                 <div id='pslider' class='swiper-container swiper-container-horizontal swiper-container-rtl' style="width:100%">
                                                     <div class='product-box swiper-wrapper rounded border border-success' id="addBrandItem" style="height:170px !important;" >
@@ -99,71 +99,71 @@
                                                            @endforeach
                                                     </div>
                                                 </div>
-                                            </div>
+                                             </div>
+                                           </div>
                                         </div>
                                         @else 
-                                            <div class="container">
-                                                <div class="grid-subgroup">
-                                                    <div class="subgroup-item">
-                                                        <table class="tableSection table table-bordered table table-hover table-sm " style='td:hover{ cursor:move;}'>
-                                                            <thead>
-                                                                <tr>
-                                                                    <th>ردیف</th>
-                                                                    <th>اسم برند&nbsp;&nbsp;<div style="background-color:black;color:white!important; height:inherit; width:20px;"
-                                                                            class="rounded-circle d-inline-flex justify-content-center m-0 p-0">  </div> </th>
-                                                                    <th><input  @if(hasPermission(Session::get( 'adminId'),'mainPageSetting' ) <1 )  disabled @endif type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody style="height: 400px;" id="brandAllKalaContainer">
-                                                                @foreach ($brands as $brand)
-                                                                    <tr  onclick="checkCheckBox(this,event)">
-                                                                        <td>{{$loop->iteration}}</td>
-                                                                        <td>{{$brand->name}}</td>
-                                                                        <td>
-                                                                        <input class="form-check-input" name="brandAllKala[]" type="checkbox" value="{{$brand->id.'_'.$brand->name}}" id="kalaId">
-                                                                        </td>
-                                                                    </tr>
-                                                                    @endforeach
-                                                            </tbody>
-                                                        </table>
-                                                    </div>
-                                                    <div class="subgroup-item text-center mt-5">
-                                                        <button type="button"  style="background-color:transparent;" type="button" id="addBrandKalaList" onclick="addAllKalaToBrand(this)" value=""
-                                                                        class="brandBetweenButton"  style="display: inline; padding:0; border:none; background:none">
-                                                            <i class="fa-regular fa-circle-chevron-left fa-2x text-success"></i></button>
-                                                                <br/>
-                                                                <button type="button"  style="background-color:transparent;"  type="button" id="removeBrandKalaList" onclick="removeAddedKalaFromBrand(this)" value=""
-                                                                        class="brandBetweenButton"style="display: inline; padding:0; border:none; background:none">
-                                                             <i class="fa-regular fa-circle-chevron-right fa-2x text-success"></i></button>
-                                                    </div>
-
-                                                    <div class="subgroup-item">
-                                                        <table class="t table table-bordered table table-hover table-sm ">
-                                                            <thead class="tableHeader">
-                                                                <tr>
-                                                                    <th>ردیف</th>
-                                                                    <th>اسم برند
-                                                                    <button  class='brandPriority' id="down" type="button" value="down" ><i class="fa-solid fa-circle-chevron-down fa-sm" style=''></i></button>
-                                                                    <button class='brandPriority' id="top"  type="button" value="up" >  <i class="fa-solid fa-circle-chevron-up fa-sm" style=''></i></button> 
-                                                                </th>
-                                                                    <th><input  @if(hasPermission(Session::get( 'adminId'),'mainPageSetting' ) <1 )  disabled @endif type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody class="tableBody" id="brandAddedKalaContainer">
-                                                                @foreach ($addedBrands as $brand)
-                                                                <tr  onclick="checkCheckBox(this,event)">
-                                                                        <td>{{$loop->iteration}}</td>
-                                                                        <td>{{$brand->name}}</td>
-                                                                        <td>
-                                                                        <input class="form-check-input" name="brandAddedKala[]" type="checkbox" value="{{$brand->id}}" id="kalaId">
-                                                                        </td>
-                                                                    </tr>
-                                                                @endforeach
-                                                            </tbody>
-                                                        </table>
-                                                    </div>
-                                                </div>
+                                    
+                                        <div class="grid-subgroup">
+                                            <div class="subgroup-item">
+                                                <table class="table table-bordered table table-hover table-sm">
+                                                    <thead class="tableHeader">
+                                                        <tr>
+                                                            <th>ردیف</th>
+                                                            <th>اسم برند&nbsp;&nbsp;<div style="background-color:black;color:white!important; height:inherit; width:20px;"
+                                                                    class="rounded-circle d-inline-flex justify-content-center m-0 p-0">  </div> </th>
+                                                            <th><input  @if(hasPermission(Session::get( 'adminId'),'mainPageSetting' ) <1 )  disabled @endif type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody class="tableBody" id="brandAllKalaContainer">
+                                                        @foreach ($brands as $brand)
+                                                            <tr  onclick="checkCheckBox(this,event)">
+                                                                <td>{{$loop->iteration}}</td>
+                                                                <td>{{$brand->name}}</td>
+                                                                <td>
+                                                                <input class="form-check-input" name="brandAllKala[]" type="checkbox" value="{{$brand->id.'_'.$brand->name}}" id="kalaId">
+                                                                </td>
+                                                            </tr>
+                                                            @endforeach
+                                                    </tbody>
+                                                </table>
                                             </div>
+                                            <div class="subgroup-item text-center mt-5">
+                                                <button type="button"  style="background-color:transparent;" type="button" id="addBrandKalaList" onclick="addAllKalaToBrand(this)" value=""
+                                                                class="brandBetweenButton"  style="display: inline; padding:0; border:none; background:none">
+                                                    <i class="fa-regular fa-circle-chevron-left fa-2x text-success"></i></button>
+                                                        <br/>
+                                                        <button type="button"  style="background-color:transparent;"  type="button" id="removeBrandKalaList" onclick="removeAddedKalaFromBrand(this)" value=""
+                                                                class="brandBetweenButton"style="display: inline; padding:0; border:none; background:none">
+                                                        <i class="fa-regular fa-circle-chevron-right fa-2x text-success"></i></button>
+                                            </div>
+
+                                            <div class="subgroup-item">
+                                                <table class="t table table-bordered table table-hover table-sm ">
+                                                    <thead class="tableHeader">
+                                                        <tr>
+                                                            <th>ردیف</th>
+                                                            <th>اسم برند
+                                                            <button  class='brandPriority' id="down" type="button" value="down" ><i class="fa-solid fa-circle-chevron-down fa-sm" style=''></i></button>
+                                                            <button class='brandPriority' id="top"  type="button" value="up" >  <i class="fa-solid fa-circle-chevron-up fa-sm" style=''></i></button> 
+                                                        </th>
+                                                            <th><input  @if(hasPermission(Session::get( 'adminId'),'mainPageSetting' ) <1 )  disabled @endif type="checkbox" name=""  class="selectAllFromTop form-check-input"  ></th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody class="tableBody" id="brandAddedKalaContainer">
+                                                        @foreach ($addedBrands as $brand)
+                                                        <tr  onclick="checkCheckBox(this,event)">
+                                                                <td>{{$loop->iteration}}</td>
+                                                                <td>{{$brand->name}}</td>
+                                                                <td>
+                                                                <input class="form-check-input" name="brandAddedKala[]" type="checkbox" value="{{$brand->id}}" id="kalaId">
+                                                                </td>
+                                                            </tr>
+                                                        @endforeach
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
                                      @endif      
                                         {{-- برای نشان دادن کالاهای مربوط به تک تصویر  --}}
                                  <div class='c-checkout mt-2' id="picturesKalaContainer" style="display: none; margin:0 auto; width:100%; padding-right:0; border-radius:10px 10px 2px 2px; padding:0">
