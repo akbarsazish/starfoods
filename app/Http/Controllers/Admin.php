@@ -59,9 +59,9 @@ class Admin extends Controller{
             }
         }
 
-        $customers=DB::select("SELECT PSN,PCode,Name,GroupCode,FORMAT(TimeStamp,'yyyy/MM/dd','fa-ir') as TimeStamp,peopeladdress,CRM.dbo.getCustomerPhoneNumbers(PSN) as PhoneStr,CRm.dbo.getCustomerMantagheh(SnMantagheh) as NameRec  FROM Shop.dbo.Peopels
+        // $customers=DB::select("SELECT PSN,PCode,Name,GroupCode,FORMAT(TimeStamp,'yyyy/MM/dd','fa-ir') as TimeStamp,peopeladdress,CRM.dbo.getCustomerPhoneNumbers(PSN) as PhoneStr,CRm.dbo.getCustomerMantagheh(SnMantagheh) as NameRec  FROM Shop.dbo.Peopels
             
-        WHERE CompanyNo=5 AND Name !='' AND GroupCode in(291,1297,1297 ,299 ,312 ,313 ,314) and IsActive=1 and not exists(select * from CRM.dbo.crm_inactiveCustomer where state=1 and customerId=PSN) ORDER BY PSN ASC");
+        // WHERE CompanyNo=5 AND Name !='' AND GroupCode in(291,1297,1297 ,299 ,312 ,313 ,314) and IsActive=1 and not exists(select * from CRM.dbo.crm_inactiveCustomer where state=1 and customerId=PSN) ORDER BY PSN ASC");
         
 
         $regions=DB::select("SELECT * FROM Shop.dbo.MNM WHERE CompanyNo=5 and FatherMNM=80");
@@ -70,7 +70,8 @@ class Admin extends Controller{
          $haqiqiCustomers=DB::table("NewStarfood.dbo.star_Customer")->where('customerType','haqiqi')->select("*")->get();
          $hohoqiCustomers=DB::table("NewStarfood.dbo.star_Customer")->where('customerType','hoqoqi')->select("*")->get();
 
-        return view('admin.listCustomers',['customers'=>$customers,'regions'=>$regions,'cities'=>$cities, 'haqiqiCustomers'=>$haqiqiCustomers, 'hohoqiCustomers'=>$hohoqiCustomers]);
+        //  return view('admin.listCustomers',['customers'=>$customers,'regions'=>$regions,'cities'=>$cities, 'haqiqiCustomers'=>$haqiqiCustomers, 'hohoqiCustomers'=>$hohoqiCustomers]);
+         return view('admin.listCustomers',['regions'=>$regions,'cities'=>$cities, 'haqiqiCustomers'=>$haqiqiCustomers, 'hohoqiCustomers'=>$hohoqiCustomers]);
     }
 
 

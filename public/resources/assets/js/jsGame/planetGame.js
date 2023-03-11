@@ -412,7 +412,8 @@ function game() {
                     async: true,
                     data: {
                         _token: "{{ csrf_token() }}",
-                        record: record
+                        record: record,
+                        gameId:0
                     },
                     success: function(arrayed_result) {
                        

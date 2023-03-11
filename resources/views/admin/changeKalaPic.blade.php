@@ -42,11 +42,9 @@
                                     <iframe name="votar" style="display:none;"></iframe>
                                     <form action="{{ url('/addpicture') }}" onsubmit='document.getElementById("uploadButton{{$item->GoodSn}}").style.backgroundColor="#198754"; document.getElementById("deleteBtn{{$item->GoodSn}}").classList.remove("showdeleteBtn");' target="votar" enctype="multipart/form-data" method="POST">
                                         @csrf
-                                        <label @if(hasPermission(Session::get( 'adminId'),'fastKala' ) > 0) for="mainPic{{$item->GoodSn}}" @endif style="width: 100px;margin-bottom:5%;" class="btn btn-success editButtonHover">  ویرایش <i class="fa-light fa-image fa-lg"></i></label>
+                                        <label for="mainPic{{$item->GoodSn}}" style="width: 100px;margin-bottom:5%;" class="btn btn-success editButtonHover">  ویرایش <i class="fa-light fa-image fa-lg"></i></label>
                                         <input type="file"   onchange='document.getElementById("mainPicEdit{{$item->GoodSn}}").src = window.URL.createObjectURL(this.files[0]); document.getElementById("uploadButton{{$item->GoodSn}}").style.backgroundColor="red";' style="display: none" class="form-control" name="firstPic" id="mainPic{{$item->GoodSn}}">
-                                        
                                             <button style="width: 100px;margin-bottom:5%;" onclick="deleteKalaPicture({{$item->GoodSn}},this)" id="deleteBtn{{$item->GoodSn}}" class="btn editButtonHover btn-danger @if(!file_exists('resources/assets/images/kala/' . $item->GoodSn . '_1.jpg')) showdeleteBtn @endif">حذف عکس</button>
-                                        
                                         <br/>
                                         <br/>
                                         <label  style="width: 110px;margin-bottom:5%;" class="btn btn-success editButtonHover">  ویرایش <i class="fa-light fa-image fa-lg"></i></label>

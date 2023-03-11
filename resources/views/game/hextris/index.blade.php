@@ -78,41 +78,18 @@
 		<div class="faded overlay"></div>
 		<img id="pauseBtn" src="{{url('/resources/assets/hextris/images/btn_pause.svg')}}"/>
 		<img id='restartBtn' src="{{url('/resources/assets/hextris/images/btn_restart.svg')}}"/>
-		<div id='HIGHSCORE'>نمره بلند </div>
 		<script> (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){ (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o), m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m) })(window,document,'script','//www.google-analytics.com/analytics.js','ga'); ga('create', 'UA-51272720-2', 'auto'); ga('send', 'pageview');
 		</script>
 		<div id='highScoreInGameText'>
-			<div id='highScoreInGameTextHeader'>نمره بلند</div><div id='currentHighScore'>10292</div>
+			<div id='highScoreInGameTextHeader'><a  style="color:red;background-color:gray;font-size:20px;" href="{{url('/saveEarth/1')}}">بازگشت</a></div>
 		</div>
 		<div id="gameoverscreen">
 			<div id='container'>
 				<div id='gameOverBox' class='GOTitle'> بازی تمام است </div>
-				<div id='cScore'>1843</div>
-				<div id='highScoresTitle' class='GOTitle'> بلند ترین نمرات </div>
-				<div class='score'><span class='scoreNum'>1.</span> <div id="1place" style="display:inline;">0</div></div>
-				<div class='score'><span class='scoreNum'>2.</span> <div id="2place" style="display:inline;">0</div></div>
-				<div class='score'><span class='scoreNum'>3.</span> <div id="3place" style="display:inline;">0</div></div>
+				<div id='cScore'>0</div>
 			</div>
 			<div id='bottomContainer'>
-				<img id='restart' src='./images/btn_restart.svg' height='57px'>
-				<div id='socialShare'>
-					<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-					<svg width="224.6377px" height="57px"  viewBox="0 0 255 65" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-						<title>Share button</title>
-						<defs>
-						</defs>
-						<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
-							<g id="Game-over-" sketch:type="MSArtboardGroup" transform="translate(-95.000000, -565.000000)">
-								<g id="Share-button" sketch:type="MSLayerGroup" transform="translate(95.000000, 565.000000)">
-								<a style="cursor:pointer;"class="popup" onclick="window.open('https://twitter.com/intent/tweet?text=Can you beat my score of '+ score +' points at&button_hashtag=hextris ? http://hextris.github.io/hextris @hextris','name','width=600,height=400')" ><polygon  id="Score-hex-2" fill="#3498DB" sketch:type="MSShapeGroup" transform="translate(127.661316, 32.500000) rotate(-90.000000) translate(-127.661316, -32.500000) " points="127.661316 -94.814636 160.137269 -76.064636 160.137269 141.064636 127.661317 159.814636 95.185364 141.064636 95.1853635 -76.064636 "></polygon></a>
-									<text style="cursor:pointer;"class="popup" onclick="window.open('https://twitter.com/intent/tweet?text=Can you beat my score of '+ score +' points at&button_hashtag=hextris ? http://hextris.github.io/hextris @hextris','name','width=600,height=400')" id="SHARE-MY-SCORE!" sketch:type="MSTextLayer" font-family="Exo" font-size="16" font-weight="420" fill="#FFFFFF">
-										<tspan x="67" y="39"> شیر کردن نمره </tspan>
-									</text>
-								</g>
-							</g>
-						</g>
-					</svg>
-				</div>
+				<img id='restart' src="{{url('/resources/assets/hextris/images/btn_restart.svg')}}" height='57px'>
 				<div id='buttonCont'> </div>
 			</div>
 		</div>

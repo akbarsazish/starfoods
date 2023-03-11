@@ -276,29 +276,6 @@
                                     </tr>
                             </thead>
                             <tbody id='kalaContainer' class="tableBody">
-                                        @foreach ($listKala as $kala)
-                                    <tr onclick="setListKalaStuff(this,'{{$kala->GoodName}}')">
-                                        <td>{{$loop->index+1}}</td>
-                                        <td style="width: 222px">{{$kala->GoodName}}</td>
-                                        <td>{{$kala->GoodCde}}</td>
-                                        <td>{{$kala->NameGRP}}</td>
-                                        <td>{{\Morilog\Jalali\Jalalian::fromCarbon(\Carbon\Carbon::parse($kala->lastDate))->format('Y/m/d')}}</td>
-                                        <td>1401.2.21</td>
-                                        <td>
-                                            <input class="kala form-check-input" @if($kala->hideKala>0) checked @else @endif name="kalaId[]" disabled type="checkbox" value="{{$kala->GoodSn}}" id="">
-                                        </td>
-                                        <td>{{number_format($kala->Price4/1)}}</td>
-                                        <td>{{number_format($kala->Price3/1)}}</td>
-                                        @if ($kala->Amount==0)
-                                        <td style="color:red;background-color:azure">0</td>
-                                        @else
-                                        <td>{{number_format($kala->Amount,3,"/")}}</td>
-                                        @endif
-                                        <td>
-                                            <input class="kala form-check-input" name="kalaId[]" type="radio" value="{{$kala->GoodSn.'_'.$kala->Price4.'_'.$kala->Price3}}" id="flexCheckCheckedKala">
-                                        </td>
-                                    </tr>
-                                    @endforeach
                                 </tbody>
                         </table>
 

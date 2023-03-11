@@ -116,11 +116,11 @@
                <span style="display: flex; float:left;"> <button type="button" class="btn-close bg-danger" data-dismiss="modal" aria-label="Close"></button> </span>
             </div>
             <div class="modal-body p-1"> 
-                    <form style="display:inline" action="{{url('/doEditAdmin')}}" method="post" id="editingKarbarForm" enctype="multipart/form-data">
-                     <input type="text" style="display:none" id="editAdminId" value="" name="adminId"/>
+                        <form style="display:inline" action="{{url('/doEditAdmin')}}" method="post" id="editingKarbarForm" enctype="multipart/form-data">
+                        <input type="text" style="display:none" id="editAdminId" value="" name="adminId"/>
                              @csrf
-                  <div class='container descForall'>
-                        <div class="row">
+                        <div class='container descForall'>
+                            <div class="row">
                                 <div class="col-sm-3">
                                     <div class="form-group">
                                         <div class="input-group">
@@ -131,54 +131,54 @@
                                             </select>
                                         </div>
                                     </div>
-                                 </div>
-                                 <div class="col-sm-3">
+                                </div>
+                                <div class="col-sm-3">
                                     <div class="input-group input-group-sm mb-3">
                                         <span class="input-group-text" id="inputGroup-sizing-default"> اسم </span>
                                         <input type="text" class="form-control" placeholder="اسم" id="name" name="name">
                                      </div>
-                                 </div>
-                                 <div class="col-sm-3">
+                                </div>
+                                <div class="col-sm-3">
                                     <div class="input-group input-group-sm mb-3">
                                         <span class="input-group-text" id="inputGroup-sizing-default">  فامیلی </span>
                                          <input type="text" class="form-control" id="lastName" name="lastName" placeholder="فامیلی">
                                      </div>
-                                 </div>
-                                 <div class="col-sm-3">
+                                </div>
+                                <div class="col-sm-3">
                                     <div class="input-group input-group-sm mb-3">
                                         <span class="input-group-text" id="inputGroup-sizing-default"> نام کاربری </span>
                                         <input type="text" class="form-control" placeholder="نام کاربری" id="userName" name="userName">
-                                     </div>
-                                 </div>
-                          </div>
-                        <div class="row">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
                                 <div class="col-sm-3">
                                     <div class="input-group input-group-sm mb-3">
                                         <span class="input-group-text" id="inputGroup-sizing-default"> رمز </span>
                                         <input type="password" class="form-control" placeholder="رمز" id="password" name="password">
                                      </div>
-                                 </div>
-                                 <div class="col-sm-3">
+                                </div>
+                                <div class="col-sm-3">
                                     <div class="input-group input-group-sm mb-3"> 
                                         <input type="file" class="form-control" name="userPic" placeholder="تصویر">
                                      </div>
-                                 </div>
-                                 <div class="col-sm-3">
+                                </div>
+                                <div class="col-sm-3">
                                     <div class="form-check d-flex flex-end mt-1">
                                         <input class="form-check-input p-2" type="radio" value="male" name="gender" id="manGender"> &nbsp;
                                         <label class="form-check-label mx-4 karbar-label fs-6" >مرد </label> &nbsp; &nbsp;
                                         <input class="form-check-input p-2" type="radio" value="female" name="gender" id="womanGender"> &nbsp;
                                         <label class="form-check-label mx-4 karbar-label fs-6">زن</label>
                                     </div>
-                                 </div>
-                                 <div class="col-sm-3">
+                                </div>
+                                <div class="col-sm-3">
                                     <div class="form-check d-flex flex-end mt-1">
                                         <input class="form-check-input p-2" type="checkbox" name="activeState" id="activeState"> &nbsp;
                                         <label class="form-check-label mx-4 karbar-label fs-6">فعال</label> &nbsp; &nbsp;
                                     </div>
-                                 </div>
-                          </div>
-                      </div>
+                                </div>
+                            </div>
+                        </div>
           
                  <div class="container" style="background-color:#43bfa3; border-radius:5px 5px 2px 2px;">
                         <ul class="header-list nav nav-tabs" data-tabs="tabs">
@@ -425,96 +425,96 @@
                                     </fieldset>
                                 </div>
                             </div>
-                        <div class="c-checkout tab-pane" id="messagesED" style="border-radius:10px 10px 2px 2px;">
-                            <div class="container">
-                                <div class="row">
-                                    <fieldset class="border rounded-3" style="display: justify-content:flex-start; float: right;">
-                                        <legend  class="float-none w-auto forLegend first"><input type="checkbox" class="kalasED form-check-input" id="reportED" name="reportED"/>GHFH  گزارشات  </legend>
+                            <div class="c-checkout tab-pane" id="messagesED" style="border-radius:10px 10px 2px 2px;">
+                                <div class="container">
+                                    <div class="row">
                                         <fieldset class="border rounded-3" style="display: justify-content:flex-start; float: right;">
-                                            <legend  class="float-none w-auto firstLevel"><input type="checkbox" class="reportElementED form-check-input" id="reportCustomerED" name="reportCustomerED"/>  مشتریان </legend>
+                                            <legend  class="float-none w-auto forLegend first"><input type="checkbox" class="kalasED form-check-input" id="reportED" name="reportED"/>GHFH  گزارشات  </legend>
                                             <fieldset class="border rounded-3" style="display: justify-content:flex-start; float: right;">
-                                            <legend  class="float-none w-auto fs-6 secondLevel"> <input type="checkbox" class="cutomerListED form-check-input" id="cutomerListED" name="cutomerListED"/> لیست مشتریان </legend>
-                                                <div class="form-check admin-accesss-level">
-                                                    <input class="superED form-check-input box-check" id="deletCustomerListED" type="checkbox" name="deletCustomerListED">
-                                                    <label class="form-check-label">حذف</label>
-                                                </div>
-                                                <div class="form-check admin-accesss-level">
-                                                    <input class="adminED form-check-input box-check" type="checkbox" id="editCustomerListED" name="editCustomerListED">
-                                                    <label class="form-check-label">تغییر</label>
-                                                </div>
-                                                <div class="form-check admin-accesss-level">
-                                                    <input class="poshtibanED form-check-input box-check" type="checkbox" id="seeCustomerListED" name="seeCustomerListED">
-                                                    <label class="form-check-label">مشاهده</label>
-                                                </div>
+                                                <legend  class="float-none w-auto firstLevel"><input type="checkbox" class="reportElementED form-check-input" id="reportCustomerED" name="reportCustomerED"/>  مشتریان </legend>
+                                                <fieldset class="border rounded-3" style="display: justify-content:flex-start; float: right;">
+                                                <legend  class="float-none w-auto fs-6 secondLevel"> <input type="checkbox" class="cutomerListED form-check-input" id="cutomerListED" name="cutomerListED"/> لیست مشتریان </legend>
+                                                    <div class="form-check admin-accesss-level">
+                                                        <input class="superED form-check-input box-check" id="deletCustomerListED" type="checkbox" name="deletCustomerListED">
+                                                        <label class="form-check-label">حذف</label>
+                                                    </div>
+                                                    <div class="form-check admin-accesss-level">
+                                                        <input class="adminED form-check-input box-check" type="checkbox" id="editCustomerListED" name="editCustomerListED">
+                                                        <label class="form-check-label">تغییر</label>
+                                                    </div>
+                                                    <div class="form-check admin-accesss-level">
+                                                        <input class="poshtibanED form-check-input box-check" type="checkbox" id="seeCustomerListED" name="seeCustomerListED">
+                                                        <label class="form-check-label">مشاهده</label>
+                                                    </div>
+                                                </fieldset>
+                                                <fieldset class="border rounded-3" style="display: justify-content:flex-start; float: right;">
+                                                    <legend  class="float-none w-auto fs-6 secondLevel"> <input type="checkbox" class="cutomerListED form-check-input" id="officialCustomerED" name="officialCustomerED"/> اشخاص رسمی </legend>
+                                                    <div class="form-check admin-accesss-level">
+                                                        <input class="superED form-check-input box-check" id="deleteOfficialCustomerED" type="checkbox" name="deleteOfficialCustomerED">
+                                                        <label class="form-check-label">حذف</label>
+                                                    </div>
+                                                    <div class="form-check admin-accesss-level">
+                                                        <input class="adminED form-check-input box-check " type="checkbox" id="editOfficialCustomerED" name="editOfficialCustomerED">
+                                                        <label class="form-check-label">تغییر</label>
+                                                    </div>
+                                                    <div class="form-check admin-accesss-level">
+                                                    <input class="poshtibanED form-check-input box-check " type="checkbox" id="seeOfficialCustomerED" name="seeOfficialCustomerED">
+                                                        <label class="form-check-label">مشاهده</label>
+                                                    </div>
+                                                </fieldset>
                                             </fieldset>
                                             <fieldset class="border rounded-3" style="display: justify-content:flex-start; float: right;">
-                                                <legend  class="float-none w-auto fs-6 secondLevel"> <input type="checkbox" class="cutomerListED form-check-input" id="officialCustomerED" name="officialCustomerED"/> اشخاص رسمی </legend>
+                                                <legend  class="float-none w-auto forLegend firstLevel"><input type="checkbox" class="reportElementED form-check-input" id="gameAndLotteryED" name="gameAndLotteryED"/>  بازیها و لاتری </legend>
+                                                <fieldset class="border rounded-3" style="display: justify-content:flex-start; float: right;">
+                                                <legend  class="float-none w-auto fs-6 secondLevel"> <input type="checkbox" class="gameAndLotteryElement form-check-input" id="lotteryResultED" name="lotteryResultED"/> نتیجه لاتری  </legend>
+                                                    <div class="form-check admin-accesss-level">
+                                                        <input class="superED form-check-input box-check" id="deletLotteryResultED" type="checkbox" name="deletLotteryResultED">
+                                                        <label class="form-check-label">حذف</label>
+                                                    </div>
+                                                    <div class="form-check admin-accesss-level">
+                                                        <input class="adminED form-check-input box-check" type="checkbox" id="editLotteryResultED" name="editLotteryResultED">
+                                                        <label class="form-check-label">تغییر</label>
+                                                    </div>
+                                                    <div class="form-check admin-accesss-level">
+                                                        <input class="poshtibanED form-check-input box-check" type="checkbox" id="seeLotteryResultED" name="seeLotteryResultED">
+                                                        <label class="form-check-label">مشاهده</label>
+                                                    </div>
+                                                </fieldset>
+                                                <fieldset class="border rounded-3" style="display: justify-content:flex-start; float: right;">
+                                                    <legend  class="float-none w-auto fs-6 secondLevel"> <input type="checkbox" class="gameAndLotteryElement form-check-input" id="gamerListED" name="gamerListED"/> گیمر لیست </legend>
+                                                    <div class="form-check admin-accesss-level">
+                                                        <input class="superED form-check-input box-check" id="deletGamerListED" type="checkbox" name="deletGamerListED">
+                                                        <label class="form-check-label">حذف</label>
+                                                    </div>
+                                                    <div class="form-check admin-accesss-level">
+                                                        <input class="adminED form-check-input box-check " type="checkbox" id="editGamerListED" name="editGamerListED">
+                                                        <label class="form-check-label">تغییر</label>
+                                                    </div>
+                                                    <div class="form-check admin-accesss-level">
+                                                    <input class="poshtibanED form-check-input box-check " type="checkbox" id="seeGamerListED" name="seeGamerListED">
+                                                        <label class="form-check-label">مشاهده</label>
+                                                    </div>
+                                                </fieldset>
+                                            </fieldset>
+                                            <fieldset class="border rounded-3" style="display: justify-content:flex-start; float: right;">
+                                                <legend  class="float-none w-auto fs-6 firstLevel"> <input type="checkbox" class="reportElementED form-check-input" id="onlinePaymentED" name="onlinePaymentED"/> پرداخت آنلاین  </legend>
                                                 <div class="form-check admin-accesss-level">
-                                                    <input class="superED form-check-input box-check" id="deleteOfficialCustomerED" type="checkbox" name="deleteOfficialCustomerED">
+                                                    <input class="superED form-check-input box-check" id="deleteOnlinePaymentED" type="checkbox" name="deleteOnlinePaymentED">
                                                     <label class="form-check-label">حذف</label>
                                                 </div>
                                                 <div class="form-check admin-accesss-level">
-                                                    <input class="adminED form-check-input box-check " type="checkbox" id="editOfficialCustomerED" name="editOfficialCustomerED">
+                                                    <input class="adminED form-check-input box-check" type="checkbox" id="editOnlinePaymentED" name="editOnlinePaymentED">
                                                     <label class="form-check-label">تغییر</label>
                                                 </div>
                                                 <div class="form-check admin-accesss-level">
-                                                <input class="poshtibanED form-check-input box-check " type="checkbox" id="seeOfficialCustomerED" name="seeOfficialCustomerED">
+                                                    <input class="poshtibanED form-check-input box-check" type="checkbox" id="seeOnlinePaymentED" name="seeOnlinePaymentED">
                                                     <label class="form-check-label">مشاهده</label>
                                                 </div>
                                             </fieldset>
                                         </fieldset>
-                                        <fieldset class="border rounded-3" style="display: justify-content:flex-start; float: right;">
-                                            <legend  class="float-none w-auto forLegend firstLevel"><input type="checkbox" class="reportElementED form-check-input" id="gameAndLotteryED" name="gameAndLotteryED"/>  بازیها و لاتری </legend>
-                                            <fieldset class="border rounded-3" style="display: justify-content:flex-start; float: right;">
-                                            <legend  class="float-none w-auto fs-6 secondLevel"> <input type="checkbox" class="gameAndLotteryElement form-check-input" id="lotteryResultED" name="lotteryResultED"/> نتیجه لاتری  </legend>
-                                                <div class="form-check admin-accesss-level">
-                                                    <input class="superED form-check-input box-check" id="deletLotteryResultED" type="checkbox" name="deletLotteryResultED">
-                                                    <label class="form-check-label">حذف</label>
-                                                </div>
-                                                <div class="form-check admin-accesss-level">
-                                                    <input class="adminED form-check-input box-check" type="checkbox" id="editLotteryResultED" name="editLotteryResultED">
-                                                    <label class="form-check-label">تغییر</label>
-                                                </div>
-                                                <div class="form-check admin-accesss-level">
-                                                    <input class="poshtibanED form-check-input box-check" type="checkbox" id="seeLotteryResultED" name="seeLotteryResultED">
-                                                    <label class="form-check-label">مشاهده</label>
-                                                </div>
-                                            </fieldset>
-                                            <fieldset class="border rounded-3" style="display: justify-content:flex-start; float: right;">
-                                                <legend  class="float-none w-auto fs-6 secondLevel"> <input type="checkbox" class="gameAndLotteryElement form-check-input" id="gamerListED" name="gamerListED"/> گیمر لیست </legend>
-                                                <div class="form-check admin-accesss-level">
-                                                    <input class="superED form-check-input box-check" id="deletGamerListED" type="checkbox" name="deletGamerListED">
-                                                    <label class="form-check-label">حذف</label>
-                                                </div>
-                                                <div class="form-check admin-accesss-level">
-                                                    <input class="adminED form-check-input box-check " type="checkbox" id="editGamerListED" name="editGamerListED">
-                                                    <label class="form-check-label">تغییر</label>
-                                                </div>
-                                                <div class="form-check admin-accesss-level">
-                                                <input class="poshtibanED form-check-input box-check " type="checkbox" id="seeGamerListED" name="seeGamerListED">
-                                                    <label class="form-check-label">مشاهده</label>
-                                                </div>
-                                            </fieldset>
-                                        </fieldset>
-                                        <fieldset class="border rounded-3" style="display: justify-content:flex-start; float: right;">
-                                            <legend  class="float-none w-auto fs-6 firstLevel"> <input type="checkbox" class="reportElementED form-check-input" id="onlinePaymentED" name="onlinePaymentED"/> پرداخت آنلاین  </legend>
-                                            <div class="form-check admin-accesss-level">
-                                                <input class="superED form-check-input box-check" id="deleteOnlinePaymentED" type="checkbox" name="deleteOnlinePaymentED">
-                                                <label class="form-check-label">حذف</label>
-                                            </div>
-                                            <div class="form-check admin-accesss-level">
-                                                <input class="adminED form-check-input box-check" type="checkbox" id="editOnlinePaymentED" name="editOnlinePaymentED">
-                                                <label class="form-check-label">تغییر</label>
-                                            </div>
-                                            <div class="form-check admin-accesss-level">
-                                                <input class="poshtibanED form-check-input box-check" type="checkbox" id="seeOnlinePaymentED" name="seeOnlinePaymentED">
-                                                <label class="form-check-label">مشاهده</label>
-                                            </div>
-                                        </fieldset>
-                                    </fieldset>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
                         </div>
                     </div>
                 <div class="modal-footer">

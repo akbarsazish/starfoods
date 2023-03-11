@@ -63,8 +63,8 @@
                         <span id="replayCountWeb" @if($countNewReplayMessage<1) class="headerNotifications0 translate-middle badge rounded-pill bg-dark" @else class="headerNotifications1 position-absolute start-200 translate-middle badge rounded-pill bg-dark" @endif>@if($countNewReplayMessage>0){{$countNewReplayMessage}}@else 0 @endif</span>
                         </a>
                         <a href="{{url('/constact')}}"> <i class="fal fa-phone-square fa-lg"> </i> تماس با ما  </a>
-					   <a href="{{url('/saveEarth')}}"> <i class="fas fa-gamepad fa-lg"> </i> نجات زمین </a>
-					   <a href="{{url('/towerGame')}}"> <i class="fas fa-tower fa-lg"> </i>  ساختن برج </a>
+					   <a href="{{url('/saveEarth/0')}}"> <i class="fas fa-gamepad fa-lg"> </i> نجات زمین </a>
+					   <a href="{{url('/saveEarth/1')}}"> <i class="fas fa-tower fa-lg"> </i>  بازی با رنگ  </a>
 					   <!-- <a href="{{url('/showLottery')}}"> <i class="fa fa-ticket fa-lg"></i> شانس آزمایی </a> -->
 
                         @if($exitAllowance==1)
