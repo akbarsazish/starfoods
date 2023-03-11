@@ -1,4 +1,5 @@
 // t: current time, b: begInnIng value, c: change In value, d: duration
+const baseUrl = "http://192.168.10.27:8080";
 function easeOutCubic(t, b, c, d) {
 	return c * ((t = t / d - 1) * t * t + 1) + b;
 }
@@ -129,9 +130,9 @@ function setMainMenu() {
 	}, 500);
 	$('#restartBtn').hide();
 	if ($("#pauseBtn").replace(/^.*[\\\/]/, '') == "btn_pause.svg") {
-		$("#pauseBtn").attr("src", "./images/btn_resume.svg");
+		$("#pauseBtn").attr("src", baseUrl+"/resources/assets/hextris/images/btn_resume.svg");
 	} else {
-		$("#pauseBtn").attr("src", "./images/btn_pause.svg");
+		$("#pauseBtn").attr("src", baseUrl+"/resources/assets/hextris/images/btn_pause.svg");
 	}
 }
 
@@ -162,10 +163,22 @@ function gameOverDisplay() {
 }
 
 function updateHighScores() {
+	$.ajax({
+		method: 'get',
+		url: baseUrl + "/addGameScore",
+		async: true,
+		data: {
+			_token: "{{ csrf_token() }}",
+			record: score,
+			gameId:1
+		},
+		success: function(arrayed_result) {
+		},
+		error:function(err){
+			alert("you have error!!");
+		}
+	});
 	$("#cScore").text(score);
-	$("#1place").text(highscores[0]);
-	$("#2place").text(highscores[1]);
-	$("#3place").text(highscores[2]);
 }
 
 var pausable = true;
@@ -192,7 +205,7 @@ function pause(o) {
 			$('#helpScreen').fadeOut(300, "linear");
 		}
 
-		$("#pauseBtn").attr("src", "./images/btn_pause.svg");
+		$("#pauseBtn").attr("src", baseUrl+"/resources/assets/hextris/images/btn_pause.svg");
 		$('.helpText').fadeOut(300, 'linear');
 		$('#overlay').fadeOut(300, 'linear');
 		hideText();
@@ -208,7 +221,7 @@ function pause(o) {
 			showText(message);
 		}
 		$('#fork-ribbon').fadeIn(300, 'linear');
-		$("#pauseBtn").attr("src", "./images/btn_resume.svg");
+		$("#pauseBtn").attr("src", baseUrl+"/resources/assets/hextris/images/btn_resume.svg");
 		$('#overlay').fadeIn(300, 'linear');
 		prevGameState = gameState;
 		setTimeout(function () {

@@ -12,14 +12,14 @@ use \Morilog\Jalali\Jalalian;
 
 class SaveEarth extends Controller
 {
-    public function saveEarth(){
-            $players=DB::select("select Name,PSN,customerId,score from NewStarfood.dbo.star_game_score join Shop.dbo.Peopels on customerId=PSN order by score desc");
+    public function saveEarth($gameId){
+        $gameId=$gameId;
+        $players=DB::select("SELECT Name,PSN,customerId,score FROM NewStarfood.dbo.star_game_score JOIN Shop.dbo.Peopels ON customerId=PSN WHERE gameId=$gameId ORDER BY score DESC");
         $prizes=DB::table("NewStarfood.dbo.star_webSpecialSetting")->get();
-        $endOfOpportunity=DB::select("select DATEADD(DAY,30,(select max(timestamp) from NewStarfood.dbo.star_game_history)) as endOfOpportunity");
+        $endOfOpportunity=DB::select("SELECT DATEADD(DAY,30,(SELECT max(timestamp) FROM NewStarfood.dbo.star_game_history)) AS endOfOpportunity");
 
-        if($endOfOpportunity[0]->endOfOpportunity < Carbon::now() ){
-            
-        $gameHistory=DB::table("NewStarfood.dbo.star_game_score")->orderbydesc("score")->get();
+        if($endOfOpportunity[0]->endOfOpportunity <= Carbon::now() ){
+        $gameHistory=DB::table("NewStarfood.dbo.star_game_score")->where('gameId',$gameId)->orderbydesc("score")->get();
         $prizes=DB::table("NewStarfood.dbo.star_webSpecialSetting")->get();
         $firstPosId=0;
         $secPosId=0;
@@ -102,7 +102,8 @@ class SaveEarth extends Controller
             $teenthScore=$gameHistory[9]->score;
         }
 
-        DB::table("NewStarfood.dbo.star_game_history")->insert([ "firstPosId"=>$firstPosId
+        DB::table("NewStarfood.dbo.star_game_history")->insert(["gameId"=>$gameId
+                                                                ,"firstPosId"=>$firstPosId
                                                                 ,"secondPosId"=>$secPosId
                                                                 ,"thirdPosId"=>$thirdPosId
                                                                 ,"fourthPosId"=>$fourthPosId
@@ -123,36 +124,27 @@ class SaveEarth extends Controller
                                                                 ,"ninthPrize"=>$prizes[0]->ninthPrize
                                                                 ,"teenthPrize"=>$prizes[0]->teenthPrize
                                                                 ,"firstScore"=>$firstScore
-                                                                ,
-                                                                "secondScore"=>$secondScore
-                                                                ,
-                                                                "thirdScore"=>$thirdScore
-                                                                ,
-                                                                "fourthScore"=>$fourthScore
-                                                                ,
-                                                                "fifthScore"=>$fifthScore
-                                                                ,
-                                                                "sixthScore"=>$sixthScore
-                                                                ,
-                                                                "seventhScore"=>$seventhScore
-                                                                ,
-                                                                "eightthScore"=>$eightthScore
-                                                                ,
-                                                                "ninethScore"=>$ninethScore
-                                                                ,
-                                                                "teenthScore"=>$teenthScore]);
-        DB::table("NewStarfood.dbo.star_game_score")->delete();
-        $endOfOpportunity=DB::select("select DATEADD(DAY,30,(select max(timestamp) from NewStarfood.dbo.star_game_history)) as endOfOpportunity");
+                                                                ,"secondScore"=>$secondScore
+                                                                ,"thirdScore"=>$thirdScore
+                                                                ,"fourthScore"=>$fourthScore
+                                                                ,"fifthScore"=>$fifthScore
+                                                                ,"sixthScore"=>$sixthScore
+                                                                ,"seventhScore"=>$seventhScore
+                                                                ,"eightthScore"=>$eightthScore
+                                                                ,"ninethScore"=>$ninethScore
+                                                                ,"teenthScore"=>$teenthScore]);
+        DB::table("NewStarfood.dbo.star_game_score")->where('gameId',$gameId)->delete();
+        $endOfOpportunity=DB::select("SELECT DATEADD(DAY,30,(SELECT max(timestamp) FROM NewStarfood.dbo.star_game_history WHERE gameId=$gameId)) AS endOfOpportunity");
 
     }
-    $remainDays=DB::select("select DATEDIFF (day,'".Carbon::now()."','".$endOfOpportunity[0]->endOfOpportunity."') as dayRemain");
+    $remainDays=DB::select("SELECT DATEDIFF (day,'".Carbon::now()."','".$endOfOpportunity[0]->endOfOpportunity."') as dayRemain");
 
     $played=DB::select("SELECT * FROM (
         SELECT Row,Name,posId,PosName FROM (
         SELECT ROW_NUMBER() 
                         OVER (ORDER BY id)  AS Row,id,PosName,
           posId
-        FROM NewStarfood.dbo.star_game_history
+        FROM NewStarfood.dbo.star_game_history 
         
         unpivot
         (
@@ -180,28 +172,27 @@ class SaveEarth extends Controller
           for PrizeName in (firstPrize,secondPrize,thirdPrize,fourthPrize,fifthPrize,sixthPrize,seventhPrize,eightthPrize,ninthPrize,teenthPrize)
         ) unpiv
         
-        
-        )a WHERE a.id=(SELECT MAX(id) AS lastId FROM NewStarfood.dbo.star_game_history)
-        )c )d ON b.Row=d.Row");
-    
-        return view('game.saveEarth',['played'=>$played,'players'=>$players,'prizes'=>$prizes[0],'endOfOpportunity'=>$endOfOpportunity[0]->endOfOpportunity,'remainDays'=>$remainDays]);
+        )a WHERE a.id=(SELECT MAX(id) AS lastId FROM NewStarfood.dbo.star_game_history WHERE gameId=$gameId)
+        )c )d ON b.Row=d.Row ");
+        return view('game.saveEarth',['played'=>$played,'players'=>$players,'prizes'=>$prizes[0],'endOfOpportunity'=>$endOfOpportunity[0]->endOfOpportunity,'remainDays'=>$remainDays,'gameId'=>$gameId]);
 
     }
     public function addGameScore(Request $request)
     {
     $score=$request->get("record");
+    $gameId=$request->get("gameId");
     $customerId=Session::get("psn");
-    $play_before=DB::table("NewStarfood.dbo.star_game_score")->where('customerId',$customerId)->count();
+    $play_before=DB::table("NewStarfood.dbo.star_game_score")->where('customerId',$customerId)->where('gameId',$gameId)->count();
 
     if($play_before<1){
         //اگر قبلا نیست
-        DB::table("NewStarfood.dbo.star_game_score")->insert(['customerId'=>$customerId,'score'=>$score]);
+        DB::table("NewStarfood.dbo.star_game_score")->insert(['customerId'=>$customerId,'gameId'=>$gameId,'score'=>$score]);
     }else{
         //اگر قبلا هست
-        $isRecord=DB::table("NewStarfood.dbo.star_game_score")->where('customerId',$customerId)->where('score',"<",$score)->count();
+        $isRecord=DB::table("NewStarfood.dbo.star_game_score")->where('customerId',$customerId)->where('score',"<",$score)->where('gameId',$gameId)->count();
         //اگر رکورد است
         if($isRecord>0){
-            DB::table("NewStarfood.dbo.star_game_score")->where('customerId',$customerId)->update(['score'=>$score]);
+            DB::table("NewStarfood.dbo.star_game_score")->where('customerId',$customerId)->where('gameId',$gameId)->update(['score'=>$score]);
         }
     }
     return Response::json($score);
@@ -216,7 +207,7 @@ class SaveEarth extends Controller
      }
 
 
-	 public function towerGame(){
+	 public function hextrisGame(){
         return view("game.hextris.index");
      }
 

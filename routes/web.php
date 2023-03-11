@@ -288,7 +288,7 @@ Route::get('/editKalaModal',[Kala::class,'editKalaModal'])->middleware('checkAdm
 //Route::get('/addDescKala',[Kala::class,'setDescribeKala'])->middleware('checkAdmin');
 
 
-Route::get('/saveEarth',[saveEarth::class,'saveEarth']);
+Route::get('/saveEarth/{gameId}',[saveEarth::class,'saveEarth']);
 Route::get('/showLottery',[Lottery::class,'showLottery']);
 
 
@@ -314,8 +314,7 @@ Route::post("/tasviyeahLottery",[Lottery::class,"tasviyeahLottery"])->middleware
 Route::get("/setFactorSessions",[Shipping::class,"setFactorSessions"])->middleware('checkUser');
 
 Route::get('/strayMaster',[SaveEarth::class,'strayMaster'])->middleware('checkUser');
-Route::get('/towerGame',[SaveEarth::class,'towerGame'])->middleware('checkUser');
-Route::get('/tower',[SaveEarth::class,'buildingTower'])->middleware('checkUser');
+Route::get('/hextrisGame',[SaveEarth::class,'hextrisGame'])->middleware('checkUser');
 
 
 Route::get("/salesOrder",[SalesOrder::class,"salesOrder"])->middleware('checkAdmin');

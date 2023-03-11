@@ -113,18 +113,6 @@
                             </tr>
                             </thead>
                             <tbody id="customerList" class="select-highlight tableBody">
-                                @foreach ($customers as $customer)
-                                    <tr>
-                                        <td>{{$loop->iteration}}</td>
-                                        <td>{{$customer->PCode}}</td>
-                                        <td>{{$customer->Name}}</td>
-                                        <td style="width:390px">{{$customer->peopeladdress}}</td>
-                                        <td>{{$customer->PhoneStr}}</td>
-                                        <td>{{$customer->NameRec}}</td>
-                                        <td>{{$customer->TimeStamp}}</td>
-                                        <td> <input class="customerList form-check-input" name="customerId" type="radio" value="{{$customer->PSN.'_'.$customer->GroupCode}}" id="flexCheckChecked"></td>
-                                    </tr>
-                                @endforeach
                             </tbody>
                         </table>
                         <!-- لیست اشخاص حقیقی -->

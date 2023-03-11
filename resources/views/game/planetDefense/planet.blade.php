@@ -35,7 +35,7 @@
         } 
 
     </style>
-	<a href="{{url('/saveEarth')}}" class="goBack">    بازگشت    </a>
+	<a href="{{url('/saveEarth/0')}}" class="goBack">    بازگشت    </a>
 	<audio controls="controls" id="fire" src="{{url('/resources/assets/js/jsGame/fire.mp3')}}" type="audio/mp3" style="display:none;"></audio>
 	 <audio controls="controls" id="boomb" src="{{url('/resources/assets/js/jsGame/boomb.mp3')}}" type="audio/mp3" style="display:none;"></audio>
     <canvas id="canvas"></canvas>

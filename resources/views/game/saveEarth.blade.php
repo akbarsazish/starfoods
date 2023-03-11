@@ -401,7 +401,7 @@ button:hover::after, button:focus::after {
 
 </style>
 <div class="container" style="margin-top:70px;">
-@if($remainDays[0]->dayRemain < 28)
+@if($remainDays[0]->dayRemain < 30)
     <div class="row">
         <h5 class="titlegamer"> بازیکنان برتر تا این لحظه  </h5>
         
@@ -409,26 +409,25 @@ button:hover::after, button:focus::after {
     </div>
     <div class="row">
         <div class="saveEarthContainer">
-          @foreach($players as $player)
+              @foreach($players as $player)
                 <div @if($loop->iteration>9) class="playerDiv  moreUser"  @else class="playerDiv" @endif>
-                <span @if($loop->iteration==1) class="awardWinner afterBefor1" @endif
-                      @if($loop->iteration==2) class="awardWinner afterBefor2" @endif
-                      @if($loop->iteration==3) class="awardWinner afterBefor3" @endif>
+                  <span @if($loop->iteration==1) class="awardWinner afterBefor1" @endif
+                        @if($loop->iteration==2) class="awardWinner afterBefor2" @endif
+                        @if($loop->iteration==3) class="awardWinner afterBefor3" @endif>
 
-                      @if($loop->iteration==1) نفر اول   {{number_format($prizes->firstPrize)}} تومان@endif
-                      @if($loop->iteration==2) نفر دوم   {{number_format($prizes->secondPrize)}} تومان@endif
-                      @if($loop->iteration==3) نفر سوم   {{number_format($prizes->thirdPrize)}} تومان @endif
-
-                </span>
+                        @if($loop->iteration==1) نفر اول   {{number_format($prizes->firstPrize)}} تومان@endif
+                        @if($loop->iteration==2) نفر دوم   {{number_format($prizes->secondPrize)}} تومان@endif
+                        @if($loop->iteration==3) نفر سوم   {{number_format($prizes->thirdPrize)}} تومان @endif
+                  </span>
                   <span @if( $loop->iteration==1) class="firstRecordBorder" @endif
-                  @if($loop->iteration==2) class="secondRecordBorder" @endif
-                  @if($loop->iteration==3) class="thirdRecordBoarder" @endif>  
-                  <img  @if( $loop->iteration==1) class="gameAvatar firstAvatar" @endif
-                        @if($loop->iteration==2) class="gameAvatar secondAvatar" @endif
-                        @if($loop->iteration==3) class="gameAvatar thirdAvatar" @endif
-                        @if($loop->iteration!=3 and $loop->iteration!=2 and $loop->iteration!=1) class="gameAvatar" @endif
-                        src="{{ url('/resources/assets/images/userAvatar.png') }}" alt=""> </span>
-                  
+                    @if($loop->iteration==2) class="secondRecordBorder" @endif
+                    @if($loop->iteration==3) class="thirdRecordBoarder" @endif>  
+                    <img  @if( $loop->iteration==1) class="gameAvatar firstAvatar" @endif
+                          @if($loop->iteration==2) class="gameAvatar secondAvatar" @endif
+                          @if($loop->iteration==3) class="gameAvatar thirdAvatar" @endif
+                          @if($loop->iteration!=3 and $loop->iteration!=2 and $loop->iteration!=1) class="gameAvatar" @endif
+                        src="{{ url('/resources/assets/images/userAvatar.png') }}" alt=""> 
+                  </span>
                   <p class="gamerRecord"> {{$player->score}} </p>
                   <p class="gamerName">{{$player->Name}}</p>
                 </div>
@@ -439,19 +438,29 @@ button:hover::after, button:focus::after {
                     </span>
                 </div>
                 @endif
-            @endforeach
+              @endforeach
        </div>
     </div>
-    <div class="row" style="margin:50px auto; ">
+    @if($gameId==0)
+      <div class="row" style="margin:50px auto; ">
+          <div class="wrapGame">
+            <a href="{{url('/planetSave')}}"> <button class="buttonGame">  شروع بازی  </button>  </a>
+          </div>
+      </div>
+    @elseif($gameId==1)
+      <div class="row" style="margin:50px auto; ">
         <div class="wrapGame">
-           <a href="{{url('/planetSave')}}"> <button class="buttonGame">  شروع بازی  </button>  </a>
+          <a href="{{url('/hextrisGame')}}"> <button class="buttonGame">  شروع بازی  </button>  </a>
         </div>
-    </div>
-    @else
+      </div>
+    @endif
+  @else
+
     <div class="row">
       <h5 class="titlegamer"> بازیکنان برتر ماه قبل </h5>
     <div class="row">
         <div class="saveEarthContainer">
+          
           @foreach($played as $player)
               @if($loop->iteration<=3)
                 <div @if($loop->iteration>9) class="playerDiv  moreUser"  @else class="playerDiv" @endif>

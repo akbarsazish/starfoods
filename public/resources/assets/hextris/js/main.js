@@ -1,3 +1,4 @@
+
 function scaleCanvas() {
 	canvas.width = $(window).width();
 	canvas.height = $(window).height();
@@ -90,7 +91,7 @@ function hideUIElements() {
 function init(b) {
 	if (settings.ending_block && b == 1) { return; }
 	if (b) {
-		$("#pauseBtn").attr('src', "./images/btn_pause.svg");
+		$("#pauseBtn").attr('src', baseUrl+"/resources/assets/hextris/images/btn_pause.svg");
 		if ($('#helpScreen').is(":visible")) {
 			$('#helpScreen').fadeOut(150, "linear");
 		}
@@ -111,7 +112,7 @@ function init(b) {
 		$("#currentHighScore").text(highscores[0])
 	}
 	infobuttonfading = true;
-	$("#pauseBtn").attr('src', "./images/btn_pause.svg");
+	$("#pauseBtn").attr('src', baseUrl+"/resources/assets/hextris/images/btn_pause.svg");
 	hideUIElements();
 	var saveState = localStorage.getItem("saveState") || "{}";
 	saveState = JSONfn.parse(saveState);
@@ -356,7 +357,7 @@ function showHelp() {
 			$('#fork-ribbon').fadeOut(150, 'linear');
 		}
 	} else {
-		$('#openSideBar').attr('src', "{{url('/resources/assets/hextris/images/btn_back.svg')}}");
+		$('#openSideBar').attr('src', baseUrl+"/resources/assets/hextris/images/btn_back.svg");
 		if (gameState == 0 && gameState == -1 && gameState == 2) {
 			$('#fork-ribbon').fadeIn(150, 'linear');
 		}
@@ -367,7 +368,7 @@ function showHelp() {
 		pause();
 	}
 
-	if ($("#pauseBtn").attr('src') == "{{url('/resources/assets/hextris/images/btn_pause.svg')}}" && gameState != 0 && !infobuttonfading) {
+	if ($("#pauseBtn").attr('src') == baseUrl+"/resources/assets/hextris/images/btn_pause.svg" && gameState != 0 && !infobuttonfading) {
 		return;
 	}
 
