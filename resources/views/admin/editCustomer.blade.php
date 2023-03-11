@@ -1,6 +1,12 @@
 @extends('admin.layout')
 @section('content')
 
+<style>
+    #customerEdit, #allKalaFirst1, #takhfifBag{
+        display:none;
+    }
+</style>
+
 <div class="container-fluid containerDiv">
     <div class="row">
             <div class="col-lg-2 col-md-2 col-sm-3 sideBar">
@@ -121,23 +127,22 @@
                         </div>
                     </div>
             </div>
-            <div class="c-checkout container" style="background-color:#81d3a4; border-radius:10px 10px 2px 2px;">
+            <div class="c-checkout container" style="background-color:#81d3a4; border-radius:10px 10px 2px 2px; width:100%;">
                 <div class="col-sm-12" style="margin: 0; padding:0;">
                     <ul class="header-list nav nav-tabs" data-tabs="tabs" style="margin: 0; padding:0;">
-                        <li><a class="active" data-toggle="tab" style="color:black;"  href="#custAddress"> آدرس مشتری </a></li>
-                        <li><a data-toggle="tab" style="color:black;"  href="#moRagiInfo">  اطلاعات مویرگی </a></li>
-                        <li><a data-toggle="tab" style="color:black;"  href="#userLoginInfo"> اطلاعات دسترسی </a></li>
-                        <li><a data-toggle="tab" style="color:black;"  href="#pictures">ورود جعلی</a></li>
-                        <li><a data-toggle="tab" style="color:black;"  href="#takhfifCalc"> مدیریت کیف تخفیفی</a></li>
-                        <li><a data-toggle="tab" style="color:black;"  href="#takhfifCaseHistory"> تاریخچه کیف تخفیفی</a></li>
+                        <li><a class="active" data-toggle="tab" style="color:black;" id="customerAddress"  href="#custAddress"> آدرس مشتری </a></li>
+                        <li><a data-toggle="tab" style="color:black;" id="moyRagiInfo"  href="#moRagiInfo">  اطلاعات مویرگی </a></li>
+                        <li><a data-toggle="tab" style="color:black;" id="customerInfo"  href="#userLoginInfo"> اطلاعات دسترسی </a></li>
+                        <li><a data-toggle="tab" style="color:black;" id="manageDiscountBag" href="#takhfifCalc"> مدیریت کیف تخفیفی</a></li>
+                        <li><a data-toggle="tab" style="color:black;" id="discountBagHistory" href="#takhfifCaseHistory"> تاریخچه کیف تخفیفی</a></li>
                     </ul>
                 </div>
 
-                <div class="c-checkout tab-content" style="background-color:#f5f5f5; margin:0;  padding:0.2%; border-radius:10px 10px 2px 2px; display:block; height:333px; overflow-y:scroll; overflow-x:hidden;">
-                     <div class="row c-checkout rounded-3 tab-pane active" id="custAddress" style="width:100%; margin:0 auto; padding:1% 0% 0% 0%">
-                        <div class="col-sm-12">
+                <div class="c-checkout tab-content" style="background-color:#f5f5f5; margin:0; padding:0.2%; border-radius:10px 10px 2px 2px;">
+                     <div class="row c-checkout rounded-3 tab-pane active" id="custAddress">
+                        <div class="col-sm-12"  style="display:block; height:300px; overflow-y:scroll; overflow-x:hidden;"> 
                             <table class="table table-bordered table-striped table-sm" style="text-align:center;">
-                                <thead class="tableHeader table bg-success text-warning">
+                                <thead class="table bg-success text-warning">
                                 <tr>
                                     <th>استان</th>
                                     <th>شهر</th>
@@ -146,7 +151,7 @@
                                     <th>انتخاب </th>
                                 </tr>
                                 </thead>
-                                <tbody class="tableBody">
+                                <tbody>
                                     {{-- @foreach ($customers as $customer) --}}
                                 <tr>
                                     <td></td>
@@ -161,172 +166,138 @@
                                 </tbody>
                             </table>
                         </div>
-
-                        <div class="col-sm-12">
-                            <fieldset class="row c-checkout rounded-3" style="width:99%; margin:2% 1% 1% 0; padding:0 1% 1% 0%">
-                                    <div class="row">
-                                        <div class="col-sm-2">
-                                            <div class="input-group input-group-sm mb-2">
-                                                <span class="input-group-text" id="inputGroup-sizing-sm"> استان   </span>
-                                                <input type="text"   class=" col-sm-10 form-control form-control-sm"  name=""  id="province">
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-2">
-                                            <div class="input-group input-group-sm mb-2">
-                                                <span class="input-group-text" id="inputGroup-sizing-sm"> شهر    </span>
-                                                <input type="text"   class="col-sm-10 form-control form-control-sm"  name=""  id="city">
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-2">
-                                            <div class="input-group input-group-sm mb-2">
-                                                <span class="input-group-text" id="inputGroup-sizing-sm"> کدپستی  </span>
-                                                <input type="text"   class="col-sm-12 form-control form-control-sm"  name=""  id="postalCode">
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-4">
-                                            <div class="input-group input-group-sm mb-2">
-                                                <span class="input-group-text" id="inputGroup-sizing-sm"> آدرس  </span>
-                                                <input type="text"   class="col-sm-10 form-control form-control-sm m-0 p-0"  name=""  id="address">
-                                            </div>
-                                        </div>
-                                    </div>
-                            </fieldset>
-                        </div>
                     </div>
 
-                    <div class="row c-checkout rounded-3 tab-pane" id="moRagiInfo" style="width:99%; margin:0 auto; padding:1% 0% 0% 0%">
-                        <div class="row " style="width:98%; padding:0 1% 2% 0%">
-                            <div class="col-sm-2">
-                                <div class="input-group input-group-sm mb-2">
-                                    <span class="input-group-text" id="inputGroup-sizing-sm"> بازاریاب  </span>
-                                    <input class="form-control form-control-sm"   type="text"  name="" id="allKalaFirst">
+                    <div class="row c-checkout rounded-3 tab-pane" id="moRagiInfo">
+                        <div class="col-lg-12" style="display:block; height:300px; overflow-y:scroll; overflow-x:hidden;">
+                           <div class="row mt-2">
+                                <div class="col-sm-2">
+                                    <div class="input-group input-group-sm mb-2">
+                                        <span class="input-group-text" id="inputGroup-sizing-sm"> بازاریاب  </span>
+                                        <input class="form-control form-control-sm"   type="text"  name="" id="allKalaFirst">
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-sm-2">
-                                <div class="input-group input-group-sm mb-2">
-                                    <span class="input-group-text" id="inputGroup-sizing-sm"> کشور   </span>
-                                    <input class="form-control form-control-sm pr-0 mr-0"   type="text" name="" id="allKalaFirst">
+                                <div class="col-sm-2">
+                                    <div class="input-group input-group-sm mb-2">
+                                        <span class="input-group-text" id="inputGroup-sizing-sm"> کشور   </span>
+                                        <input class="form-control form-control-sm pr-0 mr-0"   type="text" name="" id="allKalaFirst">
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-sm-2">
-                                <div class="input-group input-group-sm mb-2">
-                                    <span class="input-group-text" id="inputGroup-sizing-sm"> استان  </span>
-                                    <input class="form-control form-control-sm pr-0 mr-0"    type="text"  name="" id="allKalaFirst">
+                                <div class="col-sm-2">
+                                    <div class="input-group input-group-sm mb-2">
+                                        <span class="input-group-text" id="inputGroup-sizing-sm"> استان  </span>
+                                        <input class="form-control form-control-sm pr-0 mr-0"    type="text"  name="" id="allKalaFirst">
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-sm-2">
-                                <div class="input-group input-group-sm mb-2">
-                                    <span class="input-group-text" id="inputGroup-sizing-sm"> شهر </span>
-                                    <input class="form-control form-control-sm pr-0 mr-0"   type="text" name="" id="allKalaFirst">
+                                <div class="col-sm-2">
+                                    <div class="input-group input-group-sm mb-2">
+                                        <span class="input-group-text" id="inputGroup-sizing-sm"> شهر </span>
+                                        <input class="form-control form-control-sm pr-0 mr-0"   type="text" name="" id="allKalaFirst">
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-sm-2">
-                                <div class="input-group input-group-sm mb-2">
-                                    <span class="input-group-text" id="inputGroup-sizing-sm"> منطقه </span>
-                                    <input class="form-control form-control-sm pr-0 mr-0"    type="text"  name="" id="allKalaFirst">
+                                <div class="col-sm-2">
+                                    <div class="input-group input-group-sm mb-2">
+                                        <span class="input-group-text" id="inputGroup-sizing-sm"> منطقه </span>
+                                        <input class="form-control form-control-sm pr-0 mr-0"    type="text"  name="" id="allKalaFirst">
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-sm-2">
-                                <div class="input-group input-group-sm mb-2">
-                                    <span class="input-group-text" id="inputGroup-sizing-sm"> تحویلدار </span>
-                                    <input class="form-control form-control-sm pr-0 mr-0"   type="text"  name="" id="allKalaFirst">
+                                <div class="col-sm-2">
+                                    <div class="input-group input-group-sm mb-2">
+                                        <span class="input-group-text" id="inputGroup-sizing-sm"> تحویلدار </span>
+                                        <input class="form-control form-control-sm pr-0 mr-0"   type="text"  name="" id="allKalaFirst">
+                                    </div>
                                 </div>
-                            </div>
-                
-                            <div class="col-sm-2">
-                                <div class="input-group input-group-sm mb-2">
-                                    <span class="input-group-text" id="inputGroup-sizing-sm"> صنف  </span>
-                                    <input class="form-control form-control-sm pr-0 mr-0"   type="text" name="" id="allKalaFirst">
+                    
+                                <div class="col-sm-2">
+                                    <div class="input-group input-group-sm mb-2">
+                                        <span class="input-group-text" id="inputGroup-sizing-sm"> صنف  </span>
+                                        <input class="form-control form-control-sm pr-0 mr-0"   type="text" name="" id="allKalaFirst">
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-sm-2">
-                                <div class="input-group input-group-sm mb-2">
-                                    <span class="input-group-text" id="inputGroup-sizing-sm"> کد مویرگی  </span>
-                                    <input class="form-control form-control-sm pr-0 mr-0"   type="text"  name="" id="allKalaFirst">
+                                <div class="col-sm-2">
+                                    <div class="input-group input-group-sm mb-2">
+                                        <span class="input-group-text" id="inputGroup-sizing-sm"> کد مویرگی  </span>
+                                        <input class="form-control form-control-sm pr-0 mr-0" type="text"  name="" id="allKalaFirst">
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-sm-2">
-                                <div class="input-group input-group-sm mb-2">
-                                    <span class="input-group-text" id="inputGroup-sizing-sm"> انتخاب مسیر  </span>
-                                    <input class="form-control form-control-sm pr-0 mr-0"   type="text" name="" id="allKalaFirst">
+                                <div class="col-sm-2">
+                                    <div class="input-group input-group-sm mb-2">
+                                        <span class="input-group-text" id="inputGroup-sizing-sm"> انتخاب مسیر  </span>
+                                        <input class="form-control form-control-sm pr-0 mr-0" type="text" name="" id="allKalaFirst">
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-sm-2">
-                                <div class="input-group input-group-sm mb-2">
-                                    <button class="btn btn-success text-warning"   type="button" name="" id="allKalaFirst">ثبت مکان</button>
+                                <div class="col-sm-2">
+                                    <div class="input-group input-group-sm mb-2">
+                                        <button class="btn btn-success text-warning" type="button" name="" id="allKalaFirst">ثبت مکان</button>
+                                    </div>
                                 </div>
+                         </div>
+                            <div class="col-sm-12" style="display:none;">
+                                <button class="btn btn-success btn-sm text-warning" style=" float:left; margin-top:-2%">ذخیره</button>
                             </div>
-                        </div>
-                        <div class="col-sm-12" style="display:none;">
-                            <button class="btn btn-success btn-sm text-warning"    style=" float:left; margin-top:-2%">ذخیره</button>
-                        </div>
                     </div>
-                    <div class="row c-checkout rounded-3 tab-pane" id="userLoginInfo" style="width:99%; margin:0 auto; padding:1% 0% 0% 0%">
-
-                        <div class="row" style="width:98%; padding:0 1% 2% 0%">
-                            <div class="row">
-                                <div class="col-sm-2">
-                                    <div class="input-group input-group-sm mb-2">
-                                        <span class="input-group-text" id="inputGroup-sizing-sm">نام کاربری  </span>
-                                        <input type="text" class="form-control form-control-sm accessInfo"      value="{{trim($customer->userName)}}" name="userName" size="20" id="userName">
+                    </div>
+                    <div class="row c-checkout rounded-3 tab-pane" id="userLoginInfo" style="width:100%; margin:0 auto; padding:1% 0% 0% 0%">
+                        <div class="row px-1">
+                            <div class="col-lg-12 mx-0" style="display:block; height:300px; overflow-y:scroll; overflow-x:hidden;">
+                               <div class="row">
+                                    <div class="col-sm-2">
+                                        <div class="input-group input-group-sm mb-2">
+                                            <span class="input-group-text" id="inputGroup-sizing-sm">نام کاربری  </span>
+                                            <input type="text" class="form-control form-control-sm accessInfo"      value="{{trim($customer->userName)}}" name="userName" size="20" id="userName">
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-sm-2">
-                                    <div class="input-group input-group-sm mb-2">
-                                        <span class="input-group-text" id="inputGroup-sizing-sm"> رمز عبور  </span>
-                                        <input type="text" class="form-control form-control-sm accessInfo"  name=""    value="{{$customer->customerPss}}" size="20" id="EqtisadiCode">
+                                    <div class="col-sm-2">
+                                        <div class="input-group input-group-sm mb-2">
+                                            <span class="input-group-text" id="inputGroup-sizing-sm"> رمز عبور  </span>
+                                            <input type="text" class="form-control form-control-sm accessInfo"  name=""    value="{{$customer->customerPss}}" size="20" id="EqtisadiCode">
+                                        </div>
                                     </div>
-                                </div>
-                                <input type="text" name="" value="{{$customer->PSN}}" id="CustomerSn" style="display: none;">
-                                <div class="col-sm-3">
-                                    <div class="input-group input-group-sm mb-2">
-                                        <span class="input-group-text" id="inputGroup-sizing-sm"> حد اقل مبلغ فاکتور (تومان)  </span>
-                                        <input type="text" class="form-control form-control-sm accessInfo"    name=""  value="{{number_format($customer->minimumFactorPrice)}}" size="20" id="FactorMinPrice">
+                                    <input type="text" name="" value="{{$customer->PSN}}" id="CustomerSn" style="display: none;">
+                                    <div class="col-sm-4">
+                                        <div class="input-group input-group-sm mb-2">
+                                            <span class="input-group-text" id="inputGroup-sizing-sm"> حد اقل مبلغ فاکتور (تومان)  </span>
+                                            <input type="text" class="form-control form-control-sm accessInfo"    name=""  value="{{number_format($customer->minimumFactorPrice)}}" size="20" id="FactorMinPrice">
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-sm-3">
-                                    <div class="input-group input-group-sm mb-2">
-                                        <span class="input-group-text" id="inputGroup-sizing-sm">اجازه داده چندین موبایل  </span>
-                                        <input type="number" class="form-control form-control-sm accessInfo"   value="{{$customer->manyMobile}}" class="form-check-input" id="ManyMobile">
+                                    <div class="col-sm-4">
+                                        <div class="input-group input-group-sm mb-2">
+                                            <span class="input-group-text" id="inputGroup-sizing-sm">اجازه چندین موبایل  </span>
+                                            <input type="number" class="form-control form-control-sm accessInfo"   value="{{$customer->manyMobile}}" class="form-check-input" id="ManyMobile">
+                                        </div>
                                     </div>
-                                </div>
                             </div>
 
-                            <div class="row mt-3">
-                                <div class="col-sm-2">
-                                    <div class="form-check ">
+                            <div class="row mt-1">
+                                    <div class="form-check col-sm-2">
                                         <span> <input type="checkbox" name=""   class="form-check-input float-start p-1 accessInfo" @if($customer->manyMobile>0) checked @else @endif id="ForceExit"></span>
                                         <label class="form-check-label ms-4" for="flexCheckDefault">
                                             فعالسازی 
                                         </label>
                                     </div>
-                                </div>
-                                <div class="col-sm-2">
-                                    <div class="form-check ">
+                              
+                                    <div class="form-check col-sm-2">
                                         <span><input type="checkbox" name=""     class="form-check-input float-start p-1 accessInfo"  @if($customer->exitButtonAllowance==1) checked @else @endif class="form-check-input" id="ExitButtonShow"></span>
                                         <label class="form-check-label ms-4" for="flexCheckDefault">
                                         اجازه دکمه خروج
                                         </label>
                                     </div>
-                                </div>
-                                <div class="col-sm-3">
-                                    <div class="form-check ">
+                               
+                                    <div class="form-check col-sm-2">
                                         <span> <input type="checkbox" name=""   class="form-check-input float-start p-1 accessInfo"  @if($customer->countLogin>0) checked @else @endif class="form-check-input" id="OnlineStatus" ></span>
                                         <label class="form-check-label ms-4" for="flexCheckDefault">
                                             وضعیت آنلاین 
                                         </label>
                                     </div>
-                                </div>
-                                <div class="col-sm-3">
-                                    <div class="form-check ">
+                                
+                                    <div class="form-check col-sm-3">
                                     <span><input type="checkbox"  class="form-check-input float-start p-1 accessInfo"  name="" @if($customer->pardakhtLive==1) checked @else @endif  class="form-check-input" id="PardakhtLive"></span>
                                         <label class="form-check-label ms-4" for="flexCheckDefault">
                                         فعالسازی پرداخت حضوری 
                                         </label>
                                     </div>
-                                </div>
-                                <div class="col-sm-2">
-                                    <div class="form-check ">
+                               
+                                    <div class="form-check col-sm-3">
                                         <span><input type="checkbox" class="form-check-input float-start p-1 accessInfo"   name="officialInfo" @if($customer->officialInfo==1) checked @else  @endif class="form-check-input" id="officialInfo"></span>
                                         <label class="form-check-label ms-4" for="flexCheckDefault">
                                             ویرایش معلومات رسمی 
@@ -335,51 +306,32 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                     </div>
 
-
-                    <div class="c-checkout tab-pane" id="pictures" style="margin:0; border-radius:10px 10px 2px 2px;">
-                        <div class="row" style="width:98%; padding:0 1% 2% 0%">
-                            <div class="row col-sm-6" style="margin: 0; padding:0">
-                                <div class="row form-group col-sm-6" style="padding:1% 2% 0% 4%;">
-                                    <form action="http://starfoods.ir/crmLogin" target="_blank"  method="get">
-                                        <input type="hidden" id="psn" name="psn" value="{{$customer->PSN}}" />
-                                        <input type="hidden" name="otherName" value="{{Session::get('adminName')}}"/>
-                                        <Button class="btn btn-md btn-success buttonHover float-end" type="submit">ورود جعلی<i class="fas fa-sign-in fa-lg"> </i> </Button>
-                                    </form>
-                                </div>
-                                <div class="row form-group col-sm-6" style="padding:1% 2% 0% 4%;">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!---- ارسال به سرور
-                    !-->
                     <div class="c-checkout tab-pane" id="takhfifCalc" style="margin:0; border-radius:10px 10px 2px 2px;">
-                        <form action="{{url('/assignTakhfif')}}" target="_blank" method="post">
+                        <form action="{{url('/assignTakhfif')}}" id="kefTakhfifForm" target="_blank" method="post" style="display:block; height:300px; overflow-y:scroll; overflow-x:hidden;">
                             @csrf
                             <div class="row">
                                 <div class="col-sm-3">
-                                    <label class="form-label fs-6">درصد تخفیف</label>
+                                    <label class="form-label fs-6"> درصد تخفیف </label>
                                     <input type="text" class="form-control takhfifbagdesc" @if($customer->percentTakhfif) value="{{rtrim((string)number_format($customer->percentTakhfif,4, '/', ''),"0")}}" @else value="{{rtrim((string)number_format($defaultPercent,4, '/', ''),"0")}}" @endif name="percentTakhfif">
                                     <input type="text" name="CustomerSn" value="{{$customer->PSN}}" style="display:none;">
                                 </div>
-                                <div class="col-sm-3">
-                                    <label class="form-label fs-6">توضیح</label>
-                                    <textarea class="form-control takhfifbagdesc"  name="discription"> @if($customer->discription) {{trim($customer->discription)}} @else از تخفیف عمومی سایت مستفید است. @endif</textarea>
+                                <div class="col-sm-9">
+                                    <label class="form-label fs-6"> توضیح </label>
+                                    <textarea class="form-control takhfifbagdesc" name="discription"> @if($customer->discription) {{trim($customer->discription)}} @else از تخفیف عمومی سایت مستفید است. @endif</textarea>
                                 </div>
                             </div>
-                            <button id="takhfifBag" class="btn btn-success text-warning btn-sm pr-0 mr-5 mt-2 hidden" type="submit">ذخیره</button>
                         </form>
                     </div>
 
                     <div class="c-checkout tab-pane" id="takhfifCaseHistory" style="margin:0; border-radius:10px 10px 2px 2px;">
-                        <div class="row" style="width:98%; padding:0 1% 2% 0%">
-                            <div class="row col-sm-12" style="margin: 0; padding:0">
-                                <table class="homeTables table table-bordered table-striped table-sm" style="text-align:center;">
-                                    <thead class="table bg-success text-warning" style="position:sticky; top:0;">
+                        <div class="row">
+                            <div class="col-sm-12" style="display:block; height:300px; overflow-y:scroll; overflow-x:hidden;">
+                                <table class="table table-bordered table-striped table-sm" style="text-align:center;">
+                                    <thead class="bg-success">
                                     <tr>
-                                        <th>ردیف</th><th>درصدی تخفیف</th><th>وضعیت استفاده</th><th>مبلغ (ت)</th><th>توضیح</th><th>تاریخ </th>
+                                        <th> ردیف </th><th> درصدی تخفیف </th><th> وضعیت استفاده </th><th> مبلغ (ت) </th><th> توضیح </th><th> تاریخ </th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -395,9 +347,9 @@
                     </div>
                     <div class="row" style="text-align:left;">
                         <span style="float:left">
-                            <button class="btn btn-success btn-sm text-warning infoAccess" id="customerEdit" > ذخیره <i class="fa fa-save"> </i> </button>
-                            <button class="btn btn-success btn-sm text-warning disabled" type="button"  style="display:none;" name="" id="allKalaFirst1"> ذخیره  <i class="fa fa-save"> </i> </button>
-                            <label class="btn btn-success btn-sm text-warning" id="takhfifLabel" for="takhfifBag" tabindex="0" style="display:none;"> ذخیره    <i class="fa fa-save"> </i> </label>
+                            <button class="btn btn-success btn-sm text-warning" id="customerEdit" > ذخیره <i class="fa fa-save"> </i> </button>
+                            <button class="btn btn-success btn-sm text-warning" id="allKalaFirst1" type="button" name="" > ذخیره <i class="fa fa-save"> </i> </button>
+                            <button class="btn btn-success btn-sm text-warning" id="takhfifBag" form="kefTakhfifForm" type="submit"> ذخیره <i class="fa fa-save"> </i> </button>
                         </span> 
                     </div>
                 </div>
@@ -491,20 +443,46 @@
                 });
             });
         }
-        $(".takhfifbagdesc").on("keydown", ()=> {
-            $("#takhfifLabel").css("display", "inline");
-            $("#allKalaFirst1").css("display", "none");
+
+        $("#takhfifBag").on("click", ()=>{
+            $("#kefTakhfifForm").submit();
+        })
+        
+
+        $("#customerAddress").on("click", ()=>{
+            $("#customerEdit").hide();
+            $("#allKalaFirst1").hide();
+            $("#takhfifBag").hide();
         });
 
-        $(".accessInfo").on("keydown", ()=> {
-            $(".infoAccess").css("display", "inline");
-            $("#allKalaFirst1").css("display", "none");
-          
+        $("#discountBagHistory").on("click", ()=>{
+            $("#customerEdit").hide();
+            $("#allKalaFirst1").hide();
+            $("#takhfifBag").hide();
         });
-        $(".accessInfo").on("change", ()=> {
-            $(".infoAccess").css("display", "inline");
-            $("#allKalaFirst1").css("display", "none");
-          
+
+        $("#customerInfo").on("click", ()=>{
+            $("#customerEdit").show();
+            $("#allKalaFirst1").hide();
+            $("#takhfifBag").hide();
         });
+
+        $("#moyRagiInfo").on("click", ()=>{
+            $("#customerEdit").hide();
+            $("#allKalaFirst1").show();
+            $("#takhfifBag").hide();
+        });
+
+        if($("#moRagiInfo").hasClass("active")){
+            $("#customerEdit").hide();
+            $("#allKalaFirst1").hide();
+            $("#takhfifBag").hide();
+        }
+      $("#manageDiscountBag").on("click", ()=>{
+            $("#customerEdit").hide();
+            $("#allKalaFirst1").hide();
+            $("#takhfifBag").show();
+      })
+
     </script>
 @endsection
