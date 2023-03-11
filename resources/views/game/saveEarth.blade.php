@@ -453,7 +453,13 @@ button:hover::after, button:focus::after {
           <a href="{{url('/hextrisGame')}}"> <button class="buttonGame">  شروع بازی  </button>  </a>
         </div>
       </div>
-    @endif
+    @elseif($gameId==2)
+    <div class="row" style="margin:50px auto; ">
+      <div class="wrapGame">
+        <a href="{{url('/resources/assets/tower/index.html')}}"> <button class="buttonGame">  شروع بازی  </button>  </a>
+      </div>
+    </div>
+  @endif
   @else
 
     <div class="row">

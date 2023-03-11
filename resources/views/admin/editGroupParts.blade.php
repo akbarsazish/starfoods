@@ -68,11 +68,11 @@
                                             <thead>
                                                 <tr>
                                                     <th>ردیف</th>
-                                                    <th>گروه اصلی </th>
+                                                    <th>گروه اصلی 99</th>
                                                     <th><input type="checkbox" @if(hasPermission(Session::get( 'adminId'),'mainPageSetting' ) <1 ) disabled @endif  class="selectAllFromTop form-check-input"  ></th>
                                                 </tr>
                                             </thead>
-                                            <tbody class="tableBody" style="height: 300px !important" id="groupsPart">
+                                            <tbody class="tableBody" id="groupsPart">
                                                 @foreach ($groups as $group)
                                                     <tr   @if(hasPermission(Session::get( 'adminId'),'mainPageSetting' ) > 0 )  onclick="checkCheckBox(this,event)" @endif>
                                                         <td>{{ $loop->index+1 }}</td>
@@ -109,7 +109,7 @@
                                                     <th><input type="checkbox" @if(hasPermission(Session::get( 'adminId'),'mainPageSetting' ) < 1 ) disabled @endif class="selectAllFromTop form-check-input"></th>
                                                 </tr>
                                             </thead>
-                                            <tbody class="tableBody" style="height: 300px !important" id="addedGroups">
+                                            <tbody class="tableBody"  id="addedGroups">
                                                 @foreach ($addedGroups as $group)
                                                     <tr class="addedTr"  @if(hasPermission(Session::get( 'adminId'),'mainPageSetting' ) > 0 ) onClick="checkCheckBox(this,event)" @endif>
                                                         <td>{{ $loop->index+1}}</td>

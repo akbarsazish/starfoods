@@ -408,7 +408,7 @@
     </div>
 </div>
 
-    <meta name="csrf-token" content="{{ csrf_token() }}" />
+    <meta name="csrf-token" content="{{csrf_token()}}"/>
     <script>
         window.onload = function() {
             //used for displaying subgroups
@@ -431,9 +431,8 @@
                                 `<tr>
                                     <td>` + (i + 1) + `</td>
                                     <td>` + data[i].title + `</td>
-                                    <td><input class="subGroupId"  name="subGroupId" value="` + data[i].id +
-                                                            `" type="checkBox"></td>
-                                    <td><input type="checkBox" id="flexCheckChecked` + i + `"/></td>  `);
+                                    <td><input class="subGroupId" name="subGroupId" value="`+data[i].id+`" type="checkBox"></td>
+                                    <td><input type="checkBox" id="flexCheckChecked`+i+`"/></td>`);
                             if (data[i].exist == 'ok') {
                                 $('#flexCheckChecked' + i).prop('checked', true);
                             } else {

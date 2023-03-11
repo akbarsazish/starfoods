@@ -81,6 +81,7 @@
                                 <thead class="tableHeader">
                                 <tr>
                                     <th>ردیف</th>
+                                    <th>بازی</th>
                                     <th> نام مشتری </th>
                                     <th>شماره تماس</th>
                                     <th>جایزه (تومان)</th>
@@ -91,8 +92,9 @@
                                     @foreach ($players as $player)
                                         <tr>
                                             <td>{{number_format($loop->index+1)}}</td>
+                                            <td>{{$player->GameName}}</td>
                                             <td>{{$player->Name}}</td>
-                                            <td>{{$player->Name}}</td>
+                                            <td>{{$player->PhoneStr}}</td>
                                             <td>{{number_format($player->prize)}}</td>
                                             <td> <i class="fa fa-trash" style="color:red; cursor:pointer"></i> </td>
                                         </tr>

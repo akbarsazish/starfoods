@@ -136,7 +136,7 @@
                                                 </th>
                                             </tr>
                                         </thead>
-                                        <tbody class="tableBody" style="height:300px !important;" id="kalaList">
+                                        <tbody class="tableBody" id="kalaList">
                                             @foreach ($kalas as $kala)
                                                 <tr @if(hasPermission(Session::get( 'adminId'),'mainPageSetting' ) <1 ) onclick="checkCheckBox(this,event)" @endif>
                                                     <td>{{ $loop->index+1 }}</td>
@@ -159,7 +159,7 @@
                                         <thead class="tableHeader">
                                             <tr>
                                                 <th>ردیف</th>
-                                                <th class="position-relative"> اسم کالا</th>
+                                                <th class="position-relative"> اسم </th>
                                                 <th>
                                                     <button style="background-color:transparent;"  @if(hasPermission(Session::get( 'adminId'),'mainPageSetting' ) <1 ) disabled @endif class='priority' id="down" type="button" value="down" ><i class="fa-solid fa-circle-chevron-down fa-sm" style=''></i></button> &nbsp;
                                                     <button style="background-color:transparent;"  @if(hasPermission(Session::get( 'adminId'),'mainPageSetting' ) <1 ) disabled @endif class='priority' id="top"  type="button" value="up" >  <i class="fa-solid fa-circle-chevron-up fa-sm" style=''></i></button>
@@ -169,7 +169,7 @@
                                                 </th>
                                             </tr>
                                         </thead>
-                                        <tbody class="tableBody" style="height:300px !important;" id="addedKalaPart">
+                                        <tbody class="tableBody" id="addedKalaPart">
                                             @foreach ($addKalas as $kala)
                                                 <tr @if(hasPermission(Session::get( 'adminId'),'mainPageSetting' ) <1 ) onClick="checkCheckBox(this,event)" @endif>
                                                     <td>{{ $loop->index+1 }}</td>

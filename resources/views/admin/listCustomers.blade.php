@@ -130,12 +130,12 @@
                                             <table class="table table-responsive table-bordered table-sm" id="myTable" style="text-align:center">
                                                 <thead class="table bg-success tableHeader">
                                                     <tr>
-                                                        <th>ردیف  </th>
-                                                        <th>نام </th>
-                                                        <th>نام خانودگی  </th>
-                                                        <th>شماره ملی </th>
-                                                        <th>کد نقش </th>
-                                                        <th>کد پستی </th>
+                                                        <th>ردیف</th>
+                                                        <th>نام</th>
+                                                        <th>نام خانودگی</th>
+                                                        <th>شماره ملی</th>
+                                                        <th>کد نقش</th>
+                                                        <th>کد پستی</th>
                                                         <th> آدرس</th>
                                                         <th>ارسال به دفتر حساب </th>
                                                         <th>ویرایش </th>
