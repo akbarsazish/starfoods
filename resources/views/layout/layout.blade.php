@@ -65,6 +65,7 @@
                         <a href="{{url('/constact')}}"> <i class="fal fa-phone-square fa-lg"> </i> تماس با ما  </a>
 					   <a href="{{url('/saveEarth')}}"> <i class="fas fa-gamepad fa-lg"> </i> نجات زمین </a>
 					   <a href="{{url('/towerGame')}}"> <i class="fas fa-tower fa-lg"> </i>  ساختن برج </a>
+					   <a href="{{url('/tower')}}"> <i class="fas fa-tower fa-lg"> </i>  ساخت برج </a>
 					   <!-- <a href="{{url('/showLottery')}}"> <i class="fa fa-ticket fa-lg"></i> شانس آزمایی </a> -->
 
                         @if($exitAllowance==1)

@@ -219,4 +219,8 @@ class SaveEarth extends Controller
 	 public function towerGame(){
         return view("game.hextris.index");
      }
+
+	 public function buildingTower(){
+        return view("game.tower.index");
+     }
 }

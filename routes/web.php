@@ -315,6 +315,7 @@ Route::get("/setFactorSessions",[Shipping::class,"setFactorSessions"])->middlewa
 
 Route::get('/strayMaster',[SaveEarth::class,'strayMaster'])->middleware('checkUser');
 Route::get('/towerGame',[SaveEarth::class,'towerGame'])->middleware('checkUser');
+Route::get('/tower',[SaveEarth::class,'buildingTower'])->middleware('checkUser');
 
 
 Route::get("/salesOrder",[SalesOrder::class,"salesOrder"])->middleware('checkAdmin');

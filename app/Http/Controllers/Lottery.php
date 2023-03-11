@@ -10,8 +10,7 @@ class Lottery extends Controller
     public function showLottery(){
         return view("lottery.lottery");
     }
-    public function editLotteryPrize(Request $request)
-    {
+    public function editLotteryPrize(Request $request){
         $firstPrize=$request->get("firstPrize");
         $secondPrize=$request->get("secondPrize");
         $thirdPrize=$request->get("thirdPrize");

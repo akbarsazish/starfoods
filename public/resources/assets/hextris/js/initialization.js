@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(document).ready(function () {
 	initialize();
 });
 function initialize(a) {
@@ -41,15 +41,15 @@ function initialize(a) {
 	}
 
 	window.textShown = false;
-	window.requestAnimFrame = (function() {
-		return window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || function(callback) {
+	window.requestAnimFrame = (function () {
+		return window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || function (callback) {
 			window.setTimeout(callback, 1000 / framerate);
 		};
 	})();
 	$('#clickToExit').bind('click', toggleDevTools);
 	window.settings;
 	if (/Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-        $('.rrssb-email').remove();
+		$('.rrssb-email').remove();
 		settings = {
 			os: "other",
 			platform: "mobile",
@@ -89,12 +89,12 @@ function initialize(a) {
 		};
 
 	}
-	if(/Android/i.test(navigator.userAgent)) {
+	if (/Android/i.test(navigator.userAgent)) {
 		settings.os = "android";
 	}
 
-	if(navigator.userAgent.match(/iPhone/i) || navigator.userAgent.match(/iPad/i) || navigator.userAgent.match(/iPod/i)){
-		settings.os="ios";
+	if (navigator.userAgent.match(/iPhone/i) || navigator.userAgent.match(/iPad/i) || navigator.userAgent.match(/iPod/i)) {
+		settings.os = "ios";
 	}
 
 	window.canvas = document.getElementById('canvas');
@@ -136,7 +136,7 @@ function initialize(a) {
 	setStartScreen();
 	if (a != 1) {
 		window.canRestart = 1;
-		window.onblur = function(e) {
+		window.onblur = function (e) {
 			if (gameState == 1) {
 				pause();
 			}
@@ -148,20 +148,20 @@ function initialize(a) {
 			$('#startBtn').on('mousedown', startBtnHandler);
 		}
 
-		document.addEventListener('touchmove', function(e) {
+		document.addEventListener('touchmove', function (e) {
 			e.preventDefault();
 		}, false);
 		$(window).resize(scaleCanvas);
-		$(window).unload(function() {
+		$(window).unload(function () {
 
 			if (gameState == 1 || gameState == -1 || gameState === 0) localStorage.setItem("saveState", exportSaveState());
 			else localStorage.setItem("saveState", "{}");
 		});
 
 		addKeyListeners();
-		(function(i, s, o, g, r, a, m) {
+		(function (i, s, o, g, r, a, m) {
 			i['GoogleAnalyticsObject'] = r;
-			i[r] = i[r] || function() {
+			i[r] = i[r] || function () {
 				(i[r].q = i[r].q || []).push(arguments)
 			}, i[r].l = 1 * new Date();
 			a = s.createElement(o), m = s.getElementsByTagName(o)[0];
@@ -176,7 +176,7 @@ function initialize(a) {
 		document.addEventListener("backbutton", handlePause, false);
 		document.addEventListener("menubutton", handlePause, false); //menu button on android
 
-		setTimeout(function() {
+		setTimeout(function () {
 			if (settings.platform == "mobile") {
 				try {
 					document.body.removeEventListener('touchstart', handleTapBefore, false);
@@ -211,7 +211,7 @@ function initialize(a) {
 }
 
 function startBtnHandler() {
-	setTimeout(function() {
+	setTimeout(function () {
 		if (settings.platform == "mobile") {
 			try {
 				document.body.removeEventListener('touchstart', handleTapBefore, false);
