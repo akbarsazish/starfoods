@@ -201,9 +201,8 @@
                                      </div>
                                  </div>
                              </div>
-                        </div>
-                    </form>
-                </div>
+                         </form>
+                     </div>
                 <div class="row contentFooter"> </div>
             </div>
     </div>

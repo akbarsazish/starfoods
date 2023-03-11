@@ -6569,7 +6569,7 @@ span.footerbasket {
 }
 
 .tableBody {
-    height: 420px !important;
+    height: 400px !important;
     overflow-y: scroll !important;
     display: block !important;
     font-size: 14px;

@@ -140,7 +140,7 @@
 
                 <div class="c-checkout tab-content" style="background-color:#f5f5f5; margin:0; padding:0.2%; border-radius:10px 10px 2px 2px;">
                      <div class="row c-checkout rounded-3 tab-pane active" id="custAddress">
-                        <div class="col-sm-12"  style="display:block; height:300px; overflow-y:scroll; overflow-x:hidden;"> 
+                        <div class="col-sm-12 tableBody"> 
                             <table class="table table-bordered table-striped table-sm" style="text-align:center;">
                                 <thead class="table bg-success text-warning">
                                 <tr>
@@ -169,7 +169,7 @@
                     </div>
 
                     <div class="row c-checkout rounded-3 tab-pane" id="moRagiInfo">
-                        <div class="col-lg-12" style="display:block; height:300px; overflow-y:scroll; overflow-x:hidden;">
+                        <div class="col-lg-12 tableBody">
                            <div class="row mt-2">
                                 <div class="col-sm-2">
                                     <div class="input-group input-group-sm mb-2">
@@ -239,7 +239,7 @@
                     </div>
                     <div class="row c-checkout rounded-3 tab-pane" id="userLoginInfo" style="width:100%; margin:0 auto; padding:1% 0% 0% 0%">
                         <div class="row px-1">
-                            <div class="col-lg-12 mx-0" style="display:block; height:300px; overflow-y:scroll; overflow-x:hidden;">
+                            <div class="col-lg-12 mx-0 tableBody">
                                <div class="row">
                                     <div class="col-sm-2">
                                         <div class="input-group input-group-sm mb-2">
@@ -309,7 +309,7 @@
                      </div>
 
                     <div class="c-checkout tab-pane" id="takhfifCalc" style="margin:0; border-radius:10px 10px 2px 2px;">
-                        <form action="{{url('/assignTakhfif')}}" id="kefTakhfifForm" target="_blank" method="post" style="display:block; height:300px; overflow-y:scroll; overflow-x:hidden;">
+                        <form action="{{url('/assignTakhfif')}}" id="kefTakhfifForm" target="_blank" method="post" class="tableBody">
                             @csrf
                             <div class="row">
                                 <div class="col-sm-3">
@@ -327,7 +327,7 @@
 
                     <div class="c-checkout tab-pane" id="takhfifCaseHistory" style="margin:0; border-radius:10px 10px 2px 2px;">
                         <div class="row">
-                            <div class="col-sm-12" style="display:block; height:300px; overflow-y:scroll; overflow-x:hidden;">
+                            <div class="col-sm-12 tableBody">
                                 <table class="table table-bordered table-striped table-sm" style="text-align:center;">
                                     <thead class="bg-success">
                                     <tr>
