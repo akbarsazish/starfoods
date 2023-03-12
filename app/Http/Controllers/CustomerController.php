@@ -11,21 +11,20 @@ class CustomerController extends Controller{
 
 // The following method return the form to insert haqiq customer into database
         public function haqiqiCustomerAdd(){
-                $customerId=Session::get('psn');
-                $checkHaqiqiExist=DB::table("NewStarfood.dbo.star_Customer")->where("customerShopSn",Session::get('psn'))->count();
-                $haqiqiCustomers=DB::table("NewStarfood.dbo.star_Customer")->where('customerType','haqiqi')->where('customerShopSn', Session::get('psn'))->select("*")->get();
+            $customerId=Session::get('psn');
+            $checkHaqiqiExist=DB::table("NewStarfood.dbo.star_Customer")->where("customerShopSn",Session::get('psn'))->count();
+            $haqiqiCustomers=DB::table("NewStarfood.dbo.star_Customer")->where('customerType','haqiqi')->where('customerShopSn', Session::get('psn'))->select("*")->get();
 
-                $exacHaqiqi=array();
-                foreach ($haqiqiCustomers as $haqiqiCustomer) {
-                    $exacHaqiqi=$haqiqiCustomer;
-                }
-                $hoqoqiCustomers=DB::table("NewStarfood.dbo.star_Customer")->where('customerType','hoqoqi')->where('customerShopSn', Session::get('psn'))->select("*")->get();
-                $exactHoqoqi=array();
-                foreach ($hoqoqiCustomers as $hoqoqiCustomer) {
-                    $exactHoqoqi=$hoqoqiCustomer;
-                }
-                return View('customer.addCustomerProfile', ['checkHaqiqiExist'=>$checkHaqiqiExist, 'haqiqiCustomers'=>$haqiqiCustomers,'exactHoqoqi'=>$exactHoqoqi, 'exacHaqiqi'=>$exacHaqiqi]);
-
+            $exacHaqiqi=array();
+            foreach ($haqiqiCustomers as $haqiqiCustomer) {
+                $exacHaqiqi=$haqiqiCustomer;
+            }
+            $hoqoqiCustomers=DB::table("NewStarfood.dbo.star_Customer")->where('customerType','hoqoqi')->where('customerShopSn', Session::get('psn'))->select("*")->get();
+            $exactHoqoqi=array();
+            foreach ($hoqoqiCustomers as $hoqoqiCustomer) {
+                $exactHoqoqi=$hoqoqiCustomer;
+            }
+            return View('customer.addCustomerProfile', ['checkHaqiqiExist'=>$checkHaqiqiExist, 'haqiqiCustomers'=>$haqiqiCustomers,'exactHoqoqi'=>$exactHoqoqi, 'exacHaqiqi'=>$exacHaqiqi]);
         }
 
 
