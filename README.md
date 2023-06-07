@@ -1,64 +1,149 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+<a name="readme-top"></a>
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+<div align="center">
+  <h3><b> Starfoods </b></h3>
+</div>
 
-## About Laravel
+# 📗 Table of Contents
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- [📖 About the Project](#about-project)
+  - [🛠 Built With](#built-with)
+    - [Tech Stack](#tech-stack)
+    - [Key Features](#key-features)
+  - [🚀 Live Demo](#live-demo)
+- [💻 Getting Started](#getting-started)
+  - [Setup](#setup)
+  - [Prerequisites](#prerequisites)
+  - [Install](#install)
+  - [Usage](#usage)
+  - [Run tests](#run-tests)
+- [👥 Authors](#authors)
+- [🔭 Future Features](#future-features)
+- [🤝 Contributing](#contributing)
+- [⭐️ Show your support](#support)
+- [🙏 Acknowledgements](#acknowledgements)
+- [📝 License](#license)
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+<!-- PROJECT DESCRIPTION -->
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+# 📖 [Portfoloi] <a name="about-project"></a>
 
-## Learning Laravel
+**[Portfoloi]** In this project I set up a portfoloi rpository on github. It is a project that I use what I learned before, I will use this usefull tips in my all project and also in the future.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## 🛠 Built With <a name="built-with"></a>
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### Tech Stack <a name="tech-stack"></a>
 
-## Laravel Sponsors
+<details>
+  <summary>Client</summary>
+  <ul>
+    <li><a href="#">HTML</a></li>
+    <li><a href="#">CSS</a></li>
+    <li><a href="#">JavaScript</a></li>
+    <li><a href="#"> jQuery </a></li>
+     <li><a href="#"> Bootstrap </a></li>
+  </ul>
+     <summary>Server</summary>
+  <ul>
+    <li><a href="#">SQL server</a></li>
+    <li><a href="#"> Laravel </a></li>
+  </ul>
+</details>
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
 
-### Premium Partners
+<!-- Features -->
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+### Key Features <a name="key-features"></a>
+<ul>
+  <li>Wide range of products</li>
+  <li>User-friendly interface</li>
+  <li>Advanced search functionality</li>
+  <li>Secure payment options</li>
+  <li>Responsive design for mobile devices</li>
+  <li>Personalized recommendations</li>
+  <li>Customer reviews and ratings</li>
+  <li>Easy checkout process</li>
+  <li>Order tracking and delivery notifications</li>
+  <li>Multiple shipping options</li>
+  <li>Flexible return and refund policy</li>
+  <li>24/7 customer support</li>
+  <li>Exclusive deals and discounts</li>
+  <li>Product comparison feature</li>
+  <li>Social media integration</li>
+</ul>
 
-## Contributing
+Feel free to customize this list according to your specific requirements and the nature of the shopping site.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-## Code of Conduct
+<!-- LIVE DEMO -->
+## 🚀 Live Demo <a name="live-demo"></a>
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+> - [Live Demo On Gh-pages](https://starfoods.ir)
 
-## Security Vulnerabilities
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+<!-- GETTING STARTED -->
 
-## License
+## 💻 Getting Started <a name="getting-started"></a>
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+### Deployment
+You can deploy it with your hosting provider of your choise.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- AUTHORS -->
+
+## 👥 Authors <a name="authors"> </a>  
+
+👤 **Ali Akbar Sazish**
+
+- GitHub: [@githubhandle](https://github.com/akbarsazish)
+- Twitter: [@twitterhandle](https://twitter.com/AliAkbarSazish1)
+- LinkedIn: [LinkedIn](https://www.linkedin.com/in/ali-akbar-sazish/)
+
+👤 Jawad Akhlaqi
+
+- GitHub: [Solomon](https://github.com/)
+- Twitter: [Solomon](https://twitter.com/)
+- LinkedIn: [Solomon](https://www.linkedin.com/)
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- FUTURE FEATURES -->
+
+## 🔭 Future Features <a name="future-features"></a>
+
+- [ ] **[Portfoloi]**
+
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- CONTRIBUTING -->
+
+## 🤝 Contributing <a name="contributing"></a>
+Contributions, issues, and feature requests are welcome!
+Feel free to check the [issues page](../../issues/).
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+## ⭐️ Show your support <a name="support"></a>
+If you like this project, you are most welcome to Contribute.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+<!-- Acknowledgments -->
+## 🙏 Acknowledgments <a name="acknowledgements"></a>
+I would like to thank all of My colleagues and supporters.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+<!-- LICENSE -->
+## 📝 License <a name="license"></a>
+This project is [MIT](./LICENSE) licensed. 
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
