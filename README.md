@@ -26,9 +26,13 @@
 
 <!-- PROJECT DESCRIPTION -->
 
-# 📖 [Portfoloi] <a name="about-project"></a>
+# 📖 [Starfoods] <a name="about-project"></a>
 
-**[Portfoloi]** In this project I set up a portfoloi rpository on github. It is a project that I use what I learned before, I will use this usefull tips in my all project and also in the future.
+
+![mobile](https://github.com/akbarsazish/starfoods/assets/97288972/c75dbed4-687b-448e-89fc-0b8907cac61b)
+![mobile (2)](https://github.com/akbarsazish/starfoods/assets/97288972/195c9eda-ddc4-4f43-affc-2fee4405bb36)
+
+**[starfoods]** starfoods is a leading online shopping site offering a vast selection of products. With a user-friendly interface, it provides a seamless shopping experience. From electronics to fashion, home goods to toys, ShopZone has it all. Enjoy secure payments, fast shipping, and excellent customer service. Start exploring and find your perfect purchase today!
 
 ## 🛠 Built With <a name="built-with"></a>
 
