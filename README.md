@@ -109,9 +109,9 @@ You can deploy it with your hosting provider of your choise.
 
 👤 Jawad Akhlaqi
 
-- GitHub: [Solomon](https://github.com/)
-- Twitter: [Solomon](https://twitter.com/)
-- LinkedIn: [Solomon](https://www.linkedin.com/)
+- GitHub: [Javad Akhlaqi](https://github.com/)
+- Twitter: [Javad Akhlaqi](https://twitter.com/)
+- LinkedIn: [Javad Akhlaqi](https://www.linkedin.com/)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
